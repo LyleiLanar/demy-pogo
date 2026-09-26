@@ -29,7 +29,7 @@ body{background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,-apple
 h1{font:700 1.9rem/1.1 "Barlow Condensed",Barlow,sans-serif;margin:8px 0 4px;letter-spacing:.01em}
 .sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;padding-block:8px;border-bottom:1px solid var(--line)}
-nav button{flex:1;font:600 .95rem/1.2 Barlow,sans-serif;padding:10px 6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;cursor:pointer}
+nav button{flex:1;min-width:0;font:600 .9rem/1.2 Barlow,sans-serif;padding:10px 6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;cursor:pointer}
 nav button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 nav button:focus-visible,.copy:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 h2{font:700 1.35rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:28px 0 8px;text-wrap:balance;letter-spacing:.01em}
@@ -56,6 +56,14 @@ p{margin:6px 0}
 @media (max-width:420px){.pvp{columns:1}}
 .pvp li{break-inside:avoid;margin-bottom:4px}
 .pvp small{color:var(--muted)}
+.links{list-style:none;padding:0;display:grid;gap:8px}
+.links a{display:grid;gap:2px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.links a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.links .t{font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.links .t::after{content:"↗";color:var(--accent)}
+.links .u{font:500 .78rem "JetBrains Mono",monospace;color:var(--muted)}
+.links .d{color:var(--muted);font-size:.92rem}
+.star{font:600 .72rem Barlow,sans-serif;background:var(--accent);color:var(--accent-ink);border-radius:4px;padding:1px 6px;letter-spacing:.04em;margin-left:6px;vertical-align:2px}
 </style>
 <style>html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
 </head>
@@ -66,9 +74,10 @@ p{margin:6px 0}
   <p class="sub">Mit tarts meg, mit keress, mi jó a Great League-ben. A keresőknél a Másol gombbal viheted át a játékba.</p>
 
   <nav role="tablist">
-    <button role="tab" id="t-tart" data-tab="tart" aria-selected="true">Mit tartsak meg</button>
+    <button role="tab" id="t-tart" data-tab="tart" aria-selected="true">Megtartás</button>
     <button role="tab" id="t-kereso" data-tab="kereso" aria-selected="false">Keresők</button>
     <button role="tab" id="t-top" data-tab="top" aria-selected="false">GL Top 50</button>
+    <button role="tab" id="t-link" data-tab="link" aria-selected="false">Linkek</button>
   </nav>
 
   <!-- ================= MIT TARTSAK MEG ================= -->
@@ -244,6 +253,30 @@ p{margin:6px 0}
       <li>A régiós formák számítanak: Ninetales és Marowak a sima, Stunfisk a sima (nem galari).</li>
       <li>A rangsor szezononként változik. Frissítés: pvpoke.com → Rankings → Great League.</li>
     </ul></div>
+  </section>
+  <!-- ================= LINKEK ================= -->
+  <section id="link" role="tabpanel" hidden>
+    <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
+    <h2>Napi infó, események</h2>
+    <ul class="links">
+      <li><a href="https://leekduck.com" target="_blank" rel="noopener"><span class="t"><span>Leek Duck<span class="star">NAPI</span></span></span><span class="u">leekduck.com</span><span class="d">Események, raid bossok, Max Battle-ök, Community Day naptár.</span></a></li>
+      <li><a href="https://pokemongohub.net" target="_blank" rel="noopener"><span class="t"><span>Pokémon GO Hub</span></span><span class="u">pokemongohub.net</span><span class="d">Hírek és részletes útmutatók, kezdőknek is.</span></a></li>
+    </ul>
+    <h2>PvP (Great League)</h2>
+    <ul class="links">
+      <li><a href="https://pvpoke.com/rankings/" target="_blank" rel="noopener"><span class="t"><span>PvPoke<span class="star">NAPI</span></span></span><span class="u">pvpoke.com/rankings/</span><span class="d">Rangsorok, csapatépítő, mozdulatok. A GL Top 50 innen van.</span></a></li>
+      <li><a href="https://gostadium.club" target="_blank" rel="noopener"><span class="t"><span>GO Stadium</span></span><span class="u">gostadium.club</span><span class="d">Kezdőbarát PvP cikkek, meta összefoglalók.</span></a></li>
+    </ul>
+    <h2>Raid és Max Battle</h2>
+    <ul class="links">
+      <li><a href="https://pokebattler.com" target="_blank" rel="noopener"><span class="t"><span>Pokebattler</span></span><span class="u">pokebattler.com</span><span class="d">Kivel érdemes egy bosst verni, és hány ember kell hozzá.</span></a></li>
+      <li><a href="https://gamepress.gg/pokemongo" target="_blank" rel="noopener"><span class="t"><span>GamePress</span></span><span class="u">gamepress.gg/pokemongo</span><span class="d">Adatbázis: mozdulatok, statok, raid counterek.</span></a></li>
+    </ul>
+    <h2>Kézikönyv és közösség</h2>
+    <ul class="links">
+      <li><a href="https://bulbapedia.bulbagarden.net" target="_blank" rel="noopener"><span class="t"><span>Bulbapedia</span></span><span class="u">bulbapedia.bulbagarden.net</span><span class="d">Mindenről van oldal, ha valamit nem értesz.</span></a></li>
+      <li><a href="https://reddit.com/r/TheSilphRoad" target="_blank" rel="noopener"><span class="t"><span>r/TheSilphRoad</span></span><span class="u">reddit.com/r/TheSilphRoad</span><span class="d">Tapasztalt játékosok, gyors válaszok.</span></a></li>
+    </ul>
   </section>
 </div>
 
