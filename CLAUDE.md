@@ -18,4 +18,7 @@ A válaszban adott tanácsot vedd fel a `pokemon.js`-be is:
   (`github.com/pvpoke/pvpoke`, `src/data/rankings/all/overall/rankings-1500.json` és `-2500.json`,
   1-től számozva; a Shadow változat `<id>_shadow`).
 - A GL Top 50 fül a `greatLeague` helyezésekből épül fel, külön listát nem kell frissíteni.
+- A módhoz kötött tanácsot (IV, mozdulatok, tippek) a megfelelő mód (`raid`, `greatLeague`,
+  `ultraLeague`, `maxBattle`, `gym`) `iv`, `moves` és `tips` mezőjébe írd; a `notes`-ba csak
+  az kerüljön, ami egyik módhoz sem kötődik.
 - A felhasználó saját példányait az `owned` mezőbe írd.

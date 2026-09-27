@@ -21,6 +21,12 @@ const GAME_MODES = [
   { key: 'gym', label: 'Gym', title: 'Gym' },
 ];
 const RATING_ORDER = ['good', 'ok', 'bad'];
+// Ha a fajnál nincs külön IV-tanács, ez az általános szabály látszik (gyenge módnál nem).
+const DEFAULT_IV_ADVICE = {
+  raid: 'Magas Attack.',
+  greatLeague: 'Alacsony Attack, magas Defense és HP.',
+  ultraLeague: 'Alacsony Attack, magas Defense és HP.',
+};
 
 // ---------- Segédfüggvények ----------
 
@@ -133,6 +139,9 @@ function gameModesOf(species) {
         rating: mode.isLeague ? leagueRating(data) : data.rating,
         detail: mode.isLeague ? formatLeague(data) : '',
         note: data.note,
+        iv: data.iv,
+        moves: data.moves,
+        tips: data.tips,
       };
     });
 }
@@ -150,13 +159,22 @@ function renderModeTab(mode, isSelected) {
       data-mode="${mode.key}">${mode.label}</button>`;
 }
 
+function ivAdviceFor(mode) {
+  if (mode.iv) return mode.iv;
+  const fallback = DEFAULT_IV_ADVICE[mode.key];
+  return fallback && mode.rating !== 'bad' ? `${fallback} (általános szabály)` : '';
+}
+
 function renderModePanel(mode, isSelected) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
+  const facts = renderFact('IV', ivAdviceFor(mode)) + renderFact('Mozdulatok', mode.moves);
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
       <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
       ${detail}${note}
+      ${facts ? `<dl class="mon-facts">${facts}</dl>` : ''}
+      ${renderList('mon-notes', mode.tips)}
     </div>`;
 }
 
@@ -195,11 +213,7 @@ function renderPokemonCard(species) {
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
       ${warning}
       ${renderGameModes(species)}
-      <dl class="mon-facts">
-        ${renderFact('IV', species.ivAdvice)}
-        ${renderFact('Mozdulatok', species.moves)}
-        ${renderFact('Fejlődés', species.evolution)}
-      </dl>
+      ${species.evolution ? `<dl class="mon-facts">${renderFact('Fejlődés', species.evolution)}</dl>` : ''}
       ${renderList('mon-notes', species.notes)}
       ${owned}
     </article>`;
