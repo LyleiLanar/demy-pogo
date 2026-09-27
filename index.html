@@ -126,126 +126,20 @@ p{margin:6px 0}
 
     <h2>6. PvP-ben használható fajok (Great League)</h2>
     <p class="sub">Zárójelben az alapforma, amit a vadonban kapsz el. Ezeknél szkennelj.</p>
-    <ul class="pvp">
-      <li>Azumarill <small>(Marill / Azurill)</small></li>
-      <li>Tinkaton <small>(Tinkatink)</small></li>
-      <li>Annihilape <small>(Mankey)</small></li>
-      <li>Hariyama <small>(Makuhita)</small></li>
-      <li>Medicham <small>(Meditite)</small></li>
-      <li>Clodsire <small>(paldeai Wooper)</small></li>
-      <li>Quagsire <small>(Wooper)</small></li>
-      <li>Galarian Stunfisk</li>
-      <li>Mandibuzz <small>(Vullaby)</small></li>
-      <li>Toxapex <small>(Mareanie)</small></li>
-      <li>Altaria <small>(Swablu)</small></li>
-      <li>Lanturn <small>(Chinchou)</small></li>
-      <li>Florges <small>(Flabébé)</small></li>
-      <li>Mimikyu</li>
-      <li>Alolan Ninetales <small>(alolai Vulpix)</small></li>
-      <li>Ninetales, főleg Shadow <small>(Vulpix)</small></li>
-      <li>Swampert <small>(Mudkip, Hydro Cannon kell)</small></li>
-      <li>Feraligatr <small>(Totodile, Hydro Cannon kell)</small></li>
-      <li>Jumpluff <small>(Hoppip)</small></li>
-      <li>Bastiodon <small>(Shieldon)</small></li>
-      <li>Lickitung</li>
-      <li>Melmetal <small>(Meltan)</small></li>
-    </ul>
+    <ul class="pvp" id="pvp-list"></ul>
     <p class="sub">A meta változik: szezononként nézz rá a pvpoke.com → Rankings → Great League listára.</p>
   </section>
 
   <!-- ================= KERESŐK ================= -->
   <section id="kereso" role="tabpanel" hidden>
     <p class="legend">&amp; = ÉS &nbsp;·&nbsp; , = VAGY &nbsp;·&nbsp; ! = NEM</p>
-
-    <h2>Takarítás</h2>
-    <div class="warn">Ez csak átnézendő lista, nem vakon elküldendő! Görgesd végig, a PvP-fajokat vedd ki belőle.</div>
-    <div class="q"><span class="lbl">Heti takarítás (elmúlt hét, védettek nélkül)</span><div class="code"><code>age0-7&amp;!3*&amp;!4*&amp;!favorite&amp;!shiny&amp;!legendary&amp;!mythical&amp;!ultrabeast&amp;!shadow&amp;!purified&amp;!costume&amp;!lucky&amp;!background&amp;!dynamax&amp;!gigantamax&amp;!@special</code></div></div>
-    <div class="q"><span class="lbl">Ma elkapottak</span><div class="code"><code>age0</code></div></div>
-
-    <h2>PvP (Great League)</h2>
-    <div class="q"><span class="lbl">PvP jelöltek (alacsony Attack, magas Defense és HP)</span><div class="code"><code>0attack,1attack&amp;3defense,4defense&amp;3hp,4hp</code></div></div>
-    <div class="q"><span class="lbl">Alacsony Attackosak (tágabb lista)</span><div class="code"><code>0attack,1attack</code></div></div>
-    <div class="q"><span class="lbl">Great League-be beférők (max 1500 CP)</span><div class="code"><code>cp-1500</code></div></div>
-
-    <h2>Raid</h2>
-    <div class="q"><span class="lbl">Legjobb példányok (3 és 4 csillag)</span><div class="code"><code>3*,4*</code></div></div>
-    <div class="q"><span class="lbl">100%-osak (hundo)</span><div class="code"><code>4*</code></div></div>
-    <div class="q"><span class="lbl">Shadow Pokémonok</span><div class="code"><code>shadow</code></div></div>
-    <div class="q"><span class="lbl">Mega evolválhatók</span><div class="code"><code>megaevolve</code></div></div>
-
-    <h2>Védett / különleges</h2>
-    <div class="q"><span class="lbl">Shinyk</span><div class="code"><code>shiny</code></div></div>
-    <div class="q"><span class="lbl">Legendás, mitikus, Ultra Beast</span><div class="code"><code>legendary,mythical,ultrabeast</code></div></div>
-    <div class="q"><span class="lbl">Jelmezesek</span><div class="code"><code>costume</code></div></div>
-    <div class="q"><span class="lbl">Különleges hátterűek</span><div class="code"><code>background</code></div></div>
-    <div class="q"><span class="lbl">Lucky</span><div class="code"><code>lucky</code></div></div>
-    <div class="q"><span class="lbl">Különleges (Community Day / Elite TM) mozdulat</span><div class="code"><code>@special</code></div></div>
-
-    <h2>Max Battle</h2>
-    <div class="q"><span class="lbl">Dynamax és Gigantamax</span><div class="code"><code>dynamax,gigantamax</code></div></div>
-
-    <h2>Fejlesztés</h2>
-    <div class="q"><span class="lbl">Most fejleszthetők</span><div class="code"><code>evolve</code></div></div>
-    <div class="q"><span class="lbl">Új Pokédex-bejegyzést adnak</span><div class="code"><code>evolvenew</code></div></div>
-
-    <h2>Címkék és fajok</h2>
-    <div class="q"><span class="lbl">A Kétes címkések</span><div class="code"><code>#Kétes</code></div></div>
-    <div class="q"><span class="lbl">Teljes fejlődési sor (példa: Charmander)</span><div class="code"><code>+Charmander</code></div></div>
+    <div id="search-list"></div>
   </section>
 
   <!-- ================= GL TOP 50 ================= -->
   <section id="top" role="tabpanel" hidden>
     <p class="sub">PvPoke rangsor, 2026. szeptember 24. A top 50 hely 39 különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
-
-    <h2>Top 10</h2>
-    <ol class="rank">
-      <li><span class="n">1</span><span class="f">Melmetal</span><span class="w">Meltan (Mystery Boxból)</span></li>
-      <li><span class="n">2</span><span class="f">Altaria<span class="s">S</span></span><span class="w">Swablu</span></li>
-      <li><span class="n">3</span><span class="f">Ninetales<span class="s">S</span></span><span class="w">Vulpix (a sima, nem az alolai)</span></li>
-      <li><span class="n">4</span><span class="f">Cramorant</span><span class="w">Cramorant</span></li>
-      <li><span class="n">5</span><span class="f">Tinkaton</span><span class="w">Tinkatink</span></li>
-      <li><span class="n">6</span><span class="f">Mimikyu</span><span class="w">Mimikyu</span></li>
-      <li><span class="n">7</span><span class="f">Corviknight<span class="s">S</span></span><span class="w">Rookidee</span></li>
-      <li><span class="n">8</span><span class="f">Galarian Corsola</span><span class="w">Galarian Corsola · <b>NE fejleszd Cursolává!</b></span></li>
-      <li><span class="n">11</span><span class="f">Florges</span><span class="w">Flabébé</span></li>
-      <li><span class="n">12</span><span class="f">Quagsire<span class="s">S</span></span><span class="w">Wooper (a sima, nem a paldeai)</span></li>
-    </ol>
-
-    <h2>13–30</h2>
-    <ol class="rank">
-      <li><span class="n">15</span><span class="f">Thievul</span><span class="w">Nickit</span></li>
-      <li><span class="n">16</span><span class="f">Araquanid<span class="s">S</span></span><span class="w">Dewpider</span></li>
-      <li><span class="n">17</span><span class="f">Clodsire</span><span class="w">paldeai Wooper</span></li>
-      <li><span class="n">18</span><span class="f">Sableye<span class="s">S</span></span><span class="w">Sableye</span></li>
-      <li><span class="n">19</span><span class="f">Marowak</span><span class="w">Cubone (a sima, nem az alolai)</span></li>
-      <li><span class="n">20</span><span class="f">Stunfisk</span><span class="w">Stunfisk (a sima, nem a galari)</span></li>
-      <li><span class="n">21</span><span class="f">Vigoroth<span class="s">S</span></span><span class="w">Slakoth · <b>NE fejleszd Slakinggé!</b></span></li>
-      <li><span class="n">22</span><span class="f">Jellicent</span><span class="w">Frillish</span></li>
-      <li><span class="n">23</span><span class="f">Empoleon<span class="s">S</span></span><span class="w">Piplup · Hydro Cannon kell (Community Day mozdulat)</span></li>
-      <li><span class="n">25</span><span class="f">Fearow</span><span class="w">Spearow</span></li>
-      <li><span class="n">26</span><span class="f">Mantine</span><span class="w">Mantyke / Mantine</span></li>
-      <li><span class="n">27</span><span class="f">Snorlax<span class="s">S</span></span><span class="w">Munchlax / Snorlax</span></li>
-      <li><span class="n">28</span><span class="f">Umbreon</span><span class="w">Eevee</span></li>
-      <li><span class="n">30</span><span class="f">Feraligatr</span><span class="w">Totodile · Hydro Cannon kell</span></li>
-    </ol>
-
-    <h2>31–50</h2>
-    <ol class="rank">
-      <li><span class="n">31</span><span class="f">Annihilape<span class="s">S</span></span><span class="w">Mankey</span></li>
-      <li><span class="n">32</span><span class="f">Azumarill</span><span class="w">Marill / Azurill</span></li>
-      <li><span class="n">33</span><span class="f">Deoxys (Defense)</span><span class="w">legendás, raidből</span></li>
-      <li><span class="n">34</span><span class="f">Hisuian Electrode</span><span class="w">hisui Voltorb</span></li>
-      <li><span class="n">35</span><span class="f">Rillaboom</span><span class="w">Grookey</span></li>
-      <li><span class="n">39</span><span class="f">Lapras</span><span class="w">Lapras</span></li>
-      <li><span class="n">41</span><span class="f">Charjabug<span class="s">S</span></span><span class="w">Grubbin · <b>NE fejleszd Vikavolttá!</b></span></li>
-      <li><span class="n">42</span><span class="f">Malamar<span class="s">S</span></span><span class="w">Inkay</span></li>
-      <li><span class="n">43</span><span class="f">Furret</span><span class="w">Sentret</span></li>
-      <li><span class="n">44</span><span class="f">Guzzlord</span><span class="w">Ultra Beast, raidből</span></li>
-      <li><span class="n">46</span><span class="f">Carbink</span><span class="w">Carbink</span></li>
-      <li><span class="n">48</span><span class="f">Forretress<span class="s">S</span></span><span class="w">Pineco</span></li>
-      <li><span class="n">49</span><span class="f">Dondozo</span><span class="w">Dondozo</span></li>
-      <li><span class="n">50</span><span class="f">Hippowdon</span><span class="w">Hippopotas</span></li>
-    </ol>
+    <div id="top-list"></div>
 
     <h2>Figyelj</h2>
     <div class="box"><ul>
@@ -254,33 +148,185 @@ p{margin:6px 0}
       <li>A rangsor szezononként változik. Frissítés: pvpoke.com → Rankings → Great League.</li>
     </ul></div>
   </section>
+
   <!-- ================= LINKEK ================= -->
   <section id="link" role="tabpanel" hidden>
     <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
-    <h2>Napi infó, események</h2>
-    <ul class="links">
-      <li><a href="https://leekduck.com" target="_blank" rel="noopener"><span class="t"><span>Leek Duck<span class="star">NAPI</span></span></span><span class="u">leekduck.com</span><span class="d">Események, raid bossok, Max Battle-ök, Community Day naptár.</span></a></li>
-      <li><a href="https://pokemongohub.net" target="_blank" rel="noopener"><span class="t"><span>Pokémon GO Hub</span></span><span class="u">pokemongohub.net</span><span class="d">Hírek és részletes útmutatók, kezdőknek is.</span></a></li>
-    </ul>
-    <h2>PvP (Great League)</h2>
-    <ul class="links">
-      <li><a href="https://pvpoke.com/rankings/" target="_blank" rel="noopener"><span class="t"><span>PvPoke<span class="star">NAPI</span></span></span><span class="u">pvpoke.com/rankings/</span><span class="d">Rangsorok, csapatépítő, mozdulatok. A GL Top 50 innen van.</span></a></li>
-      <li><a href="https://gostadium.club" target="_blank" rel="noopener"><span class="t"><span>GO Stadium</span></span><span class="u">gostadium.club</span><span class="d">Kezdőbarát PvP cikkek, meta összefoglalók.</span></a></li>
-    </ul>
-    <h2>Raid és Max Battle</h2>
-    <ul class="links">
-      <li><a href="https://pokebattler.com" target="_blank" rel="noopener"><span class="t"><span>Pokebattler</span></span><span class="u">pokebattler.com</span><span class="d">Kivel érdemes egy bosst verni, és hány ember kell hozzá.</span></a></li>
-      <li><a href="https://gamepress.gg/pokemongo" target="_blank" rel="noopener"><span class="t"><span>GamePress</span></span><span class="u">gamepress.gg/pokemongo</span><span class="d">Adatbázis: mozdulatok, statok, raid counterek.</span></a></li>
-    </ul>
-    <h2>Kézikönyv és közösség</h2>
-    <ul class="links">
-      <li><a href="https://bulbapedia.bulbagarden.net" target="_blank" rel="noopener"><span class="t"><span>Bulbapedia</span></span><span class="u">bulbapedia.bulbagarden.net</span><span class="d">Mindenről van oldal, ha valamit nem értesz.</span></a></li>
-      <li><a href="https://reddit.com/r/TheSilphRoad" target="_blank" rel="noopener"><span class="t"><span>r/TheSilphRoad</span></span><span class="u">reddit.com/r/TheSilphRoad</span><span class="d">Tapasztalt játékosok, gyors válaszok.</span></a></li>
-    </ul>
+    <div id="link-list"></div>
   </section>
 </div>
 
 <script>
+/* ================= ADATOK =================
+   Tartalmat itt frissíts, a listák ebből épülnek fel. */
+
+// PvP-fajok: [név, alapforma / megjegyzés (elhagyható)]
+var PVP = [
+  ['Azumarill', 'Marill / Azurill'],
+  ['Tinkaton', 'Tinkatink'],
+  ['Annihilape', 'Mankey'],
+  ['Hariyama', 'Makuhita'],
+  ['Medicham', 'Meditite'],
+  ['Clodsire', 'paldeai Wooper'],
+  ['Quagsire', 'Wooper'],
+  ['Galarian Stunfisk'],
+  ['Mandibuzz', 'Vullaby'],
+  ['Toxapex', 'Mareanie'],
+  ['Altaria', 'Swablu'],
+  ['Lanturn', 'Chinchou'],
+  ['Florges', 'Flabébé'],
+  ['Mimikyu'],
+  ['Alolan Ninetales', 'alolai Vulpix'],
+  ['Ninetales, főleg Shadow', 'Vulpix'],
+  ['Swampert', 'Mudkip, Hydro Cannon kell'],
+  ['Feraligatr', 'Totodile, Hydro Cannon kell'],
+  ['Jumpluff', 'Hoppip'],
+  ['Bastiodon', 'Shieldon'],
+  ['Lickitung'],
+  ['Melmetal', 'Meltan']
+];
+
+// Keresők: csoportonként [címke, keresőkifejezés]
+var SEARCHES = [
+  {title: 'Takarítás',
+   warn: 'Ez csak átnézendő lista, nem vakon elküldendő! Görgesd végig, a PvP-fajokat vedd ki belőle.',
+   items: [
+    ['Heti takarítás (elmúlt hét, védettek nélkül)', 'age0-7&!3*&!4*&!favorite&!shiny&!legendary&!mythical&!ultrabeast&!shadow&!purified&!costume&!lucky&!background&!dynamax&!gigantamax&!@special'],
+    ['Ma elkapottak', 'age0']
+  ]},
+  {title: 'PvP (Great League)', items: [
+    ['PvP jelöltek (alacsony Attack, magas Defense és HP)', '0attack,1attack&3defense,4defense&3hp,4hp'],
+    ['Alacsony Attackosak (tágabb lista)', '0attack,1attack'],
+    ['Great League-be beférők (max 1500 CP)', 'cp-1500']
+  ]},
+  {title: 'Raid', items: [
+    ['Legjobb példányok (3 és 4 csillag)', '3*,4*'],
+    ['100%-osak (hundo)', '4*'],
+    ['Shadow Pokémonok', 'shadow'],
+    ['Mega evolválhatók', 'megaevolve']
+  ]},
+  {title: 'Védett / különleges', items: [
+    ['Shinyk', 'shiny'],
+    ['Legendás, mitikus, Ultra Beast', 'legendary,mythical,ultrabeast'],
+    ['Jelmezesek', 'costume'],
+    ['Különleges hátterűek', 'background'],
+    ['Lucky', 'lucky'],
+    ['Különleges (Community Day / Elite TM) mozdulat', '@special']
+  ]},
+  {title: 'Max Battle', items: [
+    ['Dynamax és Gigantamax', 'dynamax,gigantamax']
+  ]},
+  {title: 'Fejlesztés', items: [
+    ['Most fejleszthetők', 'evolve'],
+    ['Új Pokédex-bejegyzést adnak', 'evolvenew']
+  ]},
+  {title: 'Címkék és fajok', items: [
+    ['A Kétes címkések', '#Kétes'],
+    ['Teljes fejlődési sor (példa: Charmander)', '+Charmander']
+  ]}
+];
+
+// GL Top 50: {r: helyezés, n: név, s: Shadow is top 50, w: honnan, x: megjegyzés, no: figyelmeztetés}
+var TOP = [
+  {title: 'Top 10', items: [
+    {r: 1, n: 'Melmetal', w: 'Meltan (Mystery Boxból)'},
+    {r: 2, n: 'Altaria', s: 1, w: 'Swablu'},
+    {r: 3, n: 'Ninetales', s: 1, w: 'Vulpix (a sima, nem az alolai)'},
+    {r: 4, n: 'Cramorant', w: 'Cramorant'},
+    {r: 5, n: 'Tinkaton', w: 'Tinkatink'},
+    {r: 6, n: 'Mimikyu', w: 'Mimikyu'},
+    {r: 7, n: 'Corviknight', s: 1, w: 'Rookidee'},
+    {r: 8, n: 'Galarian Corsola', w: 'Galarian Corsola', no: 'NE fejleszd Cursolává!'},
+    {r: 11, n: 'Florges', w: 'Flabébé'},
+    {r: 12, n: 'Quagsire', s: 1, w: 'Wooper (a sima, nem a paldeai)'}
+  ]},
+  {title: '13–30', items: [
+    {r: 15, n: 'Thievul', w: 'Nickit'},
+    {r: 16, n: 'Araquanid', s: 1, w: 'Dewpider'},
+    {r: 17, n: 'Clodsire', w: 'paldeai Wooper'},
+    {r: 18, n: 'Sableye', s: 1, w: 'Sableye'},
+    {r: 19, n: 'Marowak', w: 'Cubone (a sima, nem az alolai)'},
+    {r: 20, n: 'Stunfisk', w: 'Stunfisk (a sima, nem a galari)'},
+    {r: 21, n: 'Vigoroth', s: 1, w: 'Slakoth', no: 'NE fejleszd Slakinggé!'},
+    {r: 22, n: 'Jellicent', w: 'Frillish'},
+    {r: 23, n: 'Empoleon', s: 1, w: 'Piplup', x: 'Hydro Cannon kell (Community Day mozdulat)'},
+    {r: 25, n: 'Fearow', w: 'Spearow'},
+    {r: 26, n: 'Mantine', w: 'Mantyke / Mantine'},
+    {r: 27, n: 'Snorlax', s: 1, w: 'Munchlax / Snorlax'},
+    {r: 28, n: 'Umbreon', w: 'Eevee'},
+    {r: 30, n: 'Feraligatr', w: 'Totodile', x: 'Hydro Cannon kell'}
+  ]},
+  {title: '31–50', items: [
+    {r: 31, n: 'Annihilape', s: 1, w: 'Mankey'},
+    {r: 32, n: 'Azumarill', w: 'Marill / Azurill'},
+    {r: 33, n: 'Deoxys (Defense)', w: 'legendás, raidből'},
+    {r: 34, n: 'Hisuian Electrode', w: 'hisui Voltorb'},
+    {r: 35, n: 'Rillaboom', w: 'Grookey'},
+    {r: 39, n: 'Lapras', w: 'Lapras'},
+    {r: 41, n: 'Charjabug', s: 1, w: 'Grubbin', no: 'NE fejleszd Vikavolttá!'},
+    {r: 42, n: 'Malamar', s: 1, w: 'Inkay'},
+    {r: 43, n: 'Furret', w: 'Sentret'},
+    {r: 44, n: 'Guzzlord', w: 'Ultra Beast, raidből'},
+    {r: 46, n: 'Carbink', w: 'Carbink'},
+    {r: 48, n: 'Forretress', s: 1, w: 'Pineco'},
+    {r: 49, n: 'Dondozo', w: 'Dondozo'},
+    {r: 50, n: 'Hippowdon', w: 'Hippopotas'}
+  ]}
+];
+
+// Linkek: {n: név, u: cím, d: leírás, star: címke (elhagyható)}
+var LINKS = [
+  {title: 'Napi infó, események', items: [
+    {n: 'Leek Duck', u: 'https://leekduck.com', star: 'NAPI', d: 'Események, raid bossok, Max Battle-ök, Community Day naptár.'},
+    {n: 'Pokémon GO Hub', u: 'https://pokemongohub.net', d: 'Hírek és részletes útmutatók, kezdőknek is.'}
+  ]},
+  {title: 'PvP (Great League)', items: [
+    {n: 'PvPoke', u: 'https://pvpoke.com/rankings/', star: 'NAPI', d: 'Rangsorok, csapatépítő, mozdulatok. A GL Top 50 innen van.'},
+    {n: 'GO Stadium', u: 'https://gostadium.club', d: 'Kezdőbarát PvP cikkek, meta összefoglalók.'}
+  ]},
+  {title: 'Raid és Max Battle', items: [
+    {n: 'Pokebattler', u: 'https://pokebattler.com', d: 'Kivel érdemes egy bosst verni, és hány ember kell hozzá.'},
+    {n: 'GamePress', u: 'https://gamepress.gg/pokemongo', d: 'Adatbázis: mozdulatok, statok, raid counterek.'}
+  ]},
+  {title: 'Kézikönyv és közösség', items: [
+    {n: 'Bulbapedia', u: 'https://bulbapedia.bulbagarden.net', d: 'Mindenről van oldal, ha valamit nem értesz.'},
+    {n: 'r/TheSilphRoad', u: 'https://reddit.com/r/TheSilphRoad', d: 'Tapasztalt játékosok, gyors válaszok.'}
+  ]}
+];
+
+/* ================= MEGJELENÍTÉS ================= */
+(function(){
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function fill(id,html){document.getElementById(id).innerHTML=html}
+  function groups(list,body){
+    return list.map(function(g){return '<h2>'+esc(g.title)+'</h2>'+body(g)}).join('');
+  }
+
+  fill('pvp-list',PVP.map(function(p){
+    return '<li>'+esc(p[0])+(p[1]?' <small>('+esc(p[1])+')</small>':'')+'</li>';
+  }).join(''));
+
+  fill('search-list',groups(SEARCHES,function(g){
+    return (g.warn?'<div class="warn">'+esc(g.warn)+'</div>':'')+g.items.map(function(q){
+      return '<div class="q"><span class="lbl">'+esc(q[0])+'</span><div class="code"><code>'+esc(q[1])+'</code></div></div>';
+    }).join('');
+  }));
+
+  fill('top-list',groups(TOP,function(g){
+    return '<ol class="rank">'+g.items.map(function(p){
+      var w=esc(p.w)+(p.x?' · '+esc(p.x):'')+(p.no?' · <b>'+esc(p.no)+'</b>':'');
+      return '<li><span class="n">'+p.r+'</span><span class="f">'+esc(p.n)+(p.s?'<span class="s">S</span>':'')+'</span><span class="w">'+w+'</span></li>';
+    }).join('')+'</ol>';
+  }));
+
+  fill('link-list',groups(LINKS,function(g){
+    return '<ul class="links">'+g.items.map(function(l){
+      return '<li><a href="'+esc(l.u)+'" target="_blank" rel="noopener"><span class="t"><span>'+esc(l.n)+(l.star?'<span class="star">'+esc(l.star)+'</span>':'')+'</span></span><span class="u">'+esc(l.u.replace(/^https?:\/\//,''))+'</span><span class="d">'+esc(l.d)+'</span></a></li>';
+    }).join('')+'</ul>';
+  }));
+})();
+
+/* ================= FÜLEK ÉS MÁSOLÁS ================= */
 (function(){
   var tabs=[].slice.call(document.querySelectorAll('nav button'));
   function show(id){
