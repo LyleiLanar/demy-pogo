@@ -1,18 +1,21 @@
 :root{
   --bg:#EEF1F5; --surface:#FFFFFF; --ink:#18212C; --muted:#5A6676; --line:#D7DDE5;
   --accent:#D93A34; --accent-ink:#FFFFFF; --code-bg:#E4E9F0; --warn-bg:#FFF1E6; --warn-ink:#8A3A06;
+  --good:#1F8A4C; --good-ink:#FFFFFF; --meh:#6B7684; --meh-ink:#FFFFFF; --bad:#D93A34; --bad-ink:#FFFFFF;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#10151C; --surface:#18202A; --ink:#E7ECF2; --muted:#98A4B3; --line:#2A3441;
     --accent:#F0605A; --accent-ink:#10151C; --code-bg:#222C38; --warn-bg:#2E2014; --warn-ink:#F5B37E;
+    --good:#4CC47F; --good-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#10151C; --surface:#18202A; --ink:#E7ECF2; --muted:#98A4B3; --line:#2A3441;
   --accent:#F0605A; --accent-ink:#10151C; --code-bg:#222C38; --warn-bg:#2E2014; --warn-ink:#F5B37E;
+    --good:#4CC47F; --good-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
   color-scheme:dark;
 }
 body{background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,-apple-system,sans-serif}
@@ -69,11 +72,29 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-name{font:700 1.2rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:0;color:var(--ink);text-transform:none;letter-spacing:.01em}
 .mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
 .verdict{flex:none;font:600 .72rem Barlow,sans-serif;border-radius:4px;padding:2px 7px;letter-spacing:.04em;text-transform:uppercase}
-.verdict-keep{background:var(--accent);color:var(--accent-ink)}
-.verdict-scan{background:var(--ink);color:var(--bg)}
-.verdict-transfer{background:var(--code-bg);color:var(--muted)}
+.verdict-keep{background:var(--good);color:var(--good-ink)}
+.verdict-scan{background:var(--meh);color:var(--meh-ink)}
+.verdict-transfer{background:var(--bad);color:var(--bad-ink)}
 .mon-facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
 .mon-facts dt{color:var(--muted);font-size:.85rem;padding-top:1px}
 .mon-facts dd{margin:0}
 .mon-notes{margin-top:8px;font-size:.95rem}
 .mon-owned{font:600 .8rem Barlow,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 4px}
+
+/* Kártya fülei: zöld = erős, szürke = közepes, piros = gyenge */
+.modes{margin:10px 0 0}
+.mode-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.mode-tab{--rating:var(--meh);--rating-ink:var(--meh-ink);font:600 .85rem Barlow,sans-serif;min-width:52px;padding:6px 10px;border-radius:8px;border:2px solid var(--rating);background:var(--surface);color:var(--rating);cursor:pointer}
+.mode-tab[aria-pressed="true"]{background:var(--rating);color:var(--rating-ink)}
+.mode-tab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.mode-tab.rating-good{--rating:var(--good);--rating-ink:var(--good-ink)}
+.mode-tab.rating-bad{--rating:var(--bad);--rating-ink:var(--bad-ink)}
+.mode-panel{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--code-bg)}
+.mode-panel p{margin:2px 0}
+.mode-title{font-weight:600}
+.mode-detail{color:var(--muted);font-size:.92rem}
+.rating-text-good{color:var(--good)}
+.rating-text-ok{color:var(--meh)}
+.rating-text-bad{color:var(--bad)}
+.legend-box{margin:10px 0;font-size:.92rem}
+.legend-box .verdict{margin-right:4px}

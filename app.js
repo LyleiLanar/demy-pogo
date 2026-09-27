@@ -9,7 +9,18 @@ const RANKING_GROUPS = [
   { title: '11–30', maxRank: 30 },
   { title: '31–50', maxRank: 50 },
 ];
-const VERDICT_LABELS = { keep: 'Megtartás', scan: 'Szkenneld', transfer: 'Mehet' };
+const VERDICT_LABELS = { keep: 'Marad', scan: 'Szkenneld', transfer: 'Cukorért' };
+const RATING_LABELS = { good: 'Erős', ok: 'Közepes', bad: 'Gyenge' };
+// A ligák értékelése a helyezésből jön.
+const LEAGUE_RATING_LIMITS = { good: 50, ok: 100 };
+const GAME_MODES = [
+  { key: 'raid', label: 'Raid', title: 'Raid' },
+  { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true },
+  { key: 'ultraLeague', label: 'UL', title: 'Ultra League', isLeague: true },
+  { key: 'maxBattle', label: 'Max', title: 'Max Battle' },
+  { key: 'gym', label: 'Gym', title: 'Gym' },
+];
+const RATING_ORDER = ['good', 'ok', 'bad'];
 
 // ---------- Segédfüggvények ----------
 
@@ -97,12 +108,67 @@ function renderRankings(pokemon) {
 
 // ---------- Pokédex ----------
 
+function leagueRating(league) {
+  const rank = bestRank(league);
+  if (rank <= LEAGUE_RATING_LIMITS.good) return 'good';
+  if (rank <= LEAGUE_RATING_LIMITS.ok) return 'ok';
+  return 'bad';
+}
+
 function formatLeague(league) {
   const parts = [];
-  if (league.rank) parts.push(`${league.rank}.`);
-  if (league.shadowRank) parts.push(`Shadow: ${league.shadowRank}.`);
-  if (league.note) parts.push(league.note);
+  if (league.rank) parts.push(`${league.rank}. hely`);
+  if (league.shadowRank) parts.push(`Shadow: ${league.shadowRank}. hely`);
   return parts.join(' · ');
+}
+
+// A kártya fülei: csak azok a módok, amelyekről van adat.
+function gameModesOf(species) {
+  return GAME_MODES
+    .filter((mode) => species[mode.key])
+    .map((mode) => {
+      const data = species[mode.key];
+      return {
+        ...mode,
+        rating: mode.isLeague ? leagueRating(data) : data.rating,
+        detail: mode.isLeague ? formatLeague(data) : '',
+        note: data.note,
+      };
+    });
+}
+
+// Alapból a legjobb értékelésű mód nyílik meg.
+function defaultModeIndex(modes) {
+  const ratingIndex = (mode) => RATING_ORDER.indexOf(mode.rating);
+  const best = Math.min(...modes.map(ratingIndex));
+  return modes.findIndex((mode) => ratingIndex(mode) === best);
+}
+
+function renderModeTab(mode, isSelected) {
+  return `
+    <button type="button" class="mode-tab rating-${mode.rating}" aria-pressed="${isSelected}"
+      data-mode="${mode.key}">${mode.label}</button>`;
+}
+
+function renderModePanel(mode, isSelected) {
+  const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
+  const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
+  return `
+    <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
+      <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
+      ${detail}${note}
+    </div>`;
+}
+
+function renderGameModes(species) {
+  const modes = gameModesOf(species);
+  if (modes.length === 0) return '';
+  const selected = defaultModeIndex(modes);
+  return `
+    <div class="modes">
+      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
+      ${modes.map((mode, i) => renderModePanel(mode, i === selected)).join('')}
+    </div>`;
 }
 
 function renderFact(label, value) {
@@ -114,7 +180,6 @@ function renderList(className, items) {
 }
 
 function renderPokemonCard(species) {
-  const roles = species.roles || {};
   const searchText = normalizeForSearch(`${species.name} ${species.origin}`);
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
   const owned = species.owned
@@ -129,12 +194,8 @@ function renderPokemonCard(species) {
       </div>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
       ${warning}
+      ${renderGameModes(species)}
       <dl class="mon-facts">
-        ${renderFact('Great League', species.greatLeague && formatLeague(species.greatLeague))}
-        ${renderFact('Ultra League', species.ultraLeague && formatLeague(species.ultraLeague))}
-        ${renderFact('Raid', roles.raid)}
-        ${renderFact('Max Battle', roles.maxBattle)}
-        ${renderFact('Gym', roles.gym)}
         ${renderFact('IV', species.ivAdvice)}
         ${renderFact('Mozdulatok', species.moves)}
         ${renderFact('Fejlődés', species.evolution)}
@@ -263,6 +324,22 @@ function setupPokedexSearch() {
   filter();
 }
 
+// ---------- Kártya fülei ----------
+
+function setupModeTabs() {
+  document.getElementById('dex-list').addEventListener('click', (event) => {
+    const tab = event.target.closest('.mode-tab');
+    if (!tab) return;
+    const modes = tab.closest('.modes');
+    modes.querySelectorAll('.mode-tab').forEach((button) => {
+      button.setAttribute('aria-pressed', button === tab);
+    });
+    modes.querySelectorAll('.mode-panel').forEach((panel) => {
+      panel.hidden = panel.dataset.mode !== tab.dataset.mode;
+    });
+  });
+}
+
 // ---------- Másolás ----------
 
 function addCopyButton(codeBox) {
@@ -311,4 +388,5 @@ function setupCopyButtons() {
 renderContent(DATA, POKEMON, RANKINGS_DATE);
 setupTabs();
 setupPokedexSearch();
+setupModeTabs();
 setupCopyButtons();
