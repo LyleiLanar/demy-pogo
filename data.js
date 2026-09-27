@@ -143,7 +143,7 @@ const DATA = {
         { rank: 43, name: 'Furret', origin: 'Sentret' },
         { rank: 44, name: 'Guzzlord', origin: 'Ultra Beast, raidből' },
         { rank: 46, name: 'Carbink', origin: 'Carbink' },
-        { rank: 48, name: 'Forretress', shadow: true, origin: 'Pineco' },
+        { rank: 48, name: 'Forretress', origin: 'Pineco', note: 'csak a Shadow változat van a top 50-ben' },
         { rank: 49, name: 'Dondozo', origin: 'Dondozo' },
         { rank: 50, name: 'Hippowdon', origin: 'Hippopotas' },
       ],
