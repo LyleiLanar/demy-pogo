@@ -25,7 +25,6 @@
 //   Módtól független:
 //   evolution    fejlődés, cukorár
 //   notes        általános tanácsok
-//   owned        a saját konkrét példányaid
 //
 // Mindig érvényes kivétel, ezt nem ismételjük minden sorban: shiny, jelmezes,
 // különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány marad.
@@ -106,9 +105,6 @@ const POKEMON = [
     },
     notes: [
       'A többi Mareep/Flaaffy/Ampharos cukorért mehet.',
-    ],
-    owned: [
-      'Attack kb. 0, Defense 15; Ultra League rank 89% – helyfoglaló, Stardustot ne tegyél bele.',
     ],
   },
   {
@@ -203,9 +199,6 @@ const POKEMON = [
     notes: [
       'Jelöld kedvencnek.',
     ],
-    owned: [
-      '3 csillagos, 1166 CP.',
-    ],
   },
   {
     name: 'Carbink',
@@ -247,9 +240,6 @@ const POKEMON = [
       'Charmander Community Day ritka (utoljára 2018, azóta csak Classic visszatérések), ne várj rá.',
       'Tarts meg 1–2 jó Charmandert fejletlenül egy esetleges Classic eseményre.',
       'A többi Charmander cukorért mehet; Pinap Berry duplázza a cukrot, buddyként 3 km/cukor.',
-    ],
-    owned: [
-      'Szemüveges (Friede) Charmander, 3 csillag, Defense 15, Attack és HP kb. 13–14.',
     ],
   },
   {
@@ -358,9 +348,6 @@ const POKEMON = [
     ultraLeague: { rank: 274, shadowRank: 285 },
     notes: [
       'A többi Fennekin/Braixen cukorért mehet, a cukor a Delphox felhúzásához kell.',
-    ],
-    owned: [
-      'Blast Burn-ös, kedvencnek jelölve.',
     ],
   },
   {
@@ -634,9 +621,6 @@ const POKEMON = [
     notes: [
       'Skwovet cukor: Rare Candy, Pinap Berry, buddy, részben felhős időben több Skwovet jön.',
     ],
-    owned: [
-      'Dynamax, 996 CP, kifejlesztve, a Max Spirit még nincs feloldva.',
-    ],
   },
   {
     name: 'Guzzlord',
@@ -669,9 +653,6 @@ const POKEMON = [
     notes: [
       'A Genie Magikarpra mutatott PvP %-a félrevezető, ne az alapján dönts.',
       'Max Battle-ben a Waterfall Water, a Dragon Breath Dragon Max mozdulatot ad.',
-    ],
-    owned: [
-      '14/14/14, Best Buddy, 2021-es fogás, 32,5-ös szint, Waterfall + Hydro Pump. Itt megállhatsz, 35 fölött meredeken nő az ár. Raid előtt legyen ő a buddy (a +1 szint csak aktív buddyként él).',
     ],
   },
   {
@@ -763,9 +744,6 @@ const POKEMON = [
       ],
     },
     ultraLeague: { rank: 344 },
-    owned: [
-      '4/13/13, 33-as szint, 2071 CP, UL 97,1%.',
-    ],
   },
   {
     name: 'Lanturn',
@@ -882,9 +860,6 @@ const POKEMON = [
       'A 96%-os, raidre címkézett Sprigatito marad.',
       'A Genie PvP %-a (pl. 98,8%) a fajon belüli IV-minőséget mutatja, nem azt, hogy a faj jó-e.',
     ],
-    owned: [
-      'Sprigatito 0/12/12: GL 98,8%, UL 99,1%, de a faj gyenge.',
-    ],
   },
   {
     name: 'Mimikyu',
@@ -916,9 +891,6 @@ const POKEMON = [
     notes: [
       'Legendás, mindig marad.',
       'Buddyként 20 km-enként ad cukrot (legendás), de a napi 2 km-es séta a szívecskékhez minden buddynál ugyanannyi.',
-    ],
-    owned: [
-      'Dynamax, 1925 CP, buddy volt.',
     ],
   },
   {
@@ -981,9 +953,6 @@ const POKEMON = [
     notes: [
       'Water/Fighting, nem meta se raidben, se PvP-ben. Stardustot ne tegyél bele.',
     ],
-    owned: [
-      '1 csillagos Quaxly, 860 CP, tele Attack sáv.',
-    ],
   },
   {
     name: 'Rhyperior',
@@ -1002,9 +971,6 @@ const POKEMON = [
     },
     notes: [
       'Egy tartalék Rhyhorn marad (a legjobb Attackos), a többi Rhyhorn cukorért mehet a Max mozdulatokhoz.',
-    ],
-    owned: [
-      'Dynamax, 2129 CP; mellette 5 Dynamax Rhyhorn.',
     ],
   },
   {
@@ -1138,9 +1104,6 @@ const POKEMON = [
     notes: [
       'A shiny Phantump marad.',
     ],
-    owned: [
-      'Shiny Phantump, 12/13/14, kedvencnek jelölve.',
-    ],
   },
   {
     name: 'Tsareena',
@@ -1157,9 +1120,6 @@ const POKEMON = [
     verdict: 'transfer',
     greatLeague: { rank: 732, shadowRank: 755 },
     ultraLeague: { rank: 568, shadowRank: 695 },
-    owned: [
-      'Tyrunt 4/11/14, UL 94,2%.',
-    ],
   },
   {
     name: 'Umbreon',

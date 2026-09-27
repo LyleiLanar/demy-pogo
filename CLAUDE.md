@@ -21,4 +21,5 @@ A válaszban adott tanácsot vedd fel a `pokemon.js`-be is:
 - A módhoz kötött tanácsot (IV, mozdulatok, tippek) a megfelelő mód (`raid`, `greatLeague`,
   `ultraLeague`, `maxBattle`, `gym`) `iv`, `moves` és `tips` mezőjébe írd; a `notes`-ba csak
   az kerüljön, ami egyik módhoz sem kötődik.
-- A felhasználó saját példányait az `owned` mezőbe írd.
+- A felhasználó saját példányait (IV, CP, szint) ne írd be, mert folyamatosan változnak.
+- Az általános, nem fajhoz kötött tanács az `index.html` Tippek fülére kerüljön.

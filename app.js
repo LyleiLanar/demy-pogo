@@ -188,9 +188,6 @@ function renderList(className, items) {
 function renderPokemonCard(species) {
   const searchText = normalizeForSearch(`${species.name} ${species.origin}`);
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
-  const owned = species.owned
-    ? `<h4 class="mon-owned">Saját példányaid</h4>${renderList('mon-notes', species.owned)}`
-    : '';
 
   return `
     <article class="mon" data-search="${escapeHtml(searchText)}">
@@ -203,7 +200,6 @@ function renderPokemonCard(species) {
       ${renderGameModes(species)}
       ${species.evolution ? `<dl class="mon-facts">${renderFact('Fejlődés', species.evolution)}</dl>` : ''}
       ${renderList('mon-notes', species.notes)}
-      ${owned}
     </article>`;
 }
 
