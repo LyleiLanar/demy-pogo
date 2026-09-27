@@ -27,6 +27,7 @@ h2{font:700 1.35rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:28px 0 8px;t
 h3{font:600 1rem/1.3 Barlow,sans-serif;margin:18px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
 ul,ol{margin:0;padding-left:1.2em;display:grid;gap:4px}
 p{margin:6px 0}
+a{color:var(--accent)}
 .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:500}
 .q{display:grid;gap:6px;margin:10px 0}
@@ -43,10 +44,6 @@ p{margin:6px 0}
 .rank .s{font:600 .72rem Barlow,sans-serif;background:var(--ink);color:var(--bg);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:2px;letter-spacing:.04em}
 .rank .w{grid-column:2;color:var(--muted);font-size:.92rem}
 .rank .w b{color:var(--warn-ink);font-weight:600}
-.pvp{columns:2;column-gap:20px;padding-left:1.1em}
-@media (max-width:420px){.pvp{columns:1}}
-.pvp li{break-inside:avoid;margin-bottom:4px}
-.pvp small{color:var(--muted)}
 .links{list-style:none;padding:0;display:grid;gap:8px}
 .links a{display:grid;gap:2px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
 .links a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}

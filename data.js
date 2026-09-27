@@ -1,39 +1,12 @@
 // A puska tartalma. Tartalmat itt frissíts, az oldal ebből épül fel.
 
 const DATA = {
-  // PvP-ben használható fajok (Great League).
-  // origin: az alapforma, amit a vadonban kapsz el (elhagyható)
-  pvpSpecies: [
-    { name: 'Azumarill', origin: 'Marill / Azurill' },
-    { name: 'Tinkaton', origin: 'Tinkatink' },
-    { name: 'Annihilape', origin: 'Mankey' },
-    { name: 'Hariyama', origin: 'Makuhita' },
-    { name: 'Medicham', origin: 'Meditite' },
-    { name: 'Clodsire', origin: 'paldeai Wooper' },
-    { name: 'Quagsire', origin: 'Wooper' },
-    { name: 'Galarian Stunfisk' },
-    { name: 'Mandibuzz', origin: 'Vullaby' },
-    { name: 'Toxapex', origin: 'Mareanie' },
-    { name: 'Altaria', origin: 'Swablu' },
-    { name: 'Lanturn', origin: 'Chinchou' },
-    { name: 'Florges', origin: 'Flabébé' },
-    { name: 'Mimikyu' },
-    { name: 'Alolan Ninetales', origin: 'alolai Vulpix' },
-    { name: 'Ninetales, főleg Shadow', origin: 'Vulpix' },
-    { name: 'Swampert', origin: 'Mudkip, Hydro Cannon kell' },
-    { name: 'Feraligatr', origin: 'Totodile, Hydro Cannon kell' },
-    { name: 'Jumpluff', origin: 'Hoppip' },
-    { name: 'Bastiodon', origin: 'Shieldon' },
-    { name: 'Lickitung' },
-    { name: 'Melmetal', origin: 'Meltan' },
-  ],
-
   // Keresőkifejezések csoportokban.
   // warning: figyelmeztetés a csoport elején (elhagyható)
   searchGroups: [
     {
       title: 'Takarítás',
-      warning: 'Ez csak átnézendő lista, nem vakon elküldendő! Görgesd végig, a PvP-fajokat vedd ki belőle.',
+      warning: 'Ez csak átnézendő lista, nem vakon elküldendő! Görgesd végig, a GL Top 50 fajait vedd ki belőle.',
       searches: [
         { label: 'Heti takarítás (elmúlt hét, védettek nélkül)', query: 'age0-7&!3*&!4*&!favorite&!shiny&!legendary&!mythical&!ultrabeast&!shadow&!purified&!costume&!lucky&!background&!dynamax&!gigantamax&!@special' },
         { label: 'Ma elkapottak', query: 'age0' },

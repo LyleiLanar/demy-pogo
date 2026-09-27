@@ -26,11 +26,6 @@ function stripProtocol(url) {
 
 // ---------- Listák ----------
 
-function renderPvpSpecies(species) {
-  const origin = species.origin ? ` <small>(${escapeHtml(species.origin)})</small>` : '';
-  return `<li>${escapeHtml(species.name)}${origin}</li>`;
-}
-
 function renderSearch(search) {
   return `
     <div class="q">
@@ -79,7 +74,6 @@ function renderLinkGroup(group) {
 }
 
 function renderContent(data) {
-  renderInto('pvp-list', data.pvpSpecies.map(renderPvpSpecies).join(''));
   renderInto('search-list', renderGroups(data.searchGroups, renderSearchGroup));
   renderInto('top-list', renderGroups(data.rankingGroups, renderRankingGroup));
   renderInto('link-list', renderGroups(data.linkGroups, renderLinkGroup));
@@ -105,6 +99,7 @@ function loadTab() {
 
 function setupTabs() {
   const tabButtons = [...document.querySelectorAll('nav button')];
+  const isTab = (id) => tabButtons.some((button) => button.dataset.tab === id);
 
   function showTab(tabId) {
     tabButtons.forEach((button) => {
@@ -122,9 +117,19 @@ function setupTabs() {
     });
   });
 
+  // A fülre mutató linkek (pl. href="#top") is fület váltanak.
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    const tabId = link && link.getAttribute('href').slice(1);
+    if (!isTab(tabId)) return;
+    event.preventDefault();
+    showTab(tabId);
+    window.scrollTo(0, 0);
+  });
+
   const hashTab = location.hash.slice(1);
-  const startTab = document.getElementById(hashTab) ? hashTab : loadTab();
-  if (startTab && document.getElementById(startTab)) showTab(startTab);
+  const startTab = isTab(hashTab) ? hashTab : loadTab();
+  if (isTab(startTab)) showTab(startTab);
 }
 
 // ---------- Másolás ----------
