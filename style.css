@@ -21,6 +21,8 @@ h1{font:700 1.9rem/1.1 "Barlow Condensed",Barlow,sans-serif;margin:8px 0 4px;let
 .sub{color:var(--muted);margin:0 0 14px;font-size:.95rem}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;padding-block:8px;border-bottom:1px solid var(--line)}
 nav button{flex:1;min-width:0;font:600 .9rem/1.2 Barlow,sans-serif;padding:10px 6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;cursor:pointer}
+@media (max-width:420px){nav{gap:4px}nav button{flex:1 1 auto;font-size:.8rem;padding:10px 4px}}
+@media (max-width:340px){nav button{font-size:.72rem;padding:10px 2px}}
 nav button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 nav button:focus-visible,.copy:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 h2{font:700 1.35rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:28px 0 8px;text-wrap:balance;letter-spacing:.01em}
@@ -54,3 +56,24 @@ a{color:var(--accent)}
 .star{font:600 .72rem Barlow,sans-serif;background:var(--accent);color:var(--accent-ink);border-radius:4px;padding:1px 6px;letter-spacing:.04em;margin-left:6px;vertical-align:2px}
 
 html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}
+
+/* GL Top 50: a név a Pokédexben nyitja meg a fajt */
+.rank a.f{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}
+
+/* Pokédex */
+.search{box-sizing:border-box;width:100%;font:500 1rem Barlow,sans-serif;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.search:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.dex{display:grid;gap:10px}
+.mon{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.mon-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.mon-name{font:700 1.2rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:0;color:var(--ink);text-transform:none;letter-spacing:.01em}
+.mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
+.verdict{flex:none;font:600 .72rem Barlow,sans-serif;border-radius:4px;padding:2px 7px;letter-spacing:.04em;text-transform:uppercase}
+.verdict-keep{background:var(--accent);color:var(--accent-ink)}
+.verdict-scan{background:var(--ink);color:var(--bg)}
+.verdict-transfer{background:var(--code-bg);color:var(--muted)}
+.mon-facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
+.mon-facts dt{color:var(--muted);font-size:.85rem;padding-top:1px}
+.mon-facts dd{margin:0}
+.mon-notes{margin-top:8px;font-size:.95rem}
+.mon-owned{font:600 .8rem Barlow,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 4px}

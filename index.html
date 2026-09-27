@@ -18,6 +18,7 @@
     <button role="tab" id="t-tart" data-tab="tart" aria-selected="true">Megtartás</button>
     <button role="tab" id="t-kereso" data-tab="kereso" aria-selected="false">Keresők</button>
     <button role="tab" id="t-top" data-tab="top" aria-selected="false">GL Top 50</button>
+    <button role="tab" id="t-dex" data-tab="dex" aria-selected="false">Pokédex</button>
     <button role="tab" id="t-link" data-tab="link" aria-selected="false">Linkek</button>
   </nav>
 
@@ -66,7 +67,7 @@
     </ol>
 
     <h2>6. PvP-ben használható fajok (Great League)</h2>
-    <p>A <a href="#top">GL Top 50</a> fülön találod őket, az alapformával együtt. Ezeknél szkennelj.</p>
+    <p>A <a href="#top">GL Top 50</a> fülön találod őket, az alapformával együtt. Ezeknél szkennelj. Fajonkénti részletes tanácsok a <a href="#dex">Pokédex</a> fülön.</p>
   </section>
 
   <!-- ================= KERESŐK ================= -->
@@ -77,7 +78,7 @@
 
   <!-- ================= GL TOP 50 ================= -->
   <section id="top" role="tabpanel" hidden>
-    <p class="sub">PvPoke rangsor, 2026. szeptember 24. A top 50 hely 38 különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
+    <p class="sub">PvPoke rangsor, <span id="rankings-date"></span> A top 50 hely <span id="top-species-count"></span> különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
     <div id="top-list"></div>
 
     <h2>Figyelj</h2>
@@ -88,6 +89,14 @@
     </ul></div>
   </section>
 
+  <!-- ================= POKÉDEX ================= -->
+  <section id="dex" role="tabpanel" hidden>
+    <p class="sub">Fajonkénti tanácsok. Shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány mindig marad, akármit ír a kártya.</p>
+    <input type="search" id="dex-search" class="search" placeholder="Keresés név vagy alapforma alapján" autocomplete="off" aria-label="Pokémon keresése">
+    <p class="sub" id="dex-count" aria-live="polite"></p>
+    <div id="dex-list" class="dex"></div>
+  </section>
+
   <!-- ================= LINKEK ================= -->
   <section id="link" role="tabpanel" hidden>
     <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
@@ -96,6 +105,7 @@
 </div>
 
 <script src="data.js"></script>
+<script src="pokemon.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

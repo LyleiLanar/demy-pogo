@@ -62,67 +62,6 @@ const DATA = {
     },
   ],
 
-  // Great League Top 50 (PvPoke).
-  // shadow: a Shadow változat is a top 50-ben van
-  // origin: honnan szerzed meg
-  // note: plusz megjegyzés (elhagyható)
-  // warning: kiemelt figyelmeztetés (elhagyható)
-  rankingGroups: [
-    {
-      title: 'Top 10',
-      entries: [
-        { rank: 1, name: 'Melmetal', origin: 'Meltan (Mystery Boxból)' },
-        { rank: 2, name: 'Altaria', shadow: true, origin: 'Swablu' },
-        { rank: 3, name: 'Ninetales', shadow: true, origin: 'Vulpix (a sima, nem az alolai)' },
-        { rank: 4, name: 'Cramorant', origin: 'Cramorant' },
-        { rank: 5, name: 'Tinkaton', origin: 'Tinkatink' },
-        { rank: 6, name: 'Mimikyu', origin: 'Mimikyu' },
-        { rank: 7, name: 'Corviknight', shadow: true, origin: 'Rookidee' },
-        { rank: 8, name: 'Galarian Corsola', origin: 'Galarian Corsola', warning: 'NE fejleszd Cursolává!' },
-        { rank: 11, name: 'Florges', origin: 'Flabébé' },
-        { rank: 12, name: 'Quagsire', shadow: true, origin: 'Wooper (a sima, nem a paldeai)' },
-      ],
-    },
-    {
-      title: '13–30',
-      entries: [
-        { rank: 15, name: 'Thievul', origin: 'Nickit' },
-        { rank: 16, name: 'Araquanid', shadow: true, origin: 'Dewpider' },
-        { rank: 17, name: 'Clodsire', origin: 'paldeai Wooper' },
-        { rank: 18, name: 'Sableye', shadow: true, origin: 'Sableye' },
-        { rank: 19, name: 'Marowak', origin: 'Cubone (a sima, nem az alolai)' },
-        { rank: 20, name: 'Stunfisk', origin: 'Stunfisk (a sima, nem a galari)' },
-        { rank: 21, name: 'Vigoroth', shadow: true, origin: 'Slakoth', warning: 'NE fejleszd Slakinggé!' },
-        { rank: 22, name: 'Jellicent', origin: 'Frillish' },
-        { rank: 23, name: 'Empoleon', shadow: true, origin: 'Piplup', note: 'Hydro Cannon kell (Community Day mozdulat)' },
-        { rank: 25, name: 'Fearow', origin: 'Spearow' },
-        { rank: 26, name: 'Mantine', origin: 'Mantyke / Mantine' },
-        { rank: 27, name: 'Snorlax', shadow: true, origin: 'Munchlax / Snorlax' },
-        { rank: 28, name: 'Umbreon', origin: 'Eevee' },
-        { rank: 30, name: 'Feraligatr', origin: 'Totodile', note: 'Hydro Cannon kell' },
-      ],
-    },
-    {
-      title: '31–50',
-      entries: [
-        { rank: 31, name: 'Annihilape', shadow: true, origin: 'Mankey' },
-        { rank: 32, name: 'Azumarill', origin: 'Marill / Azurill' },
-        { rank: 33, name: 'Deoxys (Defense)', origin: 'legendás, raidből' },
-        { rank: 34, name: 'Hisuian Electrode', origin: 'hisui Voltorb' },
-        { rank: 35, name: 'Rillaboom', origin: 'Grookey' },
-        { rank: 39, name: 'Lapras', origin: 'Lapras' },
-        { rank: 41, name: 'Charjabug', shadow: true, origin: 'Grubbin', warning: 'NE fejleszd Vikavolttá!' },
-        { rank: 42, name: 'Malamar', shadow: true, origin: 'Inkay' },
-        { rank: 43, name: 'Furret', origin: 'Sentret' },
-        { rank: 44, name: 'Guzzlord', origin: 'Ultra Beast, raidből' },
-        { rank: 46, name: 'Carbink', origin: 'Carbink' },
-        { rank: 48, name: 'Forretress', origin: 'Pineco', note: 'csak a Shadow változat van a top 50-ben' },
-        { rank: 49, name: 'Dondozo', origin: 'Dondozo' },
-        { rank: 50, name: 'Hippowdon', origin: 'Hippopotas' },
-      ],
-    },
-  ],
-
   // Hasznos oldalak.
   // badge: kiemelő címke a név mellett (elhagyható)
   linkGroups: [
