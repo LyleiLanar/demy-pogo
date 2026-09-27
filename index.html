@@ -72,13 +72,19 @@
 
   <!-- ================= KERESŐK ================= -->
   <section id="kereso" role="tabpanel" hidden>
-    <p class="legend">&amp; = ÉS &nbsp;·&nbsp; , = VAGY &nbsp;·&nbsp; ! = NEM</p>
+    <details class="hint">
+      <summary>Jelmagyarázat</summary>
+      <p class="legend">&amp; = ÉS &nbsp;·&nbsp; , = VAGY &nbsp;·&nbsp; ! = NEM</p>
+    </details>
     <div id="search-list"></div>
   </section>
 
   <!-- ================= GL TOP 50 ================= -->
   <section id="top" role="tabpanel" hidden>
-    <p class="sub">PvPoke rangsor, <span id="rankings-date"></span> A top 50 hely <span id="top-species-count"></span> különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
+    <details class="hint">
+      <summary>Súgó</summary>
+      <p class="sub">PvPoke rangsor, <span id="rankings-date"></span> A top 50 hely <span id="top-species-count"></span> különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
+    </details>
     <div id="top-list"></div>
 
     <h2>Figyelj</h2>
@@ -91,13 +97,16 @@
 
   <!-- ================= POKÉDEX ================= -->
   <section id="dex" role="tabpanel" hidden>
-    <p class="sub">Fajonkénti tanácsok. Shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány mindig marad, akármit ír a kártya.</p>
-    <div class="box legend-box"><ul>
-      <li><span class="verdict verdict-keep">Marad</span> tartsd meg, érdemes építeni</li>
-      <li><span class="verdict verdict-scan">Szkenneld</span> PvP-jelölt: az alacsony Attackosakat nézd meg Poke Genie-vel, a legjobb marad, a többi mehet cukorért</li>
-      <li><span class="verdict verdict-transfer">Cukorért</span> mehet cukorért, egy maradhat a Pokédexért</li>
-      <li>A kártya fülei (Raid, GL, UL, Max, Gym): <b class="rating-text-good">zöld</b> = erős, <b class="rating-text-ok">szürke</b> = közepes, <b class="rating-text-bad">piros</b> = gyenge</li>
-    </ul></div>
+    <details class="hint">
+      <summary>Súgó</summary>
+      <p class="sub">Fajonkénti tanácsok. Shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány mindig marad, akármit ír a kártya.</p>
+      <div class="box legend-box"><ul>
+        <li><span class="verdict verdict-keep">Marad</span> tartsd meg, érdemes építeni</li>
+        <li><span class="verdict verdict-scan">Szkenneld</span> PvP-jelölt: az alacsony Attackosakat nézd meg Poke Genie-vel, a legjobb marad, a többi mehet cukorért</li>
+        <li><span class="verdict verdict-transfer">Cukorért</span> mehet cukorért, egy maradhat a Pokédexért</li>
+        <li>A kártya fülei (Raid, GL, UL, Max, Gym): <b class="rating-text-good">zöld</b> = erős, <b class="rating-text-ok">szürke</b> = közepes, <b class="rating-text-bad">piros</b> = gyenge</li>
+      </ul></div>
+    </details>
     <input type="search" id="dex-search" class="search" placeholder="Keresés név vagy alapforma alapján" autocomplete="off" aria-label="Pokémon keresése">
     <p class="sub" id="dex-count" aria-live="polite"></p>
     <div id="dex-list" class="dex"></div>
@@ -105,7 +114,10 @@
 
   <!-- ================= LINKEK ================= -->
   <section id="link" role="tabpanel" hidden>
-    <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
+    <details class="hint">
+      <summary>Súgó</summary>
+      <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
+    </details>
     <div id="link-list"></div>
   </section>
 </div>

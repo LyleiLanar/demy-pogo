@@ -98,3 +98,12 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .rating-text-bad{color:var(--bad)}
 .legend-box{margin:10px 0;font-size:.92rem}
 .legend-box .verdict{margin-right:4px}
+
+/* Súgók: alapból zárva */
+.hint{margin:10px 0}
+.hint summary{cursor:pointer;color:var(--muted);font:600 .85rem Barlow,sans-serif;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:4px 0}
+.hint summary::-webkit-details-marker{display:none}
+.hint summary::before{content:"▸";transition:transform .15s}
+.hint[open] summary::before{transform:rotate(90deg)}
+.hint summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.hint > :not(summary){margin-top:4px}
