@@ -164,15 +164,15 @@ function renderMatchupRow(label, matchups, isMultiple, multipleLabel) {
   return `<p class="mon-weak"><span class="mon-weak-label">${label}</span> ${badges}</p>`;
 }
 
-// Mire gyenge és minek áll ellen a faj; a többszöröset előre véve.
+// Mire érzékeny és minek ellenálló a faj; a többszöröset előre véve.
 function renderDefense(defenseTypes) {
   if (defenseTypes.length === 0) return '';
   const matchups = Object.keys(TYPES)
     .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }));
   const weaknesses = matchups.filter(({ multiplier }) => multiplier > 1).sort((a, b) => b.multiplier - a.multiplier);
   const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
-  return renderMatchupRow('Gyenge ezekre:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'dupla gyengeség')
-    + renderMatchupRow('Ellenáll:', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'dupla ellenállás');
+  return renderMatchupRow('Érzékeny:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny')
+    + renderMatchupRow('Ellenálló:', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló');
 }
 
 function attackingTraits(attackType) {
@@ -198,8 +198,8 @@ function renderTypeRow(typeKey) {
         ${renderTypeFact('Támadva erős', attack.strongAgainst)}
         ${renderTypeFact('Támadva gyenge', attack.weakAgainst)}
         ${renderTypeFact('Szinte hatástalan', attack.noEffectOn)}
-        ${renderTypeFact('Sebezhető', defense.weakTo)}
-        ${renderTypeFact('Ellenáll', [...defense.resists, ...defense.immuneTo])}
+        ${renderTypeFact('Érzékeny', defense.weakTo)}
+        ${renderTypeFact('Ellenálló', [...defense.resists, ...defense.immuneTo])}
       </dl>
     </div>`;
 }
