@@ -24,6 +24,10 @@
 //     tips       további tanácsok ebben a módban
 //   Ha egy mód hiányzik, arról nincs adat.
 //
+//   forms        formánkénti eltérések, a fenti módok felülírására:
+//                { shadow, mega, megaX, megaY: { raid, greatLeague, ultraLeague, notes } }
+//                A Shadow formának nincs Max Battle-je, a Megának csak raidje van.
+//
 //   Módtól független:
 //   evolution    fejlődés, cukorár
 //   notes        általános tanácsok
@@ -82,22 +86,26 @@ const POKEMON = [
     name: 'Ampharos',
     origin: 'Mareep',
     verdict: 'scan',
-    raid: {
-      rating: 'ok',
-      note: 'Electric/Dragon Mega.',
-      iv: 'Megára magas Attackos példány.',
-      moves: 'A Dragon Pulse (Community Day mozdulat) különösen értékes.',
-      tips: [
-        'Mega Ampharos: Electric/Dragon Mega, Water és Flying bossok ellen hasznos, szólóban is jó Mega.',
-        'Mega Ampharoshoz egy magas Attackos példány maradjon.',
-      ],
-    },
+    raid: { rating: 'bad', note: 'Mega nélkül gyenge Electric támadó.' },
     ultraLeague: {
       note: '35–40-es szintre kell húzni.',
       iv: 'Alacsony Attack; 95% fölötti rank a jó, 98% fölötti kiváló.',
       tips: [
         'Ultra League-ben a meta része.',
       ],
+    },
+    forms: {
+      mega: {
+        raid: {
+          rating: 'good',
+          note: 'Mega Ampharos: Electric/Dragon Mega, Water és Flying bossok ellen hasznos, szólóban is jó Mega.',
+          iv: 'Megára magas Attackos példány.',
+          moves: 'A Dragon Pulse (Community Day mozdulat) különösen értékes.',
+          tips: [
+            'Mega Ampharoshoz egy magas Attackos példány maradjon.',
+          ],
+        },
+      },
     },
     notes: [
       'A többi Mareep/Flaaffy/Ampharos cukorért mehet.',
@@ -154,19 +162,28 @@ const POKEMON = [
     origin: 'Torchic',
     verdict: 'keep',
     raid: {
-      rating: 'good',
-      note: 'Fire és Fighting támadó (Shadow).',
-      iv: 'Csak magas Attackos példányt építs, Shadowként drága.',
-      moves: 'A legjobb a Blast Burn (legacy). Frustrationnel jön, Rocket eseményen cseréld; addig a második töltött mozdulatot érdemes feloldani.',
-      tips: [
-        'A Shadow Torchic raidbe napi ingyenes Raid Passszal megéri bemenni, prémium vagy távoli passra nem.',
-        'Stardustot előbb a Charizardba és a Baxcaliburba tedd.',
-      ],
+      rating: 'ok',
+      note: 'Blast Burn-nel használható Fire/Fighting támadó; a Shadow és a Mega erősebb.',
+      moves: 'A legjobb a Blast Burn (legacy).',
+    },
+    forms: {
+      shadow: {
+        raid: {
+          rating: 'good',
+          note: 'Jó raides Fire és Fighting támadó.',
+          iv: 'Csak magas Attackos példányt építs, Shadowként drága.',
+          moves: 'A legjobb a Blast Burn (legacy). Frustrationnel jön, Rocket eseményen cseréld; addig a második töltött mozdulatot érdemes feloldani.',
+          tips: [
+            'A Shadow Torchic raidbe napi ingyenes Raid Passszal megéri bemenni, prémium vagy távoli passra nem.',
+            'Stardustot előbb a Charizardba és a Baxcaliburba tedd.',
+          ],
+        },
+      },
+      mega: {
+        raid: { rating: 'good', note: 'Fire/Fighting Mega.' },
+      },
     },
     evolution: 'Torchic → Combusken (25 cukor) → Blaziken (100 cukor).',
-    notes: [
-      'Mega nem lehet belőle, mert Shadow.',
-    ],
   },
   {
     id: 'blissey',
@@ -198,11 +215,10 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Fire támadó, Mega Y.',
+      note: 'Fire támadó.',
       iv: 'Raidre magas Attack kell, ideálisan 15. Egy 14-es és egy 15-ös Attack között csak pár százalék a különbség, azért nem kell eldobni egy jó példányt.',
       moves: 'A legjobb a Blast Burn (Community Day vagy Elite Charged TM). Nélküle Overheat-tel elfogadható; ha fejlesztés után nem Overheat vagy Dragon Claw lett, egy Charged TM-mel cseréld.',
       tips: [
-        'Fő cél: Mega Charizard Y raidhez. Mega alakban a jelmez nem látszik, utána visszajön.',
         'Fokozatosan 30–35-ös szintig húzd, 40 fölött XL cukor kell.',
       ],
     },
@@ -215,6 +231,16 @@ const POKEMON = [
     maxBattle: {
       rating: 'good',
       note: 'A Gigantamax Charizard a legerősebb G-Max támadó, csak eseményes Max Battle-ből, 10–40 fős csapattal.',
+    },
+    forms: {
+      megaY: {
+        raid: {
+          note: 'A fő cél: a legjobb Fire Mega raidhez. Mega alakban a jelmez nem látszik, utána visszajön.',
+        },
+      },
+      megaX: {
+        raid: { note: 'Fire/Dragon Mega: a Fire és a Dragon támadásokat erősíti.' },
+      },
     },
     evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor). A jelmez megmarad fejlesztéskor.',
     notes: [
@@ -509,18 +535,22 @@ const POKEMON = [
     name: 'Gardevoir',
     origin: 'Ralts',
     verdict: 'transfer',
-    raid: {
-      rating: 'ok',
-      tips: [
-        'Mega Gardevoirhoz egy magas Attackos példány maradhat.',
-      ],
-    },
+    raid: { rating: 'ok' },
     maxBattle: {
       rating: 'ok',
       note: 'Fairy/Psychic támadó, Fighting bossok ellen.',
       tips: [
         'Most még gyenge (290 CP), ráér.',
       ],
+    },
+    forms: {
+      mega: {
+        raid: {
+          tips: [
+            'Mega Gardevoirhoz egy magas Attackos példány maradhat.',
+          ],
+        },
+      },
     },
   },
   {
@@ -582,13 +612,17 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Water támadó, Mega.',
+      note: 'Water támadó.',
       iv: 'Raidre és Megára magas Attack kell. Átlagos IV-s Magikarpra ne pazarold a 400 cukrot.',
       moves: 'Waterfall + Hydro Pump. Második töltött mozdulatnak Crunch vagy Aqua Tail. Bite + Crunch Dark szettként is működik.',
       tips: [
         'Raidben Fire, Ground és Rock bossok ellen jó.',
-        'Mega Gyarados raidben erős Water/Dark Mega.',
       ],
+    },
+    forms: {
+      mega: {
+        raid: { note: 'Mega Gyarados raidben erős Water/Dark Mega.' },
+      },
     },
     evolution: 'Magikarp → Gyarados, 400 cukor. A Magikarp 1 km-enként ad cukrot buddyként.',
     notes: [
@@ -799,9 +833,6 @@ const POKEMON = [
       rating: 'ok',
       note: 'Tisztességes Fire és Flying támadó, a Shadow Moltres kifejezetten erős.',
       iv: 'Stardustot csak Shadow vagy magas Attackos raides példányba tegyél.',
-      tips: [
-        'Raidben tisztességes Fire és Flying támadó, a Shadow Moltres kifejezetten erős.',
-      ],
     },
     maxBattle: {
       rating: 'good',
@@ -900,26 +931,6 @@ const POKEMON = [
     raid: { rating: 'bad' },
   },
   {
-    id: 'venusaur_shadow',
-    name: 'Shadow Venusaur',
-    origin: 'Shadow Bulbasaur (Team Rocket)',
-    verdict: 'keep',
-    raid: {
-      rating: 'good',
-      iv: 'Ha 3 csillagos vagy magas Attackos, építsd; ha gyenge, akkor se küldd el sietve.',
-      moves: 'Frustrationnel jön, ezt csak Team Rocket eseményen lehet lecserélni, addig ne építsd.',
-      tips: [
-        'Raidben 20%-kal többet sebez a sima változatnál, cserébe kicsit kevesebbet bír.',
-        'Raidre szánva ne tisztítsd meg (Purify), a Purified gyengébb támadó.',
-      ],
-    },
-    ultraLeague: { note: 'Legjobb IV: 1/15/14 (39-es szint).' },
-    notes: [
-      'Kb. 20%-kal drágább felhúzni.',
-      'Shadow nem tud Mega evolválni.',
-    ],
-  },
-  {
     id: 'snorlax',
     name: 'Snorlax',
     origin: 'Munchlax / Snorlax',
@@ -931,13 +942,16 @@ const POKEMON = [
     name: 'Staraptor',
     origin: 'Starly',
     verdict: 'transfer',
-    raid: {
-      rating: 'ok',
-      note: 'Mega-jelölt.',
-      iv: 'Csak magas (ideálisan 15) Attackos példány éri meg.',
-      tips: [
-        'Mega Staraptorhoz egy magas Attackos példány maradjon, a Starly cukor a felhúzásához kell.',
-      ],
+    raid: { rating: 'ok', iv: 'Csak magas (ideálisan 15) Attackos példány éri meg.' },
+    forms: {
+      mega: {
+        raid: {
+          note: 'Fighting/Flying Mega.',
+          tips: [
+            'Mega Staraptorhoz egy magas Attackos példány maradjon, a Starly cukor a felhúzásához kell.',
+          ],
+        },
+      },
     },
     notes: [
       'A vadon fogott Starlykat Pinap Berryvel kapd el, és küldd el cukorért.',
@@ -1020,16 +1034,27 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Grass/Poison, Mega.',
+      note: 'Grass/Poison támadó.',
       iv: 'Egy magas Attackos (3 csillagos) példány marad Mega Venusaurnak, a többi cukorért mehet.',
       moves: 'A legjobb a Frenzy Plant (legacy: Elite TM vagy esemény).',
-      tips: [
-        'Mega Venusaur 1,3× bónuszt ad a Grass és Poison támadásoknak a raidben, szólóban is hasznos Mega.',
-      ],
     },
     maxBattle: {
       rating: 'ok',
       note: 'A Gigantamax forma csak Max Battle-ből szerezhető, vadon fogottból soha.',
+    },
+    forms: {
+      shadow: {
+        raid: {
+          rating: 'good',
+          iv: 'Ha 3 csillagos vagy magas Attackos, építsd; ha gyenge, akkor se küldd el sietve.',
+          moves: 'Frustrationnel jön, ezt csak Team Rocket eseményen lehet lecserélni, addig ne építsd.',
+        },
+      },
+      mega: {
+        raid: {
+          note: 'Mega Venusaur 1,3× bónuszt ad a Grass és Poison támadásoknak a raidben, szólóban is hasznos Mega.',
+        },
+      },
     },
     evolution: 'Bulbasaur → Ivysaur → Venusaur, összesen 125 cukor.',
     notes: [

@@ -21,6 +21,10 @@ const GAME_MODES = [
   { key: 'gym', label: 'Gym', title: 'Gym' },
 ];
 const RATING_ORDER = ['good', 'ok', 'bad'];
+// Formák: a Shadow-nak nincs Max Battle-je (és gymje), a Megának csak raidje van.
+const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
+const MEGA_MODE_KEYS = ['raid'];
+const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
 
 // ---------- Segédfüggvények ----------
 
@@ -47,11 +51,12 @@ function stripProtocol(url) {
 function combineSpeciesData(pokemon, pvpoke) {
   return pokemon.map((species) => {
     const stats = pvpoke[species.id] || {};
-    const combined = { ...species, types: stats.types || [], megaForms: stats.megaForms || [], buddyKm: stats.buddyKm };
-    ['greatLeague', 'ultraLeague'].forEach((league) => {
-      if (stats[league] || species[league]) combined[league] = { ...stats[league], ...species[league] };
-    });
-    return combined;
+    return {
+      ...species,
+      stats,
+      types: stats.types || [],
+      greatLeagueRanks: { rank: stats.greatLeague?.rank, shadowRank: stats.shadow?.greatLeague?.rank },
+    };
   });
 }
 
@@ -77,8 +82,8 @@ function renderSearchGroup(group) {
 
 // ---------- GL Top 50 ----------
 
-function bestRank(league) {
-  return Math.min(league.rank ?? Infinity, league.shadowRank ?? Infinity);
+function bestRank(ranks) {
+  return Math.min(ranks.rank ?? Infinity, ranks.shadowRank ?? Infinity);
 }
 
 function isTopRank(rank) {
@@ -87,13 +92,12 @@ function isTopRank(rank) {
 
 function topPokemon(pokemon) {
   return pokemon
-    .filter((species) => species.greatLeague?.rank !== undefined || species.greatLeague?.shadowRank !== undefined)
-    .filter((species) => bestRank(species.greatLeague) <= TOP_RANK_LIMIT)
-    .sort((a, b) => bestRank(a.greatLeague) - bestRank(b.greatLeague));
+    .filter((species) => bestRank(species.greatLeagueRanks) <= TOP_RANK_LIMIT)
+    .sort((a, b) => bestRank(a.greatLeagueRanks) - bestRank(b.greatLeagueRanks));
 }
 
 function renderRankingEntry(species) {
-  const { rank, shadowRank } = species.greatLeague;
+  const { rank, shadowRank } = species.greatLeagueRanks;
   const shadowBadge = isTopRank(rank) && isTopRank(shadowRank) ? '<span class="s">S</span>' : '';
   const details = [escapeHtml(species.origin)];
   if (!isTopRank(rank)) details.push('csak a Shadow változat van a top 50-ben');
@@ -101,7 +105,7 @@ function renderRankingEntry(species) {
 
   return `
     <li>
-      <span class="n">${bestRank(species.greatLeague)}</span>
+      <span class="n">${bestRank(species.greatLeagueRanks)}</span>
       <a class="f" href="#dex" data-pokemon="${escapeHtml(species.name)}">${escapeHtml(species.name)}${shadowBadge}</a>
       <span class="w">${details.join(' · ')}</span>
     </li>`;
@@ -111,7 +115,7 @@ function renderRankings(pokemon) {
   let minRank = 1;
   return RANKING_GROUPS.map((group) => {
     const entries = pokemon.filter((species) => {
-      const rank = bestRank(species.greatLeague);
+      const rank = bestRank(species.greatLeagueRanks);
       return rank >= minRank && rank <= group.maxRank;
     });
     minRank = group.maxRank + 1;
@@ -211,66 +215,49 @@ function renderTypeChart() {
 // ---------- Pokédex ----------
 
 function leagueRating(league) {
-  const rank = bestRank(league);
-  if (rank <= LEAGUE_RATING_LIMITS.good) return 'good';
-  if (rank <= LEAGUE_RATING_LIMITS.ok) return 'ok';
+  if (league.rank <= LEAGUE_RATING_LIMITS.good) return 'good';
+  if (league.rank <= LEAGUE_RATING_LIMITS.ok) return 'ok';
   return 'bad';
 }
 
-function formatLeague(league) {
-  const parts = [];
-  if (league.rank) parts.push(`${league.rank}. hely`);
-  if (league.shadowRank) parts.push(`Shadow: ${league.shadowRank}. hely`);
-  return parts.join(' · ');
-}
-
-function hasModeData(mode, data) {
-  if (!data) return false;
-  return mode.isLeague ? data.rank !== undefined || data.shadowRank !== undefined : Boolean(data.rating);
-}
-
-// A kártya fülei: csak azok a módok, amelyekről van adat.
-function gameModesOf(species) {
-  return GAME_MODES
-    .filter((mode) => hasModeData(mode, species[mode.key]))
-    .map((mode) => {
-      const data = species[mode.key];
-      return {
-        ...mode,
-        rating: mode.isLeague ? leagueRating(data) : data.rating,
-        detail: mode.isLeague ? formatLeague(data) : '',
-        note: data.note,
-        iv: data.iv,
-        moves: data.moves,
-        tips: data.tips,
-        moveset: data.moveset,
-        beats: data.beats,
-        losesTo: data.losesTo,
-        forms: mode.key === 'raid' ? raidForms(species) : [],
-      };
+// A faj formái: Normál, Shadow (ha van PvPoke-adata) és a Megák.
+// Mindegyik a saját típusával, a hozzá tartozó módokkal és a formára szabott tanácsokkal.
+function speciesForms(species) {
+  const overrides = species.forms || {};
+  const forms = [{
+    key: 'normal', name: 'Normál', types: species.types,
+    modeKeys: GAME_MODES.map((mode) => mode.key), leagues: species.stats, overrides: {},
+  }];
+  if (species.stats.shadow) {
+    forms.push({
+      key: 'shadow', name: 'Shadow', types: species.types,
+      modeKeys: SHADOW_MODE_KEYS, leagues: species.stats.shadow, overrides: overrides.shadow || {},
     });
+  }
+  (species.stats.megaForms || []).forEach((mega) => {
+    const key = MEGA_FORM_KEYS[mega.name];
+    forms.push({ key, name: mega.name, types: mega.types, modeKeys: MEGA_MODE_KEYS, leagues: {}, overrides: overrides[key] || {} });
+  });
+  return forms;
 }
 
-// Raidben a Mega formák is számítanak: az alapforma és a Megák, mindegyik a saját típusával.
-function raidForms(species) {
-  if (species.megaForms.length === 0) return [];
-  return [{ name: 'Normál', types: species.types }, ...species.megaForms];
+// Egy mód adatai egy formában: az alap tanács, a forma felülírása és (ligáknál) a PvPoke-adat.
+function modeData(species, form, mode) {
+  const curated = { ...species[mode.key], ...form.overrides[mode.key] };
+  if (mode.isLeague) {
+    const league = form.leagues[mode.key];
+    return league ? { ...curated, ...league, rating: leagueRating(league) } : undefined;
+  }
+  return curated.rating ? curated : undefined;
 }
 
-function renderFormSwitcher(forms) {
-  if (forms.length === 0) return '';
-  const tabs = forms.map((form, i) => `
-    <button type="button" class="form-tab" aria-pressed="${i === 0}" data-form="${i}">${escapeHtml(form.name)}</button>`);
-  const panels = forms.map((form, i) => `
-    <div class="form-panel" data-form="${i}" ${i === 0 ? '' : 'hidden'}>
-      <p class="mon-types">${renderTypeBadges(form.types)}</p>
-      ${renderDefense(form.types)}
-    </div>`);
-  return `
-    <div class="forms">
-      <div class="form-tabs" role="group" aria-label="Forma">${tabs.join('')}</div>
-      ${panels.join('')}
-    </div>`;
+// A kártya fülei: csak azok a módok, amelyek a formához tartoznak és van róluk adat.
+function gameModesOf(species, form) {
+  return GAME_MODES
+    .filter((mode) => form.modeKeys.includes(mode.key))
+    .map((mode) => ({ ...mode, data: modeData(species, form, mode) }))
+    .filter((mode) => mode.data)
+    .map(({ data, ...mode }) => ({ ...mode, ...data, detail: mode.isLeague ? `${data.rank}. hely` : '' }));
 }
 
 // Alapból a legjobb értékelésű mód nyílik meg.
@@ -299,21 +286,43 @@ function renderModePanel(mode, isSelected) {
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
       <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
-      ${renderFormSwitcher(mode.forms)}
       ${detail}${note}
       ${facts ? `<dl class="mon-facts">${facts}</dl>` : ''}
       ${renderList('mon-notes', mode.tips)}
     </div>`;
 }
 
-function renderGameModes(species) {
-  const modes = gameModesOf(species);
+function renderGameModes(modes) {
   if (modes.length === 0) return '';
   const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
       <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
       ${modes.map((mode, i) => renderModePanel(mode, i === selected)).join('')}
+    </div>`;
+}
+
+function renderFormPanel(species, form, isSelected) {
+  return `
+    <div class="form-panel" data-form="${form.key}" ${isSelected ? '' : 'hidden'}>
+      <p class="mon-types">${renderTypeBadges(form.types)}</p>
+      ${renderDefense(form.types)}
+      ${renderGameModes(gameModesOf(species, form))}
+      ${renderList('mon-notes', form.overrides.notes)}
+    </div>`;
+}
+
+// Formaváltó a kártya tetején; csak akkor, ha több forma van.
+function renderForms(species) {
+  const forms = speciesForms(species);
+  const panels = forms.map((form, i) => renderFormPanel(species, form, i === 0)).join('');
+  if (forms.length === 1) return `<div class="forms">${panels}</div>`;
+  const tabs = forms.map((form, i) => `
+    <button type="button" class="form-tab" aria-pressed="${i === 0}" data-form="${form.key}">${escapeHtml(form.name)}</button>`);
+  return `
+    <div class="forms">
+      <div class="form-tabs" role="group" aria-label="Forma">${tabs.join('')}</div>
+      ${panels}
     </div>`;
 }
 
@@ -328,9 +337,9 @@ function renderList(className, items) {
 function renderPokemonCard(species) {
   const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
   const searchText = normalizeForSearch(`${species.name} ${species.origin} ${typeNames}`);
-  const general = renderFact('Fejlődés', species.evolution)
-    + renderFact('Buddy', species.buddyKm && `${species.buddyKm} km / cukor`);
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
+  const general = renderFact('Fejlődés', species.evolution)
+    + renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
 
   return `
     <article class="mon" data-search="${escapeHtml(searchText)}">
@@ -338,11 +347,9 @@ function renderPokemonCard(species) {
         <h3 class="mon-name">${escapeHtml(species.name)}</h3>
         <span class="verdict verdict-${species.verdict}">${VERDICT_LABELS[species.verdict]}</span>
       </div>
-      <p class="mon-types">${renderTypeBadges(species.types)}</p>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
-      ${renderDefense(species.types)}
       ${warning}
-      ${renderGameModes(species)}
+      ${renderForms(species)}
       ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
       ${renderList('mon-notes', species.notes)}
     </article>`;

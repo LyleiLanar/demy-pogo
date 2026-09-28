@@ -6,7 +6,8 @@ Statikus oldal GitHub Pages-en, build nélkül.
 - `style.css`: stílusok
 - `data.js`: keresőkifejezések és linkek (`DATA`)
 - `pokemon.js`: fajonkénti, kézzel írt tanácsok (`POKEMON`), a mezők leírása a fájl elején
-- `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, Mega formák, buddy km, GL/UL helyezés, ajánlott szett, párharcok.
+- `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, Mega formák, buddy km, GL/UL helyezés, ajánlott szett,
+  párharcok, a normál és a Shadow formára külön.
   Kézzel ne szerkeszd; frissítés: `node tools/sync-pvpoke.mjs` (a pokemon.js `id`-jai alapján)
 - `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
 - `app.js`: megjelenítés, fülek, Pokédex-keresés, másolás
@@ -26,5 +27,7 @@ A válaszban adott tanácsot vedd fel a `pokemon.js`-be is:
 - A módhoz kötött tanácsot (IV, mozdulatok, tippek) a megfelelő mód (`raid`, `greatLeague`,
   `ultraLeague`, `maxBattle`, `gym`) `iv`, `moves` és `tips` mezőjébe írd; a `notes`-ba csak
   az kerüljön, ami egyik módhoz sem kötődik.
+- A Shadow és a Mega nem külön faj: a formára szabott tanács a faj `forms` mezőjébe kerül
+  (`shadow`, `mega`, `megaX`, `megaY`). A Shadow helyezése és a Mega típusa a pvpoke.js-ből jön.
 - A felhasználó saját példányait (IV, CP, szint) ne írd be, mert folyamatosan változnak.
 - Az általános, nem fajhoz kötött tanács az `index.html` Tippek fülére kerüljön.

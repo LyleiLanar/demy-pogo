@@ -51,25 +51,19 @@ function rankIndex(rankings) {
   return new Map(rankings.map((entry, index) => [entry.speciesId, { ...entry, rank: index + 1 }]));
 }
 
-function describeLeague(id, ranking, species, moves, names) {
-  const own = ranking.get(id);
-  const shadow = id.endsWith('_shadow') ? undefined : ranking.get(`${id}_shadow`);
-  if (!own && !shadow) return undefined;
-
-  const league = {};
-  if (own) league.rank = own.rank;
-  if (shadow) league.shadowRank = shadow.rank;
-
-  const best = [own, shadow].filter(Boolean).sort((a, b) => a.rank - b.rank)[0];
-  if (best.rank > DETAIL_RANK_LIMIT) return league;
+// Egy forma (normál vagy Shadow) helyezése egy ligában; top 100-ban a szett és a párharcok is.
+function describeLeague(rankingEntry, species, moves, names) {
+  if (!rankingEntry) return undefined;
+  const league = { rank: rankingEntry.rank };
+  if (rankingEntry.rank > DETAIL_RANK_LIMIT) return league;
 
   const specialMoves = new Set([...(species.eliteMoves || []), ...(species.legacyMoves || [])]);
-  league.moveset = best.moveset.map((moveId) => {
+  league.moveset = rankingEntry.moveset.map((moveId) => {
     const name = moves.get(moveId) || moveId;
     return specialMoves.has(moveId) ? `${name} *` : name;
   });
-  league.beats = best.matchups.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
-  league.losesTo = best.counters.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
+  league.beats = rankingEntry.matchups.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
+  league.losesTo = rankingEntry.counters.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
   return league;
 }
 
@@ -119,10 +113,16 @@ async function main() {
     const megaForms = megaFormsOf(id, gamemaster);
     if (megaForms.length) entry.megaForms = megaForms;
     if (species.buddyDistance) entry.buddyKm = species.buddyDistance;
+    const shadowId = `${id}_shadow`;
+    const shadowSpecies = speciesById.get(shadowId) || species;
+    const shadow = {};
     for (const [key, ranking] of leagueRankings) {
-      const league = describeLeague(id, ranking, species, moves, names);
+      const league = describeLeague(ranking.get(id), species, moves, names);
       if (league) entry[key] = league;
+      const shadowLeague = describeLeague(ranking.get(shadowId), shadowSpecies, moves, names);
+      if (shadowLeague) shadow[key] = shadowLeague;
     }
+    if (Object.keys(shadow).length) entry.shadow = shadow;
     result[id] = entry;
   }
 
@@ -130,6 +130,7 @@ async function main() {
   const output = `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
+// shadow: a Shadow változat Great és Ultra League adatai
 // moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 
