@@ -128,10 +128,23 @@ function typeInk(hexColor) {
   return luminance > 0.6 ? '#18212C' : '#FFFFFF';
 }
 
-function renderTypeBadge(typeKey, suffix = '') {
+function typeStyle(type) {
+  return `--type-color:${type.color};--type-ink:${typeInk(type.color)}`;
+}
+
+// Csak az ikon látszik; a név a súgóban (title) és a képernyőolvasónak (aria-label) van.
+// Többszörös gyengeségnél vagy ellenállásnál felkiáltójel kerül mellé.
+function renderTypeBadge(typeKey, isMultiple = false) {
   const type = TYPES[typeKey];
-  return `<span class="type" style="--type-color:${type.color};--type-ink:${typeInk(type.color)}">`
-    + `<span aria-hidden="true">${type.icon}</span> ${type.name}${suffix}</span>`;
+  const label = isMultiple ? `${type.name} (többszörös)` : type.name;
+  return `<span class="type" style="${typeStyle(type)}" title="${label}" role="img" aria-label="${label}">`
+    + `${type.icon}${isMultiple ? '❗' : ''}</span>`;
+}
+
+// A típustáblázat soraiban az ikon mellett a név is látszik, hogy az ikonok megtanulhatók legyenek.
+function renderTypeLabel(typeKey) {
+  const type = TYPES[typeKey];
+  return `<span class="type type-label" style="${typeStyle(type)}"><span aria-hidden="true">${type.icon}</span> ${type.name}</span>`;
 }
 
 function renderTypeBadges(typeKeys) {
@@ -149,20 +162,23 @@ function damageMultiplier(attackType, defenseTypes) {
   }, 1);
 }
 
-function formatMultiplier(multiplier) {
-  return `×${Number(multiplier.toFixed(2)).toString().replace('.', ',')}`;
+function renderMatchupRow(label, matchups, isMultiple) {
+  if (matchups.length === 0) return '';
+  const badges = matchups
+    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier)))
+    .join(' ');
+  return `<p class="mon-weak"><span class="mon-weak-label">${label}</span> ${badges}</p>`;
 }
 
-function renderWeaknesses(defenseTypes) {
+// Mire gyenge és minek áll ellen a faj; a többszöröset előre véve.
+function renderDefense(defenseTypes) {
   if (defenseTypes.length === 0) return '';
-  const weaknesses = Object.keys(TYPES)
-    .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }))
-    .filter(({ multiplier }) => multiplier > 1)
-    .sort((a, b) => b.multiplier - a.multiplier);
-  const badges = weaknesses
-    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, ` ${formatMultiplier(multiplier)}`))
-    .join(' ');
-  return `<p class="mon-weak"><span class="mon-weak-label">Gyenge ezekre:</span> ${badges}</p>`;
+  const matchups = Object.keys(TYPES)
+    .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }));
+  const weaknesses = matchups.filter(({ multiplier }) => multiplier > 1).sort((a, b) => b.multiplier - a.multiplier);
+  const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
+  return renderMatchupRow('Gyenge ezekre:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak)
+    + renderMatchupRow('Ellenáll:', resistances, (m) => m < TYPE_MULTIPLIERS.resist);
 }
 
 function attackingTraits(attackType) {
@@ -183,7 +199,7 @@ function renderTypeRow(typeKey) {
   const defense = TYPES[typeKey];
   return `
     <div class="type-row">
-      <div class="type-row-head">${renderTypeBadge(typeKey)}</div>
+      <div class="type-row-head">${renderTypeLabel(typeKey)}</div>
       <dl class="type-facts">
         ${renderTypeFact('Támadva erős', attack.strongAgainst)}
         ${renderTypeFact('Támadva gyenge', attack.weakAgainst)}
@@ -306,7 +322,7 @@ function renderPokemonCard(species) {
       </div>
       <p class="mon-types">${renderTypeBadges(species.types)}</p>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
-      ${renderWeaknesses(species.types)}
+      ${renderDefense(species.types)}
       ${warning}
       ${renderGameModes(species)}
       ${general ? `<dl class="mon-facts">${general}</dl>` : ''}

@@ -108,7 +108,8 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .hint > :not(summary){margin-top:4px}
 
 /* Típuscímkék */
-.type{display:inline-flex;align-items:center;gap:3px;font:600 .75rem/1 Barlow,sans-serif;padding:3px 7px;border-radius:999px;background:var(--type-color);color:var(--type-ink);white-space:nowrap}
+.type{display:inline-flex;align-items:center;gap:2px;font:600 .9rem/1 Barlow,sans-serif;padding:3px 6px;border-radius:999px;background:var(--type-color);color:var(--type-ink);white-space:nowrap}
+.type-label{font-size:.8rem;padding:4px 8px}
 .mon-types{margin:2px 0 4px;display:flex;flex-wrap:wrap;gap:4px}
 .mon-weak{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.85rem}
 .mon-weak-label{color:var(--muted)}

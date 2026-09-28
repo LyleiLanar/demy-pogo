@@ -62,9 +62,6 @@ const POKEMON = [
       ],
     },
     evolution: 'Abra → Kadabra (25 cukor) → Alakazam (100 cukor), vagy csere után ingyen.',
-    notes: [
-      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
-    ],
   },
   {
     id: 'ninetales_alolan',
@@ -186,9 +183,6 @@ const POKEMON = [
         'Az egyik legjobb gym védő, de az érme az időtől függ, nem a védő erejétől, ezért Stardustot ne tegyél bele.',
       ],
     },
-    notes: [
-      'Jelöld kedvencnek.',
-    ],
   },
   {
     id: 'carbink',
@@ -297,7 +291,6 @@ const POKEMON = [
     },
     notes: [
       'A Darumaka duplikátumok cukorért mehetnek.',
-      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
     ],
   },
   {
@@ -323,14 +316,13 @@ const POKEMON = [
     raid: {
       rating: 'ok',
       note: 'Közepes Fire támadó, a Mega Charizard Y jobb.',
-      moves: 'A Blast Burn-ös példány marad (Community Day mozdulat), jelöld kedvencnek.',
+      moves: 'A legjobb a Blast Burn (Community Day mozdulat).',
       tips: [
         'Tartalék Fire támadó raidre és Rocket ellen.',
       ],
     },
     notes: [
       'A többi Fennekin/Braixen cukorért mehet, a cukor a Delphox felhúzásához kell.',
-      'A Blast Burn-ös példány a kivétel miatt marad, a többi mehet cukorért.',
     ],
   },
   {
@@ -339,9 +331,6 @@ const POKEMON = [
     origin: 'raidből (legendás)',
     verdict: 'keep',
     raid: { rating: 'bad' },
-    notes: [
-      'Legendás, mindig marad.',
-    ],
   },
   {
     id: 'dondozo',
@@ -465,9 +454,6 @@ const POKEMON = [
         'Max Particle-t ne költs rá.',
       ],
     },
-    notes: [
-      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
-    ],
   },
   {
     id: 'florges',
@@ -510,9 +496,6 @@ const POKEMON = [
         'Használható Dark/Flying Pokémon.',
       ],
     },
-    notes: [
-      'Legendás, mindig marad.',
-    ],
   },
   {
     id: 'stunfisk_galarian',
@@ -539,9 +522,6 @@ const POKEMON = [
         'Most még gyenge (290 CP), ráér.',
       ],
     },
-    notes: [
-      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
-    ],
   },
   {
     id: 'gigalith',
@@ -553,13 +533,10 @@ const POKEMON = [
       rating: 'bad',
       note: 'A Rhyperior mellett nem prioritás.',
       tips: [
-        'A Dynamax példány marad (a Rhyperior mellett nem prioritás).',
+        'A Rhyperior mellett nem prioritás.',
       ],
     },
     evolution: 'A Boldore csere után ingyen fejlődik.',
-    notes: [
-      'A Meteor Beam-es (Community Day) példány marad.',
-    ],
   },
   {
     id: 'gothitelle',
@@ -589,7 +566,6 @@ const POKEMON = [
     evolution: 'Skwovet → Greedent, 50 cukor.',
     notes: [
       'Skwovet cukor: Rare Candy, Pinap Berry, buddy, részben felhős időben több Skwovet jön.',
-      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
     ],
   },
   {
@@ -598,9 +574,6 @@ const POKEMON = [
     origin: 'raidből (Ultra Beast)',
     verdict: 'keep',
     raid: { rating: 'bad' },
-    notes: [
-      'Ultra Beast, mindig marad.',
-    ],
   },
   {
     id: 'gyarados',
@@ -641,7 +614,7 @@ const POKEMON = [
       rating: 'bad',
       note: 'Nem prioritás.',
       tips: [
-        'A Dynamax példány marad, de nem prioritás, Max Particle-t ne költs rá.',
+        'Nem prioritás, Max Particle-t ne költs rá.',
       ],
     },
     evolution: 'Hatenna → Hattrem → Hatterene.',
@@ -673,9 +646,6 @@ const POKEMON = [
       ],
     },
     evolution: 'Drizzile → Inteleon, 100 cukor.',
-    notes: [
-      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
-    ],
   },
   {
     id: 'jellicent',
@@ -810,7 +780,6 @@ const POKEMON = [
     origin: 'Sprigatito',
     verdict: 'transfer',
     notes: [
-      'A 96%-os, raidre címkézett Sprigatito marad.',
       'A Genie PvP %-a (pl. 98,8%) a fajon belüli IV-minőséget mutatja, nem azt, hogy a faj jó-e.',
     ],
   },
@@ -840,7 +809,6 @@ const POKEMON = [
       moves: 'Max Battle-ben Wing Attack gyors mozdulattal Flying Max mozdulatot (Max Airstream) kap.',
     },
     notes: [
-      'Legendás, mindig marad.',
       'Buddyként 20 km-enként ad cukrot (legendás), de a napi 2 km-es séta a szívecskékhez minden buddynál ugyanannyi.',
     ],
   },
@@ -966,9 +934,9 @@ const POKEMON = [
     raid: {
       rating: 'ok',
       note: 'Mega-jelölt.',
-      iv: 'Új példány csak akkor marad, ha jobb a meglévő 15 Attackos Staraptornál.',
+      iv: 'Csak magas (ideálisan 15) Attackos példány éri meg.',
       tips: [
-        'A 15 Attackos Staraptor a fő Mega-jelölt, a Starly cukor a felhúzásához kell.',
+        'Mega Staraptorhoz egy magas Attackos példány maradjon, a Starly cukor a felhúzásához kell.',
       ],
     },
     notes: [
@@ -1003,11 +971,7 @@ const POKEMON = [
     name: 'Torterra',
     origin: 'Turtwig',
     verdict: 'transfer',
-    raid: {
-      rating: 'ok',
-      note: 'Frenzy Plant-tel tisztességes Grass/Ground támadó.',
-      moves: 'A Frenzy Plant-es példány marad, azzal tisztességes Grass/Ground támadó.',
-    },
+    raid: { rating: 'ok', note: 'Frenzy Plant-tel tisztességes Grass/Ground támadó.' },
   },
   {
     id: 'toxapex',
@@ -1032,9 +996,6 @@ const POKEMON = [
       ],
     },
     evolution: 'Phantump → Trevenant 50 cukor, vagy csere után ingyen.',
-    notes: [
-      'A shiny Phantump marad.',
-    ],
   },
   {
     id: 'tsareena',
