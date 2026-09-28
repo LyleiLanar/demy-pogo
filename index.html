@@ -15,14 +15,15 @@
   <p class="sub">Mit tarts meg, mit keress, mi jó a Great League-ben. A keresőknél a Másol gombbal viheted át a játékba.</p>
 
   <nav role="tablist">
-    <button role="tab" id="t-tart" data-tab="tart" aria-selected="true">Megtartás</button>
+    <button role="tab" id="t-tippek" data-tab="tippek" aria-selected="true">Tippek</button>
     <button role="tab" id="t-kereso" data-tab="kereso" aria-selected="false">Keresők</button>
     <button role="tab" id="t-top" data-tab="top" aria-selected="false">GL Top 50</button>
+    <button role="tab" id="t-dex" data-tab="dex" aria-selected="false">Pokédex</button>
     <button role="tab" id="t-link" data-tab="link" aria-selected="false">Linkek</button>
   </nav>
 
   <!-- ================= MIT TARTSAK MEG ================= -->
-  <section id="tart" role="tabpanel">
+  <section id="tippek" role="tabpanel">
     <h2>1. Mindig tartsd meg</h2>
     <div class="box"><ul>
       <li>Shiny</li>
@@ -55,6 +56,7 @@
     <ul>
       <li><b>Raid:</b> magas Attack a fontos</li>
       <li><b>Great League:</b> alacsony Attack + magas Defense és HP</li>
+      <li><b>Ultra League:</b> alacsony Attack + magas Defense és HP</li>
       <li><b>Gym védő:</b> mindegy, az érme az időtől függ, nem az erőtől</li>
     </ul>
 
@@ -65,19 +67,31 @@
       <li>Ami nem kell, mehet cukorért</li>
     </ol>
 
-    <h2>6. PvP-ben használható fajok (Great League)</h2>
-    <p>A <a href="#top">GL Top 50</a> fülön találod őket, az alapformával együtt. Ezeknél szkennelj.</p>
+    <h2>6. Felhúzás és buddy</h2>
+    <ul>
+      <li>35-ös szint fölött meredeken nő a Stardust-ár, addig érdemes húzni</li>
+      <li>Raid előtt a raidre szánt Best Buddy legyen az aktív buddy: a +1 szint csak így él</li>
+    </ul>
+
+    <h2>7. PvP-ben használható fajok (Great League)</h2>
+    <p>A <a href="#top">GL Top 50</a> fülön találod őket, az alapformával együtt. Ezeknél szkennelj. Fajonkénti részletes tanácsok a <a href="#dex">Pokédex</a> fülön.</p>
   </section>
 
   <!-- ================= KERESŐK ================= -->
   <section id="kereso" role="tabpanel" hidden>
-    <p class="legend">&amp; = ÉS &nbsp;·&nbsp; , = VAGY &nbsp;·&nbsp; ! = NEM</p>
+    <details class="hint">
+      <summary>Jelmagyarázat</summary>
+      <p class="legend">&amp; = ÉS &nbsp;·&nbsp; , = VAGY &nbsp;·&nbsp; ! = NEM</p>
+    </details>
     <div id="search-list"></div>
   </section>
 
   <!-- ================= GL TOP 50 ================= -->
   <section id="top" role="tabpanel" hidden>
-    <p class="sub">PvPoke rangsor, 2026. szeptember 24. A top 50 hely 38 különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
+    <details class="hint">
+      <summary>Súgó</summary>
+      <p class="sub">PvPoke rangsor, <span id="rankings-date"></span> A top 50 hely <span id="top-species-count"></span> különböző fajt jelent. <b>S</b> = a Shadow változat is a top 50-ben van.<br>Ha a faj itt van: jöhet a <code>0attack,1attack</code> szűrő és a Poke Genie. Ha nincs: szkennelés nélkül mehet (kivéve a védetteket).</p>
+    </details>
     <div id="top-list"></div>
 
     <h2>Figyelj</h2>
@@ -88,14 +102,35 @@
     </ul></div>
   </section>
 
+  <!-- ================= POKÉDEX ================= -->
+  <section id="dex" role="tabpanel" hidden>
+    <details class="hint">
+      <summary>Súgó</summary>
+      <p class="sub">Fajonkénti tanácsok. Shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány mindig marad, akármit ír a kártya.</p>
+      <div class="box legend-box"><ul>
+        <li><span class="verdict verdict-keep">Marad</span> tartsd meg, érdemes építeni</li>
+        <li><span class="verdict verdict-scan">Szkenneld</span> PvP-jelölt: az alacsony Attackosakat nézd meg Poke Genie-vel, a legjobb marad, a többi mehet cukorért</li>
+        <li><span class="verdict verdict-transfer">Cukorért</span> mehet cukorért, egy maradhat a Pokédexért</li>
+        <li>A kártya fülei (Raid, GL, UL, Max, Gym): <b class="rating-text-good">zöld</b> = erős, <b class="rating-text-ok">szürke</b> = közepes, <b class="rating-text-bad">piros</b> = gyenge</li>
+      </ul></div>
+    </details>
+    <input type="search" id="dex-search" class="search" placeholder="Keresés név vagy alapforma alapján" autocomplete="off" aria-label="Pokémon keresése">
+    <p class="sub" id="dex-count" aria-live="polite"></p>
+    <div id="dex-list" class="dex"></div>
+  </section>
+
   <!-- ================= LINKEK ================= -->
   <section id="link" role="tabpanel" hidden>
-    <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
+    <details class="hint">
+      <summary>Súgó</summary>
+      <p class="sub">Ha csak kettőt jegyzel meg: Leek Duck (mi van most a játékban) és PvPoke (kit tarts meg PvP-re).</p>
+    </details>
     <div id="link-list"></div>
   </section>
 </div>
 
 <script src="data.js"></script>
+<script src="pokemon.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
