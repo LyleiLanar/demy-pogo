@@ -6,7 +6,7 @@ Statikus oldal GitHub Pages-en, build nélkül.
 - `style.css`: stílusok
 - `data.js`: keresőkifejezések és linkek (`DATA`)
 - `pokemon.js`: fajonkénti, kézzel írt tanácsok (`POKEMON`), a mezők leírása a fájl elején
-- `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, buddy km, GL/UL helyezés, ajánlott szett, párharcok.
+- `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, Mega formák, buddy km, GL/UL helyezés, ajánlott szett, párharcok.
   Kézzel ne szerkeszd; frissítés: `node tools/sync-pvpoke.mjs` (a pokemon.js `id`-jai alapján)
 - `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
 - `app.js`: megjelenítés, fülek, Pokédex-keresés, másolás

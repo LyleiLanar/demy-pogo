@@ -1,5 +1,5 @@
 // Legenerálja a pvpoke.js-t a PvPoke GitHubon lévő adataiból:
-// típusok, buddy km, Great és Ultra League helyezés, ajánlott mozdulatok és párharcok.
+// típusok, Mega formák, buddy km, Great és Ultra League helyezés, ajánlott mozdulatok és párharcok.
 // Csak a pokemon.js-ben szereplő fajokat veszi fel.
 //
 // Futtatás a repó gyökeréből: node tools/sync-pvpoke.mjs
@@ -35,6 +35,18 @@ function displayName(speciesName) {
   return form === 'Shadow' || REGIONAL_FORMS.includes(form) ? `${form} ${name}` : speciesName;
 }
 
+// A faj Mega formái (Mega, Mega X, Mega Y) a típusukkal. Shadow nem evolválhat Megává.
+function megaFormsOf(id, gamemaster) {
+  if (id.endsWith('_shadow')) return [];
+  return gamemaster.pokemon
+    .filter((species) => /^_mega(_[xy])?$/.test(species.speciesId.slice(id.length)) && species.speciesId.startsWith(id))
+    .filter((species) => species.released !== false)
+    .map((species) => ({
+      name: /\((Mega(?: [XY])?)\)$/.exec(species.speciesName)[1],
+      types: species.types.filter((type) => type !== 'none'),
+    }));
+}
+
 function rankIndex(rankings) {
   return new Map(rankings.map((entry, index) => [entry.speciesId, { ...entry, rank: index + 1 }]));
 }
@@ -61,14 +73,26 @@ function describeLeague(id, ranking, species, moves, names) {
   return league;
 }
 
+const INLINE_MAX_LENGTH = 100;
+
+function isPrimitive(value) {
+  return typeof value !== 'object' || (Array.isArray(value) && value.every((item) => typeof item !== 'object'));
+}
+
+// JS-literál kiírása: rövid, egyszerű értékek egy sorban, a többi tagolva.
 function toJs(value, indent = 0) {
   if (typeof value === 'string') return `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
   if (typeof value !== 'object') return String(value);
   const pad = '  '.repeat(indent + 1);
   const end = '  '.repeat(indent);
-  if (Array.isArray(value)) return `[${value.map((item) => toJs(item, indent + 1)).join(', ')}]`;
-  const parts = Object.entries(value).map(([key, item]) => `${pad}${/^\w+$/.test(key) ? key : toJs(key)}: ${toJs(item, indent + 1)},`);
-  return `{\n${parts.join('\n')}\n${end}}`;
+  if (Array.isArray(value)) {
+    if (value.every(isPrimitive)) return `[${value.map((item) => toJs(item)).join(', ')}]`;
+    return `[\n${value.map((item) => `${pad}${toJs(item, indent + 1)},`).join('\n')}\n${end}]`;
+  }
+  const entries = Object.entries(value).map(([key, item]) => [/^\w+$/.test(key) ? key : toJs(key), item]);
+  const inline = `{ ${entries.map(([key, item]) => `${key}: ${toJs(item)}`).join(', ')} }`;
+  if (Object.values(value).every(isPrimitive) && inline.length <= INLINE_MAX_LENGTH) return inline;
+  return `{\n${entries.map(([key, item]) => `${pad}${key}: ${toJs(item, indent + 1)},`).join('\n')}\n${end}}`;
 }
 
 async function main() {
@@ -92,6 +116,8 @@ async function main() {
       continue;
     }
     const entry = { types: species.types.filter((type) => type !== 'none') };
+    const megaForms = megaFormsOf(id, gamemaster);
+    if (megaForms.length) entry.megaForms = megaForms;
     if (species.buddyDistance) entry.buddyKm = species.buddyDistance;
     for (const [key, ranking] of leagueRankings) {
       const league = describeLeague(id, ranking, species, moves, names);
@@ -103,6 +129,7 @@ async function main() {
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, '. ') + '.';
   const output = `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 

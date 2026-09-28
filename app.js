@@ -47,7 +47,7 @@ function stripProtocol(url) {
 function combineSpeciesData(pokemon, pvpoke) {
   return pokemon.map((species) => {
     const stats = pvpoke[species.id] || {};
-    const combined = { ...species, types: stats.types || [], buddyKm: stats.buddyKm };
+    const combined = { ...species, types: stats.types || [], megaForms: stats.megaForms || [], buddyKm: stats.buddyKm };
     ['greatLeague', 'ultraLeague'].forEach((league) => {
       if (stats[league] || species[league]) combined[league] = { ...stats[league], ...species[league] };
     });
@@ -246,8 +246,31 @@ function gameModesOf(species) {
         moveset: data.moveset,
         beats: data.beats,
         losesTo: data.losesTo,
+        forms: mode.key === 'raid' ? raidForms(species) : [],
       };
     });
+}
+
+// Raidben a Mega formák is számítanak: az alapforma és a Megák, mindegyik a saját típusával.
+function raidForms(species) {
+  if (species.megaForms.length === 0) return [];
+  return [{ name: 'Normál', types: species.types }, ...species.megaForms];
+}
+
+function renderFormSwitcher(forms) {
+  if (forms.length === 0) return '';
+  const tabs = forms.map((form, i) => `
+    <button type="button" class="form-tab" aria-pressed="${i === 0}" data-form="${i}">${escapeHtml(form.name)}</button>`);
+  const panels = forms.map((form, i) => `
+    <div class="form-panel" data-form="${i}" ${i === 0 ? '' : 'hidden'}>
+      <p class="mon-types">${renderTypeBadges(form.types)}</p>
+      ${renderDefense(form.types)}
+    </div>`);
+  return `
+    <div class="forms">
+      <div class="form-tabs" role="group" aria-label="Forma">${tabs.join('')}</div>
+      ${panels.join('')}
+    </div>`;
 }
 
 // Alapból a legjobb értékelésű mód nyílik meg.
@@ -276,6 +299,7 @@ function renderModePanel(mode, isSelected) {
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
       <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
+      ${renderFormSwitcher(mode.forms)}
       ${detail}${note}
       ${facts ? `<dl class="mon-facts">${facts}</dl>` : ''}
       ${renderList('mon-notes', mode.tips)}
@@ -444,10 +468,25 @@ function setupPokedexSearch() {
   filter();
 }
 
-// ---------- Kártya fülei ----------
+// ---------- Kártya fülei és formaváltó ----------
+
+function selectFormTab(tab) {
+  const forms = tab.closest('.forms');
+  forms.querySelectorAll('.form-tab').forEach((button) => {
+    button.setAttribute('aria-pressed', button === tab);
+  });
+  forms.querySelectorAll('.form-panel').forEach((panel) => {
+    panel.hidden = panel.dataset.form !== tab.dataset.form;
+  });
+}
 
 function setupModeTabs() {
   document.getElementById('dex-list').addEventListener('click', (event) => {
+    const formTab = event.target.closest('.form-tab');
+    if (formTab) {
+      selectFormTab(formTab);
+      return;
+    }
     const tab = event.target.closest('.mode-tab');
     if (!tab) return;
     const modes = tab.closest('.modes');
