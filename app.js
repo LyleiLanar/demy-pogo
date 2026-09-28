@@ -121,24 +121,18 @@ function renderRankings(pokemon) {
 
 // ---------- Típusok ----------
 
-// Világos típusszínen sötét, sötéten világos szöveg.
-function typeInk(hexColor) {
-  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hexColor.slice(i, i + 2), 16));
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.6 ? '#18212C' : '#FFFFFF';
-}
-
 function typeStyle(type) {
-  return `--type-color:${type.color};--type-ink:${typeInk(type.color)}`;
+  return `--type-color:${type.color}`;
 }
 
-// Csak az ikon látszik; a név a súgóban (title) és a képernyőolvasónak (aria-label) van.
-// Többszörös gyengeségnél vagy ellenállásnál felkiáltójel kerül mellé.
-function renderTypeBadge(typeKey, isMultiple = false) {
+// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTypeTooltip).
+// A multipleLabel a többszörös hatás leírása: ilyenkor felkiáltójel kerül az ikon mellé.
+function renderTypeBadge(typeKey, multipleLabel = '') {
   const type = TYPES[typeKey];
-  const label = isMultiple ? `${type.name} (többszörös)` : type.name;
-  return `<span class="type" style="${typeStyle(type)}" title="${label}" role="img" aria-label="${label}">`
-    + `${type.icon}${isMultiple ? '❗' : ''}</span>`;
+  const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
+  const marker = multipleLabel ? '<span class="type-multiple" aria-hidden="true">❗</span>' : '';
+  return `<button type="button" class="type" style="${typeStyle(type)}" data-type-name="${label}" aria-label="${label}">`
+    + `<span aria-hidden="true">${type.icon}</span>${marker}</button>`;
 }
 
 // A típustáblázat soraiban az ikon mellett a név is látszik, hogy az ikonok megtanulhatók legyenek.
@@ -162,10 +156,10 @@ function damageMultiplier(attackType, defenseTypes) {
   }, 1);
 }
 
-function renderMatchupRow(label, matchups, isMultiple) {
+function renderMatchupRow(label, matchups, isMultiple, multipleLabel) {
   if (matchups.length === 0) return '';
   const badges = matchups
-    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier)))
+    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier) ? multipleLabel : ''))
     .join(' ');
   return `<p class="mon-weak"><span class="mon-weak-label">${label}</span> ${badges}</p>`;
 }
@@ -177,8 +171,8 @@ function renderDefense(defenseTypes) {
     .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }));
   const weaknesses = matchups.filter(({ multiplier }) => multiplier > 1).sort((a, b) => b.multiplier - a.multiplier);
   const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
-  return renderMatchupRow('Gyenge ezekre:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak)
-    + renderMatchupRow('Ellenáll:', resistances, (m) => m < TYPE_MULTIPLIERS.resist);
+  return renderMatchupRow('Gyenge ezekre:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'dupla gyengeség')
+    + renderMatchupRow('Ellenáll:', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'dupla ellenállás');
 }
 
 function attackingTraits(attackType) {
@@ -466,6 +460,46 @@ function setupModeTabs() {
   });
 }
 
+// ---------- Típus-súgó ----------
+
+const TOOLTIP_VISIBLE_MS = 2000;
+const TOOLTIP_GAP_PX = 6;
+const TOOLTIP_EDGE_PX = 8;
+
+// Egy közös buborék: a típus-chipre koppintva a chip fölött mutatja a típus nevét.
+function setupTypeTooltip() {
+  const tooltip = document.createElement('div');
+  tooltip.className = 'type-tooltip';
+  tooltip.setAttribute('role', 'status');
+  tooltip.hidden = true;
+  document.body.appendChild(tooltip);
+  let hideTimer;
+
+  const hide = () => {
+    tooltip.hidden = true;
+  };
+
+  function showFor(chip) {
+    tooltip.textContent = chip.dataset.typeName;
+    tooltip.hidden = false;
+    const chipRect = chip.getBoundingClientRect();
+    const tipRect = tooltip.getBoundingClientRect();
+    const centeredLeft = chipRect.left + chipRect.width / 2 - tipRect.width / 2;
+    const left = Math.min(Math.max(TOOLTIP_EDGE_PX, centeredLeft), window.innerWidth - tipRect.width - TOOLTIP_EDGE_PX);
+    tooltip.style.left = `${left + window.scrollX}px`;
+    tooltip.style.top = `${chipRect.top + window.scrollY - tipRect.height - TOOLTIP_GAP_PX}px`;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hide, TOOLTIP_VISIBLE_MS);
+  }
+
+  document.addEventListener('click', (event) => {
+    const chip = event.target.closest('.type[data-type-name]');
+    if (chip) showFor(chip);
+    else hide();
+  });
+  window.addEventListener('scroll', hide, { passive: true });
+}
+
 // ---------- Másolás ----------
 
 function addCopyButton(codeBox) {
@@ -515,4 +549,5 @@ renderContent(DATA, combineSpeciesData(POKEMON, PVPOKE), PVPOKE_DATE);
 setupTabs();
 setupPokedexSearch();
 setupModeTabs();
+setupTypeTooltip();
 setupCopyButtons();

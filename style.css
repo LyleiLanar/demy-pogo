@@ -108,8 +108,12 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .hint > :not(summary){margin-top:4px}
 
 /* Típuscímkék */
-.type{display:inline-flex;align-items:center;gap:2px;font:600 .9rem/1 Barlow,sans-serif;padding:3px 6px;border-radius:999px;background:var(--type-color);color:var(--type-ink);white-space:nowrap}
-.type-label{font-size:.8rem;padding:4px 8px}
+/* Halvány típusszínű háttér és típusszínű keret, hogy minden ikon jól látsszon */
+.type{appearance:none;margin:0;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:1.7em;height:1.7em;padding:0 2px;border:1.5px solid var(--type-color);border-radius:999px;background:var(--surface);background:color-mix(in srgb,var(--type-color) 20%,var(--surface));color:var(--ink);font:.95rem/1 system-ui,sans-serif;white-space:nowrap;cursor:pointer}
+.type:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.type-multiple{font-size:.7em}
+.type-label{height:auto;padding:3px 8px;gap:4px;font:600 .8rem/1.2 Barlow,sans-serif;cursor:default}
+.type-tooltip{position:absolute;z-index:20;padding:4px 8px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.2 Barlow,sans-serif;white-space:nowrap;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .mon-types{margin:2px 0 4px;display:flex;flex-wrap:wrap;gap:4px}
 .mon-weak{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.85rem}
 .mon-weak-label{color:var(--muted)}
