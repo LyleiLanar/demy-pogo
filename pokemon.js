@@ -48,9 +48,12 @@ const POKEMON = [
   },
   {
     name: 'Alakazam',
-    origin: 'Kadabra (Dynamax)',
-    verdict: 'keep',
-    raid: { rating: 'ok' },
+    origin: 'Abra',
+    verdict: 'transfer',
+    raid: {
+      rating: 'ok',
+      note: 'Közepes Psychic támadó, nagyon vékony. A Shadow és a Mega Alakazam erősebb.',
+    },
     greatLeague: { rank: 919, shadowRank: 837 },
     ultraLeague: { rank: 679, shadowRank: 656 },
     maxBattle: {
@@ -58,10 +61,13 @@ const POKEMON = [
       note: 'Psychic támadó, nagyon vékony. Alacsony prioritás.',
       tips: [
         'Fighting és Poison bossok ellen jó, ellenáll a Fighting támadásoknak.',
-        'Max Particle-t ne költs rá, amíg a fő csapat nincs kész. Ha fogy a hely, ez mehet elsőként.',
+        'Max Particle-t ne költs rá, amíg a fő csapat nincs kész.',
       ],
     },
-    evolution: 'Kadabra → Alakazam 100 Abra cukor, vagy csere után ingyen.',
+    evolution: 'Abra → Kadabra (25 cukor) → Alakazam (100 cukor), vagy csere után ingyen.',
+    notes: [
+      'A Dynamax példány a kivétel miatt marad, a többi mehet cukorért.',
+    ],
   },
   {
     name: 'Alolan Ninetales',
