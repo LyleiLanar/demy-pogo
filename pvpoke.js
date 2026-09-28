@@ -1,0 +1,1226 @@
+// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
+// Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
+// beats / losesTo: a legfontosabb nyert és vesztett párharcok
+
+const PVPOKE_DATE = '2026. 09. 28.';
+
+const PVPOKE = {
+  aegislash_shield: {
+    types: ['steel', 'ghost'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 80,
+      moveset: ['Psycho Cut', 'Shadow Ball', 'Gyro Ball'],
+      beats: ['Florges', 'Corviknight', 'Melmetal'],
+      losesTo: ['Shadow Sableye', 'Shadow Ninetales', 'Mimikyu'],
+    },
+    ultraLeague: {
+      rank: 601,
+    },
+  },
+  alakazam: {
+    types: ['psychic'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 919,
+      shadowRank: 837,
+    },
+    ultraLeague: {
+      rank: 679,
+      shadowRank: 656,
+    },
+  },
+  ninetales_alolan: {
+    types: ['ice', 'fairy'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 68,
+      shadowRank: 73,
+      moveset: ['Powder Snow', 'Weather Ball (Ice)', 'Chilling Water *'],
+      beats: ['Altaria', 'Thievul', 'Stunfisk'],
+      losesTo: ['Shadow Ninetales', 'Melmetal', 'Tinkaton'],
+    },
+    ultraLeague: {
+      rank: 25,
+      shadowRank: 30,
+      moveset: ['Powder Snow', 'Weather Ball (Ice)', 'Chilling Water *'],
+      beats: ['Zygarde (Complete Forme)', 'Giratina (Altered)', 'Snorlax'],
+      losesTo: ['Empoleon', 'Tinkaton', 'Corviknight'],
+    },
+  },
+  altaria: {
+    types: ['dragon', 'flying'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 2,
+      shadowRank: 9,
+      moveset: ['Dragon Breath', 'Moonblast *', 'Flamethrower'],
+      beats: ['Shadow Ninetales', 'Shadow Sableye', 'Shadow Quagsire'],
+      losesTo: ['Mimikyu', 'Thievul', 'Tinkaton'],
+    },
+    ultraLeague: {
+      rank: 272,
+      shadowRank: 306,
+    },
+  },
+  ampharos: {
+    types: ['electric'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 217,
+      shadowRank: 219,
+    },
+    ultraLeague: {
+      rank: 52,
+      shadowRank: 55,
+      moveset: ['Volt Switch', 'Brutal Swing', 'Trailblaze'],
+      beats: ['Feraligatr', 'Empoleon', 'Jellicent'],
+      losesTo: ['Zygarde (Complete Forme)', 'Virizion', 'Snorlax'],
+    },
+  },
+  annihilape: {
+    types: ['fighting', 'ghost'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 31,
+      shadowRank: 38,
+      moveset: ['Low Kick', 'Rage Fist *', 'Ice Punch'],
+      beats: ['Thievul', 'Melmetal', 'Vigoroth'],
+      losesTo: ['Mimikyu', 'Cramorant', 'Shadow Sableye'],
+    },
+    ultraLeague: {
+      rank: 59,
+      shadowRank: 74,
+      moveset: ['Low Kick', 'Rage Fist *', 'Ice Punch'],
+      beats: ['Blastoise', 'Zygarde (Complete Forme)', 'Virizion'],
+      losesTo: ['Tinkaton', 'Florges', 'Snorlax'],
+    },
+  },
+  araquanid: {
+    types: ['water', 'bug'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 16,
+      shadowRank: 29,
+      moveset: ['Infestation', 'Water Pulse', 'Mirror Coat'],
+      beats: ['Shadow Ninetales', 'Thievul', 'Shadow Sableye'],
+      losesTo: ['Cramorant', 'Altaria', 'Mimikyu'],
+    },
+    ultraLeague: {
+      rank: 557,
+      shadowRank: 558,
+    },
+  },
+  azumarill: {
+    types: ['water', 'fairy'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 32,
+      moveset: ['Bubble', 'Ice Beam', 'Play Rough'],
+      beats: ['Altaria', 'Shadow Sableye', 'Shadow Quagsire'],
+      losesTo: ['Mimikyu', 'Melmetal', 'Tinkaton'],
+    },
+    ultraLeague: {
+      rank: 813,
+    },
+  },
+  bastiodon: {
+    types: ['rock', 'steel'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 168,
+      shadowRank: 310,
+    },
+    ultraLeague: {
+      rank: 833,
+      shadowRank: 836,
+    },
+  },
+  baxcalibur: {
+    types: ['dragon', 'ice'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 501,
+    },
+    ultraLeague: {
+      rank: 343,
+    },
+  },
+  blaziken: {
+    types: ['fire', 'fighting'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 286,
+      shadowRank: 239,
+    },
+    ultraLeague: {
+      rank: 175,
+      shadowRank: 170,
+    },
+  },
+  blissey: {
+    types: ['normal'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 928,
+    },
+    ultraLeague: {
+      rank: 632,
+    },
+  },
+  carbink: {
+    types: ['rock', 'fairy'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 46,
+      moveset: ['Rock Throw', 'Rock Slide', 'Moonblast'],
+      beats: ['Altaria', 'Shadow Ninetales', 'Vigoroth'],
+      losesTo: ['Tinkaton', 'Melmetal', 'Shadow Quagsire'],
+    },
+    ultraLeague: {
+      rank: 815,
+    },
+  },
+  charizard: {
+    types: ['fire', 'flying'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 258,
+      shadowRank: 201,
+    },
+    ultraLeague: {
+      rank: 103,
+      shadowRank: 125,
+    },
+  },
+  charjabug: {
+    types: ['bug', 'electric'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 41,
+      shadowRank: 47,
+      moveset: ['Volt Switch *', 'X-Scissor', 'Discharge'],
+      beats: ['Cramorant', 'Corviknight', 'Melmetal'],
+      losesTo: ['Shadow Ninetales', 'Mimikyu', 'Altaria'],
+    },
+  },
+  cherrim_overcast: {
+    types: ['grass'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 1112,
+    },
+    ultraLeague: {
+      rank: 830,
+    },
+  },
+  cinderace: {
+    types: ['fire'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 618,
+    },
+    ultraLeague: {
+      rank: 398,
+    },
+  },
+  clodsire: {
+    types: ['poison', 'ground'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 17,
+      moveset: ['Poison Sting', 'Earthquake', 'Stone Edge'],
+      beats: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
+      losesTo: ['Shadow Quagsire', 'Mimikyu', 'Vigoroth'],
+    },
+    ultraLeague: {
+      rank: 338,
+    },
+  },
+  corviknight: {
+    types: ['flying', 'steel'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 7,
+      shadowRank: 10,
+      moveset: ['Sand Attack', 'Air Cutter *', 'Iron Head *'],
+      beats: ['Tinkaton', 'Shadow Quagsire', 'Vigoroth'],
+      losesTo: ['Cramorant', 'Shadow Ninetales', 'Melmetal'],
+    },
+    ultraLeague: {
+      rank: 2,
+      shadowRank: 4,
+      moveset: ['Sand Attack', 'Air Cutter *', 'Iron Head *'],
+      beats: ['Tinkaton', 'Snorlax', 'Mimikyu'],
+      losesTo: ['Skeledirge', 'Blastoise', 'Shadow Dusknoir'],
+    },
+  },
+  cramorant: {
+    types: ['flying', 'water'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 4,
+      moveset: ['Peck', 'Dive', 'Fly'],
+      beats: ['Shadow Ninetales', 'Corviknight', 'Shadow Sableye'],
+      losesTo: ['Stunfisk', 'Mimikyu', 'Galarian Corsola'],
+    },
+    ultraLeague: {
+      rank: 18,
+      moveset: ['Peck', 'Dive', 'Fly'],
+      beats: ['Tinkaton', 'Snorlax', 'Florges'],
+      losesTo: ['Giratina (Altered)', 'Melmetal', 'Feraligatr'],
+    },
+  },
+  darmanitan_standard: {
+    types: ['fire'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 820,
+      shadowRank: 803,
+    },
+    ultraLeague: {
+      rank: 531,
+      shadowRank: 574,
+    },
+  },
+  dedenne: {
+    types: ['electric', 'fairy'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 268,
+    },
+    ultraLeague: {
+      rank: 602,
+    },
+  },
+  delphox: {
+    types: ['fire', 'psychic'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 400,
+      shadowRank: 456,
+    },
+    ultraLeague: {
+      rank: 274,
+      shadowRank: 285,
+    },
+  },
+  deoxys_defense: {
+    types: ['psychic'],
+    buddyKm: 20,
+    greatLeague: {
+      rank: 33,
+      moveset: ['Low Kick', 'Psycho Boost', 'Thunderbolt'],
+      beats: ['Cramorant', 'Vigoroth', 'Melmetal'],
+      losesTo: ['Mimikyu', 'Shadow Sableye', 'Altaria'],
+    },
+    ultraLeague: {
+      rank: 42,
+      moveset: ['Low Kick', 'Psycho Boost', 'Thunderbolt'],
+      beats: ['Empoleon', 'Virizion', 'Corviknight'],
+      losesTo: ['Mimikyu', 'Zygarde (Complete Forme)', 'Tinkaton'],
+    },
+  },
+  dondozo: {
+    types: ['water'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 49,
+      moveset: ['Waterfall', 'Surf', 'Outrage'],
+      beats: ['Shadow Quagsire', 'Stunfisk', 'Shadow Ninetales'],
+      losesTo: ['Mimikyu', 'Tinkaton', 'Altaria'],
+    },
+    ultraLeague: {
+      rank: 26,
+      moveset: ['Waterfall', 'Surf', 'Outrage'],
+      beats: ['Tinkaton', 'Corviknight', 'Empoleon'],
+      losesTo: ['Virizion', 'Mimikyu', 'Zygarde (Complete Forme)'],
+    },
+  },
+  doublade: {
+    types: ['steel', 'ghost'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 74,
+      moveset: ['Shadow Claw', 'Sacred Sword', 'Iron Head'],
+      beats: ['Florges', 'Melmetal', 'Corviknight'],
+      losesTo: ['Shadow Ninetales', 'Shadow Sableye', 'Cramorant'],
+    },
+    ultraLeague: {
+      rank: 95,
+      moveset: ['Shadow Claw', 'Sacred Sword', 'Iron Head'],
+      beats: ['Empoleon', 'Tinkaton', 'Florges'],
+      losesTo: ['Jellicent', 'Mimikyu', 'Skeledirge'],
+    },
+  },
+  drifblim: {
+    types: ['ghost', 'flying'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 362,
+      shadowRank: 287,
+    },
+    ultraLeague: {
+      rank: 137,
+      shadowRank: 231,
+    },
+  },
+  dubwool: {
+    types: ['normal'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 161,
+    },
+    ultraLeague: {
+      rank: 359,
+    },
+  },
+  dusclops: {
+    types: ['ghost'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 76,
+      shadowRank: 70,
+      moveset: ['Hex', 'Ice Punch', 'Shadow Punch'],
+      beats: ['Stunfisk', 'Altaria', 'Florges'],
+      losesTo: ['Tinkaton', 'Shadow Sableye', 'Mimikyu'],
+    },
+  },
+  eldegoss: {
+    types: ['grass'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 809,
+    },
+    ultraLeague: {
+      rank: 775,
+    },
+  },
+  empoleon: {
+    types: ['water', 'steel'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 23,
+      shadowRank: 24,
+      moveset: ['Metal Sound', 'Hydro Cannon *', 'Drill Peck'],
+      beats: ['Corviknight', 'Shadow Ninetales', 'Cramorant'],
+      losesTo: ['Melmetal', 'Mimikyu', 'Shadow Quagsire'],
+    },
+    ultraLeague: {
+      rank: 8,
+      shadowRank: 9,
+      moveset: ['Metal Sound', 'Hydro Cannon *', 'Drill Peck'],
+      beats: ['Florges', 'Tinkaton', 'Corviknight'],
+      losesTo: ['Snorlax', 'Melmetal', 'Feraligatr'],
+    },
+  },
+  excadrill: {
+    types: ['ground', 'steel'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 534,
+      shadowRank: 457,
+    },
+    ultraLeague: {
+      rank: 437,
+      shadowRank: 361,
+    },
+  },
+  fearow: {
+    types: ['normal', 'flying'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 25,
+      moveset: ['Peck', 'Drill Peck', 'Drill Run'],
+      beats: ['Shadow Sableye', 'Jellicent', 'Rillaboom'],
+      losesTo: ['Mimikyu', 'Tinkaton', 'Corviknight'],
+    },
+    ultraLeague: {
+      rank: 303,
+    },
+  },
+  feraligatr: {
+    types: ['water'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 30,
+      shadowRank: 60,
+      moveset: ['Shadow Claw', 'Hydro Cannon *', 'Ice Beam'],
+      beats: ['Altaria', 'Tinkaton', 'Corviknight'],
+      losesTo: ['Shadow Ninetales', 'Vigoroth', 'Mimikyu'],
+    },
+    ultraLeague: {
+      rank: 15,
+      shadowRank: 14,
+      moveset: ['Shadow Claw', 'Hydro Cannon *', 'Ice Beam'],
+      beats: ['Skeledirge', 'Zygarde (Complete Forme)', 'Corviknight'],
+      losesTo: ['Snorlax', 'Virizion', 'Mimikyu'],
+    },
+  },
+  flareon: {
+    types: ['fire'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 690,
+    },
+    ultraLeague: {
+      rank: 586,
+    },
+  },
+  florges: {
+    types: ['fairy'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 11,
+      moveset: ['Fairy Wind', 'Chilling Water *', 'Moonblast'],
+      beats: ['Altaria', 'Thievul', 'Shadow Sableye'],
+      losesTo: ['Tinkaton', 'Mimikyu', 'Cramorant'],
+    },
+    ultraLeague: {
+      rank: 12,
+      moveset: ['Fairy Wind', 'Chilling Water *', 'Disarming Voice'],
+      beats: ['Giratina (Altered)', 'Skeledirge', 'Zygarde (Complete Forme)'],
+      losesTo: ['Empoleon', 'Tinkaton', 'Corviknight'],
+    },
+  },
+  forretress: {
+    types: ['bug', 'steel'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 53,
+      shadowRank: 48,
+      moveset: ['Volt Switch', 'Sand Tomb', 'Rock Tomb'],
+      beats: ['Cramorant', 'Tinkaton', 'Corviknight'],
+      losesTo: ['Shadow Ninetales', 'Altaria', 'Shadow Sableye'],
+    },
+    ultraLeague: {
+      rank: 31,
+      shadowRank: 39,
+      moveset: ['Volt Switch', 'Rock Tomb', 'Sand Tomb'],
+      beats: ['Empoleon', 'Corviknight', 'Snorlax'],
+      losesTo: ['Zygarde (Complete Forme)', 'Virizion', 'Skeledirge'],
+    },
+  },
+  furret: {
+    types: ['normal'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 43,
+      moveset: ['Sucker Punch', 'Swift', 'Trailblaze'],
+      beats: ['Shadow Quagsire', 'Galarian Corsola', 'Shadow Sableye'],
+      losesTo: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
+    },
+    ultraLeague: {
+      rank: 737,
+    },
+  },
+  corsola_galarian: {
+    types: ['ghost'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 8,
+      moveset: ['Astonish', 'Night Shade', 'Power Gem'],
+      beats: ['Cramorant', 'Altaria', 'Shadow Ninetales'],
+      losesTo: ['Shadow Sableye', 'Mimikyu', 'Tinkaton'],
+    },
+  },
+  moltres_galarian: {
+    types: ['dark', 'flying'],
+    buddyKm: 20,
+    greatLeague: {
+      rank: 71,
+      moveset: ['Sucker Punch', 'Fly', 'Brave Bird'],
+      beats: ['Thievul', 'Shadow Ninetales', 'Shadow Sableye'],
+      losesTo: ['Cramorant', 'Tinkaton', 'Melmetal'],
+    },
+    ultraLeague: {
+      rank: 13,
+      moveset: ['Sucker Punch', 'Fly', 'Brave Bird'],
+      beats: ['Feraligatr', 'Empoleon', 'Virizion'],
+      losesTo: ['Tinkaton', 'Florges', 'Melmetal'],
+    },
+  },
+  stunfisk_galarian: {
+    types: ['ground', 'steel'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 86,
+      moveset: ['Mud Shot', 'Rock Slide', 'Earthquake'],
+      beats: ['Melmetal', 'Tinkaton', 'Corviknight'],
+      losesTo: ['Shadow Quagsire', 'Cramorant', 'Shadow Sableye'],
+    },
+    ultraLeague: {
+      rank: 128,
+    },
+  },
+  gardevoir: {
+    types: ['psychic', 'fairy'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 986,
+      shadowRank: 1007,
+    },
+    ultraLeague: {
+      rank: 648,
+      shadowRank: 661,
+    },
+  },
+  gigalith: {
+    types: ['rock'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 594,
+      shadowRank: 644,
+    },
+    ultraLeague: {
+      rank: 362,
+      shadowRank: 516,
+    },
+  },
+  gothitelle: {
+    types: ['psychic'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 832,
+      shadowRank: 933,
+    },
+    ultraLeague: {
+      rank: 528,
+      shadowRank: 591,
+    },
+  },
+  greedent: {
+    types: ['normal'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 184,
+    },
+    ultraLeague: {
+      rank: 148,
+    },
+  },
+  guzzlord: {
+    types: ['dark', 'dragon'],
+    buddyKm: 20,
+    greatLeague: {
+      rank: 44,
+      moveset: ['Dragon Tail', 'Brutal Swing', 'Sludge Bomb'],
+      beats: ['Shadow Ninetales', 'Shadow Sableye', 'Shadow Quagsire'],
+      losesTo: ['Mimikyu', 'Tinkaton', 'Melmetal'],
+    },
+    ultraLeague: {
+      rank: 19,
+      moveset: ['Dragon Tail', 'Brutal Swing', 'Sludge Bomb'],
+      beats: ['Jellicent', 'Skeledirge', 'Feraligatr'],
+      losesTo: ['Florges', 'Mimikyu', 'Tinkaton'],
+    },
+  },
+  gyarados: {
+    types: ['water', 'flying'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 276,
+      shadowRank: 259,
+    },
+    ultraLeague: {
+      rank: 75,
+      shadowRank: 67,
+      moveset: ['Dragon Breath', 'Aqua Tail *', 'Twister'],
+      beats: ['Blastoise', 'Zygarde (Complete Forme)', 'Corviknight'],
+      losesTo: ['Mimikyu', 'Empoleon', 'Feraligatr'],
+    },
+  },
+  hariyama: {
+    types: ['fighting'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 483,
+      shadowRank: 439,
+    },
+    ultraLeague: {
+      rank: 330,
+      shadowRank: 340,
+    },
+  },
+  hatterene: {
+    types: ['psychic', 'fairy'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 723,
+    },
+    ultraLeague: {
+      rank: 495,
+    },
+  },
+  hippowdon: {
+    types: ['ground'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 50,
+      shadowRank: 61,
+      moveset: ['Sand Attack', 'Weather Ball (Rock)', 'Earth Power'],
+      beats: ['Tinkaton', 'Melmetal', 'Galarian Corsola'],
+      losesTo: ['Mimikyu', 'Cramorant', 'Corviknight'],
+    },
+    ultraLeague: {
+      rank: 96,
+      shadowRank: 91,
+      moveset: ['Sand Attack', 'Weather Ball (Rock)', 'Earth Power'],
+      beats: ['Tinkaton', 'Skeledirge', 'Melmetal'],
+      losesTo: ['Empoleon', 'Zygarde (Complete Forme)', 'Florges'],
+    },
+  },
+  electrode_hisuian: {
+    types: ['electric', 'grass'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 34,
+      moveset: ['Thunder Shock', 'Wild Charge', 'Energy Ball'],
+      beats: ['Shadow Quagsire', 'Melmetal', 'Corviknight'],
+      losesTo: ['Shadow Ninetales', 'Shadow Sableye', 'Mimikyu'],
+    },
+    ultraLeague: {
+      rank: 161,
+    },
+  },
+  inteleon: {
+    types: ['water'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 861,
+    },
+    ultraLeague: {
+      rank: 710,
+    },
+  },
+  jellicent: {
+    types: ['water', 'ghost'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 22,
+      moveset: ['Hex', 'Surf', 'Shadow Ball'],
+      beats: ['Tinkaton', 'Shadow Quagsire', 'Altaria'],
+      losesTo: ['Shadow Sableye', 'Mimikyu', 'Vigoroth'],
+    },
+    ultraLeague: {
+      rank: 16,
+      moveset: ['Hex', 'Surf', 'Shadow Ball'],
+      beats: ['Blastoise', 'Empoleon', 'Skeledirge'],
+      losesTo: ['Mimikyu', 'Zygarde (Complete Forme)', 'Corviknight'],
+    },
+  },
+  jumpluff: {
+    types: ['grass', 'flying'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 55,
+      shadowRank: 81,
+      moveset: ['Fairy Wind', 'Energy Ball', 'Acrobatics *'],
+      beats: ['Shadow Quagsire', 'Shadow Sableye', 'Mimikyu'],
+      losesTo: ['Shadow Ninetales', 'Melmetal', 'Cramorant'],
+    },
+    ultraLeague: {
+      rank: 696,
+      shadowRank: 711,
+    },
+  },
+  kilowattrel: {
+    types: ['electric', 'flying'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 514,
+    },
+    ultraLeague: {
+      rank: 344,
+    },
+  },
+  lanturn: {
+    types: ['water', 'electric'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 163,
+    },
+    ultraLeague: {
+      rank: 405,
+    },
+  },
+  lapras: {
+    types: ['water', 'ice'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 39,
+      shadowRank: 63,
+      moveset: ['Psywave', 'Sparkling Aria', 'Ice Beam *'],
+      beats: ['Altaria', 'Shadow Ninetales', 'Mimikyu'],
+      losesTo: ['Shadow Sableye', 'Melmetal', 'Vigoroth'],
+    },
+    ultraLeague: {
+      rank: 22,
+      shadowRank: 23,
+      moveset: ['Psywave', 'Sparkling Aria', 'Ice Beam *'],
+      beats: ['Zygarde (Complete Forme)', 'Mimikyu', 'Virizion'],
+      losesTo: ['Melmetal', 'Corviknight', 'Tinkaton'],
+    },
+  },
+  lickitung: {
+    types: ['normal'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 170,
+    },
+  },
+  lokix: {
+    types: ['bug', 'dark'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 341,
+    },
+    ultraLeague: {
+      rank: 260,
+    },
+  },
+  machamp: {
+    types: ['fighting'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 245,
+      shadowRank: 194,
+    },
+    ultraLeague: {
+      rank: 242,
+      shadowRank: 171,
+    },
+  },
+  malamar: {
+    types: ['dark', 'psychic'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 42,
+      shadowRank: 45,
+      moveset: ['Psywave', 'Superpower', 'Foul Play'],
+      beats: ['Melmetal', 'Corviknight', 'Shadow Ninetales'],
+      losesTo: ['Tinkaton', 'Mimikyu', 'Altaria'],
+    },
+    ultraLeague: {
+      rank: 62,
+      shadowRank: 54,
+      moveset: ['Psywave', 'Foul Play', 'Superpower'],
+      beats: ['Skeledirge', 'Snorlax', 'Virizion'],
+      losesTo: ['Tinkaton', 'Florges', 'Mimikyu'],
+    },
+  },
+  mandibuzz: {
+    types: ['dark', 'flying'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 51,
+      moveset: ['Snarl', 'Dark Pulse', 'Shadow Ball'],
+      beats: ['Shadow Quagsire', 'Corviknight', 'Mimikyu'],
+      losesTo: ['Thievul', 'Melmetal', 'Tinkaton'],
+    },
+    ultraLeague: {
+      rank: 136,
+    },
+  },
+  mantine: {
+    types: ['water', 'flying'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 26,
+      moveset: ['Wing Attack', 'Twister', 'Water Pulse'],
+      beats: ['Shadow Ninetales', 'Altaria', 'Shadow Quagsire'],
+      losesTo: ['Mimikyu', 'Vigoroth', 'Melmetal'],
+    },
+    ultraLeague: {
+      rank: 131,
+    },
+  },
+  marowak: {
+    types: ['ground'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 19,
+      shadowRank: 77,
+      moveset: ['Mud Slap', 'Bone Club', 'Rock Slide'],
+      beats: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
+      losesTo: ['Corviknight', 'Altaria', 'Shadow Quagsire'],
+    },
+    ultraLeague: {
+      rank: 634,
+      shadowRank: 658,
+    },
+  },
+  medicham: {
+    types: ['fighting', 'psychic'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 54,
+      moveset: ['Psycho Cut', 'Ice Punch', 'Dynamic Punch'],
+      beats: ['Vigoroth', 'Thievul', 'Altaria'],
+      losesTo: ['Mimikyu', 'Shadow Sableye', 'Cramorant'],
+    },
+  },
+  melmetal: {
+    types: ['steel'],
+    buddyKm: 20,
+    greatLeague: {
+      rank: 1,
+      moveset: ['Thunder Shock', 'Double Iron Bash *', 'Dynamic Punch'],
+      beats: ['Mimikyu', 'Corviknight', 'Cramorant'],
+      losesTo: ['Shadow Ninetales', 'Shadow Quagsire', 'Shadow Sableye'],
+    },
+    ultraLeague: {
+      rank: 5,
+      moveset: ['Thunder Shock', 'Double Iron Bash *', 'Dynamic Punch'],
+      beats: ['Florges', 'Empoleon', 'Tinkaton'],
+      losesTo: ['Skeledirge', 'Zygarde (Complete Forme)', 'Virizion'],
+    },
+  },
+  meowscarada: {
+    types: ['grass', 'dark'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 473,
+    },
+    ultraLeague: {
+      rank: 462,
+    },
+  },
+  mimikyu: {
+    types: ['ghost', 'fairy'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 6,
+      moveset: ['Shadow Claw', 'Shadow Sneak', 'Play Rough'],
+      beats: ['Altaria', 'Shadow Ninetales', 'Tinkaton'],
+      losesTo: ['Melmetal', 'Vigoroth', 'Morpeko (Full Belly)'],
+    },
+    ultraLeague: {
+      rank: 10,
+      moveset: ['Shadow Claw', 'Shadow Sneak', 'Play Rough'],
+      beats: ['Virizion', 'Jellicent', 'Tinkaton'],
+      losesTo: ['Snorlax', 'Corviknight', 'Melmetal'],
+    },
+  },
+  moltres: {
+    types: ['fire', 'flying'],
+    buddyKm: 20,
+    greatLeague: {
+      rank: 668,
+      shadowRank: 684,
+    },
+    ultraLeague: {
+      rank: 463,
+      shadowRank: 490,
+    },
+  },
+  ninetales: {
+    types: ['fire'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 13,
+      shadowRank: 3,
+      moveset: ['Ember *', 'Weather Ball (Fire)', 'Energy Ball *'],
+      beats: ['Melmetal', 'Corviknight', 'Florges'],
+      losesTo: ['Mimikyu', 'Cramorant', 'Altaria'],
+    },
+    ultraLeague: {
+      rank: 34,
+      shadowRank: 64,
+      moveset: ['Ember *', 'Weather Ball (Fire)', 'Energy Ball *'],
+      beats: ['Virizion', 'Corviknight', 'Tinkaton'],
+      losesTo: ['Zygarde (Complete Forme)', 'Snorlax', 'Feraligatr'],
+    },
+  },
+  perrserker: {
+    types: ['steel'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 497,
+    },
+    ultraLeague: {
+      rank: 214,
+    },
+  },
+  pyroar: {
+    types: ['fire', 'normal'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 675,
+    },
+    ultraLeague: {
+      rank: 470,
+    },
+  },
+  quagsire: {
+    types: ['water', 'ground'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 14,
+      shadowRank: 12,
+      moveset: ['Mud Shot', 'Aqua Tail *', 'Stone Edge'],
+      beats: ['Stunfisk', 'Melmetal', 'Tinkaton'],
+      losesTo: ['Mimikyu', 'Cramorant', 'Shadow Sableye'],
+    },
+    ultraLeague: {
+      rank: 448,
+      shadowRank: 419,
+    },
+  },
+  quaquaval: {
+    types: ['water', 'fighting'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 283,
+    },
+    ultraLeague: {
+      rank: 201,
+    },
+  },
+  rhyperior: {
+    types: ['ground', 'rock'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 679,
+      shadowRank: 628,
+    },
+    ultraLeague: {
+      rank: 477,
+      shadowRank: 485,
+    },
+  },
+  rillaboom: {
+    types: ['grass'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 35,
+      moveset: ['Scratch', 'Drum Beating', 'Earth Power'],
+      beats: ['Shadow Quagsire', 'Stunfisk', 'Melmetal'],
+      losesTo: ['Shadow Ninetales', 'Altaria', 'Mimikyu'],
+    },
+    ultraLeague: {
+      rank: 21,
+      moveset: ['Scratch', 'Drum Beating', 'Earth Power'],
+      beats: ['Florges', 'Zygarde (Complete Forme)', 'Empoleon'],
+      losesTo: ['Skeledirge', 'Giratina (Altered)', 'Corviknight'],
+    },
+  },
+  sableye: {
+    types: ['dark', 'ghost'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 36,
+      shadowRank: 18,
+      moveset: ['Shadow Claw', 'Foul Play', 'Drain Punch'],
+      beats: ['Galarian Corsola', 'Shadow Quagsire', 'Melmetal'],
+      losesTo: ['Cramorant', 'Tinkaton', 'Altaria'],
+    },
+  },
+  venusaur_shadow: {
+    types: ['grass', 'poison'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 442,
+    },
+    ultraLeague: {
+      rank: 248,
+    },
+  },
+  snorlax: {
+    types: ['normal'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 27,
+      shadowRank: 40,
+      moveset: ['Psywave', 'Body Slam', 'Earthquake'],
+      beats: ['Galarian Corsola', 'Florges', 'Mimikyu'],
+      losesTo: ['Shadow Sableye', 'Melmetal', 'Shadow Ninetales'],
+    },
+    ultraLeague: {
+      rank: 11,
+      shadowRank: 3,
+      moveset: ['Psywave', 'Body Slam', 'Earthquake'],
+      beats: ['Tinkaton', 'Mimikyu', 'Empoleon'],
+      losesTo: ['Melmetal', 'Virizion', 'Galarian Moltres'],
+    },
+  },
+  staraptor: {
+    types: ['normal', 'flying'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 710,
+      shadowRank: 757,
+    },
+    ultraLeague: {
+      rank: 507,
+      shadowRank: 458,
+    },
+  },
+  stunfisk: {
+    types: ['ground', 'electric'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 20,
+      moveset: ['Thunder Shock', 'Mud Bomb', 'Discharge'],
+      beats: ['Cramorant', 'Altaria', 'Tinkaton'],
+      losesTo: ['Shadow Quagsire', 'Mimikyu', 'Shadow Ninetales'],
+    },
+    ultraLeague: {
+      rank: 132,
+    },
+  },
+  swampert: {
+    types: ['water', 'ground'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 78,
+      shadowRank: 79,
+      moveset: ['Mud Shot', 'Hydro Cannon *', 'Earthquake'],
+      beats: ['Shadow Ninetales', 'Shadow Quagsire', 'Melmetal'],
+      losesTo: ['Shadow Sableye', 'Altaria', 'Mimikyu'],
+    },
+    ultraLeague: {
+      rank: 48,
+      shadowRank: 89,
+      moveset: ['Mud Shot', 'Hydro Cannon *', 'Earthquake'],
+      beats: ['Tinkaton', 'Empoleon', 'Snorlax'],
+      losesTo: ['Virizion', 'Florges', 'Jellicent'],
+    },
+  },
+  thievul: {
+    types: ['dark'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 15,
+      moveset: ['Sucker Punch', 'Night Slash', 'Icy Wind *'],
+      beats: ['Galarian Corsola', 'Altaria', 'Shadow Ninetales'],
+      losesTo: ['Tinkaton', 'Mimikyu', 'Cramorant'],
+    },
+    ultraLeague: {
+      rank: 164,
+    },
+  },
+  tinkaton: {
+    types: ['fairy', 'steel'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 5,
+      moveset: ['Fairy Wind', 'Gigaton Hammer *', 'Bulldoze'],
+      beats: ['Thievul', 'Shadow Sableye', 'Altaria'],
+      losesTo: ['Corviknight', 'Mimikyu', 'Cramorant'],
+    },
+    ultraLeague: {
+      rank: 1,
+      moveset: ['Fairy Wind', 'Gigaton Hammer *', 'Bulldoze'],
+      beats: ['Florges', 'Giratina (Altered)', 'Shadow Dusknoir'],
+      losesTo: ['Corviknight', 'Mimikyu', 'Feraligatr'],
+    },
+  },
+  torterra: {
+    types: ['grass', 'ground'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 551,
+      shadowRank: 702,
+    },
+    ultraLeague: {
+      rank: 270,
+      shadowRank: 329,
+    },
+  },
+  toxapex: {
+    types: ['poison', 'water'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 114,
+    },
+    ultraLeague: {
+      rank: 766,
+    },
+  },
+  trevenant: {
+    types: ['ghost', 'grass'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 354,
+      shadowRank: 295,
+    },
+    ultraLeague: {
+      rank: 154,
+      shadowRank: 145,
+    },
+  },
+  tsareena: {
+    types: ['grass'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 997,
+    },
+    ultraLeague: {
+      rank: 624,
+    },
+  },
+  tyrantrum: {
+    types: ['rock', 'dragon'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 732,
+      shadowRank: 755,
+    },
+    ultraLeague: {
+      rank: 568,
+      shadowRank: 695,
+    },
+  },
+  umbreon: {
+    types: ['dark'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 28,
+      moveset: ['Snarl', 'Dark Pulse', 'Last Resort *'],
+      beats: ['Galarian Corsola', 'Mimikyu', 'Corviknight'],
+      losesTo: ['Tinkaton', 'Cramorant', 'Melmetal'],
+    },
+    ultraLeague: {
+      rank: 119,
+    },
+  },
+  venusaur: {
+    types: ['grass', 'poison'],
+    buddyKm: 3,
+    greatLeague: {
+      rank: 419,
+      shadowRank: 442,
+    },
+    ultraLeague: {
+      rank: 211,
+      shadowRank: 248,
+    },
+  },
+  vigoroth: {
+    types: ['normal'],
+    buddyKm: 5,
+    greatLeague: {
+      rank: 21,
+      shadowRank: 37,
+      moveset: ['Scratch', 'Body Slam', 'Bulldoze'],
+      beats: ['Shadow Ninetales', 'Florges', 'Mimikyu'],
+      losesTo: ['Altaria', 'Corviknight', 'Shadow Sableye'],
+    },
+    ultraLeague: {
+      rank: 549,
+      shadowRank: 550,
+    },
+  },
+  whimsicott: {
+    types: ['grass', 'fairy'],
+    buddyKm: 1,
+    greatLeague: {
+      rank: 382,
+    },
+    ultraLeague: {
+      rank: 482,
+    },
+  },
+};

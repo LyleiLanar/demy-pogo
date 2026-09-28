@@ -1,4 +1,4 @@
-// A puska megjelenítése: listák felépítése a DATA-ból és a POKEMON-ból,
+// A puska megjelenítése: listák felépítése a DATA, POKEMON, PVPOKE és TYPES adatokból,
 // fülek, Pokédex-keresés és másolás gomb.
 
 const TAB_STORAGE_KEY = 'tab';
@@ -43,6 +43,18 @@ function stripProtocol(url) {
   return url.replace(/^https?:\/\//, '');
 }
 
+// A kézzel írt tanácsok (POKEMON) és a generált PvPoke-adatok (PVPOKE) összefésülése.
+function combineSpeciesData(pokemon, pvpoke) {
+  return pokemon.map((species) => {
+    const stats = pvpoke[species.id] || {};
+    const combined = { ...species, types: stats.types || [], buddyKm: stats.buddyKm };
+    ['greatLeague', 'ultraLeague'].forEach((league) => {
+      if (stats[league] || species[league]) combined[league] = { ...stats[league], ...species[league] };
+    });
+    return combined;
+  });
+}
+
 // Kis- és nagybetű, valamint ékezet nélkül hasonlít (pl. „flabebe” = „Flabébé”).
 function normalizeForSearch(text) {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -75,7 +87,8 @@ function isTopRank(rank) {
 
 function topPokemon(pokemon) {
   return pokemon
-    .filter((species) => species.greatLeague && bestRank(species.greatLeague) <= TOP_RANK_LIMIT)
+    .filter((species) => species.greatLeague?.rank !== undefined || species.greatLeague?.shadowRank !== undefined)
+    .filter((species) => bestRank(species.greatLeague) <= TOP_RANK_LIMIT)
     .sort((a, b) => bestRank(a.greatLeague) - bestRank(b.greatLeague));
 }
 
@@ -106,6 +119,85 @@ function renderRankings(pokemon) {
   }).join('');
 }
 
+// ---------- Típusok ----------
+
+// Világos típusszínen sötét, sötéten világos szöveg.
+function typeInk(hexColor) {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hexColor.slice(i, i + 2), 16));
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? '#18212C' : '#FFFFFF';
+}
+
+function renderTypeBadge(typeKey, suffix = '') {
+  const type = TYPES[typeKey];
+  return `<span class="type" style="--type-color:${type.color};--type-ink:${typeInk(type.color)}">`
+    + `<span aria-hidden="true">${type.icon}</span> ${type.name}${suffix}</span>`;
+}
+
+function renderTypeBadges(typeKeys) {
+  return typeKeys.map((typeKey) => renderTypeBadge(typeKey)).join(' ');
+}
+
+// Mennyit sebez egy támadó típus a megadott típusú védekezőn (a típusok szorzata).
+function damageMultiplier(attackType, defenseTypes) {
+  return defenseTypes.reduce((multiplier, defenseType) => {
+    const traits = TYPES[defenseType];
+    if (traits.weakTo.includes(attackType)) return multiplier * TYPE_MULTIPLIERS.weak;
+    if (traits.resists.includes(attackType)) return multiplier * TYPE_MULTIPLIERS.resist;
+    if (traits.immuneTo.includes(attackType)) return multiplier * TYPE_MULTIPLIERS.immune;
+    return multiplier;
+  }, 1);
+}
+
+function formatMultiplier(multiplier) {
+  return `×${Number(multiplier.toFixed(2)).toString().replace('.', ',')}`;
+}
+
+function renderWeaknesses(defenseTypes) {
+  if (defenseTypes.length === 0) return '';
+  const weaknesses = Object.keys(TYPES)
+    .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }))
+    .filter(({ multiplier }) => multiplier > 1)
+    .sort((a, b) => b.multiplier - a.multiplier);
+  const badges = weaknesses
+    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, ` ${formatMultiplier(multiplier)}`))
+    .join(' ');
+  return `<p class="mon-weak"><span class="mon-weak-label">Gyenge ezekre:</span> ${badges}</p>`;
+}
+
+function attackingTraits(attackType) {
+  const defenders = Object.keys(TYPES);
+  return {
+    strongAgainst: defenders.filter((defender) => TYPES[defender].weakTo.includes(attackType)),
+    weakAgainst: defenders.filter((defender) => TYPES[defender].resists.includes(attackType)),
+    noEffectOn: defenders.filter((defender) => TYPES[defender].immuneTo.includes(attackType)),
+  };
+}
+
+function renderTypeFact(label, typeKeys) {
+  return typeKeys.length ? `<dt>${label}</dt><dd>${renderTypeBadges(typeKeys)}</dd>` : '';
+}
+
+function renderTypeRow(typeKey) {
+  const attack = attackingTraits(typeKey);
+  const defense = TYPES[typeKey];
+  return `
+    <div class="type-row">
+      <div class="type-row-head">${renderTypeBadge(typeKey)}</div>
+      <dl class="type-facts">
+        ${renderTypeFact('Támadva erős', attack.strongAgainst)}
+        ${renderTypeFact('Támadva gyenge', attack.weakAgainst)}
+        ${renderTypeFact('Szinte hatástalan', attack.noEffectOn)}
+        ${renderTypeFact('Sebezhető', defense.weakTo)}
+        ${renderTypeFact('Ellenáll', [...defense.resists, ...defense.immuneTo])}
+      </dl>
+    </div>`;
+}
+
+function renderTypeChart() {
+  return Object.keys(TYPES).map(renderTypeRow).join('');
+}
+
 // ---------- Pokédex ----------
 
 function leagueRating(league) {
@@ -122,10 +214,15 @@ function formatLeague(league) {
   return parts.join(' · ');
 }
 
+function hasModeData(mode, data) {
+  if (!data) return false;
+  return mode.isLeague ? data.rank !== undefined || data.shadowRank !== undefined : Boolean(data.rating);
+}
+
 // A kártya fülei: csak azok a módok, amelyekről van adat.
 function gameModesOf(species) {
   return GAME_MODES
-    .filter((mode) => species[mode.key])
+    .filter((mode) => hasModeData(mode, species[mode.key]))
     .map((mode) => {
       const data = species[mode.key];
       return {
@@ -136,6 +233,9 @@ function gameModesOf(species) {
         iv: data.iv,
         moves: data.moves,
         tips: data.tips,
+        moveset: data.moveset,
+        beats: data.beats,
+        losesTo: data.losesTo,
       };
     });
 }
@@ -156,7 +256,13 @@ function renderModeTab(mode, isSelected) {
 function renderModePanel(mode, isSelected) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
-  const facts = renderFact('IV', mode.iv) + renderFact('Mozdulatok', mode.moves);
+  const facts = [
+    renderFact('PvPoke szett', mode.moveset && mode.moveset.join(' · ')),
+    renderFact('Jól megy ellene', mode.beats && mode.beats.join(', ')),
+    renderFact('Nehéz ellenfél', mode.losesTo && mode.losesTo.join(', ')),
+    renderFact('IV', mode.iv),
+    renderFact('Mozdulatok', mode.moves),
+  ].join('');
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
       <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
@@ -186,7 +292,10 @@ function renderList(className, items) {
 }
 
 function renderPokemonCard(species) {
-  const searchText = normalizeForSearch(`${species.name} ${species.origin}`);
+  const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
+  const searchText = normalizeForSearch(`${species.name} ${species.origin} ${typeNames}`);
+  const general = renderFact('Fejlődés', species.evolution)
+    + renderFact('Buddy', species.buddyKm && `${species.buddyKm} km / cukor`);
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
 
   return `
@@ -195,10 +304,12 @@ function renderPokemonCard(species) {
         <h3 class="mon-name">${escapeHtml(species.name)}</h3>
         <span class="verdict verdict-${species.verdict}">${VERDICT_LABELS[species.verdict]}</span>
       </div>
+      <p class="mon-types">${renderTypeBadges(species.types)}</p>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
+      ${renderWeaknesses(species.types)}
       ${warning}
       ${renderGameModes(species)}
-      ${species.evolution ? `<dl class="mon-facts">${renderFact('Fejlődés', species.evolution)}</dl>` : ''}
+      ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
       ${renderList('mon-notes', species.notes)}
     </article>`;
 }
@@ -228,6 +339,7 @@ function renderLinkGroup(group) {
 
 function renderContent(data, pokemon, rankingsDate) {
   const top = topPokemon(pokemon);
+  renderInto('type-chart', renderTypeChart());
   renderInto('search-list', renderGroups(data.searchGroups, renderSearchGroup));
   renderInto('rankings-date', escapeHtml(rankingsDate));
   renderInto('top-species-count', top.length);
@@ -383,7 +495,7 @@ function setupCopyButtons() {
 
 // ---------- Indítás ----------
 
-renderContent(DATA, POKEMON, RANKINGS_DATE);
+renderContent(DATA, combineSpeciesData(POKEMON, PVPOKE), PVPOKE_DATE);
 setupTabs();
 setupPokedexSearch();
 setupModeTabs();
