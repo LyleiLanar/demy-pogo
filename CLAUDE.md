@@ -12,6 +12,10 @@ Statikus oldal GitHub Pages-en, build nélkül.
 - `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
 - `app.js`: megjelenítés, fülek, Pokédex-keresés, másolás
 
+Az `index.html`-ben a CSS és JS hivatkozásoknak verziója van (`?v=ÉÉÉÉ-HH-NN`). Ha bármelyik
+fájl változik, írd át mindegyiket a mai dátumra, különben a böngésző a régi, cache-elt fájlt
+töltheti be az új oldal mellé.
+
 ## Ha a felhasználó egy Pokémonról kérdez
 
 A válaszban adott tanácsot vedd fel a `pokemon.js`-be is:
