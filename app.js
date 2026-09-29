@@ -1,4 +1,4 @@
-// A puska megjelenítése: listák felépítése a DATA-ból és a POKEMON-ból,
+// A puska megjelenítése: listák felépítése a DATA, POKEMON, PVPOKE és TYPES adatokból,
 // fülek, Pokédex-keresés és másolás gomb.
 
 const TAB_STORAGE_KEY = 'tab';
@@ -21,6 +21,10 @@ const GAME_MODES = [
   { key: 'gym', label: 'Gym', title: 'Gym' },
 ];
 const RATING_ORDER = ['good', 'ok', 'bad'];
+// Formák: a Shadow-nak nincs Max Battle-je (és gymje), a Megának csak raidje van.
+const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
+const MEGA_MODE_KEYS = ['raid'];
+const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
 
 // ---------- Segédfüggvények ----------
 
@@ -41,6 +45,19 @@ function renderGroups(groups, renderBody) {
 
 function stripProtocol(url) {
   return url.replace(/^https?:\/\//, '');
+}
+
+// A kézzel írt tanácsok (POKEMON) és a generált PvPoke-adatok (PVPOKE) összefésülése.
+function combineSpeciesData(pokemon, pvpoke) {
+  return pokemon.map((species) => {
+    const stats = pvpoke[species.id] || {};
+    return {
+      ...species,
+      stats,
+      types: stats.types || [],
+      greatLeagueRanks: { rank: stats.greatLeague?.rank, shadowRank: stats.shadow?.greatLeague?.rank },
+    };
+  });
 }
 
 // Kis- és nagybetű, valamint ékezet nélkül hasonlít (pl. „flabebe” = „Flabébé”).
@@ -65,8 +82,8 @@ function renderSearchGroup(group) {
 
 // ---------- GL Top 50 ----------
 
-function bestRank(league) {
-  return Math.min(league.rank ?? Infinity, league.shadowRank ?? Infinity);
+function bestRank(ranks) {
+  return Math.min(ranks.rank ?? Infinity, ranks.shadowRank ?? Infinity);
 }
 
 function isTopRank(rank) {
@@ -75,12 +92,12 @@ function isTopRank(rank) {
 
 function topPokemon(pokemon) {
   return pokemon
-    .filter((species) => species.greatLeague && bestRank(species.greatLeague) <= TOP_RANK_LIMIT)
-    .sort((a, b) => bestRank(a.greatLeague) - bestRank(b.greatLeague));
+    .filter((species) => bestRank(species.greatLeagueRanks) <= TOP_RANK_LIMIT)
+    .sort((a, b) => bestRank(a.greatLeagueRanks) - bestRank(b.greatLeagueRanks));
 }
 
 function renderRankingEntry(species) {
-  const { rank, shadowRank } = species.greatLeague;
+  const { rank, shadowRank } = species.greatLeagueRanks;
   const shadowBadge = isTopRank(rank) && isTopRank(shadowRank) ? '<span class="s">S</span>' : '';
   const details = [escapeHtml(species.origin)];
   if (!isTopRank(rank)) details.push('csak a Shadow változat van a top 50-ben');
@@ -88,7 +105,7 @@ function renderRankingEntry(species) {
 
   return `
     <li>
-      <span class="n">${bestRank(species.greatLeague)}</span>
+      <span class="n">${bestRank(species.greatLeagueRanks)}</span>
       <a class="f" href="#dex" data-pokemon="${escapeHtml(species.name)}">${escapeHtml(species.name)}${shadowBadge}</a>
       <span class="w">${details.join(' · ')}</span>
     </li>`;
@@ -98,7 +115,7 @@ function renderRankings(pokemon) {
   let minRank = 1;
   return RANKING_GROUPS.map((group) => {
     const entries = pokemon.filter((species) => {
-      const rank = bestRank(species.greatLeague);
+      const rank = bestRank(species.greatLeagueRanks);
       return rank >= minRank && rank <= group.maxRank;
     });
     minRank = group.maxRank + 1;
@@ -106,38 +123,141 @@ function renderRankings(pokemon) {
   }).join('');
 }
 
+// ---------- Típusok ----------
+
+function typeStyle(type) {
+  return `--type-color:${type.color}`;
+}
+
+// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTypeTooltip).
+// A multipleLabel a többszörös hatás leírása: ilyenkor felkiáltójel kerül az ikon mellé.
+function renderTypeBadge(typeKey, multipleLabel = '') {
+  const type = TYPES[typeKey];
+  const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
+  const marker = multipleLabel ? '<span class="type-multiple" aria-hidden="true">❗</span>' : '';
+  return `<button type="button" class="type" style="${typeStyle(type)}" data-type-name="${label}" aria-label="${label}">`
+    + `<span aria-hidden="true">${type.icon}</span>${marker}</button>`;
+}
+
+// A típustáblázat soraiban az ikon mellett a név is látszik, hogy az ikonok megtanulhatók legyenek.
+function renderTypeLabel(typeKey) {
+  const type = TYPES[typeKey];
+  return `<span class="type type-label" style="${typeStyle(type)}"><span aria-hidden="true">${type.icon}</span> ${type.name}</span>`;
+}
+
+function renderTypeBadges(typeKeys) {
+  return typeKeys.map((typeKey) => renderTypeBadge(typeKey)).join(' ');
+}
+
+// Mennyit sebez egy támadó típus a megadott típusú védekezőn (a típusok szorzata).
+function damageMultiplier(attackType, defenseTypes) {
+  return defenseTypes.reduce((multiplier, defenseType) => {
+    const traits = TYPES[defenseType];
+    if (traits.weakTo.includes(attackType)) return multiplier * TYPE_MULTIPLIERS.weak;
+    if (traits.resists.includes(attackType)) return multiplier * TYPE_MULTIPLIERS.resist;
+    if (traits.immuneTo.includes(attackType)) return multiplier * TYPE_MULTIPLIERS.immune;
+    return multiplier;
+  }, 1);
+}
+
+function renderMatchupRow(label, matchups, isMultiple, multipleLabel) {
+  if (matchups.length === 0) return '';
+  const badges = matchups
+    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier) ? multipleLabel : ''))
+    .join(' ');
+  return `<p class="mon-weak"><span class="mon-weak-label">${label}</span> ${badges}</p>`;
+}
+
+// Mire érzékeny és minek ellenálló a faj; a többszöröset előre véve.
+function renderDefense(defenseTypes) {
+  if (defenseTypes.length === 0) return '';
+  const matchups = Object.keys(TYPES)
+    .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }));
+  const weaknesses = matchups.filter(({ multiplier }) => multiplier > 1).sort((a, b) => b.multiplier - a.multiplier);
+  const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
+  return renderMatchupRow('Érzékeny:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny')
+    + renderMatchupRow('Ellenálló:', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló');
+}
+
+function attackingTraits(attackType) {
+  const defenders = Object.keys(TYPES);
+  return {
+    strongAgainst: defenders.filter((defender) => TYPES[defender].weakTo.includes(attackType)),
+    weakAgainst: defenders.filter((defender) => TYPES[defender].resists.includes(attackType)),
+    noEffectOn: defenders.filter((defender) => TYPES[defender].immuneTo.includes(attackType)),
+  };
+}
+
+function renderTypeFact(label, typeKeys) {
+  return typeKeys.length ? `<dt>${label}</dt><dd>${renderTypeBadges(typeKeys)}</dd>` : '';
+}
+
+function renderTypeRow(typeKey) {
+  const attack = attackingTraits(typeKey);
+  const defense = TYPES[typeKey];
+  return `
+    <div class="type-row">
+      <div class="type-row-head">${renderTypeLabel(typeKey)}</div>
+      <dl class="type-facts">
+        ${renderTypeFact('Támadva erős', attack.strongAgainst)}
+        ${renderTypeFact('Támadva gyenge', attack.weakAgainst)}
+        ${renderTypeFact('Szinte hatástalan', attack.noEffectOn)}
+        ${renderTypeFact('Érzékeny', defense.weakTo)}
+        ${renderTypeFact('Ellenálló', [...defense.resists, ...defense.immuneTo])}
+      </dl>
+    </div>`;
+}
+
+function renderTypeChart() {
+  return Object.keys(TYPES).map(renderTypeRow).join('');
+}
+
 // ---------- Pokédex ----------
 
 function leagueRating(league) {
-  const rank = bestRank(league);
-  if (rank <= LEAGUE_RATING_LIMITS.good) return 'good';
-  if (rank <= LEAGUE_RATING_LIMITS.ok) return 'ok';
+  if (league.rank <= LEAGUE_RATING_LIMITS.good) return 'good';
+  if (league.rank <= LEAGUE_RATING_LIMITS.ok) return 'ok';
   return 'bad';
 }
 
-function formatLeague(league) {
-  const parts = [];
-  if (league.rank) parts.push(`${league.rank}. hely`);
-  if (league.shadowRank) parts.push(`Shadow: ${league.shadowRank}. hely`);
-  return parts.join(' · ');
+// A faj formái: Normál, Shadow (ha van PvPoke-adata) és a Megák.
+// Mindegyik a saját típusával, a hozzá tartozó módokkal és a formára szabott tanácsokkal.
+function speciesForms(species) {
+  const overrides = species.forms || {};
+  const forms = [{
+    key: 'normal', name: 'Normál', types: species.types,
+    modeKeys: GAME_MODES.map((mode) => mode.key), leagues: species.stats, overrides: {},
+  }];
+  if (species.stats.shadow) {
+    forms.push({
+      key: 'shadow', name: 'Shadow', types: species.types,
+      modeKeys: SHADOW_MODE_KEYS, leagues: species.stats.shadow, overrides: overrides.shadow || {},
+    });
+  }
+  (species.stats.megaForms || []).forEach((mega) => {
+    const key = MEGA_FORM_KEYS[mega.name];
+    forms.push({ key, name: mega.name, types: mega.types, modeKeys: MEGA_MODE_KEYS, leagues: {}, overrides: overrides[key] || {} });
+  });
+  return forms;
 }
 
-// A kártya fülei: csak azok a módok, amelyekről van adat.
-function gameModesOf(species) {
+// Egy mód adatai egy formában: az alap tanács, a forma felülírása és (ligáknál) a PvPoke-adat.
+function modeData(species, form, mode) {
+  const curated = { ...species[mode.key], ...form.overrides[mode.key] };
+  if (mode.isLeague) {
+    const league = form.leagues[mode.key];
+    return league ? { ...curated, ...league, rating: leagueRating(league) } : undefined;
+  }
+  return curated.rating ? curated : undefined;
+}
+
+// A kártya fülei: csak azok a módok, amelyek a formához tartoznak és van róluk adat.
+function gameModesOf(species, form) {
   return GAME_MODES
-    .filter((mode) => species[mode.key])
-    .map((mode) => {
-      const data = species[mode.key];
-      return {
-        ...mode,
-        rating: mode.isLeague ? leagueRating(data) : data.rating,
-        detail: mode.isLeague ? formatLeague(data) : '',
-        note: data.note,
-        iv: data.iv,
-        moves: data.moves,
-        tips: data.tips,
-      };
-    });
+    .filter((mode) => form.modeKeys.includes(mode.key))
+    .map((mode) => ({ ...mode, data: modeData(species, form, mode) }))
+    .filter((mode) => mode.data)
+    .map(({ data, ...mode }) => ({ ...mode, ...data, detail: mode.isLeague ? `${data.rank}. hely` : '' }));
 }
 
 // Alapból a legjobb értékelésű mód nyílik meg.
@@ -156,7 +276,13 @@ function renderModeTab(mode, isSelected) {
 function renderModePanel(mode, isSelected) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
-  const facts = renderFact('IV', mode.iv) + renderFact('Mozdulatok', mode.moves);
+  const facts = [
+    renderFact('PvPoke szett', mode.moveset && mode.moveset.join(' · ')),
+    renderFact('Jól megy ellene', mode.beats && mode.beats.join(', ')),
+    renderFact('Nehéz ellenfél', mode.losesTo && mode.losesTo.join(', ')),
+    renderFact('IV', mode.iv),
+    renderFact('Mozdulatok', mode.moves),
+  ].join('');
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
       <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
@@ -166,14 +292,37 @@ function renderModePanel(mode, isSelected) {
     </div>`;
 }
 
-function renderGameModes(species) {
-  const modes = gameModesOf(species);
+function renderGameModes(modes) {
   if (modes.length === 0) return '';
   const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
       <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
       ${modes.map((mode, i) => renderModePanel(mode, i === selected)).join('')}
+    </div>`;
+}
+
+function renderFormPanel(species, form, isSelected) {
+  return `
+    <div class="form-panel" data-form="${form.key}" ${isSelected ? '' : 'hidden'}>
+      <p class="mon-types">${renderTypeBadges(form.types)}</p>
+      ${renderDefense(form.types)}
+      ${renderGameModes(gameModesOf(species, form))}
+      ${renderList('mon-notes', form.overrides.notes)}
+    </div>`;
+}
+
+// Formaváltó a kártya tetején; csak akkor, ha több forma van.
+function renderForms(species) {
+  const forms = speciesForms(species);
+  const panels = forms.map((form, i) => renderFormPanel(species, form, i === 0)).join('');
+  if (forms.length === 1) return `<div class="forms">${panels}</div>`;
+  const tabs = forms.map((form, i) => `
+    <button type="button" class="form-tab" aria-pressed="${i === 0}" data-form="${form.key}">${escapeHtml(form.name)}</button>`);
+  return `
+    <div class="forms">
+      <div class="form-tabs" role="group" aria-label="Forma">${tabs.join('')}</div>
+      ${panels}
     </div>`;
 }
 
@@ -186,8 +335,11 @@ function renderList(className, items) {
 }
 
 function renderPokemonCard(species) {
-  const searchText = normalizeForSearch(`${species.name} ${species.origin}`);
+  const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
+  const searchText = normalizeForSearch(`${species.name} ${species.origin} ${typeNames}`);
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
+  const general = renderFact('Fejlődés', species.evolution)
+    + renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
 
   return `
     <article class="mon" data-search="${escapeHtml(searchText)}">
@@ -197,8 +349,8 @@ function renderPokemonCard(species) {
       </div>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
       ${warning}
-      ${renderGameModes(species)}
-      ${species.evolution ? `<dl class="mon-facts">${renderFact('Fejlődés', species.evolution)}</dl>` : ''}
+      ${renderForms(species)}
+      ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
       ${renderList('mon-notes', species.notes)}
     </article>`;
 }
@@ -228,6 +380,7 @@ function renderLinkGroup(group) {
 
 function renderContent(data, pokemon, rankingsDate) {
   const top = topPokemon(pokemon);
+  renderInto('type-chart', renderTypeChart());
   renderInto('search-list', renderGroups(data.searchGroups, renderSearchGroup));
   renderInto('rankings-date', escapeHtml(rankingsDate));
   renderInto('top-species-count', top.length);
@@ -322,10 +475,25 @@ function setupPokedexSearch() {
   filter();
 }
 
-// ---------- Kártya fülei ----------
+// ---------- Kártya fülei és formaváltó ----------
+
+function selectFormTab(tab) {
+  const forms = tab.closest('.forms');
+  forms.querySelectorAll('.form-tab').forEach((button) => {
+    button.setAttribute('aria-pressed', button === tab);
+  });
+  forms.querySelectorAll('.form-panel').forEach((panel) => {
+    panel.hidden = panel.dataset.form !== tab.dataset.form;
+  });
+}
 
 function setupModeTabs() {
   document.getElementById('dex-list').addEventListener('click', (event) => {
+    const formTab = event.target.closest('.form-tab');
+    if (formTab) {
+      selectFormTab(formTab);
+      return;
+    }
     const tab = event.target.closest('.mode-tab');
     if (!tab) return;
     const modes = tab.closest('.modes');
@@ -336,6 +504,46 @@ function setupModeTabs() {
       panel.hidden = panel.dataset.mode !== tab.dataset.mode;
     });
   });
+}
+
+// ---------- Típus-súgó ----------
+
+const TOOLTIP_VISIBLE_MS = 2000;
+const TOOLTIP_GAP_PX = 6;
+const TOOLTIP_EDGE_PX = 8;
+
+// Egy közös buborék: a típus-chipre koppintva a chip fölött mutatja a típus nevét.
+function setupTypeTooltip() {
+  const tooltip = document.createElement('div');
+  tooltip.className = 'type-tooltip';
+  tooltip.setAttribute('role', 'status');
+  tooltip.hidden = true;
+  document.body.appendChild(tooltip);
+  let hideTimer;
+
+  const hide = () => {
+    tooltip.hidden = true;
+  };
+
+  function showFor(chip) {
+    tooltip.textContent = chip.dataset.typeName;
+    tooltip.hidden = false;
+    const chipRect = chip.getBoundingClientRect();
+    const tipRect = tooltip.getBoundingClientRect();
+    const centeredLeft = chipRect.left + chipRect.width / 2 - tipRect.width / 2;
+    const left = Math.min(Math.max(TOOLTIP_EDGE_PX, centeredLeft), window.innerWidth - tipRect.width - TOOLTIP_EDGE_PX);
+    tooltip.style.left = `${left + window.scrollX}px`;
+    tooltip.style.top = `${chipRect.top + window.scrollY - tipRect.height - TOOLTIP_GAP_PX}px`;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hide, TOOLTIP_VISIBLE_MS);
+  }
+
+  document.addEventListener('click', (event) => {
+    const chip = event.target.closest('.type[data-type-name]');
+    if (chip) showFor(chip);
+    else hide();
+  });
+  window.addEventListener('scroll', hide, { passive: true });
 }
 
 // ---------- Másolás ----------
@@ -383,8 +591,9 @@ function setupCopyButtons() {
 
 // ---------- Indítás ----------
 
-renderContent(DATA, POKEMON, RANKINGS_DATE);
+renderContent(DATA, combineSpeciesData(POKEMON, PVPOKE), PVPOKE_DATE);
 setupTabs();
 setupPokedexSearch();
 setupModeTabs();
+setupTypeTooltip();
 setupCopyButtons();
