@@ -5,7 +5,7 @@
 // moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 
-const PVPOKE_DATE = '2026. 09. 28.';
+const PVPOKE_DATE = '2026. 09. 29.';
 
 const PVPOKE = {
   aegislash_shield: {
@@ -325,6 +325,12 @@ const PVPOKE = {
       greatLeague: { rank: 803 },
       ultraLeague: { rank: 574 },
     },
+  },
+  decidueye: {
+    types: ['grass', 'ghost'],
+    buddyKm: 3,
+    greatLeague: { rank: 566 },
+    ultraLeague: { rank: 217 },
   },
   dedenne: {
     types: ['electric', 'fairy'],

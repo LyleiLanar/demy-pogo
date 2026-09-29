@@ -13,8 +13,8 @@ Statikus oldal GitHub Pages-en, build nélkül.
 - `app.js`: megjelenítés, fülek, Pokédex-keresés, másolás
 
 Az `index.html`-ben a CSS és JS hivatkozásoknak verziója van (`?v=ÉÉÉÉ-HH-NN`). Ha bármelyik
-fájl változik, írd át mindegyiket a mai dátumra, különben a böngésző a régi, cache-elt fájlt
-töltheti be az új oldal mellé.
+fájl változik, írd át mindegyiket a mai dátumra (ha aznap már volt változás, sorszámmal:
+`2026-09-29.2`), különben a böngésző a régi, cache-elt fájlt töltheti be az új oldal mellé.
 
 ## Ha a felhasználó egy Pokémonról kérdez
 

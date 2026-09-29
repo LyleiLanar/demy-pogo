@@ -320,6 +320,25 @@ const POKEMON = [
     ],
   },
   {
+    id: 'decidueye',
+    name: 'Decidueye',
+    origin: 'Rowlet',
+    verdict: 'transfer',
+    raid: {
+      rating: 'bad',
+      note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók, pl. a Frenzy Plant-es Venusaur.',
+    },
+    ultraLeague: {
+      tips: [
+        'Ha mégis építenéd: Frenzy Plant (Elite TM vagy Community Day) és Spirit Shackle kell hozzá.',
+      ],
+    },
+    evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
+    notes: [
+      'A hisui Decidueye (Grass/Fighting) külön faj, más a típusa és a szettje.',
+    ],
+  },
+  {
     id: 'dedenne',
     name: 'Dedenne',
     origin: 'Dedenne',
