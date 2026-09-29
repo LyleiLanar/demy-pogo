@@ -91,3 +91,38 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT) {
   if (Object.keys(shadow).length) entry.shadow = shadow;
   return entry;
 }
+
+// ---------- Dynamax / Gigantamax a játék game masteréből ----------
+
+// A játék kibányászott game mastere (PokeMiners). A PvPoke nem tartja nyilván a Dynamaxot, ez igen:
+// a faj EXTENDED sablonjában a breadOverrides mező BREAD_MODE (Dynamax) és
+// BREAD_DOUGH_MODE (Gigantamax) bejegyzése jelzi, hogy van-e ilyen formája.
+// Figyelem: a bányászott adat néha előre tartalmaz még meg nem jelent formát.
+const GAME_MASTER_URL = 'https://raw.githubusercontent.com/PokeMiners/game_masters/master/latest/latest.json';
+const MAX_MODES = { BREAD_MODE: 'Dynamax', BREAD_DOUGH_MODE: 'Gigantamax' };
+const GO_FORM_NAMES = { alolan: 'ALOLA' };
+
+export async function loadMaxForms() {
+  const response = await fetch(GAME_MASTER_URL);
+  if (!response.ok) throw new Error(`game master: HTTP ${response.status}`);
+  const templates = await response.json();
+  const maxForms = new Map();
+  for (const template of templates) {
+    const match = /^EXTENDED_V\d{4}_POKEMON_(.+)$/.exec(template.templateId);
+    if (!match) continue;
+    const modes = new Set(JSON.stringify(template).match(/"breadMode":"BREAD_[A-Z_]+"/g) || []);
+    const forms = [...modes].map((mode) => MAX_MODES[mode.split(':')[1].replace(/"/g, '')]).filter(Boolean);
+    if (forms.length) maxForms.set(match[1], [...new Set(forms)].sort());
+  }
+  return maxForms;
+}
+
+// PvPoke-azonosító → a game master fajneve, pl. ninetales_alolan → NINETALES_ALOLA.
+function goSpeciesName(id) {
+  return id.split('_').map((part) => GO_FORM_NAMES[part] || part.toUpperCase()).join('_');
+}
+
+// A faj Dynamax / Gigantamax formái; üres tömb, ha nincs.
+export function maxFormsOf(id, maxForms) {
+  return maxForms.get(goSpeciesName(id)) || [];
+}

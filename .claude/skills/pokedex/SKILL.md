@@ -16,15 +16,39 @@ nem írjuk. A mezők pontos leírása a `pokemon.js` elején van.
   a felhasználó **saját példányáról** szól: csak a válaszban használd, a fájlba ne írd,
   mert folyamatosan változik.
 
-## 2. PvPoke-adat lekérése
+## 2. Adatgyűjtés
+
+Először a gépi adat:
 
 ```
 node tools/pvpoke-lookup.mjs <név vagy azonosító>
 ```
 
 Kiírja: `id`, típus, címkék (legendary, shadoweligible…), fejlődési sor, buddy km,
-Elite mozdulatok, Mega formák, GL/UL helyezés és szett a normál és a Shadow formára.
-Ha több találat van (pl. sima és hisui forma), a felhasználó által mutatottat válaszd.
+Elite mozdulatok, Mega formák, **Dynamax / Gigantamax**, GL/UL helyezés és szett a normál és a
+Shadow formára. A szavak sorrendje mindegy („alolan ninetales”). Ha több találat van
+(pl. sima és hisui forma), a felhasználó által mutatottat válaszd.
+
+### Források
+
+Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd meg, honnan van.
+
+| Mire | Forrás | Elérés innen |
+|---|---|---|
+| PvP-helyezés, szett, párharcok, típus, Mega | PvPoke (`github.com/pvpoke/pvpoke`) | a lookup / sync script |
+| Dynamax, Gigantamax, Mega, mozdulatok, Elite TM | a játék game mastere (PokeMiners, `github.com/PokeMiners/game_masters`) | a lookup script |
+| Raid-erő, legjobb raid-támadók, Max Battle szerep | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
+| Aktuális események, Max Battle bossok, Community Day | Leek Duck, Pokémon GO Hub | WebSearch |
+| Általános leírás | Bulbapedia | WebSearch |
+
+- A környezet hálózati szabályai miatt a weboldalak közvetlen letöltése (curl, WebFetch) általában
+  tiltott; a GitHub elérhető. A WebSearch működik, de csak a találatokat adja.
+- A game master a legpontosabb a Dynamaxra, de néha előre tartalmaz még meg nem jelent formát.
+  Ha a WebSearch mást mond, jelezd az eltérést.
+- A webes adatgyűjtő oldalak sokszor minden fajhoz generálnak sablonoldalt (pl. „Dynamax X counters”),
+  ezért egy ilyen oldal léte nem bizonyítja, hogy a forma létezik a játékban.
+- Ha semmi nem biztos, használhatod a saját tudásodat, de jelöld bizonytalannak, és javasold,
+  hogy a felhasználó nézze meg (pl. Leek Duck).
 
 ## 3. Döntés (`verdict`)
 
@@ -39,8 +63,8 @@ Ha több találat van (pl. sima és hisui forma), a felhasználó által mutatot
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
 - `raid`: `rating` = `good` / `ok` / `bad`, egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
   ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
-- `maxBattle`: csak ha a fajnak van Dynamax vagy Gigantamax formája. A PvPoke ezt nem tudja;
-  ha nem vagy biztos, hagyd ki, és javasold a Leek Duck Max Battles oldalát.
+- `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája.
+  Az értékeléshez (támadó, védő, gyógyító) keress rá WebSearch-csel; ha nem egyértelmű, hagyd ki.
 - `gym`: csak ha kifejezetten jó gym védő.
 
 ## 5. A tanácsok helye
@@ -69,6 +93,7 @@ Ha több találat van (pl. sima és hisui forma), a felhasználó által mutatot
   origin: 'Rowlet',
   verdict: 'transfer',
   raid: { rating: 'bad', note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók.' },
+  // nincs maxBattle: a lookup szerint nincs Dynamax formája
   evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
 },
 ```

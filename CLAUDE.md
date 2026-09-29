@@ -11,8 +11,8 @@ Statikus oldal GitHub Pages-en, build nélkül.
   Kézzel ne szerkeszd; frissítés: `node tools/sync-pvpoke.mjs` (a pokemon.js `id`-jai alapján)
 - `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
 - `app.js`: megjelenítés, fülek, Pokédex-keresés, másolás
-- `tools/`: `sync-pvpoke.mjs` (pvpoke.js generálása), `pvpoke-lookup.mjs` (egy faj PvPoke-adatai),
-  `pvpoke-common.mjs` (közös kód)
+- `tools/`: `sync-pvpoke.mjs` (pvpoke.js generálása), `pvpoke-lookup.mjs` (egy faj gépi adatai:
+  PvPoke + a játék game mastere, Dynamaxszal), `pvpoke-common.mjs` (közös kód)
 
 Az `index.html`-ben a CSS és JS hivatkozásoknak verziója van (`?v=ÉÉÉÉ-HH-NN`). Ha bármelyik
 fájl változik, írd át mindegyiket a mai dátumra (ha aznap már volt változás, sorszámmal:
