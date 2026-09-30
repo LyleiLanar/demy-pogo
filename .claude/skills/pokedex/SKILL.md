@@ -78,7 +78,16 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   - amit a PvPoke-adat már mutat (szett, nehéz ellenfelek, helyezés);
   - a mindig érvényes kivételt (shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás,
     Lucky, @special mozdulatú példány marad) és a „kedvencnek jelöld” jellegű mondatokat;
-  - a felhasználó saját példányát.
+  - a felhasználó saját példányát, és a csapatára szabott prioritást
+    („előbb az X-be tedd a Stardustot”, „a második Dynamax Y tartalék”);
+  - az általános szabályokat, akkor sem, ha egy fajjal kapcsolatban hangzottak el. Ezek a Tippek
+    fülre valók, ha még nincsenek ott. Például: „raidre magas Attack kell, ideálisan 15”,
+    „PvP-re alacsony Attack, magas Defense/HP”, „95% fölötti rank a jó”, „fokozatosan 30–35-ös
+    szintig húzd”, „a többi mehet cukorért”, „Pinap Berryvel kapd el”, „egy magas Attackos
+    példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”;
+  - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
+
+  Próba: ha a mondat egy másik fajnál is szó szerint igaz lenne, akkor általános.
 
 ## 6. Beírás
 
