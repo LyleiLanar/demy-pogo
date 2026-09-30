@@ -17,19 +17,22 @@ const GAME_MODES = [
   { key: 'raid', label: 'Raid', title: 'Raid' },
   { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true },
   { key: 'ultraLeague', label: 'UL', title: 'Ultra League', isLeague: true },
-  { key: 'maxBattle', label: 'Max', title: 'Max Battle' },
   { key: 'gym', label: 'Gym', title: 'Gym' },
 ];
 const RATING_ORDER = ['good', 'ok', 'bad'];
-// Formák: a Shadow-nak nincs Max Battle-je (és gymje), a Megának csak raidje van.
+// Formák: a Shadow-nak nincs gymje, a Megának csak raidje van.
 const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
 const MEGA_MODE_KEYS = ['raid'];
 const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
-// A Gigantamax külön példány: csak Max Battle-je van, és nem örökli a (Dynamax) alapértékelést.
-const GIGANTAMAX_MODE_KEYS = ['maxBattle'];
 // Melyik Max mozdulatot érdemes fejleszteni (maxBattle.upgrade); Gigantamaxnál a Max Attack helyén a G-Max mozdulat van.
 const MAX_MOVE_LABELS = { attack: '⚔️ Max Attack', guard: '🛡️ Max Guard', spirit: '💚 Max Spirit' };
 const GIGANTAMAX_MOVE_LABELS = { ...MAX_MOVE_LABELS, attack: '⚔️ G-Max mozdulat' };
+// A Max forma fülei: a Dynamax és a Gigantamax külön példány, külön értékeléssel.
+// Dynamax = a faj maxBattle mezője, Gigantamax = forms.gigantamax.maxBattle.
+const MAX_MODES = [
+  { key: 'dynamax', label: 'Dynamax', title: 'Dynamax', moveLabels: MAX_MOVE_LABELS },
+  { key: 'gigantamax', label: 'Gigantamax', title: 'Gigantamax', moveLabels: GIGANTAMAX_MOVE_LABELS },
+];
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
 
 // ---------- Segédfüggvények ----------
@@ -250,21 +253,16 @@ function speciesForms(species) {
     const key = MEGA_FORM_KEYS[mega.name];
     forms.push({ key, name: mega.name, types: mega.types, modeKeys: MEGA_MODE_KEYS, leagues: {}, overrides: overrides[key] || {} });
   });
-  // Gigantamax: csak ha a faj game master szerint tud ilyet, és van hozzá kézi értékelés.
-  if ((species.stats.maxForms || []).includes('Gigantamax') && overrides.gigantamax) {
-    forms.push({
-      key: 'gigantamax', name: 'Gigantamax', types: species.types, modeKeys: GIGANTAMAX_MODE_KEYS,
-      leagues: {}, overrides: overrides.gigantamax, standalone: true,
-    });
+  // Max: a Dynamax és a Gigantamax példányok, ha van róluk értékelés.
+  if (maxModesOf(species).length) {
+    forms.push({ key: 'max', name: 'Max', types: species.types, modeKeys: [], leagues: {}, overrides: {} });
   }
   return forms;
 }
 
 // Egy mód adatai egy formában: az alap tanács, a forma felülírása és (ligáknál) a PvPoke-adat.
-// Az önálló forma (Gigantamax) csak a saját felülírását használja.
 function modeData(species, form, mode) {
-  const base = form.standalone ? {} : species[mode.key];
-  const curated = { ...base, ...form.overrides[mode.key] };
+  const curated = { ...species[mode.key], ...form.overrides[mode.key] };
   if (mode.isLeague) {
     const league = form.leagues[mode.key];
     return league ? { ...curated, ...league, rating: leagueRating(league) } : undefined;
@@ -272,8 +270,22 @@ function modeData(species, form, mode) {
   return curated.rating ? curated : undefined;
 }
 
+// A Max forma fülei: Dynamax (a faj maxBattle mezője) és Gigantamax (forms.gigantamax.maxBattle,
+// csak ha a game master szerint a fajnak van Gigantamax formája).
+function maxModesOf(species) {
+  const hasGigantamax = (species.stats.maxForms || []).includes('Gigantamax');
+  const data = {
+    dynamax: species.maxBattle,
+    gigantamax: hasGigantamax ? species.forms?.gigantamax?.maxBattle : undefined,
+  };
+  return MAX_MODES
+    .filter((mode) => data[mode.key]?.rating)
+    .map((mode) => ({ ...mode, ...data[mode.key], detail: '', upgradeLabels: upgradeLabelsOf(data[mode.key].upgrade, mode.moveLabels) }));
+}
+
 // A kártya fülei: csak azok a módok, amelyek a formához tartoznak és van róluk adat.
 function gameModesOf(species, form) {
+  if (form.key === 'max') return maxModesOf(species);
   return GAME_MODES
     .filter((mode) => form.modeKeys.includes(mode.key))
     .map((mode) => ({ ...mode, data: modeData(species, form, mode) }))
@@ -282,12 +294,11 @@ function gameModesOf(species, form) {
       ...mode,
       ...data,
       detail: mode.isLeague ? `${data.rank}. hely` : '',
-      upgradeLabels: upgradeLabelsOf(data.upgrade, form),
+      upgradeLabels: [],
     }));
 }
 
-function upgradeLabelsOf(upgrade, form) {
-  const labels = form.key === 'gigantamax' ? GIGANTAMAX_MOVE_LABELS : MAX_MOVE_LABELS;
+function upgradeLabelsOf(upgrade, labels) {
   return (upgrade || []).map((move) => labels[move]).filter(Boolean);
 }
 

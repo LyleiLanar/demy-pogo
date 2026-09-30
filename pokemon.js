@@ -16,7 +16,7 @@
 //   raid         { rating, note, iv, moves, tips }
 //   greatLeague  { note, iv, moves, tips }: a helyezés és a rating a pvpoke.js-ből jön
 //   ultraLeague  { note, iv, moves, tips }
-//   maxBattle    { rating, note, iv, moves, tips }
+//   maxBattle    { rating, note, upgrade, iv, moves, tips }: a Dynamax példány (a kártya Max formája)
 //   gym          { rating, note, iv, moves, tips }
 //     rating     'good' = erős, 'ok' = közepes, 'bad' = gyenge
 //     note       egy mondatos összegzés
@@ -27,10 +27,10 @@
 //   Ha egy mód hiányzik, arról nincs adat.
 //
 //   forms        formánkénti eltérések, a fenti módok felülírására:
-//                { shadow, mega, megaX, megaY, gigantamax: { raid, greatLeague, ultraLeague, maxBattle, notes } }
-//                A Shadow formának nincs Max Battle-je, a Megának csak raidje van. A gigantamax csak
-//                maxBattle-t kap, és nem örökli az alap (Dynamax) értékelést; forma is csak akkor lesz belőle,
-//                ha itt meg van adva és a game master szerint a fajnak van Gigantamax formája.
+//                { shadow, mega, megaX, megaY: { raid, greatLeague, ultraLeague, notes },
+//                  gigantamax: { maxBattle } }
+//                A Megának csak raidje van. A gigantamax.maxBattle a Gigantamax példány értékelése; a Max
+//                formában a Dynamax mellett jelenik meg, ha a game master szerint a fajnak van ilyen formája.
 //
 //
 //   Módtól független:
