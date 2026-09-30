@@ -1,16 +1,19 @@
-// Legenerálja a pvpoke.js-t a PvPoke GitHubon lévő adataiból és a játék game masteréből:
+// Legenerálja a data/pvpoke.js-t a PvPoke GitHubon lévő adataiból és a játék game masteréből:
 // típusok, Mega formák, buddy km, Great és Ultra League helyezés, ajánlott mozdulatok és párharcok,
 // valamint az ajánlott (PvPoke- és kézzel írt) mozdulatok típusa.
-// Csak a pokemon.js-ben szereplő fajokat veszi fel.
+// Csak a data/pokemon.js-ben szereplő fajokat veszi fel.
 //
-// Futtatás a repó gyökeréből: node tools/sync-pvpoke.mjs
+// Futtatás: node tools/sync-pvpoke.mjs
 
 import { readFile, writeFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import { DETAIL_RANK_LIMIT, describeSpecies, loadMaxForms, loadPvpokeData } from './pvpoke-common.mjs';
 
+const POKEMON_FILE = new URL('../data/pokemon.js', import.meta.url);
+const OUTPUT_FILE = new URL('../data/pvpoke.js', import.meta.url);
+
 async function loadPokemon() {
-  const source = await readFile('pokemon.js', 'utf8');
+  const source = await readFile(POKEMON_FILE, 'utf8');
   const context = {};
   vm.runInNewContext(`${source}\nthis.POKEMON = POKEMON;`, context);
   return context.POKEMON;
@@ -84,8 +87,8 @@ const PVPOKE = ${toJs(result)};
 
 const PVPOKE_MOVE_TYPES = ${toJs(moveTypes)};
 `;
-  await writeFile('pvpoke.js', output);
-  console.log(`pvpoke.js: ${Object.keys(result).length} faj`);
+  await writeFile(OUTPUT_FILE, output);
+  console.log(`data/pvpoke.js: ${Object.keys(result).length} faj`);
   if (missing.length) console.warn(`Nincs a PvPoke-adatban: ${missing.join(', ')}`);
   if (unknownMoves.length) console.warn(`Ismeretlen mozdulatnév (elírás?): ${unknownMoves.join(', ')}`);
 }

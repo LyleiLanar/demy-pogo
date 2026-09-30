@@ -1,13 +1,13 @@
 ---
 name: pokedex
-description: A demy-pogo Pokédex kitöltése és frissítése (pokemon.js). Használd, ha a felhasználó egy Pokémonról kérdez, képernyőképet küld egy Pokémonról, vagy azt kéri, hogy egy faj kerüljön be vagy frissüljön a Pokédexben.
+description: A demy-pogo Pokédex kitöltése és frissítése (data/pokemon.js). Használd, ha a felhasználó egy Pokémonról kérdez, képernyőképet küld egy Pokémonról, vagy azt kéri, hogy egy faj kerüljön be vagy frissüljön a Pokédexben.
 ---
 
 # Pokédex kitöltése
 
-A felhasználónak adott tanács a `pokemon.js`-be is bekerül, hogy az oldalon is meglegyen.
-A gépi adat (típus, helyezés, szett, Megák, Shadow) a generált `pvpoke.js`-ből jön, azt kézzel
-nem írjuk. A mezők pontos leírása a `pokemon.js` elején van.
+A felhasználónak adott tanács a `data/pokemon.js`-be is bekerül, hogy az oldalon is meglegyen.
+A gépi adat (típus, helyezés, szett, Megák, Shadow) a generált `data/pvpoke.js`-ből jön, azt kézzel
+nem írjuk. A mezők pontos leírása a `data/pokemon.js` elején van.
 
 ## 1. A faj azonosítása
 
@@ -59,7 +59,7 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 
 ## 4. Módok értékelése
 
-- `greatLeague`, `ultraLeague`: a helyezés és a szín a `pvpoke.js`-ből jön, ezt ne írd be.
+- `greatLeague`, `ultraLeague`: a helyezés és a szín a `data/pvpoke.js`-ből jön, ezt ne írd be.
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
 - `raid`: `rating` = `good` / `ok` / `bad`, egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
   ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
@@ -120,11 +120,11 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 
 ## 7. Generálás, verzió, ellenőrzés
 
-1. `node tools/sync-pvpoke.mjs` – frissíti a `pvpoke.js`-t (az új fajjal együtt).
+1. `node tools/sync-pvpoke.mjs` – frissíti a `data/pvpoke.js`-t (az új fajjal együtt).
 2. Az `index.html` összes `?v=` verzióját írd át a mai dátumra
    (ha aznap már volt változás: `2026-09-29.2`, `.3`…).
 3. Ellenőrizd, hogy a fájl betölthető:
-   `node -e "$(cat pokemon.js); console.log(POKEMON.length)"`.
+   `node -e "$(cat data/pokemon.js); console.log(POKEMON.length)"`.
 4. Ha van Playwright, nyisd meg az `index.html`-t, keress rá a fajra a Pokédex fülön, és nézd meg,
    hogy a kártya hibamentesen megjelenik.
 

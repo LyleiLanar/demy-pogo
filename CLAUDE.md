@@ -4,14 +4,24 @@ Statikus oldal GitHub Pages-en, build nélkül.
 
 - `index.html`: markup és a szöveges részek
 - `style.css`: stílusok
-- `data.js`: keresőkifejezések és linkek (`DATA`)
-- `pokemon.js`: fajonkénti, kézzel írt tanácsok (`POKEMON`), a mezők leírása a fájl elején
-- `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, Mega formák, buddy km, GL/UL helyezés, ajánlott szett,
-  párharcok, a normál és a Shadow formára külön.
-  Kézzel ne szerkeszd; frissítés: `node tools/sync-pvpoke.mjs` (a pokemon.js `id`-jai alapján)
-- `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
-- `app.js`: megjelenítés, fülek, Pokédex-keresés, másolás
-- `tools/`: `sync-pvpoke.mjs` (pvpoke.js generálása), `pvpoke-lookup.mjs` (egy faj gépi adatai:
+- `data/`: az adatok
+  - `lists.js`: keresőkifejezések és linkek (`DATA`)
+  - `pokemon.js`: fajonkénti, kézzel írt tanácsok (`POKEMON`), a mezők leírása a fájl elején
+  - `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, Mega formák, buddy km, GL/UL helyezés, ajánlott szett,
+    párharcok, a normál és a Shadow formára külön.
+    Kézzel ne szerkeszd; frissítés: `node tools/sync-pvpoke.mjs` (a pokemon.js `id`-jai alapján)
+  - `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
+- `js/`: a megjelenítés, sima (nem modul) scriptek, hogy `file://`-ról is működjön; a sorrend az
+  `index.html`-ben számít
+  - `util.js`: közös segédfüggvények
+  - `type-view.js`: típusikonok, Érzékeny / Ellenálló sor, típustáblázat
+  - `lists.js`: Keresők és Linkek fül
+  - `rankings.js`: GL Top 50 fül
+  - `species.js`: a Pokédex adatlogikája (POKEMON + PVPOKE, formák, módok, értékelés)
+  - `pokedex.js`: a Pokédex kártyái
+  - `ui.js`: fülek, keresés, formaváltó, súgóbuborék, másolás
+  - `main.js`: indítás
+- `tools/`: `sync-pvpoke.mjs` (data/pvpoke.js generálása), `pvpoke-lookup.mjs` (egy faj gépi adatai:
   PvPoke + a játék game mastere, Dynamaxszal), `pvpoke-common.mjs` (közös kód)
 
 Az `index.html`-ben a CSS és JS hivatkozásoknak verziója van (`?v=ÉÉÉÉ-HH-NN`). Ha bármelyik
@@ -21,4 +31,4 @@ fájl változik, írd át mindegyiket a mai dátumra (ha aznap már volt változ
 ## Ha a felhasználó egy Pokémonról kérdez
 
 Szövegben vagy képernyőképen: kövesd a `pokedex` skillt (`.claude/skills/pokedex/SKILL.md`).
-A válaszban adott tanács a `pokemon.js`-be is bekerül; a saját példányok adatai nem.
+A válaszban adott tanács a `data/pokemon.js`-be is bekerül; a saját példányok adatai nem.
