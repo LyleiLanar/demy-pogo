@@ -39,20 +39,23 @@ function rankIndex(rankings) {
 }
 
 // Egy forma (normál vagy Shadow) helyezése egy ligában; top 100-ban a szett és a párharcok is.
-function describeLeague(rankingEntry, species, data, detailRankLimit) {
+function describeLeague(rankingEntry, data, detailRankLimit) {
   if (!rankingEntry) return undefined;
   const { moves, names } = data;
   const league = { rank: rankingEntry.rank };
   if (rankingEntry.rank > detailRankLimit) return league;
 
-  const specialMoves = new Set([...(species.eliteMoves || []), ...(species.legacyMoves || [])]);
-  league.moveset = rankingEntry.moveset.map((moveId) => {
-    const name = moves.get(moveId) || moveId;
-    return specialMoves.has(moveId) ? `${name} *` : name;
-  });
+  // A PvPoke-szett: az első a gyors (Fast), a többi a töltött (Charged) mozdulat.
+  const [fastMove, ...chargedMoves] = rankingEntry.moveset.map((moveId) => moves.get(moveId) || moveId);
+  league.moveset = { fast: [fastMove], charged: chargedMoves };
   league.beats = rankingEntry.matchups.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
   league.losesTo = rankingEntry.counters.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
   return league;
+}
+
+// A csak Elite TM-mel vagy eseményen (pl. Community Day) megszerezhető mozdulatok neve.
+function specialMovesOf(species, moves) {
+  return [...(species.eliteMoves || []), ...(species.legacyMoves || [])].map((moveId) => moves.get(moveId) || moveId);
 }
 
 // A gamemaster és a ligák rangsorai, kereshető formában.
@@ -78,14 +81,15 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT) {
   const megaForms = megaFormsOf(id, data.gamemaster);
   if (megaForms.length) entry.megaForms = megaForms;
   if (species.buddyDistance) entry.buddyKm = species.buddyDistance;
+  const specialMoves = specialMovesOf(species, data.moves);
+  if (specialMoves.length) entry.specialMoves = specialMoves;
 
   const shadowId = `${id}_shadow`;
-  const shadowSpecies = data.speciesById.get(shadowId) || species;
   const shadow = {};
   for (const [key, ranking] of data.leagueRankings) {
-    const league = describeLeague(ranking.get(id), species, data, detailRankLimit);
+    const league = describeLeague(ranking.get(id), data, detailRankLimit);
     if (league) entry[key] = league;
-    const shadowLeague = describeLeague(ranking.get(shadowId), shadowSpecies, data, detailRankLimit);
+    const shadowLeague = describeLeague(ranking.get(shadowId), data, detailRankLimit);
     if (shadowLeague) shadow[key] = shadowLeague;
   }
   if (Object.keys(shadow).length) entry.shadow = shadow;

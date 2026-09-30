@@ -70,6 +70,12 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 ## 5. A tanácsok helye
 
 - Módhoz kötött tanács (IV, mozdulat, tipp): a megfelelő mód `iv`, `moves`, `tips` mezőjébe.
+- Mozdulatok szétválasztva: `moves: { fast: ['Waterfall', 'Bite'], charged: ['Hydro Pump', 'Crunch'], note }`,
+  a játékbeli angol mozdulatnévvel (a lookup is így írja). Ha a PvPoke-szett jó, a GL/UL-hez
+  ne írj `moves`-t, mert a kártya magától mutatja.
+- Speciális mozdulat (Elite TM, Community Day, esemény): a jelölés automatikus a game master
+  alapján. Ha tudod, honnan szerezhető meg, írd a faj `moveSources` mezőjébe:
+  `moveSources: { 'Blast Burn': 'Charmander Community Day, vagy Elite Charged TM.' }`.
 - Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`
   (a Shadow és a Mega nem külön faj). A Megának csak raidje van, a Shadow-nak nincs Max Battle-je.
 - Módtól független, de fajra szóló tanács: `notes`; fejlődés és cukorár: `evolution`.

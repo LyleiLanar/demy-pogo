@@ -21,13 +21,16 @@
 //     rating     'good' = erős, 'ok' = közepes, 'bad' = gyenge
 //     note       egy mondatos összegzés
 //     iv         milyen IV a jó ebben a módban
-//     moves      ajánlott mozdulatok ebben a módban
+//     moves      ajánlott mozdulatok: { fast: [...], charged: [...], note }
 //     tips       további tanácsok ebben a módban
 //   Ha egy mód hiányzik, arról nincs adat.
 //
 //   forms        formánkénti eltérések, a fenti módok felülírására:
 //                { shadow, mega, megaX, megaY: { raid, greatLeague, ultraLeague, notes } }
 //                A Shadow formának nincs Max Battle-je, a Megának csak raidje van.
+//
+//   moveSources  { "Mozdulat neve": "honnan szerezhető meg" } a speciális (Elite TM-es,
+//                eseményes) mozdulatokhoz; ha nincs megadva, általános szöveg jelenik meg
 //
 //   Módtól független:
 //   evolution    fejlődés, cukorár
@@ -88,21 +91,17 @@ const POKEMON = [
     origin: 'Mareep',
     verdict: 'scan',
     raid: { rating: 'bad', note: 'Mega nélkül gyenge Electric támadó.' },
-    ultraLeague: {
-      note: '35–40-es szintre kell húzni.',
-      tips: [
-        'Ultra League-ben a meta része.',
-      ],
-    },
+    ultraLeague: { note: '35–40-es szintre kell húzni.', tips: ['Ultra League-ben a meta része.'] },
     forms: {
       mega: {
         raid: {
           rating: 'good',
           note: 'Mega Ampharos: Electric/Dragon Mega, Water és Flying bossok ellen hasznos, szólóban is jó Mega.',
-          moves: 'A Dragon Pulse (Community Day mozdulat) különösen értékes.',
+          moves: { charged: ['Dragon Pulse'] },
         },
       },
     },
+    moveSources: { 'Dragon Pulse': 'Mareep Community Day, vagy Elite Charged TM.' },
   },
   { id: 'annihilape', name: 'Annihilape', origin: 'Mankey', verdict: 'scan' },
   {
@@ -125,9 +124,7 @@ const POKEMON = [
     origin: 'Shieldon',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    notes: [
-      'Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.',
-    ],
+    notes: ['Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.'],
   },
   {
     id: 'baxcalibur',
@@ -144,9 +141,7 @@ const POKEMON = [
       ],
     },
     evolution: 'Frigibax → Arctibax (25 cukor) → Baxcalibur (100 cukor).',
-    notes: [
-      'A Frigibax ritka, ne küldj el semmit a vonalból, amíg nincs egy jó Baxcaliburod.',
-    ],
+    notes: ['A Frigibax ritka, ne küldj el semmit a vonalból, amíg nincs egy jó Baxcaliburod.'],
   },
   {
     id: 'blaziken',
@@ -156,14 +151,13 @@ const POKEMON = [
     raid: {
       rating: 'ok',
       note: 'Blast Burn-nel használható Fire/Fighting támadó; a Shadow és a Mega erősebb.',
-      moves: 'A legjobb a Blast Burn (legacy).',
+      moves: { fast: ['Fire Spin', 'Counter'], charged: ['Blast Burn'] },
     },
     forms: {
       shadow: {
         raid: {
           rating: 'good',
           note: 'Jó raides Fire és Fighting támadó.',
-          moves: 'A legjobb a Blast Burn (legacy).',
           tips: [
             'A Shadow Torchic raidbe napi ingyenes Raid Passszal megéri bemenni, prémium vagy távoli passra nem.',
           ],
@@ -185,9 +179,7 @@ const POKEMON = [
     gym: {
       rating: 'good',
       note: 'Az egyik legjobb gym védő.',
-      tips: [
-        'Az egyik legjobb gym védő.',
-      ],
+      tips: ['Az egyik legjobb gym védő.'],
     },
   },
   {
@@ -205,13 +197,15 @@ const POKEMON = [
     raid: {
       rating: 'good',
       note: 'Fire támadó.',
-      moves: 'A legjobb a Blast Burn (Community Day vagy Elite Charged TM). Nélküle Overheat-tel elfogadható; ha fejlesztés után nem Overheat vagy Dragon Claw lett, egy Charged TM-mel cseréld.',
+      moves: {
+        fast: ['Fire Spin'],
+        charged: ['Blast Burn', 'Overheat'],
+        note: 'Blast Burn nélkül az Overheat is elfogadható; a Dragon Claw-t cseréld le Charged TM-mel.',
+      },
     },
     ultraLeague: {
-      moves: 'Dragon Breath + Blast Burn + Dragon Claw.',
-      tips: [
-        'Csak niche szerep.',
-      ],
+      moves: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Dragon Claw'] },
+      tips: ['Csak niche szerep.'],
     },
     maxBattle: {
       rating: 'good',
@@ -227,6 +221,7 @@ const POKEMON = [
         raid: { note: 'Fire/Dragon Mega: a Fire és a Dragon támadásokat erősíti.' },
       },
     },
+    moveSources: { 'Blast Burn': 'Charmander Community Day, vagy Elite Charged TM.' },
     evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor). A jelmez megmarad fejlesztéskor.',
     notes: [
       'Charmander Community Day ritka (utoljára 2018, azóta csak Classic visszatérések), ne várj rá.',
@@ -258,9 +253,7 @@ const POKEMON = [
     maxBattle: {
       rating: 'good',
       note: 'Csak a Dynamax példány: erős Fire támadó.',
-      tips: [
-        'Grass, Bug, Steel és Ice bossok ellen.',
-      ],
+      tips: ['Grass, Bug, Steel és Ice bossok ellen.'],
     },
     evolution: 'Scorbunny → Raboot → Cinderace. A Dynamax képesség fejlesztés után megmarad.',
   },
@@ -303,14 +296,15 @@ const POKEMON = [
       note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók, pl. a Frenzy Plant-es Venusaur.',
     },
     ultraLeague: {
-      tips: [
-        'Ha mégis építenéd: Frenzy Plant (Elite TM vagy Community Day) és Spirit Shackle kell hozzá.',
-      ],
+      moves: {
+        fast: ['Astonish'],
+        charged: ['Frenzy Plant', 'Spirit Shackle'],
+        note: 'Ha mégis építenéd.',
+      },
     },
+    moveSources: { 'Frenzy Plant': 'Rowlet Community Day, vagy Elite Charged TM.' },
     evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
-    notes: [
-      'A hisui Decidueye (Grass/Fighting) külön faj, más a típusa és a szettje.',
-    ],
+    notes: ['A hisui Decidueye (Grass/Fighting) külön faj, más a típusa és a szettje.'],
   },
   {
     id: 'dedenne',
@@ -320,7 +314,11 @@ const POKEMON = [
     raid: { rating: 'bad' },
     greatLeague: {
       iv: 'Ha mégis építenéd: legjobb IV 0/14/12 (33-as szint, 1500 CP).',
-      moves: 'Ha mégis építenéd: Thunder Shock + Discharge + Play Rough.',
+      moves: {
+        fast: ['Thunder Shock'],
+        charged: ['Discharge', 'Play Rough'],
+        note: 'Ha mégis építenéd.',
+      },
       tips: [
         'Nehéz ellenfelei: Shadow Quagsire, Mimikyu, Tinkaton.',
         'Kivétel: Electric vagy Fairy tematikus kupánál előkerülhet.',
@@ -335,11 +333,10 @@ const POKEMON = [
     raid: {
       rating: 'ok',
       note: 'Közepes Fire támadó, a Mega Charizard Y jobb.',
-      moves: 'A legjobb a Blast Burn (Community Day mozdulat).',
-      tips: [
-        'Tartalék Fire támadó raidre és Rocket ellen.',
-      ],
+      moves: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
+      tips: ['Tartalék Fire támadó raidre és Rocket ellen.'],
     },
+    moveSources: { 'Blast Burn': 'Fennekin Community Day, vagy Elite Charged TM.' },
   },
   {
     id: 'deoxys_defense',
@@ -401,9 +398,7 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'bad' },
     evolution: 'Gossifleur → Eldegoss, 50 cukor.',
-    notes: [
-      'Egy alacsony Attackos Gossifleur maradhat a Little Cupra (500 CP).',
-    ],
+    notes: ['Egy alacsony Attackos Gossifleur maradhat a Little Cupra (500 CP).'],
   },
   {
     id: 'empoleon',
@@ -451,13 +446,7 @@ const POKEMON = [
     origin: 'Eevee',
     verdict: 'transfer',
     raid: { rating: 'ok' },
-    maxBattle: {
-      rating: 'ok',
-      note: 'Tartalék Fire támadó.',
-      tips: [
-        'Max Particle-t ne költs rá.',
-      ],
-    },
+    maxBattle: { rating: 'ok', note: 'Tartalék Fire támadó.', tips: ['Max Particle-t ne költs rá.'] },
   },
   {
     id: 'florges',
@@ -495,11 +484,7 @@ const POKEMON = [
     origin: 'legendás (Max Battle / raid)',
     verdict: 'keep',
     raid: { rating: 'ok', note: 'Nem kiemelkedő.' },
-    greatLeague: {
-      tips: [
-        'Használható Dark/Flying Pokémon.',
-      ],
-    },
+    greatLeague: { tips: ['Használható Dark/Flying Pokémon.'] },
   },
   {
     id: 'stunfisk_galarian',
@@ -569,10 +554,12 @@ const POKEMON = [
       rating: 'good',
       note: 'Water támadó.',
       iv: 'Átlagos IV-s Magikarpra ne pazarold a 400 cukrot.',
-      moves: 'Waterfall + Hydro Pump. Második töltött mozdulatnak Crunch vagy Aqua Tail. Bite + Crunch Dark szettként is működik.',
-      tips: [
-        'Raidben Fire, Ground és Rock bossok ellen jó.',
-      ],
+      moves: {
+        fast: ['Waterfall', 'Bite'],
+        charged: ['Hydro Pump', 'Crunch', 'Aqua Tail'],
+        note: 'Water szett: Waterfall + Hydro Pump; Dark szett: Bite + Crunch.',
+      },
+      tips: ['Raidben Fire, Ground és Rock bossok ellen jó.'],
     },
     forms: {
       mega: {
@@ -580,9 +567,7 @@ const POKEMON = [
       },
     },
     evolution: 'Magikarp → Gyarados, 400 cukor. A Magikarp 1 km-enként ad cukrot buddyként.',
-    notes: [
-      'Max Battle-ben a Waterfall Water, a Dragon Breath Dragon Max mozdulatot ad.',
-    ],
+    notes: ['Max Battle-ben a Waterfall Water, a Dragon Breath Dragon Max mozdulatot ad.'],
   },
   {
     id: 'hariyama',
@@ -601,9 +586,7 @@ const POKEMON = [
     maxBattle: {
       rating: 'bad',
       note: 'Nem prioritás.',
-      tips: [
-        'Nem prioritás, Max Particle-t ne költs rá.',
-      ],
+      tips: ['Nem prioritás, Max Particle-t ne költs rá.'],
     },
     evolution: 'Hatenna → Hattrem → Hatterene.',
   },
@@ -626,13 +609,7 @@ const POKEMON = [
     name: 'Inteleon',
     origin: 'Sobble',
     verdict: 'transfer',
-    maxBattle: {
-      rating: 'good',
-      note: 'Water támadó.',
-      tips: [
-        'Fire, Rock és Ground bossok ellen.',
-      ],
-    },
+    maxBattle: { rating: 'good', note: 'Water támadó.', tips: ['Fire, Rock és Ground bossok ellen.'] },
     evolution: 'Drizzile → Inteleon, 100 cukor.',
   },
   {
@@ -662,9 +639,7 @@ const POKEMON = [
     origin: 'Chinchou',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    notes: [
-      'Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.',
-    ],
+    notes: ['Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.'],
   },
   {
     id: 'lapras',
@@ -679,9 +654,7 @@ const POKEMON = [
     origin: 'Lickitung',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    notes: [
-      'Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.',
-    ],
+    notes: ['Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.'],
   },
   {
     id: 'lokix',
@@ -698,10 +671,8 @@ const POKEMON = [
     raid: {
       rating: 'good',
       note: 'Fighting támadó.',
-      moves: 'Counter + Dynamic Punch vagy Cross Chop.',
-      tips: [
-        'Megbízható, olcsó raides Fighting támadó, a Shadow Machamp még erősebb.',
-      ],
+      moves: { fast: ['Counter'], charged: ['Dynamic Punch', 'Cross Chop'] },
+      tips: ['Megbízható, olcsó raides Fighting támadó, a Shadow Machamp még erősebb.'],
     },
     maxBattle: { rating: 'ok', note: 'A Gigantamax forma csak Max Battle-ből szerezhető.' },
     evolution: 'Machop → Machoke → Machamp. A Machoke csere után ingyen (0 cukor) fejlődik.',
@@ -768,7 +739,7 @@ const POKEMON = [
     maxBattle: {
       rating: 'good',
       note: 'Támadó és tank (Fire/Flying).',
-      moves: 'Max Battle-ben Wing Attack gyors mozdulattal Flying Max mozdulatot (Max Airstream) kap.',
+      moves: { fast: ['Wing Attack'], note: 'Ezzel Flying Max mozdulatot (Max Airstream) kap.' },
     },
   },
   {
@@ -777,11 +748,7 @@ const POKEMON = [
     origin: 'Vulpix (a sima, nem az alolai)',
     verdict: 'scan',
     raid: { rating: 'bad' },
-    greatLeague: {
-      tips: [
-        'Főleg a Shadow változat értékes.',
-      ],
-    },
+    greatLeague: { tips: ['Főleg a Shadow változat értékes.'] },
   },
   {
     id: 'perrserker',
@@ -789,9 +756,7 @@ const POKEMON = [
     origin: 'Galarian Meowth',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    notes: [
-      'Steel típusként tematikus kupákban előkerülhet, egy alacsony Attackos maradhat.',
-    ],
+    notes: ['Steel típusként tematikus kupákban előkerülhet, egy alacsony Attackos maradhat.'],
   },
   {
     id: 'pyroar',
@@ -817,9 +782,7 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'bad' },
     evolution: 'Quaxly → Quaxwell (25 cukor) → Quaquaval (100 cukor), a Pokédexért.',
-    notes: [
-      'Water/Fighting, nem meta se raidben, se PvP-ben. Stardustot ne tegyél bele.',
-    ],
+    notes: ['Water/Fighting, nem meta se raidben, se PvP-ben. Stardustot ne tegyél bele.'],
   },
   {
     id: 'rhyperior',
@@ -830,9 +793,7 @@ const POKEMON = [
     maxBattle: {
       rating: 'good',
       note: 'Védő (tank), oldd fel a Max Guardot.',
-      tips: [
-        'Fire, Electric, Flying és Ice bossok ellen erős.',
-      ],
+      tips: ['Fire, Electric, Flying és Ice bossok ellen erős.'],
     },
   },
   {
@@ -904,9 +865,7 @@ const POKEMON = [
     origin: 'Mareanie',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    notes: [
-      'Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.',
-    ],
+    notes: ['Great League-ben ma nincs a top 100-ban; tematikus kupákban előkerülhet.'],
   },
   {
     id: 'trevenant',
@@ -946,7 +905,7 @@ const POKEMON = [
     raid: {
       rating: 'good',
       note: 'Grass/Poison támadó.',
-      moves: 'A legjobb a Frenzy Plant (legacy: Elite TM vagy esemény).',
+      moves: { fast: ['Vine Whip'], charged: ['Frenzy Plant'] },
     },
     maxBattle: {
       rating: 'ok',

@@ -25,6 +25,8 @@ const RATING_ORDER = ['good', 'ok', 'bad'];
 const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
 const MEGA_MODE_KEYS = ['raid'];
 const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
+// Ha a pokemon.js moveSources nem mondja meg, honnan szerezhető meg egy speciális mozdulat.
+const SPECIAL_MOVE_SOURCE = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) tanulható meg.';
 
 // ---------- Segédfüggvények ----------
 
@@ -135,13 +137,13 @@ function typeStyle(type) {
   return `--type-color:${type.color}`;
 }
 
-// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTypeTooltip).
+// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip).
 // A multipleLabel a többszörös hatás leírása: ilyenkor felkiáltójel kerül az ikon mellé.
 function renderTypeBadge(typeKey, multipleLabel = '') {
   const type = TYPES[typeKey];
   const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
   const marker = multipleLabel ? '<span class="type-multiple" aria-hidden="true">❗</span>' : '';
-  return `<button type="button" class="type" style="${typeStyle(type)}" data-type-name="${label}" aria-label="${label}">`
+  return `<button type="button" class="type" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
     + `<span aria-hidden="true">${type.icon}</span>${marker}</button>`;
 }
 
@@ -279,15 +281,38 @@ function renderModeTab(mode, isSelected) {
       data-mode="${mode.key}">${mode.label}</button>`;
 }
 
-function renderModePanel(mode, isSelected) {
+// Egy ajánlott mozdulat; ha csak Elite TM-mel vagy eseményen szerezhető meg, ⚠️ gomb jelzi,
+// amire koppintva a buborék megmondja, honnan lehet megszerezni.
+function renderMove(name, species) {
+  const isSpecial = (species.stats.specialMoves || []).includes(name);
+  if (!isSpecial) return `<span class="move">${escapeHtml(name)}</span>`;
+  const source = species.moveSources?.[name] || SPECIAL_MOVE_SOURCE;
+  return `<span class="move">${escapeHtml(name)}<button type="button" class="move-warning" `
+    + `data-tooltip="${escapeHtml(source)}" aria-label="${escapeHtml(`Speciális mozdulat. ${source}`)}">⚠️</button></span>`;
+}
+
+function renderMoveFact(label, names, species) {
+  if (!names || names.length === 0) return '';
+  return `<dt>${label}</dt><dd class="moves">${names.map((name) => renderMove(name, species)).join('')}</dd>`;
+}
+
+// A kézzel írt ajánlás (moves) elsőbbséget kap, különben a PvPoke-szett (moveset) látszik.
+function renderMoves(mode, species) {
+  const moves = mode.moves || mode.moveset;
+  if (!moves) return '';
+  return renderMoveFact('Fast Attack', moves.fast, species)
+    + renderMoveFact('Charged Attack', moves.charged, species)
+    + renderFact('', moves.note);
+}
+
+function renderModePanel(mode, species, isSelected) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
   const facts = [
-    renderFact('PvPoke szett', mode.moveset && mode.moveset.join(' · ')),
+    renderMoves(mode, species),
     renderFact('Jól megy ellene', mode.beats && mode.beats.join(', ')),
     renderFact('Nehéz ellenfél', mode.losesTo && mode.losesTo.join(', ')),
     renderFact('IV', mode.iv),
-    renderFact('Mozdulatok', mode.moves),
   ].join('');
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
@@ -298,13 +323,13 @@ function renderModePanel(mode, isSelected) {
     </div>`;
 }
 
-function renderGameModes(modes) {
+function renderGameModes(modes, species) {
   if (modes.length === 0) return '';
   const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
       <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
-      ${modes.map((mode, i) => renderModePanel(mode, i === selected)).join('')}
+      ${modes.map((mode, i) => renderModePanel(mode, species, i === selected)).join('')}
     </div>`;
 }
 
@@ -313,7 +338,7 @@ function renderFormPanel(species, form, isSelected) {
     <div class="form-panel" data-form="${form.key}" ${isSelected ? '' : 'hidden'}>
       <p class="mon-types">${renderTypeBadges(form.types)}</p>
       ${renderDefense(form.types)}
-      ${renderGameModes(gameModesOf(species, form))}
+      ${renderGameModes(gameModesOf(species, form), species)}
       ${renderList('mon-notes', form.overrides.notes)}
     </div>`;
 }
@@ -520,14 +545,17 @@ function setupModeTabs() {
   });
 }
 
-// ---------- Típus-súgó ----------
+// ---------- Súgóbuborék (típus-chipek, speciális mozdulatok) ----------
 
-const TOOLTIP_VISIBLE_MS = 2000;
+// A buborék ideje a szöveg hosszához igazodik, hogy a hosszabb is elolvasható legyen.
+const TOOLTIP_MIN_MS = 2000;
+const TOOLTIP_MS_PER_CHAR = 40;
+const TOOLTIP_MAX_MS = 6000;
 const TOOLTIP_GAP_PX = 6;
 const TOOLTIP_EDGE_PX = 8;
 
-// Egy közös buborék: a típus-chipre koppintva a chip fölött mutatja a típus nevét.
-function setupTypeTooltip() {
+// Egy közös buborék: a data-tooltip elemre koppintva fölötte mutatja a szöveget.
+function setupTooltip() {
   const tooltip = document.createElement('div');
   tooltip.className = 'type-tooltip';
   tooltip.setAttribute('role', 'status');
@@ -540,7 +568,7 @@ function setupTypeTooltip() {
   };
 
   function showFor(chip) {
-    tooltip.textContent = chip.dataset.typeName;
+    tooltip.textContent = chip.dataset.tooltip;
     tooltip.hidden = false;
     const chipRect = chip.getBoundingClientRect();
     const tipRect = tooltip.getBoundingClientRect();
@@ -549,11 +577,12 @@ function setupTypeTooltip() {
     tooltip.style.left = `${left + window.scrollX}px`;
     tooltip.style.top = `${chipRect.top + window.scrollY - tipRect.height - TOOLTIP_GAP_PX}px`;
     clearTimeout(hideTimer);
-    hideTimer = setTimeout(hide, TOOLTIP_VISIBLE_MS);
+    const visibleMs = Math.min(TOOLTIP_MAX_MS, TOOLTIP_MIN_MS + chip.dataset.tooltip.length * TOOLTIP_MS_PER_CHAR);
+    hideTimer = setTimeout(hide, visibleMs);
   }
 
   document.addEventListener('click', (event) => {
-    const chip = event.target.closest('.type[data-type-name]');
+    const chip = event.target.closest('[data-tooltip]');
     if (chip) showFor(chip);
     else hide();
   });
@@ -609,5 +638,5 @@ renderContent(DATA, combineSpeciesData(POKEMON, PVPOKE), PVPOKE_DATE);
 setupTabs();
 setupPokedexSearch();
 setupModeTabs();
-setupTypeTooltip();
+setupTooltip();
 setupCopyButtons();

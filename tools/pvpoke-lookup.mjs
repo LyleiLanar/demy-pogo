@@ -41,14 +41,13 @@ function evolutionLine(species, data) {
 function printSpecies(species, data, maxForms) {
   const entry = describeSpecies(species.speciesId, data, Infinity);
   const tags = (species.tags || []).filter((tag) => RELEVANT_TAGS.includes(tag));
-  const eliteMoves = [...(species.eliteMoves || []), ...(species.legacyMoves || [])].map((id) => data.moves.get(id) || id);
 
   console.log(`\n#${species.dex} ${displayName(species.speciesName)}  (id: ${species.speciesId})`);
   console.log(`  típus:        ${entry.types.join(' / ')}`);
   console.log(`  címkék:       ${tags.join(', ') || '-'}`);
   console.log(`  fejlődés:     ${evolutionLine(species, data)}`);
   console.log(`  buddy:        ${entry.buddyKm ?? '-'} km / cukor`);
-  console.log(`  Elite / esemény mozdulat: ${eliteMoves.join(', ') || '-'}`);
+  console.log(`  Elite / esemény mozdulat: ${(entry.specialMoves || []).join(', ') || '-'}`);
   console.log(`  Mega:         ${(entry.megaForms || []).map((mega) => `${mega.name} (${mega.types.join('/')})`).join(', ') || 'nincs'}`);
   console.log(`  Max Battle:   ${maxFormsOf(species.speciesId, maxForms).join(', ') || 'nincs Dynamax / Gigantamax forma'}`);
   const forms = [['Normál', entry], ['Shadow', entry.shadow]];
@@ -57,7 +56,8 @@ function printSpecies(species, data, maxForms) {
     for (const [key, label] of [['greatLeague', 'GL'], ['ultraLeague', 'UL']]) {
       const league = form[key];
       if (!league) continue;
-      const moveset = league.moveset ? `  szett: ${league.moveset.join(' · ')}` : '';
+      const moveset = league.moveset
+        ? `  Fast: ${league.moveset.fast.join(', ')} · Charged: ${league.moveset.charged.join(', ')}` : '';
       console.log(`  ${formName.padEnd(6)} ${label}: ${String(league.rank).padStart(4)}. hely${moveset}`);
     }
   }

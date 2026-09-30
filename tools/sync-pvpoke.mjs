@@ -54,7 +54,8 @@ async function main() {
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // shadow: a Shadow változat Great és Ultra League adatai
-// moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
+// specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
+// moveset: az ajánlott szett ({ fast, charged })
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 
 const PVPOKE_DATE = '${date}';

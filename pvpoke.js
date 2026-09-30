@@ -3,7 +3,8 @@
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // shadow: a Shadow változat Great és Ultra League adatai
-// moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
+// specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
+// moveset: az ajánlott szett ({ fast, charged })
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 
 const PVPOKE_DATE = '2026. 09. 30.';
@@ -15,7 +16,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 80,
-      moveset: ['Psycho Cut', 'Shadow Ball', 'Gyro Ball'],
+      moveset: { fast: ['Psycho Cut'], charged: ['Shadow Ball', 'Gyro Ball'] },
       beats: ['Florges', 'Corviknight', 'Melmetal'],
       losesTo: ['Shadow Sableye', 'Shadow Ninetales', 'Mimikyu'],
     },
@@ -28,6 +29,7 @@ const PVPOKE = {
       { name: 'Mega', types: ['psychic'] },
     ],
     buddyKm: 3,
+    specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
     greatLeague: { rank: 919 },
     ultraLeague: { rank: 679 },
     shadow: {
@@ -39,28 +41,29 @@ const PVPOKE = {
     dex: 38,
     types: ['ice', 'fairy'],
     buddyKm: 3,
+    specialMoves: ['Chilling Water'],
     greatLeague: {
       rank: 68,
-      moveset: ['Powder Snow', 'Weather Ball (Ice)', 'Chilling Water *'],
+      moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
       beats: ['Altaria', 'Thievul', 'Stunfisk'],
       losesTo: ['Shadow Ninetales', 'Melmetal', 'Tinkaton'],
     },
     ultraLeague: {
       rank: 25,
-      moveset: ['Powder Snow', 'Weather Ball (Ice)', 'Chilling Water *'],
+      moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
       beats: ['Zygarde (Complete Forme)', 'Giratina (Altered)', 'Snorlax'],
       losesTo: ['Empoleon', 'Tinkaton', 'Corviknight'],
     },
     shadow: {
       greatLeague: {
         rank: 73,
-        moveset: ['Powder Snow', 'Weather Ball (Ice)', 'Chilling Water *'],
+        moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
         beats: ['Altaria', 'Fearow', 'Stunfisk'],
         losesTo: ['Melmetal', 'Shadow Ninetales', 'Tinkaton'],
       },
       ultraLeague: {
         rank: 30,
-        moveset: ['Powder Snow', 'Weather Ball (Ice)', 'Chilling Water *'],
+        moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
         beats: ['Galarian Moltres', 'Zygarde (Complete Forme)', 'Giratina (Altered)'],
         losesTo: ['Empoleon', 'Tinkaton', 'Mimikyu'],
       },
@@ -73,9 +76,10 @@ const PVPOKE = {
       { name: 'Mega', types: ['dragon', 'fairy'] },
     ],
     buddyKm: 1,
+    specialMoves: ['Moonblast'],
     greatLeague: {
       rank: 2,
-      moveset: ['Dragon Breath', 'Moonblast *', 'Flamethrower'],
+      moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
       beats: ['Shadow Ninetales', 'Shadow Sableye', 'Shadow Quagsire'],
       losesTo: ['Mimikyu', 'Thievul', 'Tinkaton'],
     },
@@ -83,7 +87,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 9,
-        moveset: ['Dragon Breath', 'Moonblast *', 'Flamethrower'],
+        moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
         beats: ['Shadow Quagsire', 'Corviknight', 'Shadow Ninetales'],
         losesTo: ['Tinkaton', 'Mimikyu', 'Melmetal'],
       },
@@ -97,10 +101,11 @@ const PVPOKE = {
       { name: 'Mega', types: ['electric', 'dragon'] },
     ],
     buddyKm: 5,
+    specialMoves: ['Dragon Pulse'],
     greatLeague: { rank: 217 },
     ultraLeague: {
       rank: 52,
-      moveset: ['Volt Switch', 'Brutal Swing', 'Trailblaze'],
+      moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
       beats: ['Feraligatr', 'Empoleon', 'Jellicent'],
       losesTo: ['Zygarde (Complete Forme)', 'Virizion', 'Snorlax'],
     },
@@ -108,7 +113,7 @@ const PVPOKE = {
       greatLeague: { rank: 219 },
       ultraLeague: {
         rank: 55,
-        moveset: ['Volt Switch', 'Brutal Swing', 'Trailblaze'],
+        moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
         beats: ['Empoleon', 'Jellicent', 'Feraligatr'],
         losesTo: ['Zygarde (Complete Forme)', 'Mimikyu', 'Tinkaton'],
       },
@@ -118,28 +123,29 @@ const PVPOKE = {
     dex: 979,
     types: ['fighting', 'ghost'],
     buddyKm: 3,
+    specialMoves: ['Rage Fist'],
     greatLeague: {
       rank: 31,
-      moveset: ['Low Kick', 'Rage Fist *', 'Ice Punch'],
+      moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
       beats: ['Thievul', 'Melmetal', 'Vigoroth'],
       losesTo: ['Mimikyu', 'Cramorant', 'Shadow Sableye'],
     },
     ultraLeague: {
       rank: 59,
-      moveset: ['Low Kick', 'Rage Fist *', 'Ice Punch'],
+      moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
       beats: ['Blastoise', 'Zygarde (Complete Forme)', 'Virizion'],
       losesTo: ['Tinkaton', 'Florges', 'Snorlax'],
     },
     shadow: {
       greatLeague: {
         rank: 38,
-        moveset: ['Low Kick', 'Rage Fist *', 'Ice Punch'],
+        moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
         beats: ['Thievul', 'Shadow Quagsire', 'Vigoroth'],
         losesTo: ['Mimikyu', 'Cramorant', 'Tinkaton'],
       },
       ultraLeague: {
         rank: 74,
-        moveset: ['Low Kick', 'Rage Fist *', 'Ice Punch'],
+        moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
         beats: ['Melmetal', 'Blastoise', 'Corviknight'],
         losesTo: ['Mimikyu', 'Florges', 'Tinkaton'],
       },
@@ -151,7 +157,7 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 16,
-      moveset: ['Infestation', 'Water Pulse', 'Mirror Coat'],
+      moveset: { fast: ['Infestation'], charged: ['Water Pulse', 'Mirror Coat'] },
       beats: ['Shadow Ninetales', 'Thievul', 'Shadow Sableye'],
       losesTo: ['Cramorant', 'Altaria', 'Mimikyu'],
     },
@@ -159,7 +165,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 29,
-        moveset: ['Infestation', 'Water Pulse', 'Mirror Coat'],
+        moveset: { fast: ['Infestation'], charged: ['Water Pulse', 'Mirror Coat'] },
         beats: ['Shadow Ninetales', 'Tinkaton', 'Shadow Sableye'],
         losesTo: ['Corviknight', 'Galarian Corsola', 'Cramorant'],
       },
@@ -172,7 +178,7 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 32,
-      moveset: ['Bubble', 'Ice Beam', 'Play Rough'],
+      moveset: { fast: ['Bubble'], charged: ['Ice Beam', 'Play Rough'] },
       beats: ['Altaria', 'Shadow Sableye', 'Shadow Quagsire'],
       losesTo: ['Mimikyu', 'Melmetal', 'Tinkaton'],
     },
@@ -193,6 +199,7 @@ const PVPOKE = {
     dex: 998,
     types: ['dragon', 'ice'],
     buddyKm: 5,
+    specialMoves: ['Glaive Rush'],
     greatLeague: { rank: 501 },
     ultraLeague: { rank: 343 },
   },
@@ -203,6 +210,7 @@ const PVPOKE = {
       { name: 'Mega', types: ['fire', 'fighting'] },
     ],
     buddyKm: 3,
+    specialMoves: ['Blast Burn', 'Stone Edge'],
     greatLeague: { rank: 286 },
     ultraLeague: { rank: 175 },
     shadow: {
@@ -214,6 +222,7 @@ const PVPOKE = {
     dex: 242,
     types: ['normal'],
     buddyKm: 5,
+    specialMoves: ['Wild Charge'],
     greatLeague: { rank: 928 },
     ultraLeague: { rank: 632 },
   },
@@ -223,7 +232,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 46,
-      moveset: ['Rock Throw', 'Rock Slide', 'Moonblast'],
+      moveset: { fast: ['Rock Throw'], charged: ['Rock Slide', 'Moonblast'] },
       beats: ['Altaria', 'Shadow Ninetales', 'Vigoroth'],
       losesTo: ['Tinkaton', 'Melmetal', 'Shadow Quagsire'],
     },
@@ -237,6 +246,7 @@ const PVPOKE = {
       { name: 'Mega Y', types: ['fire', 'flying'] },
     ],
     buddyKm: 3,
+    specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
     greatLeague: { rank: 258 },
     ultraLeague: { rank: 103 },
     shadow: {
@@ -248,16 +258,17 @@ const PVPOKE = {
     dex: 737,
     types: ['bug', 'electric'],
     buddyKm: 1,
+    specialMoves: ['Volt Switch'],
     greatLeague: {
       rank: 41,
-      moveset: ['Volt Switch *', 'X-Scissor', 'Discharge'],
+      moveset: { fast: ['Volt Switch'], charged: ['X-Scissor', 'Discharge'] },
       beats: ['Cramorant', 'Corviknight', 'Melmetal'],
       losesTo: ['Shadow Ninetales', 'Mimikyu', 'Altaria'],
     },
     shadow: {
       greatLeague: {
         rank: 47,
-        moveset: ['Volt Switch *', 'X-Scissor', 'Discharge'],
+        moveset: { fast: ['Volt Switch'], charged: ['X-Scissor', 'Discharge'] },
         beats: ['Corviknight', 'Cramorant', 'Melmetal'],
         losesTo: ['Shadow Ninetales', 'Shadow Sableye', 'Mimikyu'],
       },
@@ -274,6 +285,7 @@ const PVPOKE = {
     dex: 815,
     types: ['fire'],
     buddyKm: 3,
+    specialMoves: ['Blast Burn'],
     greatLeague: { rank: 618 },
     ultraLeague: { rank: 398 },
   },
@@ -281,9 +293,10 @@ const PVPOKE = {
     dex: 980,
     types: ['poison', 'ground'],
     buddyKm: 3,
+    specialMoves: ['Megahorn'],
     greatLeague: {
       rank: 17,
-      moveset: ['Poison Sting', 'Earthquake', 'Stone Edge'],
+      moveset: { fast: ['Poison Sting'], charged: ['Earthquake', 'Stone Edge'] },
       beats: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
       losesTo: ['Shadow Quagsire', 'Mimikyu', 'Vigoroth'],
     },
@@ -293,28 +306,29 @@ const PVPOKE = {
     dex: 823,
     types: ['flying', 'steel'],
     buddyKm: 1,
+    specialMoves: ['Iron Head', 'Air Cutter'],
     greatLeague: {
       rank: 7,
-      moveset: ['Sand Attack', 'Air Cutter *', 'Iron Head *'],
+      moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Iron Head'] },
       beats: ['Tinkaton', 'Shadow Quagsire', 'Vigoroth'],
       losesTo: ['Cramorant', 'Shadow Ninetales', 'Melmetal'],
     },
     ultraLeague: {
       rank: 2,
-      moveset: ['Sand Attack', 'Air Cutter *', 'Iron Head *'],
+      moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Iron Head'] },
       beats: ['Tinkaton', 'Snorlax', 'Mimikyu'],
       losesTo: ['Skeledirge', 'Blastoise', 'Shadow Dusknoir'],
     },
     shadow: {
       greatLeague: {
         rank: 10,
-        moveset: ['Sand Attack', 'Air Cutter *', 'Iron Head *'],
+        moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Iron Head'] },
         beats: ['Vigoroth', 'Tinkaton', 'Florges'],
         losesTo: ['Shadow Ninetales', 'Mimikyu', 'Altaria'],
       },
       ultraLeague: {
         rank: 4,
-        moveset: ['Sand Attack', 'Air Cutter *', 'Payback'],
+        moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Payback'] },
         beats: ['Empoleon', 'Tinkaton', 'Zygarde (Complete Forme)'],
         losesTo: ['Melmetal', 'Feraligatr', 'Skeledirge'],
       },
@@ -326,13 +340,13 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 4,
-      moveset: ['Peck', 'Dive', 'Fly'],
+      moveset: { fast: ['Peck'], charged: ['Dive', 'Fly'] },
       beats: ['Shadow Ninetales', 'Corviknight', 'Shadow Sableye'],
       losesTo: ['Stunfisk', 'Mimikyu', 'Galarian Corsola'],
     },
     ultraLeague: {
       rank: 18,
-      moveset: ['Peck', 'Dive', 'Fly'],
+      moveset: { fast: ['Peck'], charged: ['Dive', 'Fly'] },
       beats: ['Tinkaton', 'Snorlax', 'Florges'],
       losesTo: ['Giratina (Altered)', 'Melmetal', 'Feraligatr'],
     },
@@ -352,6 +366,7 @@ const PVPOKE = {
     dex: 724,
     types: ['grass', 'ghost'],
     buddyKm: 3,
+    specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 566 },
     ultraLeague: { rank: 217 },
   },
@@ -369,6 +384,7 @@ const PVPOKE = {
       { name: 'Mega', types: ['fire', 'psychic'] },
     ],
     buddyKm: 3,
+    specialMoves: ['Blast Burn'],
     greatLeague: { rank: 400 },
     ultraLeague: { rank: 274 },
     shadow: {
@@ -382,13 +398,13 @@ const PVPOKE = {
     buddyKm: 20,
     greatLeague: {
       rank: 33,
-      moveset: ['Low Kick', 'Psycho Boost', 'Thunderbolt'],
+      moveset: { fast: ['Low Kick'], charged: ['Psycho Boost', 'Thunderbolt'] },
       beats: ['Cramorant', 'Vigoroth', 'Melmetal'],
       losesTo: ['Mimikyu', 'Shadow Sableye', 'Altaria'],
     },
     ultraLeague: {
       rank: 42,
-      moveset: ['Low Kick', 'Psycho Boost', 'Thunderbolt'],
+      moveset: { fast: ['Low Kick'], charged: ['Psycho Boost', 'Thunderbolt'] },
       beats: ['Empoleon', 'Virizion', 'Corviknight'],
       losesTo: ['Mimikyu', 'Zygarde (Complete Forme)', 'Tinkaton'],
     },
@@ -399,13 +415,13 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 49,
-      moveset: ['Waterfall', 'Surf', 'Outrage'],
+      moveset: { fast: ['Waterfall'], charged: ['Surf', 'Outrage'] },
       beats: ['Shadow Quagsire', 'Stunfisk', 'Shadow Ninetales'],
       losesTo: ['Mimikyu', 'Tinkaton', 'Altaria'],
     },
     ultraLeague: {
       rank: 26,
-      moveset: ['Waterfall', 'Surf', 'Outrage'],
+      moveset: { fast: ['Waterfall'], charged: ['Surf', 'Outrage'] },
       beats: ['Tinkaton', 'Corviknight', 'Empoleon'],
       losesTo: ['Virizion', 'Mimikyu', 'Zygarde (Complete Forme)'],
     },
@@ -416,13 +432,13 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 74,
-      moveset: ['Shadow Claw', 'Sacred Sword', 'Iron Head'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Sacred Sword', 'Iron Head'] },
       beats: ['Florges', 'Melmetal', 'Corviknight'],
       losesTo: ['Shadow Ninetales', 'Shadow Sableye', 'Cramorant'],
     },
     ultraLeague: {
       rank: 95,
-      moveset: ['Shadow Claw', 'Sacred Sword', 'Iron Head'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Sacred Sword', 'Iron Head'] },
       beats: ['Empoleon', 'Tinkaton', 'Florges'],
       losesTo: ['Jellicent', 'Mimikyu', 'Skeledirge'],
     },
@@ -451,14 +467,14 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 76,
-      moveset: ['Hex', 'Ice Punch', 'Shadow Punch'],
+      moveset: { fast: ['Hex'], charged: ['Ice Punch', 'Shadow Punch'] },
       beats: ['Clodsire', 'Corviknight', 'Stunfisk'],
       losesTo: ['Shadow Sableye', 'Mimikyu', 'Shadow Ninetales'],
     },
     shadow: {
       greatLeague: {
         rank: 70,
-        moveset: ['Hex', 'Ice Punch', 'Shadow Punch'],
+        moveset: { fast: ['Hex'], charged: ['Ice Punch', 'Shadow Punch'] },
         beats: ['Stunfisk', 'Altaria', 'Florges'],
         losesTo: ['Tinkaton', 'Shadow Sableye', 'Mimikyu'],
       },
@@ -475,28 +491,29 @@ const PVPOKE = {
     dex: 395,
     types: ['water', 'steel'],
     buddyKm: 3,
+    specialMoves: ['Hydro Cannon'],
     greatLeague: {
       rank: 23,
-      moveset: ['Metal Sound', 'Hydro Cannon *', 'Drill Peck'],
+      moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
       beats: ['Corviknight', 'Shadow Ninetales', 'Cramorant'],
       losesTo: ['Melmetal', 'Mimikyu', 'Shadow Quagsire'],
     },
     ultraLeague: {
       rank: 8,
-      moveset: ['Metal Sound', 'Hydro Cannon *', 'Drill Peck'],
+      moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
       beats: ['Florges', 'Tinkaton', 'Corviknight'],
       losesTo: ['Snorlax', 'Melmetal', 'Feraligatr'],
     },
     shadow: {
       greatLeague: {
         rank: 24,
-        moveset: ['Metal Sound', 'Hydro Cannon *', 'Drill Peck'],
+        moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
         beats: ['Shadow Sableye', 'Vigoroth', 'Thievul'],
         losesTo: ['Melmetal', 'Altaria', 'Corviknight'],
       },
       ultraLeague: {
         rank: 9,
-        moveset: ['Metal Sound', 'Hydro Cannon *', 'Drill Peck'],
+        moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
         beats: ['Togekiss', 'Florges', 'Skeledirge'],
         losesTo: ['Virizion', 'Zygarde (Complete Forme)', 'Snorlax'],
       },
@@ -517,9 +534,10 @@ const PVPOKE = {
     dex: 22,
     types: ['normal', 'flying'],
     buddyKm: 1,
+    specialMoves: ['Twister'],
     greatLeague: {
       rank: 25,
-      moveset: ['Peck', 'Drill Peck', 'Drill Run'],
+      moveset: { fast: ['Peck'], charged: ['Drill Peck', 'Drill Run'] },
       beats: ['Shadow Sableye', 'Jellicent', 'Rillaboom'],
       losesTo: ['Mimikyu', 'Tinkaton', 'Corviknight'],
     },
@@ -529,28 +547,29 @@ const PVPOKE = {
     dex: 160,
     types: ['water'],
     buddyKm: 3,
+    specialMoves: ['Water Gun', 'Hydro Cannon'],
     greatLeague: {
       rank: 30,
-      moveset: ['Shadow Claw', 'Hydro Cannon *', 'Ice Beam'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
       beats: ['Altaria', 'Tinkaton', 'Corviknight'],
       losesTo: ['Shadow Ninetales', 'Vigoroth', 'Mimikyu'],
     },
     ultraLeague: {
       rank: 15,
-      moveset: ['Shadow Claw', 'Hydro Cannon *', 'Ice Beam'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
       beats: ['Tinkaton', 'Florges', 'Zygarde (Complete Forme)'],
       losesTo: ['Melmetal', 'Snorlax', 'Giratina (Altered)'],
     },
     shadow: {
       greatLeague: {
         rank: 60,
-        moveset: ['Shadow Claw', 'Hydro Cannon *', 'Ice Beam'],
+        moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
         beats: ['Shadow Sableye', 'Annihilape', 'Altaria'],
         losesTo: ['Melmetal', 'Shadow Ninetales', 'Cramorant'],
       },
       ultraLeague: {
         rank: 14,
-        moveset: ['Shadow Claw', 'Hydro Cannon *', 'Ice Beam'],
+        moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
         beats: ['Skeledirge', 'Zygarde (Complete Forme)', 'Corviknight'],
         losesTo: ['Snorlax', 'Virizion', 'Mimikyu'],
       },
@@ -560,6 +579,7 @@ const PVPOKE = {
     dex: 136,
     types: ['fire'],
     buddyKm: 5,
+    specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
     greatLeague: { rank: 690 },
     ultraLeague: { rank: 586 },
   },
@@ -567,15 +587,16 @@ const PVPOKE = {
     dex: 671,
     types: ['fairy'],
     buddyKm: 3,
+    specialMoves: ['Chilling Water'],
     greatLeague: {
       rank: 11,
-      moveset: ['Fairy Wind', 'Chilling Water *', 'Moonblast'],
+      moveset: { fast: ['Fairy Wind'], charged: ['Chilling Water', 'Moonblast'] },
       beats: ['Altaria', 'Thievul', 'Shadow Sableye'],
       losesTo: ['Tinkaton', 'Mimikyu', 'Cramorant'],
     },
     ultraLeague: {
       rank: 12,
-      moveset: ['Fairy Wind', 'Chilling Water *', 'Disarming Voice'],
+      moveset: { fast: ['Fairy Wind'], charged: ['Chilling Water', 'Disarming Voice'] },
       beats: ['Giratina (Altered)', 'Skeledirge', 'Zygarde (Complete Forme)'],
       losesTo: ['Empoleon', 'Tinkaton', 'Corviknight'],
     },
@@ -586,26 +607,26 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 53,
-      moveset: ['Volt Switch', 'Sand Tomb', 'Rock Tomb'],
+      moveset: { fast: ['Volt Switch'], charged: ['Sand Tomb', 'Rock Tomb'] },
       beats: ['Cramorant', 'Tinkaton', 'Corviknight'],
       losesTo: ['Shadow Ninetales', 'Altaria', 'Shadow Quagsire'],
     },
     ultraLeague: {
       rank: 31,
-      moveset: ['Volt Switch', 'Rock Tomb', 'Sand Tomb'],
+      moveset: { fast: ['Volt Switch'], charged: ['Rock Tomb', 'Sand Tomb'] },
       beats: ['Empoleon', 'Corviknight', 'Snorlax'],
       losesTo: ['Zygarde (Complete Forme)', 'Virizion', 'Skeledirge'],
     },
     shadow: {
       greatLeague: {
         rank: 48,
-        moveset: ['Volt Switch', 'Sand Tomb', 'Rock Tomb'],
+        moveset: { fast: ['Volt Switch'], charged: ['Sand Tomb', 'Rock Tomb'] },
         beats: ['Cramorant', 'Tinkaton', 'Corviknight'],
         losesTo: ['Shadow Ninetales', 'Altaria', 'Shadow Sableye'],
       },
       ultraLeague: {
         rank: 39,
-        moveset: ['Volt Switch', 'Rock Tomb', 'Sand Tomb'],
+        moveset: { fast: ['Volt Switch'], charged: ['Rock Tomb', 'Sand Tomb'] },
         beats: ['Tinkaton', 'Empoleon', 'Florges'],
         losesTo: ['Skeledirge', 'Zygarde (Complete Forme)', 'Virizion'],
       },
@@ -617,7 +638,7 @@ const PVPOKE = {
     buddyKm: 1,
     greatLeague: {
       rank: 43,
-      moveset: ['Sucker Punch', 'Swift', 'Trailblaze'],
+      moveset: { fast: ['Sucker Punch'], charged: ['Swift', 'Trailblaze'] },
       beats: ['Shadow Quagsire', 'Galarian Corsola', 'Shadow Sableye'],
       losesTo: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
     },
@@ -629,7 +650,7 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 8,
-      moveset: ['Astonish', 'Night Shade', 'Power Gem'],
+      moveset: { fast: ['Astonish'], charged: ['Night Shade', 'Power Gem'] },
       beats: ['Cramorant', 'Altaria', 'Shadow Ninetales'],
       losesTo: ['Shadow Sableye', 'Mimikyu', 'Tinkaton'],
     },
@@ -640,13 +661,13 @@ const PVPOKE = {
     buddyKm: 20,
     greatLeague: {
       rank: 71,
-      moveset: ['Sucker Punch', 'Fly', 'Brave Bird'],
+      moveset: { fast: ['Sucker Punch'], charged: ['Fly', 'Brave Bird'] },
       beats: ['Thievul', 'Shadow Ninetales', 'Shadow Sableye'],
       losesTo: ['Cramorant', 'Tinkaton', 'Melmetal'],
     },
     ultraLeague: {
       rank: 13,
-      moveset: ['Sucker Punch', 'Fly', 'Brave Bird'],
+      moveset: { fast: ['Sucker Punch'], charged: ['Fly', 'Brave Bird'] },
       beats: ['Feraligatr', 'Empoleon', 'Virizion'],
       losesTo: ['Tinkaton', 'Florges', 'Melmetal'],
     },
@@ -657,7 +678,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 86,
-      moveset: ['Mud Shot', 'Rock Slide', 'Earthquake'],
+      moveset: { fast: ['Mud Shot'], charged: ['Rock Slide', 'Earthquake'] },
       beats: ['Melmetal', 'Tinkaton', 'Corviknight'],
       losesTo: ['Shadow Quagsire', 'Cramorant', 'Shadow Sableye'],
     },
@@ -670,6 +691,7 @@ const PVPOKE = {
       { name: 'Mega', types: ['psychic', 'fairy'] },
     ],
     buddyKm: 5,
+    specialMoves: ['Synchronoise'],
     greatLeague: { rank: 986 },
     ultraLeague: { rank: 648 },
     shadow: {
@@ -681,6 +703,7 @@ const PVPOKE = {
     dex: 526,
     types: ['rock'],
     buddyKm: 3,
+    specialMoves: ['Meteor Beam'],
     greatLeague: { rank: 594 },
     ultraLeague: { rank: 362 },
     shadow: {
@@ -712,13 +735,13 @@ const PVPOKE = {
     buddyKm: 20,
     greatLeague: {
       rank: 44,
-      moveset: ['Dragon Tail', 'Brutal Swing', 'Sludge Bomb'],
+      moveset: { fast: ['Dragon Tail'], charged: ['Brutal Swing', 'Sludge Bomb'] },
       beats: ['Shadow Ninetales', 'Shadow Sableye', 'Shadow Quagsire'],
       losesTo: ['Mimikyu', 'Tinkaton', 'Melmetal'],
     },
     ultraLeague: {
       rank: 19,
-      moveset: ['Dragon Tail', 'Brutal Swing', 'Sludge Bomb'],
+      moveset: { fast: ['Dragon Tail'], charged: ['Brutal Swing', 'Sludge Bomb'] },
       beats: ['Jellicent', 'Skeledirge', 'Feraligatr'],
       losesTo: ['Florges', 'Mimikyu', 'Tinkaton'],
     },
@@ -730,10 +753,11 @@ const PVPOKE = {
       { name: 'Mega', types: ['water', 'dark'] },
     ],
     buddyKm: 1,
+    specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
     greatLeague: { rank: 276 },
     ultraLeague: {
       rank: 75,
-      moveset: ['Dragon Breath', 'Aqua Tail *', 'Twister'],
+      moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
       beats: ['Zygarde (Complete Forme)', 'Feraligatr', 'Corviknight'],
       losesTo: ['Mimikyu', 'Florges', 'Snorlax'],
     },
@@ -741,7 +765,7 @@ const PVPOKE = {
       greatLeague: { rank: 259 },
       ultraLeague: {
         rank: 67,
-        moveset: ['Dragon Breath', 'Aqua Tail *', 'Twister'],
+        moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
         beats: ['Blastoise', 'Zygarde (Complete Forme)', 'Corviknight'],
         losesTo: ['Mimikyu', 'Empoleon', 'Feraligatr'],
       },
@@ -771,26 +795,26 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 50,
-      moveset: ['Sand Attack', 'Weather Ball (Rock)', 'Earth Power'],
+      moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
       beats: ['Tinkaton', 'Melmetal', 'Galarian Corsola'],
       losesTo: ['Mimikyu', 'Cramorant', 'Corviknight'],
     },
     ultraLeague: {
       rank: 96,
-      moveset: ['Sand Attack', 'Weather Ball (Rock)', 'Earth Power'],
+      moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
       beats: ['Skeledirge', 'Melmetal', 'Tinkaton'],
       losesTo: ['Corviknight', 'Florges', 'Snorlax'],
     },
     shadow: {
       greatLeague: {
         rank: 61,
-        moveset: ['Sand Attack', 'Weather Ball (Rock)', 'Earth Power'],
+        moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
         beats: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
         losesTo: ['Mimikyu', 'Altaria', 'Vigoroth'],
       },
       ultraLeague: {
         rank: 91,
-        moveset: ['Sand Attack', 'Weather Ball (Rock)', 'Earth Power'],
+        moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
         beats: ['Tinkaton', 'Skeledirge', 'Melmetal'],
         losesTo: ['Empoleon', 'Zygarde (Complete Forme)', 'Florges'],
       },
@@ -802,7 +826,7 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 34,
-      moveset: ['Thunder Shock', 'Wild Charge', 'Energy Ball'],
+      moveset: { fast: ['Thunder Shock'], charged: ['Wild Charge', 'Energy Ball'] },
       beats: ['Shadow Quagsire', 'Melmetal', 'Corviknight'],
       losesTo: ['Shadow Ninetales', 'Shadow Sableye', 'Mimikyu'],
     },
@@ -812,6 +836,7 @@ const PVPOKE = {
     dex: 818,
     types: ['water'],
     buddyKm: 3,
+    specialMoves: ['Hydro Cannon'],
     greatLeague: { rank: 861 },
     ultraLeague: { rank: 710 },
   },
@@ -821,13 +846,13 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 22,
-      moveset: ['Hex', 'Surf', 'Shadow Ball'],
+      moveset: { fast: ['Hex'], charged: ['Surf', 'Shadow Ball'] },
       beats: ['Tinkaton', 'Shadow Quagsire', 'Altaria'],
       losesTo: ['Shadow Sableye', 'Mimikyu', 'Vigoroth'],
     },
     ultraLeague: {
       rank: 16,
-      moveset: ['Hex', 'Surf', 'Shadow Ball'],
+      moveset: { fast: ['Hex'], charged: ['Surf', 'Shadow Ball'] },
       beats: ['Blastoise', 'Empoleon', 'Skeledirge'],
       losesTo: ['Mimikyu', 'Zygarde (Complete Forme)', 'Corviknight'],
     },
@@ -836,9 +861,10 @@ const PVPOKE = {
     dex: 189,
     types: ['grass', 'flying'],
     buddyKm: 3,
+    specialMoves: ['Acrobatics'],
     greatLeague: {
       rank: 55,
-      moveset: ['Fairy Wind', 'Energy Ball', 'Acrobatics *'],
+      moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
       beats: ['Shadow Quagsire', 'Shadow Sableye', 'Mimikyu'],
       losesTo: ['Shadow Ninetales', 'Melmetal', 'Cramorant'],
     },
@@ -846,7 +872,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 81,
-        moveset: ['Fairy Wind', 'Energy Ball', 'Acrobatics *'],
+        moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
         beats: ['Shadow Quagsire', 'Altaria', 'Shadow Sableye'],
         losesTo: ['Shadow Ninetales', 'Corviknight', 'Melmetal'],
       },
@@ -871,28 +897,29 @@ const PVPOKE = {
     dex: 131,
     types: ['water', 'ice'],
     buddyKm: 5,
+    specialMoves: ['Ice Shard', 'Dragon Pulse', 'Ice Beam'],
     greatLeague: {
       rank: 39,
-      moveset: ['Psywave', 'Sparkling Aria', 'Ice Beam *'],
+      moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
       beats: ['Altaria', 'Shadow Ninetales', 'Mimikyu'],
       losesTo: ['Shadow Sableye', 'Melmetal', 'Vigoroth'],
     },
     ultraLeague: {
       rank: 22,
-      moveset: ['Psywave', 'Sparkling Aria', 'Ice Beam *'],
+      moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
       beats: ['Zygarde (Complete Forme)', 'Mimikyu', 'Virizion'],
       losesTo: ['Melmetal', 'Corviknight', 'Tinkaton'],
     },
     shadow: {
       greatLeague: {
         rank: 63,
-        moveset: ['Psywave', 'Sparkling Aria', 'Ice Beam *'],
+        moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
         beats: ['Altaria', 'Vigoroth', 'Florges'],
         losesTo: ['Melmetal', 'Shadow Quagsire', 'Mimikyu'],
       },
       ultraLeague: {
         rank: 23,
-        moveset: ['Psywave', 'Sparkling Aria', 'Ice Beam *'],
+        moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
         beats: ['Zygarde (Complete Forme)', 'Tinkaton', 'Corviknight'],
         losesTo: ['Galarian Moltres', 'Melmetal', 'Jellicent'],
       },
@@ -902,6 +929,7 @@ const PVPOKE = {
     dex: 108,
     types: ['normal'],
     buddyKm: 3,
+    specialMoves: ['Body Slam'],
     greatLeague: { rank: 170 },
   },
   lokix: {
@@ -915,6 +943,7 @@ const PVPOKE = {
     dex: 68,
     types: ['fighting'],
     buddyKm: 3,
+    specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
     greatLeague: { rank: 245 },
     ultraLeague: { rank: 242 },
     shadow: {
@@ -931,26 +960,26 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 42,
-      moveset: ['Psywave', 'Superpower', 'Foul Play'],
+      moveset: { fast: ['Psywave'], charged: ['Superpower', 'Foul Play'] },
       beats: ['Melmetal', 'Corviknight', 'Shadow Ninetales'],
       losesTo: ['Tinkaton', 'Mimikyu', 'Altaria'],
     },
     ultraLeague: {
       rank: 62,
-      moveset: ['Psywave', 'Superpower', 'Foul Play'],
+      moveset: { fast: ['Psywave'], charged: ['Superpower', 'Foul Play'] },
       beats: ['Snorlax', 'Jellicent', 'Melmetal'],
       losesTo: ['Corviknight', 'Florges', 'Zygarde (Complete Forme)'],
     },
     shadow: {
       greatLeague: {
         rank: 45,
-        moveset: ['Psywave', 'Foul Play', 'Superpower'],
+        moveset: { fast: ['Psywave'], charged: ['Foul Play', 'Superpower'] },
         beats: ['Shadow Quagsire', 'Melmetal', 'Shadow Ninetales'],
         losesTo: ['Shadow Sableye', 'Tinkaton', 'Mimikyu'],
       },
       ultraLeague: {
         rank: 54,
-        moveset: ['Psywave', 'Foul Play', 'Superpower'],
+        moveset: { fast: ['Psywave'], charged: ['Foul Play', 'Superpower'] },
         beats: ['Skeledirge', 'Snorlax', 'Virizion'],
         losesTo: ['Tinkaton', 'Florges', 'Mimikyu'],
       },
@@ -962,7 +991,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 51,
-      moveset: ['Snarl', 'Dark Pulse', 'Shadow Ball'],
+      moveset: { fast: ['Snarl'], charged: ['Dark Pulse', 'Shadow Ball'] },
       beats: ['Shadow Quagsire', 'Corviknight', 'Mimikyu'],
       losesTo: ['Thievul', 'Melmetal', 'Tinkaton'],
     },
@@ -974,7 +1003,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 26,
-      moveset: ['Wing Attack', 'Twister', 'Water Pulse'],
+      moveset: { fast: ['Wing Attack'], charged: ['Twister', 'Water Pulse'] },
       beats: ['Shadow Ninetales', 'Altaria', 'Shadow Quagsire'],
       losesTo: ['Mimikyu', 'Vigoroth', 'Melmetal'],
     },
@@ -986,7 +1015,7 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 19,
-      moveset: ['Mud Slap', 'Bone Club', 'Rock Slide'],
+      moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
       beats: ['Tinkaton', 'Melmetal', 'Shadow Ninetales'],
       losesTo: ['Corviknight', 'Altaria', 'Shadow Quagsire'],
     },
@@ -994,7 +1023,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 77,
-        moveset: ['Mud Slap', 'Bone Club', 'Rock Slide'],
+        moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
         beats: ['Clodsire', 'Tinkaton', 'Morpeko (Full Belly)'],
         losesTo: ['Cramorant', 'Shadow Ninetales', 'Mimikyu'],
       },
@@ -1010,7 +1039,7 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 54,
-      moveset: ['Psycho Cut', 'Ice Punch', 'Dynamic Punch'],
+      moveset: { fast: ['Psycho Cut'], charged: ['Ice Punch', 'Dynamic Punch'] },
       beats: ['Vigoroth', 'Thievul', 'Altaria'],
       losesTo: ['Mimikyu', 'Shadow Sableye', 'Cramorant'],
     },
@@ -1019,15 +1048,16 @@ const PVPOKE = {
     dex: 809,
     types: ['steel'],
     buddyKm: 20,
+    specialMoves: ['Double Iron Bash'],
     greatLeague: {
       rank: 1,
-      moveset: ['Thunder Shock', 'Double Iron Bash *', 'Dynamic Punch'],
+      moveset: { fast: ['Thunder Shock'], charged: ['Double Iron Bash', 'Dynamic Punch'] },
       beats: ['Mimikyu', 'Corviknight', 'Cramorant'],
       losesTo: ['Shadow Ninetales', 'Shadow Quagsire', 'Shadow Sableye'],
     },
     ultraLeague: {
       rank: 5,
-      moveset: ['Thunder Shock', 'Double Iron Bash *', 'Dynamic Punch'],
+      moveset: { fast: ['Thunder Shock'], charged: ['Double Iron Bash', 'Dynamic Punch'] },
       beats: ['Florges', 'Empoleon', 'Tinkaton'],
       losesTo: ['Skeledirge', 'Zygarde (Complete Forme)', 'Virizion'],
     },
@@ -1036,6 +1066,7 @@ const PVPOKE = {
     dex: 908,
     types: ['grass', 'dark'],
     buddyKm: 3,
+    specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 473 },
     ultraLeague: { rank: 462 },
   },
@@ -1045,13 +1076,13 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 6,
-      moveset: ['Shadow Claw', 'Shadow Sneak', 'Play Rough'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Shadow Sneak', 'Play Rough'] },
       beats: ['Altaria', 'Shadow Ninetales', 'Tinkaton'],
       losesTo: ['Melmetal', 'Vigoroth', 'Morpeko (Full Belly)'],
     },
     ultraLeague: {
       rank: 10,
-      moveset: ['Shadow Claw', 'Shadow Sneak', 'Play Rough'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Shadow Sneak', 'Play Rough'] },
       beats: ['Virizion', 'Jellicent', 'Tinkaton'],
       losesTo: ['Snorlax', 'Corviknight', 'Melmetal'],
     },
@@ -1060,6 +1091,7 @@ const PVPOKE = {
     dex: 146,
     types: ['fire', 'flying'],
     buddyKm: 20,
+    specialMoves: ['Sky Attack'],
     greatLeague: { rank: 668 },
     ultraLeague: { rank: 463 },
     shadow: {
@@ -1071,28 +1103,29 @@ const PVPOKE = {
     dex: 38,
     types: ['fire'],
     buddyKm: 3,
+    specialMoves: ['Ember', 'Fire Blast', 'Flamethrower', 'Energy Ball'],
     greatLeague: {
       rank: 13,
-      moveset: ['Ember *', 'Weather Ball (Fire)', 'Energy Ball *'],
+      moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
       beats: ['Corviknight', 'Melmetal', 'Tinkaton'],
       losesTo: ['Cramorant', 'Vigoroth', 'Altaria'],
     },
     ultraLeague: {
       rank: 34,
-      moveset: ['Ember *', 'Weather Ball (Fire)', 'Energy Ball *'],
+      moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
       beats: ['Virizion', 'Corviknight', 'Tinkaton'],
       losesTo: ['Zygarde (Complete Forme)', 'Snorlax', 'Feraligatr'],
     },
     shadow: {
       greatLeague: {
         rank: 3,
-        moveset: ['Ember *', 'Weather Ball (Fire)', 'Energy Ball *'],
+        moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
         beats: ['Melmetal', 'Corviknight', 'Florges'],
         losesTo: ['Mimikyu', 'Cramorant', 'Altaria'],
       },
       ultraLeague: {
         rank: 64,
-        moveset: ['Ember *', 'Weather Ball (Fire)', 'Energy Ball *'],
+        moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
         beats: ['Virizion', 'Melmetal', 'Tinkaton'],
         losesTo: ['Feraligatr', 'Zygarde (Complete Forme)', 'Snorlax'],
       },
@@ -1116,9 +1149,10 @@ const PVPOKE = {
     dex: 195,
     types: ['water', 'ground'],
     buddyKm: 3,
+    specialMoves: ['Aqua Tail'],
     greatLeague: {
       rank: 14,
-      moveset: ['Mud Shot', 'Aqua Tail *', 'Stone Edge'],
+      moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
       beats: ['Melmetal', 'Tinkaton', 'Shadow Sableye'],
       losesTo: ['Mimikyu', 'Shadow Ninetales', 'Altaria'],
     },
@@ -1126,7 +1160,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 12,
-        moveset: ['Mud Shot', 'Aqua Tail *', 'Stone Edge'],
+        moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
         beats: ['Stunfisk', 'Melmetal', 'Tinkaton'],
         losesTo: ['Mimikyu', 'Cramorant', 'Shadow Sableye'],
       },
@@ -1137,6 +1171,7 @@ const PVPOKE = {
     dex: 914,
     types: ['water', 'fighting'],
     buddyKm: 3,
+    specialMoves: ['Hydro Cannon'],
     greatLeague: { rank: 283 },
     ultraLeague: { rank: 201 },
   },
@@ -1144,6 +1179,7 @@ const PVPOKE = {
     dex: 464,
     types: ['ground', 'rock'],
     buddyKm: 3,
+    specialMoves: ['Rock Wrecker'],
     greatLeague: { rank: 679 },
     ultraLeague: { rank: 477 },
     shadow: {
@@ -1155,15 +1191,16 @@ const PVPOKE = {
     dex: 812,
     types: ['grass'],
     buddyKm: 3,
+    specialMoves: ['Frenzy Plant'],
     greatLeague: {
       rank: 35,
-      moveset: ['Scratch', 'Drum Beating', 'Earth Power'],
+      moveset: { fast: ['Scratch'], charged: ['Drum Beating', 'Earth Power'] },
       beats: ['Shadow Quagsire', 'Stunfisk', 'Melmetal'],
       losesTo: ['Shadow Ninetales', 'Altaria', 'Mimikyu'],
     },
     ultraLeague: {
       rank: 21,
-      moveset: ['Scratch', 'Drum Beating', 'Earth Power'],
+      moveset: { fast: ['Scratch'], charged: ['Drum Beating', 'Earth Power'] },
       beats: ['Florges', 'Zygarde (Complete Forme)', 'Empoleon'],
       losesTo: ['Skeledirge', 'Giratina (Altered)', 'Corviknight'],
     },
@@ -1177,14 +1214,14 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 36,
-      moveset: ['Shadow Claw', 'Foul Play', 'Power Gem'],
+      moveset: { fast: ['Shadow Claw'], charged: ['Foul Play', 'Power Gem'] },
       beats: ['Galarian Corsola', 'Shadow Ninetales', 'Corviknight'],
       losesTo: ['Tinkaton', 'Altaria', 'Shadow Sableye'],
     },
     shadow: {
       greatLeague: {
         rank: 18,
-        moveset: ['Shadow Claw', 'Foul Play', 'Drain Punch'],
+        moveset: { fast: ['Shadow Claw'], charged: ['Foul Play', 'Drain Punch'] },
         beats: ['Galarian Corsola', 'Shadow Quagsire', 'Melmetal'],
         losesTo: ['Cramorant', 'Tinkaton', 'Altaria'],
       },
@@ -1194,28 +1231,29 @@ const PVPOKE = {
     dex: 143,
     types: ['normal'],
     buddyKm: 5,
+    specialMoves: ['Yawn'],
     greatLeague: {
       rank: 27,
-      moveset: ['Psywave', 'Body Slam', 'Earthquake'],
+      moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Earthquake'] },
       beats: ['Galarian Corsola', 'Florges', 'Mimikyu'],
       losesTo: ['Shadow Sableye', 'Melmetal', 'Shadow Ninetales'],
     },
     ultraLeague: {
       rank: 11,
-      moveset: ['Psywave', 'Body Slam', 'Earthquake'],
+      moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Earthquake'] },
       beats: ['Empoleon', 'Mimikyu', 'Skeledirge'],
       losesTo: ['Corviknight', 'Zygarde (Complete Forme)', 'Virizion'],
     },
     shadow: {
       greatLeague: {
         rank: 40,
-        moveset: ['Psywave', 'Body Slam', 'Superpower'],
+        moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Superpower'] },
         beats: ['Melmetal', 'Shadow Ninetales', 'Vigoroth'],
         losesTo: ['Shadow Sableye', 'Tinkaton', 'Corviknight'],
       },
       ultraLeague: {
         rank: 3,
-        moveset: ['Psywave', 'Body Slam', 'Earthquake'],
+        moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Earthquake'] },
         beats: ['Tinkaton', 'Mimikyu', 'Empoleon'],
         losesTo: ['Melmetal', 'Virizion', 'Galarian Moltres'],
       },
@@ -1228,6 +1266,7 @@ const PVPOKE = {
       { name: 'Mega', types: ['fighting', 'flying'] },
     ],
     buddyKm: 1,
+    specialMoves: ['Gust'],
     greatLeague: { rank: 710 },
     ultraLeague: { rank: 507 },
     shadow: {
@@ -1241,7 +1280,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 20,
-      moveset: ['Thunder Shock', 'Mud Bomb', 'Discharge'],
+      moveset: { fast: ['Thunder Shock'], charged: ['Mud Bomb', 'Discharge'] },
       beats: ['Cramorant', 'Altaria', 'Tinkaton'],
       losesTo: ['Shadow Quagsire', 'Mimikyu', 'Shadow Ninetales'],
     },
@@ -1254,28 +1293,29 @@ const PVPOKE = {
       { name: 'Mega', types: ['water', 'ground'] },
     ],
     buddyKm: 3,
+    specialMoves: ['Hydro Cannon'],
     greatLeague: {
       rank: 78,
-      moveset: ['Mud Shot', 'Hydro Cannon *', 'Earthquake'],
+      moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
       beats: ['Shadow Ninetales', 'Shadow Quagsire', 'Melmetal'],
       losesTo: ['Shadow Sableye', 'Altaria', 'Mimikyu'],
     },
     ultraLeague: {
       rank: 48,
-      moveset: ['Mud Shot', 'Hydro Cannon *', 'Earthquake'],
+      moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
       beats: ['Tinkaton', 'Empoleon', 'Snorlax'],
       losesTo: ['Virizion', 'Florges', 'Jellicent'],
     },
     shadow: {
       greatLeague: {
         rank: 79,
-        moveset: ['Mud Shot', 'Hydro Cannon *', 'Earthquake'],
+        moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
         beats: ['Tinkaton', 'Shadow Ninetales', 'Shadow Quagsire'],
         losesTo: ['Cramorant', 'Thievul', 'Shadow Sableye'],
       },
       ultraLeague: {
         rank: 89,
-        moveset: ['Mud Shot', 'Hydro Cannon *', 'Earthquake'],
+        moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
         beats: ['Skeledirge', 'Melmetal', 'Tinkaton'],
         losesTo: ['Mimikyu', 'Snorlax', 'Florges'],
       },
@@ -1285,9 +1325,10 @@ const PVPOKE = {
     dex: 828,
     types: ['dark'],
     buddyKm: 1,
+    specialMoves: ['Icy Wind'],
     greatLeague: {
       rank: 15,
-      moveset: ['Sucker Punch', 'Night Slash', 'Icy Wind *'],
+      moveset: { fast: ['Sucker Punch'], charged: ['Night Slash', 'Icy Wind'] },
       beats: ['Galarian Corsola', 'Altaria', 'Shadow Ninetales'],
       losesTo: ['Tinkaton', 'Mimikyu', 'Cramorant'],
     },
@@ -1297,15 +1338,16 @@ const PVPOKE = {
     dex: 959,
     types: ['fairy', 'steel'],
     buddyKm: 3,
+    specialMoves: ['Gigaton Hammer'],
     greatLeague: {
       rank: 5,
-      moveset: ['Fairy Wind', 'Gigaton Hammer *', 'Bulldoze'],
+      moveset: { fast: ['Fairy Wind'], charged: ['Gigaton Hammer', 'Bulldoze'] },
       beats: ['Thievul', 'Shadow Sableye', 'Altaria'],
       losesTo: ['Corviknight', 'Mimikyu', 'Cramorant'],
     },
     ultraLeague: {
       rank: 1,
-      moveset: ['Fairy Wind', 'Gigaton Hammer *', 'Bulldoze'],
+      moveset: { fast: ['Fairy Wind'], charged: ['Gigaton Hammer', 'Bulldoze'] },
       beats: ['Florges', 'Giratina (Altered)', 'Shadow Dusknoir'],
       losesTo: ['Corviknight', 'Mimikyu', 'Feraligatr'],
     },
@@ -1314,6 +1356,7 @@ const PVPOKE = {
     dex: 389,
     types: ['grass', 'ground'],
     buddyKm: 3,
+    specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 551 },
     ultraLeague: { rank: 270 },
     shadow: {
@@ -1343,6 +1386,7 @@ const PVPOKE = {
     dex: 763,
     types: ['grass'],
     buddyKm: 3,
+    specialMoves: ['High Jump Kick'],
     greatLeague: { rank: 997 },
     ultraLeague: { rank: 624 },
   },
@@ -1361,9 +1405,10 @@ const PVPOKE = {
     dex: 197,
     types: ['dark'],
     buddyKm: 5,
+    specialMoves: ['Last Resort', 'Psychic'],
     greatLeague: {
       rank: 28,
-      moveset: ['Snarl', 'Dark Pulse', 'Last Resort *'],
+      moveset: { fast: ['Snarl'], charged: ['Dark Pulse', 'Last Resort'] },
       beats: ['Galarian Corsola', 'Mimikyu', 'Corviknight'],
       losesTo: ['Tinkaton', 'Cramorant', 'Melmetal'],
     },
@@ -1376,6 +1421,7 @@ const PVPOKE = {
       { name: 'Mega', types: ['grass', 'poison'] },
     ],
     buddyKm: 3,
+    specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 419 },
     ultraLeague: { rank: 211 },
     shadow: {
@@ -1389,7 +1435,7 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 21,
-      moveset: ['Scratch', 'Body Slam', 'Bulldoze'],
+      moveset: { fast: ['Scratch'], charged: ['Body Slam', 'Bulldoze'] },
       beats: ['Shadow Ninetales', 'Florges', 'Mimikyu'],
       losesTo: ['Altaria', 'Corviknight', 'Shadow Sableye'],
     },
@@ -1397,7 +1443,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 37,
-        moveset: ['Scratch', 'Brick Break', 'Rock Slide'],
+        moveset: { fast: ['Scratch'], charged: ['Brick Break', 'Rock Slide'] },
         beats: ['Altaria', 'Shadow Quagsire', 'Corviknight'],
         losesTo: ['Tinkaton', 'Cramorant', 'Shadow Sableye'],
       },

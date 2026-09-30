@@ -114,7 +114,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .type:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .type-multiple{font-size:.7em}
 .type-label{height:auto;padding:3px 8px;gap:4px;font:600 .8rem/1.2 Barlow,sans-serif;cursor:default}
-.type-tooltip{position:absolute;z-index:20;padding:4px 8px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.2 Barlow,sans-serif;white-space:nowrap;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.type-tooltip{position:absolute;z-index:20;max-width:260px;padding:5px 9px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.3 Barlow,sans-serif;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .mon-types{margin:2px 0 4px;display:flex;flex-wrap:wrap;gap:4px}
 .mon-weak{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.85rem}
 .mon-weak-label{color:var(--muted)}
@@ -133,3 +133,9 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .form-tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .form-tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
 .form-panel .mon-types{margin:0 0 2px}
+
+/* Mozdulatok: Fast / Charged, speciálisnál ⚠️ */
+.moves{display:flex;flex-wrap:wrap;gap:4px 10px}
+.move{display:inline-flex;align-items:center;gap:3px}
+.move-warning{appearance:none;margin:0;padding:0 2px;border:0;background:none;font-size:.85rem;line-height:1;cursor:pointer}
+.move-warning:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-radius:4px}
