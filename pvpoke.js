@@ -2,6 +2,7 @@
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
+// maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })
@@ -29,6 +30,7 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['psychic'] },
     ],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
     greatLeague: { rank: 919 },
@@ -222,6 +224,7 @@ const PVPOKE = {
   blissey: {
     dex: 242,
     types: ['normal'],
+    maxForms: ['Dynamax'],
     buddyKm: 5,
     specialMoves: ['Wild Charge'],
     greatLeague: { rank: 928 },
@@ -246,6 +249,7 @@ const PVPOKE = {
       { name: 'Mega X', types: ['fire', 'dragon'] },
       { name: 'Mega Y', types: ['fire', 'flying'] },
     ],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 3,
     specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
     greatLeague: { rank: 258 },
@@ -285,6 +289,7 @@ const PVPOKE = {
   cinderace: {
     dex: 815,
     types: ['fire'],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
     greatLeague: { rank: 618 },
@@ -306,6 +311,7 @@ const PVPOKE = {
   corviknight: {
     dex: 823,
     types: ['flying', 'steel'],
+    maxForms: ['Dynamax'],
     buddyKm: 1,
     specialMoves: ['Iron Head', 'Air Cutter'],
     greatLeague: {
@@ -355,6 +361,7 @@ const PVPOKE = {
   darmanitan_standard: {
     dex: 555,
     types: ['fire'],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     greatLeague: { rank: 820 },
     ultraLeague: { rank: 531 },
@@ -458,6 +465,7 @@ const PVPOKE = {
   dubwool: {
     dex: 832,
     types: ['normal'],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     greatLeague: { rank: 161 },
     ultraLeague: { rank: 359 },
@@ -523,6 +531,7 @@ const PVPOKE = {
   excadrill: {
     dex: 530,
     types: ['ground', 'steel'],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     greatLeague: { rank: 534 },
     ultraLeague: { rank: 437 },
@@ -579,6 +588,7 @@ const PVPOKE = {
   flareon: {
     dex: 136,
     types: ['fire'],
+    maxForms: ['Dynamax'],
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
     greatLeague: { rank: 690 },
@@ -691,6 +701,7 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['psychic', 'fairy'] },
     ],
+    maxForms: ['Dynamax'],
     buddyKm: 5,
     specialMoves: ['Synchronoise'],
     greatLeague: { rank: 986 },
@@ -703,6 +714,7 @@ const PVPOKE = {
   gigalith: {
     dex: 526,
     types: ['rock'],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     specialMoves: ['Meteor Beam'],
     greatLeague: { rank: 594 },
@@ -726,6 +738,7 @@ const PVPOKE = {
   greedent: {
     dex: 820,
     types: ['normal'],
+    maxForms: ['Dynamax'],
     buddyKm: 1,
     greatLeague: { rank: 184 },
     ultraLeague: { rank: 148 },
@@ -753,6 +766,7 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['water', 'dark'] },
     ],
+    maxForms: ['Dynamax'],
     buddyKm: 1,
     specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
     greatLeague: { rank: 276 },
@@ -786,6 +800,7 @@ const PVPOKE = {
   hatterene: {
     dex: 858,
     types: ['psychic', 'fairy'],
+    maxForms: ['Dynamax'],
     buddyKm: 5,
     greatLeague: { rank: 723 },
     ultraLeague: { rank: 495 },
@@ -836,6 +851,7 @@ const PVPOKE = {
   inteleon: {
     dex: 818,
     types: ['water'],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: { rank: 861 },
@@ -897,6 +913,7 @@ const PVPOKE = {
   lapras: {
     dex: 131,
     types: ['water', 'ice'],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 5,
     specialMoves: ['Ice Shard', 'Dragon Pulse', 'Ice Beam'],
     greatLeague: {
@@ -943,6 +960,7 @@ const PVPOKE = {
   machamp: {
     dex: 68,
     types: ['fighting'],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 3,
     specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
     greatLeague: { rank: 245 },
@@ -958,6 +976,7 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['dark', 'psychic'] },
     ],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     greatLeague: {
       rank: 42,
@@ -1091,6 +1110,7 @@ const PVPOKE = {
   moltres: {
     dex: 146,
     types: ['fire', 'flying'],
+    maxForms: ['Dynamax'],
     buddyKm: 20,
     specialMoves: ['Sky Attack'],
     greatLeague: { rank: 668 },
@@ -1179,6 +1199,7 @@ const PVPOKE = {
   rhyperior: {
     dex: 464,
     types: ['ground', 'rock'],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     specialMoves: ['Rock Wrecker'],
     greatLeague: { rank: 679 },
@@ -1191,6 +1212,7 @@ const PVPOKE = {
   rillaboom: {
     dex: 812,
     types: ['grass'],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
@@ -1212,6 +1234,7 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['dark', 'ghost'] },
     ],
+    maxForms: ['Dynamax'],
     buddyKm: 5,
     greatLeague: {
       rank: 36,
@@ -1231,6 +1254,7 @@ const PVPOKE = {
   snorlax: {
     dex: 143,
     types: ['normal'],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 5,
     specialMoves: ['Yawn'],
     greatLeague: {
@@ -1386,6 +1410,7 @@ const PVPOKE = {
   tsareena: {
     dex: 763,
     types: ['grass'],
+    maxForms: ['Dynamax'],
     buddyKm: 3,
     specialMoves: ['High Jump Kick'],
     greatLeague: { rank: 997 },
@@ -1405,6 +1430,7 @@ const PVPOKE = {
   umbreon: {
     dex: 197,
     types: ['dark'],
+    maxForms: ['Dynamax'],
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Psychic'],
     greatLeague: {
@@ -1421,6 +1447,7 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['grass', 'poison'] },
     ],
+    maxForms: ['Dynamax', 'Gigantamax'],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 419 },
@@ -1454,6 +1481,7 @@ const PVPOKE = {
   whimsicott: {
     dex: 547,
     types: ['grass', 'fairy'],
+    maxForms: ['Dynamax'],
     buddyKm: 1,
     greatLeague: { rank: 382 },
     ultraLeague: { rank: 482 },

@@ -1,4 +1,4 @@
-// Legenerálja a pvpoke.js-t a PvPoke GitHubon lévő adataiból:
+// Legenerálja a pvpoke.js-t a PvPoke GitHubon lévő adataiból és a játék game masteréből:
 // típusok, Mega formák, buddy km, Great és Ultra League helyezés, ajánlott mozdulatok és párharcok,
 // valamint az ajánlott (PvPoke- és kézzel írt) mozdulatok típusa.
 // Csak a pokemon.js-ben szereplő fajokat veszi fel.
@@ -7,7 +7,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import vm from 'node:vm';
-import { describeSpecies, loadPvpokeData } from './pvpoke-common.mjs';
+import { DETAIL_RANK_LIMIT, describeSpecies, loadMaxForms, loadPvpokeData } from './pvpoke-common.mjs';
 
 async function loadPokemon() {
   const source = await readFile('pokemon.js', 'utf8');
@@ -51,12 +51,12 @@ function toJs(value, indent = 0) {
 }
 
 async function main() {
-  const [pokemon, data] = await Promise.all([loadPokemon(), loadPvpokeData()]);
+  const [pokemon, data, maxForms] = await Promise.all([loadPokemon(), loadPvpokeData(), loadMaxForms()]);
 
   const result = {};
   const missing = [];
   for (const { id } of pokemon) {
-    const entry = describeSpecies(id, data);
+    const entry = describeSpecies(id, data, DETAIL_RANK_LIMIT, maxForms);
     if (entry) result[id] = entry;
     else missing.push(id);
   }
@@ -71,6 +71,7 @@ async function main() {
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
+// maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })

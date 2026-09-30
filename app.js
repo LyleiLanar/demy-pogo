@@ -25,6 +25,8 @@ const RATING_ORDER = ['good', 'ok', 'bad'];
 const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
 const MEGA_MODE_KEYS = ['raid'];
 const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
+// A Gigantamax külön példány: csak Max Battle-je van, és nem örökli a (Dynamax) alapértékelést.
+const GIGANTAMAX_MODE_KEYS = ['maxBattle'];
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
 
 // ---------- Segédfüggvények ----------
@@ -245,12 +247,21 @@ function speciesForms(species) {
     const key = MEGA_FORM_KEYS[mega.name];
     forms.push({ key, name: mega.name, types: mega.types, modeKeys: MEGA_MODE_KEYS, leagues: {}, overrides: overrides[key] || {} });
   });
+  // Gigantamax: csak ha a faj game master szerint tud ilyet, és van hozzá kézi értékelés.
+  if ((species.stats.maxForms || []).includes('Gigantamax') && overrides.gigantamax) {
+    forms.push({
+      key: 'gigantamax', name: 'Gigantamax', types: species.types, modeKeys: GIGANTAMAX_MODE_KEYS,
+      leagues: {}, overrides: overrides.gigantamax, standalone: true,
+    });
+  }
   return forms;
 }
 
 // Egy mód adatai egy formában: az alap tanács, a forma felülírása és (ligáknál) a PvPoke-adat.
+// Az önálló forma (Gigantamax) csak a saját felülírását használja.
 function modeData(species, form, mode) {
-  const curated = { ...species[mode.key], ...form.overrides[mode.key] };
+  const base = form.standalone ? {} : species[mode.key];
+  const curated = { ...base, ...form.overrides[mode.key] };
   if (mode.isLeague) {
     const league = form.leagues[mode.key];
     return league ? { ...curated, ...league, rating: leagueRating(league) } : undefined;

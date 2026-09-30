@@ -75,7 +75,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   ne írj `moves`-t, mert a kártya magától mutatja.
 - Speciális mozdulat (csak Elite TM-mel vagy eseményen szerezhető meg): a ⚠️ jelölés és a szövege
   automatikus a game master alapján, kézzel nem kell jelölni.
-- Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`
+- Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`, `forms.gigantamax`
+  (a Gigantamax külön példány, csak `maxBattle`-t kap; a sima `maxBattle` a Dynamaxra vonatkozik)
   (a Shadow és a Mega nem külön faj). A Megának csak raidje van, a Shadow-nak nincs Max Battle-je.
 - Módtól független, de fajra szóló tanács: `notes`; fejlődés és cukorár: `evolution`.
 - Általános, nem fajhoz kötött tanács: az `index.html` Tippek fülére, ne a fajhoz.

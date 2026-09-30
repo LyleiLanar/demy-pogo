@@ -75,12 +75,15 @@ export async function loadPvpokeData() {
 }
 
 // Egy faj leírása a pvpoke.js formátumában; undefined, ha a faj nincs a PvPoke-adatban.
-export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT) {
+// A maxForms (loadMaxForms eredménye) opcionális: ha megvan, a Dynamax / Gigantamax is bekerül.
+export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, maxForms = undefined) {
   const species = data.speciesById.get(id);
   if (!species) return undefined;
   const entry = { dex: species.dex, types: species.types.filter((type) => type !== 'none') };
   const megaForms = megaFormsOf(id, data.gamemaster);
   if (megaForms.length) entry.megaForms = megaForms;
+  const speciesMaxForms = maxForms ? maxFormsOf(id, maxForms) : [];
+  if (speciesMaxForms.length) entry.maxForms = speciesMaxForms;
   if (species.buddyDistance) entry.buddyKm = species.buddyDistance;
   const specialMoves = specialMovesOf(species, data.moves);
   if (specialMoves.length) entry.specialMoves = specialMoves;

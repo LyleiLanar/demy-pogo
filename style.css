@@ -128,11 +128,10 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 
 /* Formaváltó a kártya tetején: Normál / Shadow / Mega / Mega X / Mega Y */
 .forms{margin:8px 0 0}
-.form-tabs{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:6px}
-.form-tab{appearance:none;margin:0;border:0;border-right:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .8rem Barlow,sans-serif;padding:5px 10px;cursor:pointer}
-.form-tab:last-child{border-right:0}
-.form-tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.form-tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.form-tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.form-tab{appearance:none;margin:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:600 .8rem Barlow,sans-serif;padding:5px 9px;white-space:nowrap;cursor:pointer}
+.form-tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.form-tab:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 
 /* Mozdulatok: Fast / Charged, speciálisnál ⚠️ */
 .moves{display:flex;flex-wrap:wrap;gap:4px 10px}

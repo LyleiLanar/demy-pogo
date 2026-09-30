@@ -26,8 +26,10 @@
 //   Ha egy mód hiányzik, arról nincs adat.
 //
 //   forms        formánkénti eltérések, a fenti módok felülírására:
-//                { shadow, mega, megaX, megaY: { raid, greatLeague, ultraLeague, notes } }
-//                A Shadow formának nincs Max Battle-je, a Megának csak raidje van.
+//                { shadow, mega, megaX, megaY, gigantamax: { raid, greatLeague, ultraLeague, maxBattle, notes } }
+//                A Shadow formának nincs Max Battle-je, a Megának csak raidje van. A gigantamax csak
+//                maxBattle-t kap, és nem örökli az alap (Dynamax) értékelést; forma is csak akkor lesz belőle,
+//                ha itt meg van adva és a game master szerint a fajnak van Gigantamax formája.
 //
 //
 //   Módtól független:
@@ -200,15 +202,15 @@ const POKEMON = [
       moves: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Dragon Claw'] },
       tips: ['Csak niche szerep.'],
     },
-    maxBattle: {
-      rating: 'good',
-      note: 'A Gigantamax Charizard a legerősebb G-Max támadó.',
-    },
+    maxBattle: { rating: 'ok', note: 'Használható Fire támadó; a Gigantamax sokkal erősebb.' },
     forms: {
       megaY: {
         raid: {
           note: 'A fő cél: a legjobb Fire Mega raidhez. Mega alakban a jelmez nem látszik, utána visszajön.',
         },
+      },
+      gigantamax: {
+        maxBattle: { rating: 'good', note: 'A legerősebb G-Max támadó.' },
       },
     },
     evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor). A jelmez megmarad fejlesztéskor.',
