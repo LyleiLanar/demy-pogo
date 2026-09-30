@@ -89,7 +89,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
     fülre valók, ha még nincsenek ott. Például: „raidre magas Attack kell, ideálisan 15”,
     „PvP-re alacsony Attack, magas Defense/HP”, „95% fölötti rank a jó”, „fokozatosan 30–35-ös
     szintig húzd”, „a többi mehet cukorért”, „Pinap Berryvel kapd el”, „egy magas Attackos
-    példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”;
+    példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”,
+    „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”;
   - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
   - hogy milyen típusú támadó („Fire támadó”), ha a módnál van mozdulatlista: a mozdulatok
     típusikonja mutatja. Mozdulatlista nélkül maradhat.

@@ -170,7 +170,7 @@ const POKEMON = [
     origin: 'Chansey / Happiny',
     verdict: 'keep',
     raid: { rating: 'bad' },
-    maxBattle: { rating: 'ok', note: 'Csak a Dynamax Blissey használható, az a legjobb gyógyító.' },
+    maxBattle: { rating: 'ok', note: 'A Dynamax Blissey a legjobb gyógyító.' },
     gym: {
       rating: 'good',
       note: 'Az egyik legjobb gym védő.',
@@ -202,7 +202,7 @@ const POKEMON = [
     },
     maxBattle: {
       rating: 'good',
-      note: 'A Gigantamax Charizard a legerősebb G-Max támadó, csak eseményes Max Battle-ből, 10–40 fős csapattal.',
+      note: 'A Gigantamax Charizard a legerősebb G-Max támadó.',
     },
     forms: {
       megaY: {
@@ -241,10 +241,10 @@ const POKEMON = [
     raid: { rating: 'ok', note: 'Közepes Fire támadó.' },
     maxBattle: {
       rating: 'good',
-      note: 'Csak a Dynamax példány: erős Fire támadó.',
+      note: 'Erős Fire támadó.',
       tips: ['Grass, Bug, Steel és Ice bossok ellen.'],
     },
-    evolution: 'Scorbunny → Raboot → Cinderace. A Dynamax képesség fejlesztés után megmarad.',
+    evolution: 'Scorbunny → Raboot → Cinderace.',
   },
   {
     id: 'clodsire',
@@ -547,7 +547,6 @@ const POKEMON = [
       tips: ['Raidben Fire, Ground és Rock bossok ellen jó.'],
     },
     evolution: 'Magikarp → Gyarados, 400 cukor. A Magikarp 1 km-enként ad cukrot buddyként.',
-    notes: ['Max Battle-ben a Waterfall Water, a Dragon Breath Dragon Max mozdulatot ad.'],
   },
   {
     id: 'hariyama',
@@ -653,7 +652,7 @@ const POKEMON = [
       note: 'Megbízható, olcsó raides támadó; a Shadow Machamp még erősebb.',
       moves: { fast: ['Counter'], charged: ['Dynamic Punch', 'Cross Chop'] },
     },
-    maxBattle: { rating: 'ok', note: 'A Gigantamax forma csak Max Battle-ből szerezhető.' },
+    maxBattle: { rating: 'ok' },
     evolution: 'Machop → Machoke → Machamp. A Machoke csere után ingyen (0 cukor) fejlődik.',
   },
   {
@@ -880,10 +879,7 @@ const POKEMON = [
       rating: 'good',
       moves: { fast: ['Vine Whip'], charged: ['Frenzy Plant'] },
     },
-    maxBattle: {
-      rating: 'ok',
-      note: 'A Gigantamax forma csak Max Battle-ből szerezhető, vadon fogottból soha.',
-    },
+    maxBattle: { rating: 'ok' },
     forms: {
       shadow: {
         raid: { rating: 'good' },
