@@ -91,6 +91,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
     szintig húzd”, „a többi mehet cukorért”, „Pinap Berryvel kapd el”, „egy magas Attackos
     példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”;
   - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
+  - hogy milyen típusú támadó („Fire támadó”), ha a módnál van mozdulatlista: a mozdulatok
+    típusikonja mutatja. Mozdulatlista nélkül maradhat.
 
   Próba: ha a mondat egy másik fajnál is szó szerint igaz lenne, akkor általános.
 

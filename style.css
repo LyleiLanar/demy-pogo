@@ -68,7 +68,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .search:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .dex{display:grid;gap:10px}
 .mon{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-.mon-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.mon-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .mon-name{font:700 1.2rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:0;color:var(--ink);text-transform:none;letter-spacing:.01em}
 .mon-dex{font:500 .75rem Barlow,sans-serif;color:var(--muted);letter-spacing:.02em;margin-left:2px}
 .mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
@@ -83,7 +83,8 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 
 /* Kártya fülei: zöld = erős, szürke = közepes, piros = gyenge */
 .modes{margin:10px 0 0}
-.mode-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.mode-tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.mode-tabs .verdict{margin-left:auto}
 .mode-tab{--rating:var(--meh);--rating-ink:var(--meh-ink);font:600 .85rem Barlow,sans-serif;min-width:52px;padding:6px 10px;border-radius:8px;border:2px solid var(--rating);background:var(--surface);color:var(--rating);cursor:pointer}
 .mode-tab[aria-pressed="true"]{background:var(--rating);color:var(--rating-ink)}
 .mode-tab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
@@ -115,7 +116,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .type-multiple{font-size:.7em}
 .type-label{height:auto;padding:3px 8px;gap:4px;font:600 .8rem/1.2 Barlow,sans-serif;cursor:default}
 .type-tooltip{position:absolute;z-index:20;max-width:260px;padding:5px 9px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.3 Barlow,sans-serif;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.mon-types{margin:2px 0 4px;display:flex;flex-wrap:wrap;gap:4px}
+.mon-types{flex:none;display:flex;flex-wrap:wrap;gap:4px}
 .mon-weak{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.85rem}
 .mon-weak-label{color:var(--muted)}
 .type-chart{display:grid;gap:8px;margin-top:6px}
@@ -132,10 +133,10 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .form-tab:last-child{border-right:0}
 .form-tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .form-tab:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
-.form-panel .mon-types{margin:0 0 2px}
 
 /* Mozdulatok: Fast / Charged, speciálisnál ⚠️ */
 .moves{display:flex;flex-wrap:wrap;gap:4px 10px}
-.move{display:inline-flex;align-items:center;gap:3px}
+.move{display:inline-flex;align-items:center;gap:4px}
+.move .type{min-width:1.5em;height:1.5em;font-size:.8rem}
 .move-warning{appearance:none;margin:0;padding:0 2px;border:0;background:none;font-size:.85rem;line-height:1;cursor:pointer}
 .move-warning:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-radius:4px}

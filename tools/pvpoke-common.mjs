@@ -68,6 +68,7 @@ export async function loadPvpokeData() {
     gamemaster,
     speciesById: new Map(gamemaster.pokemon.map((species) => [species.speciesId, species])),
     moves: new Map(gamemaster.moves.map((move) => [move.moveId, move.name])),
+    moveTypes: new Map(gamemaster.moves.map((move) => [move.name, move.type])),
     names: new Map(gamemaster.pokemon.map((species) => [species.speciesId, displayName(species.speciesName)])),
     leagueRankings: Object.keys(LEAGUES).map((key, i) => [key, rankIndex(rankings[i])]),
   };

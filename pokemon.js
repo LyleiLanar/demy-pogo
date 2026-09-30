@@ -94,7 +94,7 @@ const POKEMON = [
       mega: {
         raid: {
           rating: 'good',
-          note: 'Mega Ampharos: Electric/Dragon Mega, Water és Flying bossok ellen hasznos, szólóban is jó Mega.',
+          note: 'Water és Flying bossok ellen hasznos, szólóban is jó Mega.',
           moves: { charged: ['Dragon Pulse'] },
         },
       },
@@ -130,9 +130,8 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Ice támadó.',
+      note: 'Az egyik legjobb Ice raid támadó.',
       tips: [
-        'Az egyik legjobb Ice raid támadó (Dragon/Ice).',
         'Dragon, Flying, Ground és Grass bossok ellen kiváló.',
         'Jó Stardust-befektetés.',
       ],
@@ -147,21 +146,20 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'ok',
-      note: 'Blast Burn-nel használható Fire/Fighting támadó; a Shadow és a Mega erősebb.',
+      note: 'A Shadow és a Mega erősebb.',
       moves: { fast: ['Fire Spin', 'Counter'], charged: ['Blast Burn'] },
     },
     forms: {
       shadow: {
         raid: {
           rating: 'good',
-          note: 'Jó raides Fire és Fighting támadó.',
           tips: [
             'A Shadow Torchic raidbe napi ingyenes Raid Passszal megéri bemenni, prémium vagy távoli passra nem.',
           ],
         },
       },
       mega: {
-        raid: { rating: 'good', note: 'Fire/Fighting Mega.' },
+        raid: { rating: 'good' },
       },
     },
     evolution: 'Torchic → Combusken (25 cukor) → Blaziken (100 cukor).',
@@ -176,7 +174,6 @@ const POKEMON = [
     gym: {
       rating: 'good',
       note: 'Az egyik legjobb gym védő.',
-      tips: ['Az egyik legjobb gym védő.'],
     },
   },
   {
@@ -193,7 +190,6 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Fire támadó.',
       moves: {
         fast: ['Fire Spin'],
         charged: ['Blast Burn', 'Overheat'],
@@ -213,9 +209,6 @@ const POKEMON = [
         raid: {
           note: 'A fő cél: a legjobb Fire Mega raidhez. Mega alakban a jelmez nem látszik, utána visszajön.',
         },
-      },
-      megaX: {
-        raid: { note: 'Fire/Dragon Mega: a Fire és a Dragon támadásokat erősíti.' },
       },
     },
     evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor). A jelmez megmarad fejlesztéskor.',
@@ -327,9 +320,8 @@ const POKEMON = [
     verdict: 'transfer',
     raid: {
       rating: 'ok',
-      note: 'Közepes Fire támadó, a Mega Charizard Y jobb.',
+      note: 'A Mega Charizard Y jobb; tartalék raidre és Rocket ellen.',
       moves: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
-      tips: ['Tartalék Fire támadó raidre és Rocket ellen.'],
     },
   },
   {
@@ -546,7 +538,6 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Water támadó.',
       iv: 'Átlagos IV-s Magikarpra ne pazarold a 400 cukrot.',
       moves: {
         fast: ['Waterfall', 'Bite'],
@@ -554,11 +545,6 @@ const POKEMON = [
         note: 'Water szett: Waterfall + Hydro Pump; Dark szett: Bite + Crunch.',
       },
       tips: ['Raidben Fire, Ground és Rock bossok ellen jó.'],
-    },
-    forms: {
-      mega: {
-        raid: { note: 'Mega Gyarados raidben erős Water/Dark Mega.' },
-      },
     },
     evolution: 'Magikarp → Gyarados, 400 cukor. A Magikarp 1 km-enként ad cukrot buddyként.',
     notes: ['Max Battle-ben a Waterfall Water, a Dragon Breath Dragon Max mozdulatot ad.'],
@@ -664,9 +650,8 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Fighting támadó.',
+      note: 'Megbízható, olcsó raides támadó; a Shadow Machamp még erősebb.',
       moves: { fast: ['Counter'], charged: ['Dynamic Punch', 'Cross Chop'] },
-      tips: ['Megbízható, olcsó raides Fighting támadó, a Shadow Machamp még erősebb.'],
     },
     maxBattle: { rating: 'ok', note: 'A Gigantamax forma csak Max Battle-ből szerezhető.' },
     evolution: 'Machop → Machoke → Machamp. A Machoke csere után ingyen (0 cukor) fejlődik.',
@@ -817,11 +802,6 @@ const POKEMON = [
     origin: 'Starly',
     verdict: 'transfer',
     raid: { rating: 'ok' },
-    forms: {
-      mega: {
-        raid: { note: 'Fighting/Flying Mega.' },
-      },
-    },
   },
   {
     id: 'stunfisk',
@@ -898,7 +878,6 @@ const POKEMON = [
     verdict: 'keep',
     raid: {
       rating: 'good',
-      note: 'Grass/Poison támadó.',
       moves: { fast: ['Vine Whip'], charged: ['Frenzy Plant'] },
     },
     maxBattle: {
@@ -911,7 +890,7 @@ const POKEMON = [
       },
       mega: {
         raid: {
-          note: 'Mega Venusaur 1,3× bónuszt ad a Grass és Poison támadásoknak a raidben, szólóban is hasznos Mega.',
+          note: 'Szólóban is hasznos Mega.',
         },
       },
     },

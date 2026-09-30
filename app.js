@@ -280,13 +280,16 @@ function renderModeTab(mode, isSelected) {
       data-mode="${mode.key}">${mode.label}</button>`;
 }
 
-// Egy ajánlott mozdulat; ha csak Elite TM-mel vagy eseményen szerezhető meg, ⚠️ gomb jelzi,
-// amire koppintva a buborék ezt kiírja.
+// Egy ajánlott mozdulat a típusa ikonjával. Ha csak Elite TM-mel vagy eseményen szerezhető meg,
+// ⚠️ gomb jelzi, amire koppintva a buborék ezt kiírja.
 function renderMove(name, species) {
+  const type = PVPOKE_MOVE_TYPES[name];
+  const typeBadge = type ? renderTypeBadge(type) : '';
   const isSpecial = (species.stats.specialMoves || []).includes(name);
-  if (!isSpecial) return `<span class="move">${escapeHtml(name)}</span>`;
-  return `<span class="move">${escapeHtml(name)}<button type="button" class="move-warning" `
-    + `data-tooltip="${SPECIAL_MOVE_TEXT}" aria-label="${SPECIAL_MOVE_TEXT}">⚠️</button></span>`;
+  const warning = isSpecial
+    ? `<button type="button" class="move-warning" data-tooltip="${SPECIAL_MOVE_TEXT}" aria-label="${SPECIAL_MOVE_TEXT}">⚠️</button>`
+    : '';
+  return `<span class="move">${typeBadge}${escapeHtml(name)}${warning}</span>`;
 }
 
 function renderMoveFact(label, names, species) {
@@ -321,12 +324,16 @@ function renderModePanel(mode, species, isSelected) {
     </div>`;
 }
 
+function renderVerdict(species) {
+  return `<span class="verdict verdict-${species.verdict}">${VERDICT_LABELS[species.verdict]}</span>`;
+}
+
+// A módválasztó sor; a döntés (Marad / Szkenneld / Cukorért) a sor jobb szélén.
 function renderGameModes(modes, species) {
-  if (modes.length === 0) return '';
-  const selected = defaultModeIndex(modes);
+  const selected = modes.length ? defaultModeIndex(modes) : -1;
   return `
     <div class="modes">
-      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
+      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}${renderVerdict(species)}</div>
       ${modes.map((mode, i) => renderModePanel(mode, species, i === selected)).join('')}
     </div>`;
 }
@@ -334,7 +341,6 @@ function renderGameModes(modes, species) {
 function renderFormPanel(species, form, isSelected) {
   return `
     <div class="form-panel" data-form="${form.key}" ${isSelected ? '' : 'hidden'}>
-      <p class="mon-types">${renderTypeBadges(form.types)}</p>
       ${renderDefense(form.types)}
       ${renderGameModes(gameModesOf(species, form), species)}
       ${renderList('mon-notes', form.overrides.notes)}
@@ -371,11 +377,15 @@ function renderPokemonCard(species) {
   const general = renderFact('Fejlődés', species.evolution)
     + renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
 
+  // A fejlécben a kiválasztott forma típusa (a Mega típusa eltérhet); formaváltáskor cserélődik.
+  const headTypes = speciesForms(species).map((form, i) => `
+    <span class="mon-types" data-form="${form.key}" ${i === 0 ? '' : 'hidden'}>${renderTypeBadges(form.types)}</span>`);
+
   return `
     <article class="mon" data-search="${escapeHtml(searchText)}" data-dex="${species.dex ?? ''}">
       <div class="mon-head">
         <h3 class="mon-name">${escapeHtml(species.name)} ${dex}</h3>
-        <span class="verdict verdict-${species.verdict}">${VERDICT_LABELS[species.verdict]}</span>
+        ${headTypes.join('')}
       </div>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
       ${warning}
@@ -514,13 +524,14 @@ function setupPokedexSearch() {
 
 // ---------- Kártya fülei és formaváltó ----------
 
+// Formaváltás: a gomb, a formapanel és a fejlécben a típus is a kiválasztott formára vált.
 function selectFormTab(tab) {
-  const forms = tab.closest('.forms');
-  forms.querySelectorAll('.form-tab').forEach((button) => {
+  const card = tab.closest('.mon');
+  card.querySelectorAll('.form-tab').forEach((button) => {
     button.setAttribute('aria-pressed', button === tab);
   });
-  forms.querySelectorAll('.form-panel').forEach((panel) => {
-    panel.hidden = panel.dataset.form !== tab.dataset.form;
+  card.querySelectorAll('.form-panel, .mon-types').forEach((element) => {
+    element.hidden = element.dataset.form !== tab.dataset.form;
   });
 }
 

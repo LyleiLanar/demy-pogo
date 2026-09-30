@@ -1,5 +1,6 @@
 // Legenerálja a pvpoke.js-t a PvPoke GitHubon lévő adataiból:
-// típusok, Mega formák, buddy km, Great és Ultra League helyezés, ajánlott mozdulatok és párharcok.
+// típusok, Mega formák, buddy km, Great és Ultra League helyezés, ajánlott mozdulatok és párharcok,
+// valamint az ajánlott (PvPoke- és kézzel írt) mozdulatok típusa.
 // Csak a pokemon.js-ben szereplő fajokat veszi fel.
 //
 // Futtatás a repó gyökeréből: node tools/sync-pvpoke.mjs
@@ -8,11 +9,23 @@ import { readFile, writeFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import { describeSpecies, loadPvpokeData } from './pvpoke-common.mjs';
 
-async function loadPokemonIds() {
+async function loadPokemon() {
   const source = await readFile('pokemon.js', 'utf8');
   const context = {};
   vm.runInNewContext(`${source}\nthis.POKEMON = POKEMON;`, context);
-  return context.POKEMON.map((species) => species.id);
+  return context.POKEMON;
+}
+
+// Minden mozdulatnév egy objektumfában: a { fast: [...], charged: [...] } listák elemei.
+function collectMoveNames(value, names = new Set()) {
+  if (Array.isArray(value)) value.forEach((item) => collectMoveNames(item, names));
+  else if (value && typeof value === 'object') {
+    for (const [key, item] of Object.entries(value)) {
+      if ((key === 'fast' || key === 'charged') && Array.isArray(item)) item.forEach((name) => names.add(name));
+      else collectMoveNames(item, names);
+    }
+  }
+  return names;
 }
 
 const INLINE_MAX_LENGTH = 100;
@@ -38,15 +51,20 @@ function toJs(value, indent = 0) {
 }
 
 async function main() {
-  const [ids, data] = await Promise.all([loadPokemonIds(), loadPvpokeData()]);
+  const [pokemon, data] = await Promise.all([loadPokemon(), loadPvpokeData()]);
 
   const result = {};
   const missing = [];
-  for (const id of ids) {
+  for (const { id } of pokemon) {
     const entry = describeSpecies(id, data);
     if (entry) result[id] = entry;
     else missing.push(id);
   }
+
+  const moveNames = [...collectMoveNames([result, pokemon])].sort();
+  const knownMoves = moveNames.filter((name) => data.moveTypes.has(name));
+  const moveTypes = Object.fromEntries(knownMoves.map((name) => [name, data.moveTypes.get(name)]));
+  const unknownMoves = moveNames.filter((name) => !data.moveTypes.has(name));
 
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, '. ') + '.';
   const output = `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
@@ -57,14 +75,18 @@ async function main() {
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
+// PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 
 const PVPOKE_DATE = '${date}';
 
 const PVPOKE = ${toJs(result)};
+
+const PVPOKE_MOVE_TYPES = ${toJs(moveTypes)};
 `;
   await writeFile('pvpoke.js', output);
   console.log(`pvpoke.js: ${Object.keys(result).length} faj`);
   if (missing.length) console.warn(`Nincs a PvPoke-adatban: ${missing.join(', ')}`);
+  if (unknownMoves.length) console.warn(`Ismeretlen mozdulatnév (elírás?): ${unknownMoves.join(', ')}`);
 }
 
 main().catch((error) => {
