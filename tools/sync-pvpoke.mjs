@@ -69,8 +69,7 @@ async function main() {
   const moveTypes = Object.fromEntries(knownMoves.map((name) => [name, data.moveTypes.get(name)]));
   const unknownMoves = moveNames.filter((name) => !data.moveTypes.has(name));
 
-  const date = new Date().toISOString().slice(0, 10).replace(/-/g, '. ') + '.';
-  const output = `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
+  const render = (date) => `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
@@ -87,8 +86,16 @@ const PVPOKE = ${toJs(result)};
 
 const PVPOKE_MOVE_TYPES = ${toJs(moveTypes)};
 `;
-  await writeFile(OUTPUT_FILE, output);
-  console.log(`data/pvpoke.js: ${Object.keys(result).length} faj`);
+  // A dátum az adat utolsó változását jelzi: ha csak a dátum lenne más, a fájl marad.
+  const previous = await readFile(OUTPUT_FILE, 'utf8').catch(() => '');
+  const previousDate = /const PVPOKE_DATE = '([^']*)';/.exec(previous)?.[1];
+  if (previousDate !== undefined && render(previousDate) === previous) {
+    console.log(`data/pvpoke.js: nincs változás (${Object.keys(result).length} faj)`);
+  } else {
+    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '. ') + '.';
+    await writeFile(OUTPUT_FILE, render(today));
+    console.log(`data/pvpoke.js: ${Object.keys(result).length} faj`);
+  }
   if (missing.length) console.warn(`Nincs a PvPoke-adatban: ${missing.join(', ')}`);
   if (unknownMoves.length) console.warn(`Ismeretlen mozdulatnév (elírás?): ${unknownMoves.join(', ')}`);
 }
