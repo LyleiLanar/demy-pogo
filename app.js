@@ -27,6 +27,9 @@ const MEGA_MODE_KEYS = ['raid'];
 const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
 // A Gigantamax külön példány: csak Max Battle-je van, és nem örökli a (Dynamax) alapértékelést.
 const GIGANTAMAX_MODE_KEYS = ['maxBattle'];
+// Melyik Max mozdulatot érdemes fejleszteni (maxBattle.upgrade); Gigantamaxnál a Max Attack helyén a G-Max mozdulat van.
+const MAX_MOVE_LABELS = { attack: '⚔️ Max Attack', guard: '🛡️ Max Guard', spirit: '💚 Max Spirit' };
+const GIGANTAMAX_MOVE_LABELS = { ...MAX_MOVE_LABELS, attack: '⚔️ G-Max mozdulat' };
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
 
 // ---------- Segédfüggvények ----------
@@ -275,7 +278,17 @@ function gameModesOf(species, form) {
     .filter((mode) => form.modeKeys.includes(mode.key))
     .map((mode) => ({ ...mode, data: modeData(species, form, mode) }))
     .filter((mode) => mode.data)
-    .map(({ data, ...mode }) => ({ ...mode, ...data, detail: mode.isLeague ? `${data.rank}. hely` : '' }));
+    .map(({ data, ...mode }) => ({
+      ...mode,
+      ...data,
+      detail: mode.isLeague ? `${data.rank}. hely` : '',
+      upgradeLabels: upgradeLabelsOf(data.upgrade, form),
+    }));
+}
+
+function upgradeLabelsOf(upgrade, form) {
+  const labels = form.key === 'gigantamax' ? GIGANTAMAX_MOVE_LABELS : MAX_MOVE_LABELS;
+  return (upgrade || []).map((move) => labels[move]).filter(Boolean);
 }
 
 // Alapból a legjobb értékelésű mód nyílik meg.
@@ -321,6 +334,7 @@ function renderModePanel(mode, species, isSelected) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
   const facts = [
+    renderFact('Fejleszd', mode.upgradeLabels.join(', ')),
     renderMoves(mode, species),
     renderFact('Jól megy ellene', mode.beats && mode.beats.join(', ')),
     renderFact('Nehéz ellenfél', mode.losesTo && mode.losesTo.join(', ')),

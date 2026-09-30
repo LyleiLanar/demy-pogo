@@ -63,7 +63,9 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
 - `raid`: `rating` = `good` / `ok` / `bad`, egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
   ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
-- `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája.
+- `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája. Az `upgrade`
+  mondja meg, melyik Max mozdulatot fejleszd (`attack` / `guard` / `spirit`); gyenge értékelésnél hagyd ki.
+  Gigantamaxhoz: `forms.gigantamax.maxBattle` (saját `rating`, `note`, `upgrade`).
   Az értékeléshez (támadó, védő, gyógyító) keress rá WebSearch-csel; ha nem egyértelmű, hagyd ki.
 - `gym`: csak ha kifejezetten jó gym védő.
 

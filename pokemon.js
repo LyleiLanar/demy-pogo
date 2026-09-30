@@ -23,6 +23,7 @@
 //     iv         milyen IV a jó ebben a módban
 //     moves      ajánlott mozdulatok: { fast: [...], charged: [...], note }
 //     tips       további tanácsok ebben a módban
+//     upgrade    csak maxBattle: melyik Max mozdulatot fejleszd: ['attack', 'guard', 'spirit']
 //   Ha egy mód hiányzik, arról nincs adat.
 //
 //   forms        formánkénti eltérések, a fenti módok felülírására:
@@ -133,10 +134,7 @@ const POKEMON = [
     raid: {
       rating: 'good',
       note: 'Az egyik legjobb Ice raid támadó.',
-      tips: [
-        'Dragon, Flying, Ground és Grass bossok ellen kiváló.',
-        'Jó Stardust-befektetés.',
-      ],
+      tips: ['Dragon, Flying, Ground és Grass bossok ellen kiváló.', 'Jó Stardust-befektetés.'],
     },
     evolution: 'Frigibax → Arctibax (25 cukor) → Baxcalibur (100 cukor).',
     notes: ['A Frigibax ritka, ne küldj el semmit a vonalból, amíg nincs egy jó Baxcaliburod.'],
@@ -172,11 +170,8 @@ const POKEMON = [
     origin: 'Chansey / Happiny',
     verdict: 'keep',
     raid: { rating: 'bad' },
-    maxBattle: { rating: 'ok', note: 'A Dynamax Blissey a legjobb gyógyító.' },
-    gym: {
-      rating: 'good',
-      note: 'Az egyik legjobb gym védő.',
-    },
+    maxBattle: { rating: 'ok', note: 'A Dynamax Blissey a legjobb gyógyító.', upgrade: ['spirit'] },
+    gym: { rating: 'good', note: 'Az egyik legjobb gym védő.' },
   },
   {
     id: 'carbink',
@@ -202,7 +197,11 @@ const POKEMON = [
       moves: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Dragon Claw'] },
       tips: ['Csak niche szerep.'],
     },
-    maxBattle: { rating: 'ok', note: 'Használható Fire támadó; a Gigantamax sokkal erősebb.' },
+    maxBattle: {
+      rating: 'ok',
+      note: 'Használható Fire támadó; a Gigantamax sokkal erősebb.',
+      upgrade: ['attack'],
+    },
     forms: {
       megaY: {
         raid: {
@@ -210,7 +209,7 @@ const POKEMON = [
         },
       },
       gigantamax: {
-        maxBattle: { rating: 'good', note: 'A legerősebb G-Max támadó.' },
+        maxBattle: { rating: 'good', note: 'A legerősebb G-Max támadó.', upgrade: ['attack'] },
       },
     },
     evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor). A jelmez megmarad fejlesztéskor.',
@@ -244,6 +243,7 @@ const POKEMON = [
     maxBattle: {
       rating: 'good',
       note: 'Erős Fire támadó.',
+      upgrade: ['attack'],
       tips: ['Grass, Bug, Steel és Ice bossok ellen.'],
     },
     evolution: 'Scorbunny → Raboot → Cinderace.',
@@ -275,7 +275,11 @@ const POKEMON = [
     origin: 'Darumaka',
     verdict: 'transfer',
     raid: { rating: 'ok' },
-    maxBattle: { rating: 'ok', note: 'Fire támadó; ő vagy a Cinderace kap Max Particle-t.' },
+    maxBattle: {
+      rating: 'ok',
+      note: 'Fire támadó; ő vagy a Cinderace kap Max Particle-t.',
+      upgrade: ['attack'],
+    },
   },
   {
     id: 'decidueye',
@@ -402,7 +406,7 @@ const POKEMON = [
     origin: 'Drilbur',
     verdict: 'keep',
     raid: { rating: 'good' },
-    maxBattle: { rating: 'good', note: 'Fő támadó (Ground/Steel), a Max Attackot húzd fel.' },
+    maxBattle: { rating: 'good', note: 'Fő támadó.', upgrade: ['attack'] },
     evolution: 'Drilbur → Excadrill, 50 cukor.',
   },
   {
@@ -434,7 +438,12 @@ const POKEMON = [
     origin: 'Eevee',
     verdict: 'transfer',
     raid: { rating: 'ok' },
-    maxBattle: { rating: 'ok', note: 'Tartalék Fire támadó.', tips: ['Max Particle-t ne költs rá.'] },
+    maxBattle: {
+      rating: 'ok',
+      note: 'Tartalék Fire támadó.',
+      upgrade: ['attack'],
+      tips: ['Max Particle-t ne költs rá.'],
+    },
   },
   {
     id: 'florges',
@@ -487,7 +496,11 @@ const POKEMON = [
     origin: 'Ralts',
     verdict: 'transfer',
     raid: { rating: 'ok' },
-    maxBattle: { rating: 'ok', note: 'Fairy/Psychic támadó, Fighting bossok ellen.' },
+    maxBattle: {
+      rating: 'ok',
+      note: 'Fairy/Psychic támadó, Fighting bossok ellen.',
+      upgrade: ['attack'],
+    },
   },
   {
     id: 'gigalith',
@@ -512,15 +525,7 @@ const POKEMON = [
     origin: 'Skwovet',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    maxBattle: {
-      rating: 'ok',
-      note: 'Gyógyító (Max Spirit), csak csapatban hasznos.',
-      tips: [
-        'Gyógyító: a Max Spirit feloldása 400 Max Particle + 50 cukor, a 2. szint 100 cukor.',
-        'A Max Spirit a használó max HP-jának 8/12/16%-át (1/2/3. szint) gyógyítja vissza a pályán lévő aktív Pokémonoknak.',
-        'Szólóban csak saját magát gyógyítja, csapatban a többi játékos aktív Pokémonját is. Szólóra ne építs gyógyítót.',
-      ],
-    },
+    maxBattle: { rating: 'ok', note: 'Gyógyító, csak csapatban hasznos.', upgrade: ['spirit'] },
     evolution: 'Skwovet → Greedent, 50 cukor.',
     notes: [
       'Skwovet cukor: Rare Candy, Pinap Berry, buddy, részben felhős időben több Skwovet jön.',
@@ -590,7 +595,12 @@ const POKEMON = [
     name: 'Inteleon',
     origin: 'Sobble',
     verdict: 'transfer',
-    maxBattle: { rating: 'good', note: 'Water támadó.', tips: ['Fire, Rock és Ground bossok ellen.'] },
+    maxBattle: {
+      rating: 'good',
+      note: 'Water támadó.',
+      upgrade: ['attack'],
+      tips: ['Fire, Rock és Ground bossok ellen.'],
+    },
     evolution: 'Drizzile → Inteleon, 100 cukor.',
   },
   {
@@ -654,7 +664,7 @@ const POKEMON = [
       note: 'Megbízható, olcsó raides támadó; a Shadow Machamp még erősebb.',
       moves: { fast: ['Counter'], charged: ['Dynamic Punch', 'Cross Chop'] },
     },
-    maxBattle: { rating: 'ok' },
+    maxBattle: { rating: 'ok', upgrade: ['attack'] },
     evolution: 'Machop → Machoke → Machamp. A Machoke csere után ingyen (0 cukor) fejlődik.',
   },
   {
@@ -719,6 +729,7 @@ const POKEMON = [
     maxBattle: {
       rating: 'good',
       note: 'Támadó és tank (Fire/Flying).',
+      upgrade: ['attack', 'guard'],
       moves: { fast: ['Wing Attack'], note: 'Ezzel Flying Max mozdulatot (Max Airstream) kap.' },
     },
   },
@@ -772,7 +783,8 @@ const POKEMON = [
     raid: { rating: 'good' },
     maxBattle: {
       rating: 'good',
-      note: 'Védő (tank), oldd fel a Max Guardot.',
+      note: 'Védő (tank).',
+      upgrade: ['guard'],
       tips: ['Fire, Electric, Flying és Ice bossok ellen erős.'],
     },
   },
@@ -881,15 +893,13 @@ const POKEMON = [
       rating: 'good',
       moves: { fast: ['Vine Whip'], charged: ['Frenzy Plant'] },
     },
-    maxBattle: { rating: 'ok' },
+    maxBattle: { rating: 'ok', upgrade: ['attack'] },
     forms: {
       shadow: {
         raid: { rating: 'good' },
       },
       mega: {
-        raid: {
-          note: 'Szólóban is hasznos Mega.',
-        },
+        raid: { note: 'Szólóban is hasznos Mega.' },
       },
     },
     evolution: 'Bulbasaur → Ivysaur → Venusaur, összesen 125 cukor.',
