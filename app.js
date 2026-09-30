@@ -25,8 +25,12 @@ const RATING_ORDER = ['good', 'ok', 'bad'];
 const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
 const MEGA_MODE_KEYS = ['raid'];
 const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
-// Ha a pokemon.js moveSources nem mondja meg, honnan szerezhető meg egy speciális mozdulat.
-const SPECIAL_MOVE_SOURCE = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) tanulható meg.';
+// A speciális mozdulatok megszerzési módja; a pokemon.js moveSources ezekre hivatkozik.
+const MOVE_SOURCE_TEXTS = {
+  eliteTm: 'Speciális mozdulat: csak Elite TM-mel tanulható meg, vagy olyan eseményen, ahol épp elérhető.',
+  communityDay: 'Community Day mozdulat: a faj Community Dayén (vagy Classicján) fejlesztve kapja meg, egyébként csak Elite TM-mel.',
+};
+const DEFAULT_MOVE_SOURCE = 'eliteTm';
 
 // ---------- Segédfüggvények ----------
 
@@ -286,9 +290,9 @@ function renderModeTab(mode, isSelected) {
 function renderMove(name, species) {
   const isSpecial = (species.stats.specialMoves || []).includes(name);
   if (!isSpecial) return `<span class="move">${escapeHtml(name)}</span>`;
-  const source = species.moveSources?.[name] || SPECIAL_MOVE_SOURCE;
+  const source = MOVE_SOURCE_TEXTS[species.moveSources?.[name]] || MOVE_SOURCE_TEXTS[DEFAULT_MOVE_SOURCE];
   return `<span class="move">${escapeHtml(name)}<button type="button" class="move-warning" `
-    + `data-tooltip="${escapeHtml(source)}" aria-label="${escapeHtml(`Speciális mozdulat. ${source}`)}">⚠️</button></span>`;
+    + `data-tooltip="${escapeHtml(source)}" aria-label="${escapeHtml(source)}">⚠️</button></span>`;
 }
 
 function renderMoveFact(label, names, species) {

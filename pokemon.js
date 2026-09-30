@@ -29,8 +29,9 @@
 //                { shadow, mega, megaX, megaY: { raid, greatLeague, ultraLeague, notes } }
 //                A Shadow formának nincs Max Battle-je, a Megának csak raidje van.
 //
-//   moveSources  { "Mozdulat neve": "honnan szerezhető meg" } a speciális (Elite TM-es,
-//                eseményes) mozdulatokhoz; ha nincs megadva, általános szöveg jelenik meg
+//   moveSources  { "Mozdulat neve": módszer } a speciális mozdulatok megszerzési módja:
+//                'communityDay' = Community Day mozdulat; ha nincs megadva: 'eliteTm'
+//                (a szövegek az app.js MOVE_SOURCE_TEXTS-ében)
 //
 //   Módtól független:
 //   evolution    fejlődés, cukorár
@@ -101,7 +102,7 @@ const POKEMON = [
         },
       },
     },
-    moveSources: { 'Dragon Pulse': 'Mareep Community Day, vagy Elite Charged TM.' },
+    moveSources: { 'Dragon Pulse': 'communityDay' },
   },
   { id: 'annihilape', name: 'Annihilape', origin: 'Mankey', verdict: 'scan' },
   {
@@ -167,6 +168,7 @@ const POKEMON = [
         raid: { rating: 'good', note: 'Fire/Fighting Mega.' },
       },
     },
+    moveSources: { 'Blast Burn': 'communityDay' },
     evolution: 'Torchic → Combusken (25 cukor) → Blaziken (100 cukor).',
   },
   {
@@ -221,7 +223,7 @@ const POKEMON = [
         raid: { note: 'Fire/Dragon Mega: a Fire és a Dragon támadásokat erősíti.' },
       },
     },
-    moveSources: { 'Blast Burn': 'Charmander Community Day, vagy Elite Charged TM.' },
+    moveSources: { 'Blast Burn': 'communityDay' },
     evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor). A jelmez megmarad fejlesztéskor.',
     notes: [
       'Charmander Community Day ritka (utoljára 2018, azóta csak Classic visszatérések), ne várj rá.',
@@ -302,7 +304,7 @@ const POKEMON = [
         note: 'Ha mégis építenéd.',
       },
     },
-    moveSources: { 'Frenzy Plant': 'Rowlet Community Day, vagy Elite Charged TM.' },
+    moveSources: { 'Frenzy Plant': 'communityDay' },
     evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
     notes: ['A hisui Decidueye (Grass/Fighting) külön faj, más a típusa és a szettje.'],
   },
@@ -336,7 +338,7 @@ const POKEMON = [
       moves: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
       tips: ['Tartalék Fire támadó raidre és Rocket ellen.'],
     },
-    moveSources: { 'Blast Burn': 'Fennekin Community Day, vagy Elite Charged TM.' },
+    moveSources: { 'Blast Burn': 'communityDay' },
   },
   {
     id: 'deoxys_defense',
@@ -407,6 +409,7 @@ const POKEMON = [
     verdict: 'scan',
     warning: 'Hydro Cannon kell hozzá',
     raid: { rating: 'ok' },
+    moveSources: { 'Hydro Cannon': 'communityDay' },
   },
   {
     id: 'excadrill',
@@ -439,6 +442,7 @@ const POKEMON = [
     verdict: 'scan',
     warning: 'Hydro Cannon kell hozzá',
     raid: { rating: 'ok' },
+    moveSources: { 'Hydro Cannon': 'communityDay' },
   },
   {
     id: 'flareon',
@@ -843,6 +847,7 @@ const POKEMON = [
     verdict: 'scan',
     warning: 'Hydro Cannon kell hozzá',
     raid: { rating: 'ok' },
+    moveSources: { 'Hydro Cannon': 'communityDay' },
   },
   {
     id: 'thievul',
@@ -921,6 +926,7 @@ const POKEMON = [
         },
       },
     },
+    moveSources: { 'Frenzy Plant': 'communityDay' },
     evolution: 'Bulbasaur → Ivysaur → Venusaur, összesen 125 cukor.',
     notes: [
       'A cukrot tartogasd: egy Bulbasaur Community Day Classic alatt a fejlesztés ingyen Frenzy Plantet ad.',
