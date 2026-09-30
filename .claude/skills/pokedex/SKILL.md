@@ -73,10 +73,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 - Mozdulatok szétválasztva: `moves: { fast: ['Waterfall', 'Bite'], charged: ['Hydro Pump', 'Crunch'], note }`,
   a játékbeli angol mozdulatnévvel (a lookup is így írja). Ha a PvPoke-szett jó, a GL/UL-hez
   ne írj `moves`-t, mert a kártya magától mutatja.
-- Speciális mozdulat: a ⚠️ jelölés automatikus a game master alapján, alapból „Elite TM” szöveggel.
-  Ha Community Day mozdulat, jelöld a faj `moveSources` mezőjében:
-  `moveSources: { 'Blast Burn': 'communityDay' }`. Más módszer kell? Vedd fel az `app.js`
-  `MOVE_SOURCE_TEXTS`-ébe, ne írj fajonkénti szabad szöveget.
+- Speciális mozdulat (csak Elite TM-mel vagy eseményen szerezhető meg): a ⚠️ jelölés és a szövege
+  automatikus a game master alapján, kézzel nem kell jelölni.
 - Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`
   (a Shadow és a Mega nem külön faj). A Megának csak raidje van, a Shadow-nak nincs Max Battle-je.
 - Módtól független, de fajra szóló tanács: `notes`; fejlődés és cukorár: `evolution`.
