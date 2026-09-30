@@ -55,9 +55,15 @@ function combineSpeciesData(pokemon, pvpoke) {
       ...species,
       stats,
       types: stats.types || [],
+      dex: stats.dex,
       greatLeagueRanks: { rank: stats.greatLeague?.rank, shadowRank: stats.shadow?.greatLeague?.rank },
     };
   });
+}
+
+// Pokédex-sorrend: szám szerint, azonos számon belül (pl. regionális forma) név szerint.
+function byDexNumber(a, b) {
+  return (a.dex ?? Infinity) - (b.dex ?? Infinity) || a.name.localeCompare(b.name, 'hu');
 }
 
 // Kis- és nagybetű, valamint ékezet nélkül hasonlít (pl. „flabebe” = „Flabébé”).
@@ -337,14 +343,15 @@ function renderList(className, items) {
 function renderPokemonCard(species) {
   const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
   const searchText = normalizeForSearch(`${species.name} ${species.origin} ${typeNames}`);
+  const dex = species.dex ? `<span class="mon-dex">#${species.dex}</span>` : '';
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
   const general = renderFact('Fejlődés', species.evolution)
     + renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
 
   return `
-    <article class="mon" data-search="${escapeHtml(searchText)}">
+    <article class="mon" data-search="${escapeHtml(searchText)}" data-dex="${species.dex ?? ''}">
       <div class="mon-head">
-        <h3 class="mon-name">${escapeHtml(species.name)}</h3>
+        <h3 class="mon-name">${escapeHtml(species.name)} ${dex}</h3>
         <span class="verdict verdict-${species.verdict}">${VERDICT_LABELS[species.verdict]}</span>
       </div>
       <p class="mon-origin">${escapeHtml(species.origin)}</p>
@@ -356,7 +363,7 @@ function renderPokemonCard(species) {
 }
 
 function renderPokedex(pokemon) {
-  const cards = pokemon.map(renderPokemonCard).join('');
+  const cards = [...pokemon].sort(byDexNumber).map(renderPokemonCard).join('');
   return `${cards}<p class="sub" id="dex-empty" hidden>Nincs ilyen faj a listán. Kérdezz rá, és felvesszük.</p>`;
 }
 
@@ -450,11 +457,18 @@ function setupPokedexSearch() {
   const count = document.getElementById('dex-count');
   const emptyMessage = document.getElementById('dex-empty');
 
+  // Szám (vagy #szám) pontos Pokédex-számra keres, minden más a név, alapforma és típus szövegében.
+  function matchesQuery(card, rawQuery) {
+    const dexQuery = /^#?(\d+)$/.exec(rawQuery);
+    if (dexQuery) return card.dataset.dex === String(Number(dexQuery[1]));
+    return card.dataset.search.includes(normalizeForSearch(rawQuery));
+  }
+
   function filter() {
-    const query = normalizeForSearch(input.value.trim());
+    const query = input.value.trim();
     let visible = 0;
     cards.forEach((card) => {
-      const matches = card.dataset.search.includes(query);
+      const matches = matchesQuery(card, query);
       card.hidden = !matches;
       if (matches) visible += 1;
     });

@@ -3,6 +3,7 @@
 //
 // Mezők (csak az id, name, origin és verdict kötelező):
 //   id           a faj PvPoke-azonosítója (speciesId), ezzel kapcsolódik a pvpoke.js-hez
+//                (a Pokédex-szám a pvpoke.js-ből jön; az nem egyedi, a regionális formáknak ugyanaz)
 //   name         a faj neve
 //   origin       amit a vadonban elkapsz, vagy ahonnan szerzed
 //   verdict      'keep'     = maradjon, építsd

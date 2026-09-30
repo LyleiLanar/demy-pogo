@@ -1,14 +1,16 @@
 // GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // shadow: a Shadow változat Great és Ultra League adatai
 // moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 
-const PVPOKE_DATE = '2026. 09. 29.';
+const PVPOKE_DATE = '2026. 09. 30.';
 
 const PVPOKE = {
   aegislash_shield: {
+    dex: 681,
     types: ['steel', 'ghost'],
     buddyKm: 5,
     greatLeague: {
@@ -20,6 +22,7 @@ const PVPOKE = {
     ultraLeague: { rank: 601 },
   },
   alakazam: {
+    dex: 65,
     types: ['psychic'],
     megaForms: [
       { name: 'Mega', types: ['psychic'] },
@@ -33,6 +36,7 @@ const PVPOKE = {
     },
   },
   ninetales_alolan: {
+    dex: 38,
     types: ['ice', 'fairy'],
     buddyKm: 3,
     greatLeague: {
@@ -63,6 +67,7 @@ const PVPOKE = {
     },
   },
   altaria: {
+    dex: 334,
     types: ['dragon', 'flying'],
     megaForms: [
       { name: 'Mega', types: ['dragon', 'fairy'] },
@@ -86,6 +91,7 @@ const PVPOKE = {
     },
   },
   ampharos: {
+    dex: 181,
     types: ['electric'],
     megaForms: [
       { name: 'Mega', types: ['electric', 'dragon'] },
@@ -109,6 +115,7 @@ const PVPOKE = {
     },
   },
   annihilape: {
+    dex: 979,
     types: ['fighting', 'ghost'],
     buddyKm: 3,
     greatLeague: {
@@ -139,6 +146,7 @@ const PVPOKE = {
     },
   },
   araquanid: {
+    dex: 752,
     types: ['water', 'bug'],
     buddyKm: 3,
     greatLeague: {
@@ -159,6 +167,7 @@ const PVPOKE = {
     },
   },
   azumarill: {
+    dex: 184,
     types: ['water', 'fairy'],
     buddyKm: 3,
     greatLeague: {
@@ -170,6 +179,7 @@ const PVPOKE = {
     ultraLeague: { rank: 813 },
   },
   bastiodon: {
+    dex: 411,
     types: ['rock', 'steel'],
     buddyKm: 5,
     greatLeague: { rank: 168 },
@@ -180,12 +190,14 @@ const PVPOKE = {
     },
   },
   baxcalibur: {
+    dex: 998,
     types: ['dragon', 'ice'],
     buddyKm: 5,
     greatLeague: { rank: 501 },
     ultraLeague: { rank: 343 },
   },
   blaziken: {
+    dex: 257,
     types: ['fire', 'fighting'],
     megaForms: [
       { name: 'Mega', types: ['fire', 'fighting'] },
@@ -199,12 +211,14 @@ const PVPOKE = {
     },
   },
   blissey: {
+    dex: 242,
     types: ['normal'],
     buddyKm: 5,
     greatLeague: { rank: 928 },
     ultraLeague: { rank: 632 },
   },
   carbink: {
+    dex: 703,
     types: ['rock', 'fairy'],
     buddyKm: 5,
     greatLeague: {
@@ -216,6 +230,7 @@ const PVPOKE = {
     ultraLeague: { rank: 815 },
   },
   charizard: {
+    dex: 6,
     types: ['fire', 'flying'],
     megaForms: [
       { name: 'Mega X', types: ['fire', 'dragon'] },
@@ -230,6 +245,7 @@ const PVPOKE = {
     },
   },
   charjabug: {
+    dex: 737,
     types: ['bug', 'electric'],
     buddyKm: 1,
     greatLeague: {
@@ -248,18 +264,21 @@ const PVPOKE = {
     },
   },
   cherrim_overcast: {
+    dex: 421,
     types: ['grass'],
     buddyKm: 1,
     greatLeague: { rank: 1112 },
     ultraLeague: { rank: 830 },
   },
   cinderace: {
+    dex: 815,
     types: ['fire'],
     buddyKm: 3,
     greatLeague: { rank: 618 },
     ultraLeague: { rank: 398 },
   },
   clodsire: {
+    dex: 980,
     types: ['poison', 'ground'],
     buddyKm: 3,
     greatLeague: {
@@ -271,6 +290,7 @@ const PVPOKE = {
     ultraLeague: { rank: 338 },
   },
   corviknight: {
+    dex: 823,
     types: ['flying', 'steel'],
     buddyKm: 1,
     greatLeague: {
@@ -301,6 +321,7 @@ const PVPOKE = {
     },
   },
   cramorant: {
+    dex: 845,
     types: ['flying', 'water'],
     buddyKm: 3,
     greatLeague: {
@@ -317,6 +338,7 @@ const PVPOKE = {
     },
   },
   darmanitan_standard: {
+    dex: 555,
     types: ['fire'],
     buddyKm: 3,
     greatLeague: { rank: 820 },
@@ -327,18 +349,21 @@ const PVPOKE = {
     },
   },
   decidueye: {
+    dex: 724,
     types: ['grass', 'ghost'],
     buddyKm: 3,
     greatLeague: { rank: 566 },
     ultraLeague: { rank: 217 },
   },
   dedenne: {
+    dex: 702,
     types: ['electric', 'fairy'],
     buddyKm: 3,
     greatLeague: { rank: 268 },
     ultraLeague: { rank: 602 },
   },
   delphox: {
+    dex: 655,
     types: ['fire', 'psychic'],
     megaForms: [
       { name: 'Mega', types: ['fire', 'psychic'] },
@@ -352,6 +377,7 @@ const PVPOKE = {
     },
   },
   deoxys_defense: {
+    dex: 386,
     types: ['psychic'],
     buddyKm: 20,
     greatLeague: {
@@ -368,6 +394,7 @@ const PVPOKE = {
     },
   },
   dondozo: {
+    dex: 977,
     types: ['water'],
     buddyKm: 5,
     greatLeague: {
@@ -384,6 +411,7 @@ const PVPOKE = {
     },
   },
   doublade: {
+    dex: 680,
     types: ['steel', 'ghost'],
     buddyKm: 5,
     greatLeague: {
@@ -400,6 +428,7 @@ const PVPOKE = {
     },
   },
   drifblim: {
+    dex: 426,
     types: ['ghost', 'flying'],
     buddyKm: 5,
     greatLeague: { rank: 362 },
@@ -410,12 +439,14 @@ const PVPOKE = {
     },
   },
   dubwool: {
+    dex: 832,
     types: ['normal'],
     buddyKm: 3,
     greatLeague: { rank: 161 },
     ultraLeague: { rank: 359 },
   },
   dusclops: {
+    dex: 356,
     types: ['ghost'],
     buddyKm: 3,
     greatLeague: {
@@ -434,12 +465,14 @@ const PVPOKE = {
     },
   },
   eldegoss: {
+    dex: 830,
     types: ['grass'],
     buddyKm: 3,
     greatLeague: { rank: 809 },
     ultraLeague: { rank: 775 },
   },
   empoleon: {
+    dex: 395,
     types: ['water', 'steel'],
     buddyKm: 3,
     greatLeague: {
@@ -470,6 +503,7 @@ const PVPOKE = {
     },
   },
   excadrill: {
+    dex: 530,
     types: ['ground', 'steel'],
     buddyKm: 3,
     greatLeague: { rank: 534 },
@@ -480,6 +514,7 @@ const PVPOKE = {
     },
   },
   fearow: {
+    dex: 22,
     types: ['normal', 'flying'],
     buddyKm: 1,
     greatLeague: {
@@ -491,6 +526,7 @@ const PVPOKE = {
     ultraLeague: { rank: 303 },
   },
   feraligatr: {
+    dex: 160,
     types: ['water'],
     buddyKm: 3,
     greatLeague: {
@@ -521,12 +557,14 @@ const PVPOKE = {
     },
   },
   flareon: {
+    dex: 136,
     types: ['fire'],
     buddyKm: 5,
     greatLeague: { rank: 690 },
     ultraLeague: { rank: 586 },
   },
   florges: {
+    dex: 671,
     types: ['fairy'],
     buddyKm: 3,
     greatLeague: {
@@ -543,6 +581,7 @@ const PVPOKE = {
     },
   },
   forretress: {
+    dex: 205,
     types: ['bug', 'steel'],
     buddyKm: 5,
     greatLeague: {
@@ -573,6 +612,7 @@ const PVPOKE = {
     },
   },
   furret: {
+    dex: 162,
     types: ['normal'],
     buddyKm: 1,
     greatLeague: {
@@ -584,6 +624,7 @@ const PVPOKE = {
     ultraLeague: { rank: 737 },
   },
   corsola_galarian: {
+    dex: 222,
     types: ['ghost'],
     buddyKm: 3,
     greatLeague: {
@@ -594,6 +635,7 @@ const PVPOKE = {
     },
   },
   moltres_galarian: {
+    dex: 146,
     types: ['dark', 'flying'],
     buddyKm: 20,
     greatLeague: {
@@ -610,6 +652,7 @@ const PVPOKE = {
     },
   },
   stunfisk_galarian: {
+    dex: 618,
     types: ['ground', 'steel'],
     buddyKm: 5,
     greatLeague: {
@@ -621,6 +664,7 @@ const PVPOKE = {
     ultraLeague: { rank: 128 },
   },
   gardevoir: {
+    dex: 282,
     types: ['psychic', 'fairy'],
     megaForms: [
       { name: 'Mega', types: ['psychic', 'fairy'] },
@@ -634,6 +678,7 @@ const PVPOKE = {
     },
   },
   gigalith: {
+    dex: 526,
     types: ['rock'],
     buddyKm: 3,
     greatLeague: { rank: 594 },
@@ -644,6 +689,7 @@ const PVPOKE = {
     },
   },
   gothitelle: {
+    dex: 576,
     types: ['psychic'],
     buddyKm: 3,
     greatLeague: { rank: 832 },
@@ -654,12 +700,14 @@ const PVPOKE = {
     },
   },
   greedent: {
+    dex: 820,
     types: ['normal'],
     buddyKm: 1,
     greatLeague: { rank: 184 },
     ultraLeague: { rank: 148 },
   },
   guzzlord: {
+    dex: 799,
     types: ['dark', 'dragon'],
     buddyKm: 20,
     greatLeague: {
@@ -676,6 +724,7 @@ const PVPOKE = {
     },
   },
   gyarados: {
+    dex: 130,
     types: ['water', 'flying'],
     megaForms: [
       { name: 'Mega', types: ['water', 'dark'] },
@@ -699,6 +748,7 @@ const PVPOKE = {
     },
   },
   hariyama: {
+    dex: 297,
     types: ['fighting'],
     buddyKm: 3,
     greatLeague: { rank: 483 },
@@ -709,12 +759,14 @@ const PVPOKE = {
     },
   },
   hatterene: {
+    dex: 858,
     types: ['psychic', 'fairy'],
     buddyKm: 5,
     greatLeague: { rank: 723 },
     ultraLeague: { rank: 495 },
   },
   hippowdon: {
+    dex: 450,
     types: ['ground'],
     buddyKm: 3,
     greatLeague: {
@@ -745,6 +797,7 @@ const PVPOKE = {
     },
   },
   electrode_hisuian: {
+    dex: 101,
     types: ['electric', 'grass'],
     buddyKm: 3,
     greatLeague: {
@@ -756,12 +809,14 @@ const PVPOKE = {
     ultraLeague: { rank: 161 },
   },
   inteleon: {
+    dex: 818,
     types: ['water'],
     buddyKm: 3,
     greatLeague: { rank: 861 },
     ultraLeague: { rank: 710 },
   },
   jellicent: {
+    dex: 593,
     types: ['water', 'ghost'],
     buddyKm: 3,
     greatLeague: {
@@ -778,6 +833,7 @@ const PVPOKE = {
     },
   },
   jumpluff: {
+    dex: 189,
     types: ['grass', 'flying'],
     buddyKm: 3,
     greatLeague: {
@@ -798,18 +854,21 @@ const PVPOKE = {
     },
   },
   kilowattrel: {
+    dex: 941,
     types: ['electric', 'flying'],
     buddyKm: 1,
     greatLeague: { rank: 514 },
     ultraLeague: { rank: 344 },
   },
   lanturn: {
+    dex: 171,
     types: ['water', 'electric'],
     buddyKm: 3,
     greatLeague: { rank: 163 },
     ultraLeague: { rank: 405 },
   },
   lapras: {
+    dex: 131,
     types: ['water', 'ice'],
     buddyKm: 5,
     greatLeague: {
@@ -840,17 +899,20 @@ const PVPOKE = {
     },
   },
   lickitung: {
+    dex: 108,
     types: ['normal'],
     buddyKm: 3,
     greatLeague: { rank: 170 },
   },
   lokix: {
+    dex: 920,
     types: ['bug', 'dark'],
     buddyKm: 1,
     greatLeague: { rank: 341 },
     ultraLeague: { rank: 260 },
   },
   machamp: {
+    dex: 68,
     types: ['fighting'],
     buddyKm: 3,
     greatLeague: { rank: 245 },
@@ -861,6 +923,7 @@ const PVPOKE = {
     },
   },
   malamar: {
+    dex: 687,
     types: ['dark', 'psychic'],
     megaForms: [
       { name: 'Mega', types: ['dark', 'psychic'] },
@@ -894,6 +957,7 @@ const PVPOKE = {
     },
   },
   mandibuzz: {
+    dex: 630,
     types: ['dark', 'flying'],
     buddyKm: 5,
     greatLeague: {
@@ -905,6 +969,7 @@ const PVPOKE = {
     ultraLeague: { rank: 136 },
   },
   mantine: {
+    dex: 226,
     types: ['water', 'flying'],
     buddyKm: 5,
     greatLeague: {
@@ -916,6 +981,7 @@ const PVPOKE = {
     ultraLeague: { rank: 131 },
   },
   marowak: {
+    dex: 105,
     types: ['ground'],
     buddyKm: 3,
     greatLeague: {
@@ -936,6 +1002,7 @@ const PVPOKE = {
     },
   },
   medicham: {
+    dex: 308,
     types: ['fighting', 'psychic'],
     megaForms: [
       { name: 'Mega', types: ['fighting', 'psychic'] },
@@ -949,6 +1016,7 @@ const PVPOKE = {
     },
   },
   melmetal: {
+    dex: 809,
     types: ['steel'],
     buddyKm: 20,
     greatLeague: {
@@ -965,12 +1033,14 @@ const PVPOKE = {
     },
   },
   meowscarada: {
+    dex: 908,
     types: ['grass', 'dark'],
     buddyKm: 3,
     greatLeague: { rank: 473 },
     ultraLeague: { rank: 462 },
   },
   mimikyu: {
+    dex: 778,
     types: ['ghost', 'fairy'],
     buddyKm: 5,
     greatLeague: {
@@ -987,6 +1057,7 @@ const PVPOKE = {
     },
   },
   moltres: {
+    dex: 146,
     types: ['fire', 'flying'],
     buddyKm: 20,
     greatLeague: { rank: 668 },
@@ -997,6 +1068,7 @@ const PVPOKE = {
     },
   },
   ninetales: {
+    dex: 38,
     types: ['fire'],
     buddyKm: 3,
     greatLeague: {
@@ -1027,18 +1099,21 @@ const PVPOKE = {
     },
   },
   perrserker: {
+    dex: 863,
     types: ['steel'],
     buddyKm: 3,
     greatLeague: { rank: 497 },
     ultraLeague: { rank: 214 },
   },
   pyroar: {
+    dex: 668,
     types: ['fire', 'normal'],
     buddyKm: 3,
     greatLeague: { rank: 675 },
     ultraLeague: { rank: 470 },
   },
   quagsire: {
+    dex: 195,
     types: ['water', 'ground'],
     buddyKm: 3,
     greatLeague: {
@@ -1059,12 +1134,14 @@ const PVPOKE = {
     },
   },
   quaquaval: {
+    dex: 914,
     types: ['water', 'fighting'],
     buddyKm: 3,
     greatLeague: { rank: 283 },
     ultraLeague: { rank: 201 },
   },
   rhyperior: {
+    dex: 464,
     types: ['ground', 'rock'],
     buddyKm: 3,
     greatLeague: { rank: 679 },
@@ -1075,6 +1152,7 @@ const PVPOKE = {
     },
   },
   rillaboom: {
+    dex: 812,
     types: ['grass'],
     buddyKm: 3,
     greatLeague: {
@@ -1091,6 +1169,7 @@ const PVPOKE = {
     },
   },
   sableye: {
+    dex: 302,
     types: ['dark', 'ghost'],
     megaForms: [
       { name: 'Mega', types: ['dark', 'ghost'] },
@@ -1112,6 +1191,7 @@ const PVPOKE = {
     },
   },
   snorlax: {
+    dex: 143,
     types: ['normal'],
     buddyKm: 5,
     greatLeague: {
@@ -1142,6 +1222,7 @@ const PVPOKE = {
     },
   },
   staraptor: {
+    dex: 398,
     types: ['normal', 'flying'],
     megaForms: [
       { name: 'Mega', types: ['fighting', 'flying'] },
@@ -1155,6 +1236,7 @@ const PVPOKE = {
     },
   },
   stunfisk: {
+    dex: 618,
     types: ['ground', 'electric'],
     buddyKm: 5,
     greatLeague: {
@@ -1166,6 +1248,7 @@ const PVPOKE = {
     ultraLeague: { rank: 132 },
   },
   swampert: {
+    dex: 260,
     types: ['water', 'ground'],
     megaForms: [
       { name: 'Mega', types: ['water', 'ground'] },
@@ -1199,6 +1282,7 @@ const PVPOKE = {
     },
   },
   thievul: {
+    dex: 828,
     types: ['dark'],
     buddyKm: 1,
     greatLeague: {
@@ -1210,6 +1294,7 @@ const PVPOKE = {
     ultraLeague: { rank: 164 },
   },
   tinkaton: {
+    dex: 959,
     types: ['fairy', 'steel'],
     buddyKm: 3,
     greatLeague: {
@@ -1226,6 +1311,7 @@ const PVPOKE = {
     },
   },
   torterra: {
+    dex: 389,
     types: ['grass', 'ground'],
     buddyKm: 3,
     greatLeague: { rank: 551 },
@@ -1236,12 +1322,14 @@ const PVPOKE = {
     },
   },
   toxapex: {
+    dex: 748,
     types: ['poison', 'water'],
     buddyKm: 3,
     greatLeague: { rank: 114 },
     ultraLeague: { rank: 766 },
   },
   trevenant: {
+    dex: 709,
     types: ['ghost', 'grass'],
     buddyKm: 5,
     greatLeague: { rank: 354 },
@@ -1252,12 +1340,14 @@ const PVPOKE = {
     },
   },
   tsareena: {
+    dex: 763,
     types: ['grass'],
     buddyKm: 3,
     greatLeague: { rank: 997 },
     ultraLeague: { rank: 624 },
   },
   tyrantrum: {
+    dex: 697,
     types: ['rock', 'dragon'],
     buddyKm: 5,
     greatLeague: { rank: 732 },
@@ -1268,6 +1358,7 @@ const PVPOKE = {
     },
   },
   umbreon: {
+    dex: 197,
     types: ['dark'],
     buddyKm: 5,
     greatLeague: {
@@ -1279,6 +1370,7 @@ const PVPOKE = {
     ultraLeague: { rank: 119 },
   },
   venusaur: {
+    dex: 3,
     types: ['grass', 'poison'],
     megaForms: [
       { name: 'Mega', types: ['grass', 'poison'] },
@@ -1292,6 +1384,7 @@ const PVPOKE = {
     },
   },
   vigoroth: {
+    dex: 288,
     types: ['normal'],
     buddyKm: 5,
     greatLeague: {
@@ -1312,6 +1405,7 @@ const PVPOKE = {
     },
   },
   whimsicott: {
+    dex: 547,
     types: ['grass', 'fairy'],
     buddyKm: 1,
     greatLeague: { rank: 382 },

@@ -51,6 +51,7 @@ async function main() {
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, '. ') + '.';
   const output = `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // shadow: a Shadow változat Great és Ultra League adatai
 // moveset: az ajánlott szett, * = Elite TM vagy eseményes mozdulat

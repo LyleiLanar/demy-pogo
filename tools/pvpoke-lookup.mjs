@@ -43,7 +43,7 @@ function printSpecies(species, data, maxForms) {
   const tags = (species.tags || []).filter((tag) => RELEVANT_TAGS.includes(tag));
   const eliteMoves = [...(species.eliteMoves || []), ...(species.legacyMoves || [])].map((id) => data.moves.get(id) || id);
 
-  console.log(`\n${displayName(species.speciesName)}  (id: ${species.speciesId})`);
+  console.log(`\n#${species.dex} ${displayName(species.speciesName)}  (id: ${species.speciesId})`);
   console.log(`  típus:        ${entry.types.join(' / ')}`);
   console.log(`  címkék:       ${tags.join(', ') || '-'}`);
   console.log(`  fejlődés:     ${evolutionLine(species, data)}`);

@@ -1,5 +1,5 @@
 // Közös PvPoke-adatkezelés a tools/ scripteknek: letöltés, nevek, Mega formák,
-// és egy faj leírása (típus, buddy km, GL/UL helyezés normál és Shadow formára).
+// és egy faj leírása (Pokédex-szám, típus, buddy km, GL/UL helyezés normál és Shadow formára).
 
 export const DATA_URL = 'https://raw.githubusercontent.com/pvpoke/pvpoke/master/src/data';
 export const LEAGUES = { greatLeague: 1500, ultraLeague: 2500 };
@@ -74,7 +74,7 @@ export async function loadPvpokeData() {
 export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT) {
   const species = data.speciesById.get(id);
   if (!species) return undefined;
-  const entry = { types: species.types.filter((type) => type !== 'none') };
+  const entry = { dex: species.dex, types: species.types.filter((type) => type !== 'none') };
   const megaForms = megaFormsOf(id, data.gamemaster);
   if (megaForms.length) entry.megaForms = megaForms;
   if (species.buddyDistance) entry.buddyKm = species.buddyDistance;

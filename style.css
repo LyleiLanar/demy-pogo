@@ -70,6 +70,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .mon-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .mon-name{font:700 1.2rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:0;color:var(--ink);text-transform:none;letter-spacing:.01em}
+.mon-dex{font:500 .75rem Barlow,sans-serif;color:var(--muted);letter-spacing:.02em;margin-left:2px}
 .mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
 .verdict{flex:none;font:600 .72rem Barlow,sans-serif;border-radius:4px;padding:2px 7px;letter-spacing:.04em;text-transform:uppercase}
 .verdict-keep{background:var(--good);color:var(--good-ink)}
