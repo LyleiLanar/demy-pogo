@@ -35,23 +35,29 @@ function damageMultiplier(attackType, defenseTypes) {
   }, 1);
 }
 
-function renderMatchupRow(label, matchups, isMultiple, multipleLabel) {
-  if (matchups.length === 0) return '';
+function renderMatchupColumn(label, matchups, isMultiple, multipleLabel) {
   const badges = matchups
     .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier) ? multipleLabel : ''))
-    .join(' ');
-  return `<p class="mon-weak"><span class="mon-weak-label">${label}</span> ${badges}</p>`;
+    .join('');
+  return `
+    <div class="mon-defense-col">
+      <span class="mon-defense-label">${label}</span>
+      <div class="mon-defense-icons">${badges || '<span class="mon-defense-none">–</span>'}</div>
+    </div>`;
 }
 
-// Mire érzékeny és minek ellenálló a faj; a többszöröset előre véve.
+// Minek ellenálló (bal oszlop) és mire érzékeny (jobb oszlop) a faj; a többszöröset előre véve.
 function renderDefense(defenseTypes) {
   if (defenseTypes.length === 0) return '';
   const matchups = Object.keys(TYPES)
     .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }));
   const weaknesses = matchups.filter(({ multiplier }) => multiplier > 1).sort((a, b) => b.multiplier - a.multiplier);
   const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
-  return renderMatchupRow('Érzékeny:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny')
-    + renderMatchupRow('Ellenálló:', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló');
+  return `
+    <div class="mon-defense">
+      ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló')}
+      ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny')}
+    </div>`;
 }
 
 function attackingTraits(attackType) {
