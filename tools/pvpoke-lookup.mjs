@@ -2,10 +2,11 @@
 // Gigantamax, fejlődési sor, Elite mozdulatok, és a GL/UL helyezés szettel a normál és a Shadow formára.
 // Források: PvPoke (GitHub) és a játék kibányászott game mastere (PokeMiners, GitHub).
 //
-// Futtatás a repó gyökeréből: node tools/pvpoke-lookup.mjs <név vagy azonosító>
+// Futtatás: node tools/pvpoke-lookup.mjs [--json] <név vagy azonosító>
 // Példa: node tools/pvpoke-lookup.mjs decidueye
+// A --json a data/pvpoke.js-be kerülő teljes bejegyzést írja ki (minden helyezés részletesen).
 
-import { describeSpecies, displayName, loadMaxForms, loadPvpokeData, maxFormsOf } from './pvpoke-common.mjs';
+import { describeSpecies, displayName, loadGameMaster, loadPvpokeData } from './pvpoke-common.mjs';
 
 const MAX_MATCHES = 10;
 const RELEVANT_TAGS = ['legendary', 'mythical', 'ultrabeast', 'shadoweligible', 'starter'];
@@ -28,28 +29,37 @@ function findSpecies(query, data) {
     .slice(0, MAX_MATCHES);
 }
 
-function evolutionLine(species, data) {
-  const family = species.family || {};
-  const parent = family.parent && data.speciesById.get(family.parent);
-  const children = (family.evolutions || []).map((id) => data.speciesById.get(id)).filter(Boolean);
-  const parts = [];
-  if (parent) parts.push(`előző: ${displayName(parent.speciesName)}`);
-  if (children.length) parts.push(`következő: ${children.map((child) => displayName(child.speciesName)).join(', ')}`);
-  return parts.join(' · ') || 'nem fejlődik';
+// „Charmander → Charmeleon (25 cukor) → [Charizard] (100 cukor)”; elágazásnál a fokon „/” választja el.
+function describeCost(stage) {
+  if (stage.candy === undefined) return '';
+  const details = [`${stage.candy} cukor`, stage.item, stage.tradeFree && 'cserével ingyen',
+    stage.buddyKm && `buddyként ${stage.buddyKm} km`, stage.gender, stage.time, stage.quest && 'feladat'];
+  return ` (${details.filter(Boolean).join(', ')})`;
 }
 
-function printSpecies(species, data, maxForms) {
-  const entry = describeSpecies(species.speciesId, data, Infinity);
+function evolutionLine(entry) {
+  if (!entry.evolution) return 'nem fejlődik';
+  return entry.evolution
+    .map((stages) => stages.map((stage) => `${stage.current ? `[${stage.name}]` : stage.name}${describeCost(stage)}`).join(' / '))
+    .join(' → ');
+}
+
+function printSpecies(species, data, gameMaster, asJson) {
+  const entry = describeSpecies(species.speciesId, data, Infinity, gameMaster);
+  if (asJson) {
+    console.log(JSON.stringify({ id: species.speciesId, name: displayName(species.speciesName), ...entry }, null, 2));
+    return;
+  }
   const tags = (species.tags || []).filter((tag) => RELEVANT_TAGS.includes(tag));
 
   console.log(`\n#${species.dex} ${displayName(species.speciesName)}  (id: ${species.speciesId})`);
   console.log(`  típus:        ${entry.types.join(' / ')}`);
   console.log(`  címkék:       ${tags.join(', ') || '-'}`);
-  console.log(`  fejlődés:     ${evolutionLine(species, data)}`);
+  console.log(`  fejlődés:     ${evolutionLine(entry)}`);
   console.log(`  buddy:        ${entry.buddyKm ?? '-'} km / cukor`);
   console.log(`  Elite / esemény mozdulat: ${(entry.specialMoves || []).join(', ') || '-'}`);
   console.log(`  Mega:         ${(entry.megaForms || []).map((mega) => `${mega.name} (${mega.types.join('/')})`).join(', ') || 'nincs'}`);
-  console.log(`  Max Battle:   ${maxFormsOf(species.speciesId, maxForms).join(', ') || 'nincs Dynamax / Gigantamax forma'}`);
+  console.log(`  Max Battle:   ${(entry.maxForms || []).join(', ') || 'nincs Dynamax / Gigantamax forma'}`);
   const forms = [['Normál', entry], ['Shadow', entry.shadow]];
   for (const [formName, form] of forms) {
     if (!form) continue;
@@ -65,18 +75,20 @@ function printSpecies(species, data, maxForms) {
 }
 
 async function main() {
-  const query = process.argv.slice(2).join(' ');
+  const args = process.argv.slice(2);
+  const asJson = args.includes('--json');
+  const query = args.filter((arg) => arg !== '--json').join(' ');
   if (!query) {
-    console.error('Használat: node tools/pvpoke-lookup.mjs <név vagy azonosító>');
+    console.error('Használat: node tools/pvpoke-lookup.mjs [--json] <név vagy azonosító>');
     process.exit(1);
   }
-  const [data, maxForms] = await Promise.all([loadPvpokeData(), loadMaxForms()]);
+  const [data, gameMaster] = await Promise.all([loadPvpokeData(), loadGameMaster()]);
   const matches = findSpecies(query, data);
   if (matches.length === 0) {
     console.log(`Nincs találat erre: ${query}`);
     return;
   }
-  matches.forEach((species) => printSpecies(species, data, maxForms));
+  matches.forEach((species) => printSpecies(species, data, gameMaster, asJson));
 }
 
 main().catch((error) => {

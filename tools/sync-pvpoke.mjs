@@ -7,7 +7,7 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 import vm from 'node:vm';
-import { DETAIL_RANK_LIMIT, describeSpecies, loadMaxForms, loadPvpokeData } from './pvpoke-common.mjs';
+import { DETAIL_RANK_LIMIT, describeSpecies, loadGameMaster, loadPvpokeData } from './pvpoke-common.mjs';
 
 const POKEMON_FILE = new URL('../data/pokemon.js', import.meta.url);
 const OUTPUT_FILE = new URL('../data/pvpoke.js', import.meta.url);
@@ -54,12 +54,12 @@ function toJs(value, indent = 0) {
 }
 
 async function main() {
-  const [pokemon, data, maxForms] = await Promise.all([loadPokemon(), loadPvpokeData(), loadMaxForms()]);
+  const [pokemon, data, gameMaster] = await Promise.all([loadPokemon(), loadPvpokeData(), loadGameMaster()]);
 
   const result = {};
   const missing = [];
   for (const { id } of pokemon) {
-    const entry = describeSpecies(id, data, DETAIL_RANK_LIMIT, maxForms);
+    const entry = describeSpecies(id, data, DETAIL_RANK_LIMIT, gameMaster);
     if (entry) result[id] = entry;
     else missing.push(id);
   }
@@ -74,6 +74,8 @@ async function main() {
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
+// evolution: a fejlődési ág fokonként (elágazásnál egy fokon több faj); a current a faj maga,
+//   candy és a többi mező az előző fokról ide fejlődés ára és feltételei (game master)
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })

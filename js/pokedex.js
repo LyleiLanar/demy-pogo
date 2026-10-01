@@ -3,6 +3,8 @@
 const VERDICT_LABELS = { keep: 'Marad', scan: 'Szkenneld', transfer: 'Cukorért' };
 const RATING_LABELS = { good: 'Erős', ok: 'Közepes', bad: 'Gyenge' };
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
+const EVOLUTION_TIME_LABELS = { day: 'csak nappal', night: 'csak éjjel', dusk: 'csak alkonyatkor', fullMoon: 'csak teliholdkor' };
+const EVOLUTION_GENDER_LABELS = { male: 'csak hím', female: 'csak nőstény' };
 
 function renderModeTab(mode, isSelected) {
   return `
@@ -92,13 +94,51 @@ function renderForms(species) {
     </div>`;
 }
 
+// ---------- Fejlődési ág ----------
+
+// A fejlődés ára és feltételei a nyíl buborékjába, pl. „🍬 100 cukor · + Sinnoh Stone · csak hím”.
+function evolutionCostText(stage) {
+  return [
+    `🍬 ${stage.candy ?? '?'} cukor`,
+    stage.item && `+ ${stage.item}`,
+    stage.tradeFree && 'cserével ingyen',
+    stage.buddyKm && `buddyként ${stage.buddyKm} km séta`,
+    EVOLUTION_GENDER_LABELS[stage.gender],
+    EVOLUTION_TIME_LABELS[stage.time],
+    stage.quest && 'külön feladat',
+  ].filter(Boolean).join(' · ');
+}
+
+// Egy faj az ágban; az első fok kivételével előtte a nyíl, amire koppintva látszik az ár.
+function renderEvolutionStage(stage, isFirst) {
+  const name = stage.current ? `<b>${escapeHtml(stage.name)}</b>` : escapeHtml(stage.name);
+  if (isFirst) return `<span class="evo-name">${name}</span>`;
+  const cost = escapeHtml(evolutionCostText(stage));
+  return `<button type="button" class="evo-arrow" data-tooltip="${cost}" aria-label="${cost}">→</button>`
+    + `<span class="evo-name">${name}</span>`;
+}
+
+// A név alatti sor: a faj fejlődési ága (pl. Charmander → Charmeleon → Charizard), elágazásnál
+// a fokon „/” választja el a lehetőségeket. Ha a faj nem fejlődik, a származása (origin) látszik.
+function renderEvolution(species) {
+  const stages = species.stats.evolution;
+  if (!stages) return `<p class="mon-origin">${escapeHtml(species.origin)}</p>`;
+  const html = stages
+    .map((options, i) => options.map((stage) => renderEvolutionStage(stage, i === 0)).join('<span class="evo-or">/</span>'))
+    .join('');
+  return `<p class="mon-origin mon-evolution">${html}</p>`;
+}
+
+function evolutionNames(species) {
+  return (species.stats.evolution || []).flat().map((stage) => stage.name);
+}
+
 function renderPokemonCard(species) {
   const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
-  const searchText = normalizeForSearch(`${species.name} ${species.origin} ${typeNames}`);
+  const searchText = normalizeForSearch(`${species.name} ${species.origin} ${evolutionNames(species).join(' ')} ${typeNames}`);
   const dex = species.dex ? `<span class="mon-dex">#${species.dex}</span>` : '';
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
-  const general = renderFact('Fejlődés', species.evolution)
-    + renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
+  const general = renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
 
   // A fejlécben a kiválasztott forma típusa (a Mega típusa eltérhet); formaváltáskor cserélődik.
   const headTypes = speciesForms(species).map((form, i) => `
@@ -110,7 +150,7 @@ function renderPokemonCard(species) {
         <h3 class="mon-name">${escapeHtml(species.name)} ${dex}</h3>
         ${headTypes.join('')}
       </div>
-      <p class="mon-origin">${escapeHtml(species.origin)}</p>
+      ${renderEvolution(species)}
       ${warning}
       ${renderForms(species)}
       ${general ? `<dl class="mon-facts">${general}</dl>` : ''}

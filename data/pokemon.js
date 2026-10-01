@@ -5,7 +5,8 @@
 //   id           a faj PvPoke-azonosítója (speciesId), ezzel kapcsolódik a pvpoke.js-hez
 //                (a Pokédex-szám a pvpoke.js-ből jön; az nem egyedi, a regionális formáknak ugyanaz)
 //   name         a faj neve
-//   origin       amit a vadonban elkapsz, vagy ahonnan szerzed
+//   origin       amit a vadonban elkapsz, vagy ahonnan szerzed (a keresés is ezt nézi; a kártyán csak akkor
+//                látszik, ha a fajnak nincs fejlődési ága, mert az ág a pvpoke.js-ből jön, cukorárral)
 //   verdict      'keep'     = maradjon, építsd
 //                'scan'     = PvP-jelölt: az alacsony Attackosakat nézd meg Poke Genie-vel,
 //                             a legjobb marad, a többi mehet cukorért
@@ -34,7 +35,6 @@
 //
 //
 //   Módtól független:
-//   evolution    fejlődés, cukorár
 //   notes        általános tanácsok
 //
 // Mindig érvényes kivétel, ezt nem ismételjük minden sorban: shiny, jelmezes,
@@ -60,7 +60,6 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'ok', note: 'Közepes Psychic támadó, nagyon vékony.' },
     maxBattle: { rating: 'bad', note: 'Psychic támadó, nagyon vékony. Alacsony prioritás.' },
-    evolution: 'Abra → Kadabra (25 cukor) → Alakazam (100 cukor), vagy csere után ingyen.',
     forms: {
       shadow: {
         raid: { rating: 'good', note: 'Erős Psychic támadó, de nagyon vékony.' },
@@ -129,7 +128,6 @@ const POKEMON = [
     origin: 'Frigibax',
     verdict: 'keep',
     raid: { rating: 'good', note: 'Az egyik legjobb Ice raid támadó.' },
-    evolution: 'Frigibax → Arctibax (25 cukor) → Baxcalibur (100 cukor).',
     notes: ['A Frigibax ritka, ne küldj el semmit a vonalból, amíg nincs egy jó Baxcaliburod.'],
   },
   {
@@ -149,7 +147,6 @@ const POKEMON = [
         raid: { rating: 'good' },
       },
     },
-    evolution: 'Torchic → Combusken (25 cukor) → Blaziken (100 cukor).',
   },
   {
     id: 'blissey',
@@ -196,7 +193,6 @@ const POKEMON = [
         maxBattle: { rating: 'good', note: 'A legerősebb G-Max támadó.', upgrade: ['attack'] },
       },
     },
-    evolution: 'Charmander → Charmeleon (25 cukor) → Charizard (100 cukor).',
   },
   {
     id: 'charjabug',
@@ -205,7 +201,6 @@ const POKEMON = [
     verdict: 'scan',
     warning: 'NE fejleszd Vikavolttá!',
     raid: { rating: 'bad' },
-    evolution: 'NE fejleszd Vikavolttá, köztes formában jó.',
   },
   {
     id: 'cherrim_overcast',
@@ -221,7 +216,6 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'ok', note: 'Közepes Fire támadó.' },
     maxBattle: { rating: 'good', note: 'Erős Fire támadó.', upgrade: ['attack'] },
-    evolution: 'Scorbunny → Raboot → Cinderace.',
   },
   {
     id: 'clodsire',
@@ -268,7 +262,6 @@ const POKEMON = [
         note: 'Ha mégis építenéd.',
       },
     },
-    evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
     notes: ['A hisui Decidueye (Grass/Fighting) külön faj, más a típusa és a szettje.'],
   },
   {
@@ -317,9 +310,8 @@ const POKEMON = [
     name: 'Doublade',
     origin: 'Honedge',
     verdict: 'scan',
-    warning: 'NE fejleszd Aegislashsá!',
+    warning: 'Great League-re NE fejleszd Aegislashsá!',
     raid: { rating: 'bad' },
-    evolution: 'Great League-re NE fejleszd Aegislashsá, köztes formában jó.',
   },
   {
     id: 'drifblim',
@@ -341,10 +333,9 @@ const POKEMON = [
     name: 'Dusclops',
     origin: 'Duskull',
     verdict: 'scan',
-    warning: 'NE fejleszd Dusknoirrá!',
+    warning: 'Great League-re NE fejleszd Dusknoirrá!',
     raid: { rating: 'bad' },
     greatLeague: { tips: ['Nagyon bírja a sebzést, kezdőknek is jól játszható.'] },
-    evolution: 'Great League-re NE fejleszd Dusknoirrá, köztes formában jó.',
   },
   {
     id: 'eldegoss',
@@ -352,7 +343,6 @@ const POKEMON = [
     origin: 'Gossifleur',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    evolution: 'Gossifleur → Eldegoss, 50 cukor.',
     notes: ['Egy alacsony Attackos Gossifleur maradhat a Little Cupra (500 CP).'],
   },
   {
@@ -370,7 +360,6 @@ const POKEMON = [
     verdict: 'keep',
     raid: { rating: 'good' },
     maxBattle: { rating: 'good', note: 'Fő támadó.', upgrade: ['attack'] },
-    evolution: 'Drilbur → Excadrill, 50 cukor.',
   },
   {
     id: 'fearow',
@@ -382,7 +371,6 @@ const POKEMON = [
       iv: 'Legjobb IV: 0/15/14 (28,5-ös szint, 1498 CP).',
       tips: ['Olcsó építeni, a Spearow gyakori, és a Great League-hez nem kell XL cukor.'],
     },
-    evolution: 'Spearow → Fearow, 50 cukor.',
   },
   {
     id: 'feraligatr',
@@ -428,7 +416,6 @@ const POKEMON = [
     verdict: 'scan',
     warning: 'NE fejleszd Cursolává!',
     raid: { rating: 'bad' },
-    evolution: 'NE fejleszd Cursolává, köztes formában jó.',
   },
   {
     id: 'moltres_galarian',
@@ -459,7 +446,6 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'bad', note: 'Vannak jobb Rock támadók.' },
     maxBattle: { rating: 'bad', note: 'A Rhyperior mellett nem prioritás.' },
-    evolution: 'A Boldore csere után ingyen fejlődik.',
   },
   {
     id: 'gothitelle',
@@ -467,7 +453,6 @@ const POKEMON = [
     origin: 'Gothita',
     verdict: 'transfer',
     raid: { rating: 'bad', note: 'Vannak jobb Psychic támadók.' },
-    evolution: 'Gothita → Gothorita → Gothitelle.',
   },
   {
     id: 'greedent',
@@ -476,7 +461,6 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'bad' },
     maxBattle: { rating: 'ok', note: 'Gyógyító, csak csapatban hasznos.', upgrade: ['spirit'] },
-    evolution: 'Skwovet → Greedent, 50 cukor.',
     notes: ['Részben felhős időben több Skwovet jön.'],
   },
   {
@@ -499,7 +483,6 @@ const POKEMON = [
         note: 'Water szett: Waterfall + Hydro Pump; Dark szett: Bite + Crunch.',
       },
     },
-    evolution: 'Magikarp → Gyarados, 400 cukor.',
   },
   {
     id: 'hariyama',
@@ -507,7 +490,6 @@ const POKEMON = [
     origin: 'Makuhita',
     verdict: 'transfer',
     raid: { rating: 'ok', note: 'Közepes Fighting támadó, a Machamp, Lucario és Conkeldurr jobb.' },
-    evolution: 'Makuhita → Hariyama, 50 cukor.',
   },
   {
     id: 'hatterene',
@@ -516,7 +498,6 @@ const POKEMON = [
     verdict: 'transfer',
     raid: { rating: 'bad' },
     maxBattle: { rating: 'bad', note: 'Nem prioritás.' },
-    evolution: 'Hatenna → Hattrem → Hatterene.',
   },
   {
     id: 'hippowdon',
@@ -543,7 +524,6 @@ const POKEMON = [
       upgrade: ['attack'],
       tips: ['Fire, Rock és Ground bossok ellen.'],
     },
-    evolution: 'Drizzile → Inteleon, 100 cukor.',
   },
   {
     id: 'jellicent',
@@ -605,7 +585,6 @@ const POKEMON = [
       moves: { fast: ['Counter'], charged: ['Dynamic Punch', 'Cross Chop'] },
     },
     maxBattle: { rating: 'ok', upgrade: ['attack'] },
-    evolution: 'Machop → Machoke → Machamp. A Machoke csere után ingyen (0 cukor) fejlődik.',
   },
   {
     id: 'malamar',
@@ -712,7 +691,6 @@ const POKEMON = [
     origin: 'Quaxly',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    evolution: 'Quaxly → Quaxwell (25 cukor) → Quaquaval (100 cukor), a Pokédexért.',
   },
   {
     id: 'rhyperior',
@@ -793,7 +771,6 @@ const POKEMON = [
     origin: 'Phantump',
     verdict: 'transfer',
     raid: { rating: 'bad' },
-    evolution: 'Phantump → Trevenant 50 cukor, vagy csere után ingyen.',
   },
   {
     id: 'tsareena',
@@ -829,7 +806,6 @@ const POKEMON = [
         raid: { note: 'Szólóban is hasznos Mega.' },
       },
     },
-    evolution: 'Bulbasaur → Ivysaur → Venusaur, összesen 125 cukor.',
   },
   {
     id: 'vigoroth',
@@ -838,7 +814,6 @@ const POKEMON = [
     verdict: 'scan',
     warning: 'NE fejleszd Slakinggé!',
     raid: { rating: 'bad' },
-    evolution: 'NE fejleszd Slakinggé, köztes formában jó.',
   },
   {
     id: 'whimsicott',

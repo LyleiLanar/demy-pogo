@@ -3,18 +3,31 @@
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
+// evolution: a fejlődési ág fokonként (elágazásnál egy fokon több faj); a current a faj maga,
+//   candy és a többi mező az előző fokról ide fejlődés ára és feltételei (game master)
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 
-const PVPOKE_DATE = '2026. 09. 30.';
+const PVPOKE_DATE = '2026. 10. 01.';
 
 const PVPOKE = {
   aegislash_shield: {
     dex: 681,
     types: ['steel', 'ghost'],
+    evolution: [
+      [
+        { name: 'Honedge' },
+      ],
+      [
+        { name: 'Doublade', candy: 25 },
+      ],
+      [
+        { name: 'Aegislash (Shield)', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: {
       rank: 80,
@@ -31,6 +44,17 @@ const PVPOKE = {
       { name: 'Mega', types: ['psychic'] },
     ],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Abra' },
+      ],
+      [
+        { name: 'Kadabra', candy: 25 },
+      ],
+      [
+        { name: 'Alakazam', current: true, candy: 100, tradeFree: true },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
     greatLeague: { rank: 919 },
@@ -43,6 +67,14 @@ const PVPOKE = {
   ninetales_alolan: {
     dex: 38,
     types: ['ice', 'fairy'],
+    evolution: [
+      [
+        { name: 'Alolan Vulpix' },
+      ],
+      [
+        { name: 'Alolan Ninetales', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Chilling Water'],
     greatLeague: {
@@ -78,6 +110,14 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['dragon', 'fairy'] },
     ],
+    evolution: [
+      [
+        { name: 'Swablu' },
+      ],
+      [
+        { name: 'Altaria', current: true, candy: 400 },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Moonblast'],
     greatLeague: {
@@ -103,6 +143,17 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['electric', 'dragon'] },
     ],
+    evolution: [
+      [
+        { name: 'Mareep' },
+      ],
+      [
+        { name: 'Flaaffy', candy: 25 },
+      ],
+      [
+        { name: 'Ampharos', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Dragon Pulse'],
     greatLeague: { rank: 217 },
@@ -125,6 +176,17 @@ const PVPOKE = {
   annihilape: {
     dex: 979,
     types: ['fighting', 'ghost'],
+    evolution: [
+      [
+        { name: 'Mankey' },
+      ],
+      [
+        { name: 'Primeape', candy: 50 },
+      ],
+      [
+        { name: 'Annihilape', current: true, candy: 100, quest: true },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Rage Fist'],
     greatLeague: {
@@ -157,6 +219,14 @@ const PVPOKE = {
   araquanid: {
     dex: 752,
     types: ['water', 'bug'],
+    evolution: [
+      [
+        { name: 'Dewpider' },
+      ],
+      [
+        { name: 'Araquanid', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 16,
@@ -178,6 +248,17 @@ const PVPOKE = {
   azumarill: {
     dex: 184,
     types: ['water', 'fairy'],
+    evolution: [
+      [
+        { name: 'Azurill' },
+      ],
+      [
+        { name: 'Marill', candy: 25 },
+      ],
+      [
+        { name: 'Azumarill', current: true, candy: 25 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 32,
@@ -190,6 +271,14 @@ const PVPOKE = {
   bastiodon: {
     dex: 411,
     types: ['rock', 'steel'],
+    evolution: [
+      [
+        { name: 'Shieldon' },
+      ],
+      [
+        { name: 'Bastiodon', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: { rank: 168 },
     ultraLeague: { rank: 833 },
@@ -201,6 +290,17 @@ const PVPOKE = {
   baxcalibur: {
     dex: 998,
     types: ['dragon', 'ice'],
+    evolution: [
+      [
+        { name: 'Frigibax' },
+      ],
+      [
+        { name: 'Arctibax', candy: 25 },
+      ],
+      [
+        { name: 'Baxcalibur', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Glaive Rush'],
     greatLeague: { rank: 501 },
@@ -211,6 +311,17 @@ const PVPOKE = {
     types: ['fire', 'fighting'],
     megaForms: [
       { name: 'Mega', types: ['fire', 'fighting'] },
+    ],
+    evolution: [
+      [
+        { name: 'Torchic' },
+      ],
+      [
+        { name: 'Combusken', candy: 25 },
+      ],
+      [
+        { name: 'Blaziken', current: true, candy: 100 },
+      ],
     ],
     buddyKm: 3,
     specialMoves: ['Blast Burn', 'Stone Edge'],
@@ -225,6 +336,17 @@ const PVPOKE = {
     dex: 242,
     types: ['normal'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Happiny' },
+      ],
+      [
+        { name: 'Chansey', candy: 25, buddyKm: 15, quest: true },
+      ],
+      [
+        { name: 'Blissey', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Wild Charge'],
     greatLeague: { rank: 928 },
@@ -250,6 +372,17 @@ const PVPOKE = {
       { name: 'Mega Y', types: ['fire', 'flying'] },
     ],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Charmander' },
+      ],
+      [
+        { name: 'Charmeleon', candy: 25 },
+      ],
+      [
+        { name: 'Charizard', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
     greatLeague: { rank: 258 },
@@ -262,6 +395,17 @@ const PVPOKE = {
   charjabug: {
     dex: 737,
     types: ['bug', 'electric'],
+    evolution: [
+      [
+        { name: 'Grubbin' },
+      ],
+      [
+        { name: 'Charjabug', current: true, candy: 25 },
+      ],
+      [
+        { name: 'Vikavolt', candy: 100, item: 'Magnetic Lure' },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Volt Switch'],
     greatLeague: {
@@ -282,6 +426,14 @@ const PVPOKE = {
   cherrim_overcast: {
     dex: 421,
     types: ['grass'],
+    evolution: [
+      [
+        { name: 'Cherubi' },
+      ],
+      [
+        { name: 'Cherrim (Overcast)', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 1,
     greatLeague: { rank: 1112 },
     ultraLeague: { rank: 830 },
@@ -290,6 +442,17 @@ const PVPOKE = {
     dex: 815,
     types: ['fire'],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Scorbunny' },
+      ],
+      [
+        { name: 'Raboot', candy: 25 },
+      ],
+      [
+        { name: 'Cinderace', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
     greatLeague: { rank: 618 },
@@ -298,6 +461,14 @@ const PVPOKE = {
   clodsire: {
     dex: 980,
     types: ['poison', 'ground'],
+    evolution: [
+      [
+        { name: 'Paldean Wooper' },
+      ],
+      [
+        { name: 'Clodsire', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Megahorn'],
     greatLeague: {
@@ -312,6 +483,17 @@ const PVPOKE = {
     dex: 823,
     types: ['flying', 'steel'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Rookidee' },
+      ],
+      [
+        { name: 'Corvisquire', candy: 25 },
+      ],
+      [
+        { name: 'Corviknight', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Iron Head', 'Air Cutter'],
     greatLeague: {
@@ -362,6 +544,14 @@ const PVPOKE = {
     dex: 555,
     types: ['fire'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Darumaka' },
+      ],
+      [
+        { name: 'Darmanitan (Standard)', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 820 },
     ultraLeague: { rank: 531 },
@@ -373,6 +563,17 @@ const PVPOKE = {
   decidueye: {
     dex: 724,
     types: ['grass', 'ghost'],
+    evolution: [
+      [
+        { name: 'Rowlet' },
+      ],
+      [
+        { name: 'Dartrix', candy: 25 },
+      ],
+      [
+        { name: 'Decidueye', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 566 },
@@ -390,6 +591,17 @@ const PVPOKE = {
     types: ['fire', 'psychic'],
     megaForms: [
       { name: 'Mega', types: ['fire', 'psychic'] },
+    ],
+    evolution: [
+      [
+        { name: 'Fennekin' },
+      ],
+      [
+        { name: 'Braixen', candy: 25 },
+      ],
+      [
+        { name: 'Delphox', current: true, candy: 100 },
+      ],
     ],
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
@@ -437,6 +649,17 @@ const PVPOKE = {
   doublade: {
     dex: 680,
     types: ['steel', 'ghost'],
+    evolution: [
+      [
+        { name: 'Honedge' },
+      ],
+      [
+        { name: 'Doublade', current: true, candy: 25 },
+      ],
+      [
+        { name: 'Aegislash (Shield)', candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: {
       rank: 74,
@@ -454,6 +677,14 @@ const PVPOKE = {
   drifblim: {
     dex: 426,
     types: ['ghost', 'flying'],
+    evolution: [
+      [
+        { name: 'Drifloon' },
+      ],
+      [
+        { name: 'Drifblim', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: { rank: 362 },
     ultraLeague: { rank: 137 },
@@ -466,6 +697,14 @@ const PVPOKE = {
     dex: 832,
     types: ['normal'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Wooloo' },
+      ],
+      [
+        { name: 'Dubwool', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 161 },
     ultraLeague: { rank: 359 },
@@ -473,6 +712,17 @@ const PVPOKE = {
   dusclops: {
     dex: 356,
     types: ['ghost'],
+    evolution: [
+      [
+        { name: 'Duskull' },
+      ],
+      [
+        { name: 'Dusclops', current: true, candy: 25 },
+      ],
+      [
+        { name: 'Dusknoir', candy: 100, item: 'Sinnoh Stone' },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 76,
@@ -492,6 +742,14 @@ const PVPOKE = {
   eldegoss: {
     dex: 830,
     types: ['grass'],
+    evolution: [
+      [
+        { name: 'Gossifleur' },
+      ],
+      [
+        { name: 'Eldegoss', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 809 },
     ultraLeague: { rank: 775 },
@@ -499,6 +757,17 @@ const PVPOKE = {
   empoleon: {
     dex: 395,
     types: ['water', 'steel'],
+    evolution: [
+      [
+        { name: 'Piplup' },
+      ],
+      [
+        { name: 'Prinplup', candy: 25 },
+      ],
+      [
+        { name: 'Empoleon', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
@@ -532,6 +801,14 @@ const PVPOKE = {
     dex: 530,
     types: ['ground', 'steel'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Drilbur' },
+      ],
+      [
+        { name: 'Excadrill', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 534 },
     ultraLeague: { rank: 437 },
@@ -543,6 +820,14 @@ const PVPOKE = {
   fearow: {
     dex: 22,
     types: ['normal', 'flying'],
+    evolution: [
+      [
+        { name: 'Spearow' },
+      ],
+      [
+        { name: 'Fearow', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Twister'],
     greatLeague: {
@@ -556,6 +841,17 @@ const PVPOKE = {
   feraligatr: {
     dex: 160,
     types: ['water'],
+    evolution: [
+      [
+        { name: 'Totodile' },
+      ],
+      [
+        { name: 'Croconaw', candy: 25 },
+      ],
+      [
+        { name: 'Feraligatr', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Water Gun', 'Hydro Cannon'],
     greatLeague: {
@@ -589,6 +885,14 @@ const PVPOKE = {
     dex: 136,
     types: ['fire'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Eevee' },
+      ],
+      [
+        { name: 'Flareon', current: true, candy: 25 },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
     greatLeague: { rank: 690 },
@@ -597,6 +901,17 @@ const PVPOKE = {
   florges: {
     dex: 671,
     types: ['fairy'],
+    evolution: [
+      [
+        { name: 'Flabebe' },
+      ],
+      [
+        { name: 'Floette', candy: 25 },
+      ],
+      [
+        { name: 'Florges', current: true, candy: 100, quest: true },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Chilling Water'],
     greatLeague: {
@@ -615,6 +930,14 @@ const PVPOKE = {
   forretress: {
     dex: 205,
     types: ['bug', 'steel'],
+    evolution: [
+      [
+        { name: 'Pineco' },
+      ],
+      [
+        { name: 'Forretress', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: {
       rank: 53,
@@ -646,6 +969,14 @@ const PVPOKE = {
   furret: {
     dex: 162,
     types: ['normal'],
+    evolution: [
+      [
+        { name: 'Sentret' },
+      ],
+      [
+        { name: 'Furret', current: true, candy: 25 },
+      ],
+    ],
     buddyKm: 1,
     greatLeague: {
       rank: 43,
@@ -658,6 +989,14 @@ const PVPOKE = {
   corsola_galarian: {
     dex: 222,
     types: ['ghost'],
+    evolution: [
+      [
+        { name: 'Galarian Corsola', current: true },
+      ],
+      [
+        { name: 'Cursola', candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 8,
@@ -702,6 +1041,17 @@ const PVPOKE = {
       { name: 'Mega', types: ['psychic', 'fairy'] },
     ],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Ralts' },
+      ],
+      [
+        { name: 'Kirlia', candy: 25 },
+      ],
+      [
+        { name: 'Gardevoir', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Synchronoise'],
     greatLeague: { rank: 986 },
@@ -715,6 +1065,17 @@ const PVPOKE = {
     dex: 526,
     types: ['rock'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Roggenrola' },
+      ],
+      [
+        { name: 'Boldore', candy: 50 },
+      ],
+      [
+        { name: 'Gigalith', current: true, candy: 200, tradeFree: true },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Meteor Beam'],
     greatLeague: { rank: 594 },
@@ -727,6 +1088,17 @@ const PVPOKE = {
   gothitelle: {
     dex: 576,
     types: ['psychic'],
+    evolution: [
+      [
+        { name: 'Gothita' },
+      ],
+      [
+        { name: 'Gothorita', candy: 25 },
+      ],
+      [
+        { name: 'Gothitelle', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 832 },
     ultraLeague: { rank: 528 },
@@ -739,6 +1111,14 @@ const PVPOKE = {
     dex: 820,
     types: ['normal'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Skwovet' },
+      ],
+      [
+        { name: 'Greedent', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 1,
     greatLeague: { rank: 184 },
     ultraLeague: { rank: 148 },
@@ -767,6 +1147,14 @@ const PVPOKE = {
       { name: 'Mega', types: ['water', 'dark'] },
     ],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Magikarp' },
+      ],
+      [
+        { name: 'Gyarados', current: true, candy: 400 },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
     greatLeague: { rank: 276 },
@@ -789,6 +1177,14 @@ const PVPOKE = {
   hariyama: {
     dex: 297,
     types: ['fighting'],
+    evolution: [
+      [
+        { name: 'Makuhita' },
+      ],
+      [
+        { name: 'Hariyama', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 483 },
     ultraLeague: { rank: 330 },
@@ -801,6 +1197,17 @@ const PVPOKE = {
     dex: 858,
     types: ['psychic', 'fairy'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Hatenna' },
+      ],
+      [
+        { name: 'Hattrem', candy: 25 },
+      ],
+      [
+        { name: 'Hatterene', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: { rank: 723 },
     ultraLeague: { rank: 495 },
@@ -808,6 +1215,14 @@ const PVPOKE = {
   hippowdon: {
     dex: 450,
     types: ['ground'],
+    evolution: [
+      [
+        { name: 'Hippopotas' },
+      ],
+      [
+        { name: 'Hippowdon', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 50,
@@ -839,6 +1254,14 @@ const PVPOKE = {
   electrode_hisuian: {
     dex: 101,
     types: ['electric', 'grass'],
+    evolution: [
+      [
+        { name: 'Hisuian Voltorb' },
+      ],
+      [
+        { name: 'Hisuian Electrode', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 34,
@@ -852,6 +1275,17 @@ const PVPOKE = {
     dex: 818,
     types: ['water'],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Sobble' },
+      ],
+      [
+        { name: 'Drizzile', candy: 25 },
+      ],
+      [
+        { name: 'Inteleon', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: { rank: 861 },
@@ -860,6 +1294,14 @@ const PVPOKE = {
   jellicent: {
     dex: 593,
     types: ['water', 'ghost'],
+    evolution: [
+      [
+        { name: 'Frillish' },
+      ],
+      [
+        { name: 'Jellicent', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 22,
@@ -877,6 +1319,17 @@ const PVPOKE = {
   jumpluff: {
     dex: 189,
     types: ['grass', 'flying'],
+    evolution: [
+      [
+        { name: 'Hoppip' },
+      ],
+      [
+        { name: 'Skiploom', candy: 25 },
+      ],
+      [
+        { name: 'Jumpluff', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Acrobatics'],
     greatLeague: {
@@ -899,6 +1352,14 @@ const PVPOKE = {
   kilowattrel: {
     dex: 941,
     types: ['electric', 'flying'],
+    evolution: [
+      [
+        { name: 'Wattrel' },
+      ],
+      [
+        { name: 'Kilowattrel', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 1,
     greatLeague: { rank: 514 },
     ultraLeague: { rank: 344 },
@@ -906,6 +1367,14 @@ const PVPOKE = {
   lanturn: {
     dex: 171,
     types: ['water', 'electric'],
+    evolution: [
+      [
+        { name: 'Chinchou' },
+      ],
+      [
+        { name: 'Lanturn', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 163 },
     ultraLeague: { rank: 405 },
@@ -946,6 +1415,14 @@ const PVPOKE = {
   lickitung: {
     dex: 108,
     types: ['normal'],
+    evolution: [
+      [
+        { name: 'Lickitung', current: true },
+      ],
+      [
+        { name: 'Lickilicky', candy: 100, item: 'Sinnoh Stone' },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Body Slam'],
     greatLeague: { rank: 170 },
@@ -953,6 +1430,14 @@ const PVPOKE = {
   lokix: {
     dex: 920,
     types: ['bug', 'dark'],
+    evolution: [
+      [
+        { name: 'Nymble' },
+      ],
+      [
+        { name: 'Lokix', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 1,
     greatLeague: { rank: 341 },
     ultraLeague: { rank: 260 },
@@ -961,6 +1446,17 @@ const PVPOKE = {
     dex: 68,
     types: ['fighting'],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Machop' },
+      ],
+      [
+        { name: 'Machoke', candy: 25 },
+      ],
+      [
+        { name: 'Machamp', current: true, candy: 100, tradeFree: true },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
     greatLeague: { rank: 245 },
@@ -977,6 +1473,14 @@ const PVPOKE = {
       { name: 'Mega', types: ['dark', 'psychic'] },
     ],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Inkay' },
+      ],
+      [
+        { name: 'Malamar', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 42,
@@ -1008,6 +1512,14 @@ const PVPOKE = {
   mandibuzz: {
     dex: 630,
     types: ['dark', 'flying'],
+    evolution: [
+      [
+        { name: 'Vullaby' },
+      ],
+      [
+        { name: 'Mandibuzz', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: {
       rank: 51,
@@ -1020,6 +1532,14 @@ const PVPOKE = {
   mantine: {
     dex: 226,
     types: ['water', 'flying'],
+    evolution: [
+      [
+        { name: 'Mantyke' },
+      ],
+      [
+        { name: 'Mantine', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: {
       rank: 26,
@@ -1032,6 +1552,14 @@ const PVPOKE = {
   marowak: {
     dex: 105,
     types: ['ground'],
+    evolution: [
+      [
+        { name: 'Cubone' },
+      ],
+      [
+        { name: 'Marowak', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 19,
@@ -1056,6 +1584,14 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['fighting', 'psychic'] },
     ],
+    evolution: [
+      [
+        { name: 'Meditite' },
+      ],
+      [
+        { name: 'Medicham', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: {
       rank: 54,
@@ -1067,6 +1603,14 @@ const PVPOKE = {
   melmetal: {
     dex: 809,
     types: ['steel'],
+    evolution: [
+      [
+        { name: 'Meltan' },
+      ],
+      [
+        { name: 'Melmetal', current: true, candy: 400 },
+      ],
+    ],
     buddyKm: 20,
     specialMoves: ['Double Iron Bash'],
     greatLeague: {
@@ -1085,6 +1629,17 @@ const PVPOKE = {
   meowscarada: {
     dex: 908,
     types: ['grass', 'dark'],
+    evolution: [
+      [
+        { name: 'Sprigatito' },
+      ],
+      [
+        { name: 'Floragato', candy: 25 },
+      ],
+      [
+        { name: 'Meowscarada', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 473 },
@@ -1123,6 +1678,14 @@ const PVPOKE = {
   ninetales: {
     dex: 38,
     types: ['fire'],
+    evolution: [
+      [
+        { name: 'Vulpix' },
+      ],
+      [
+        { name: 'Ninetales', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Ember', 'Fire Blast', 'Flamethrower', 'Energy Ball'],
     greatLeague: {
@@ -1155,6 +1718,14 @@ const PVPOKE = {
   perrserker: {
     dex: 863,
     types: ['steel'],
+    evolution: [
+      [
+        { name: 'Galarian Meowth' },
+      ],
+      [
+        { name: 'Perrserker', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 497 },
     ultraLeague: { rank: 214 },
@@ -1162,6 +1733,14 @@ const PVPOKE = {
   pyroar: {
     dex: 668,
     types: ['fire', 'normal'],
+    evolution: [
+      [
+        { name: 'Litleo' },
+      ],
+      [
+        { name: 'Pyroar', current: true, candy: 50, gender: 'male' },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 675 },
     ultraLeague: { rank: 470 },
@@ -1169,6 +1748,14 @@ const PVPOKE = {
   quagsire: {
     dex: 195,
     types: ['water', 'ground'],
+    evolution: [
+      [
+        { name: 'Wooper' },
+      ],
+      [
+        { name: 'Quagsire', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Aqua Tail'],
     greatLeague: {
@@ -1191,6 +1778,17 @@ const PVPOKE = {
   quaquaval: {
     dex: 914,
     types: ['water', 'fighting'],
+    evolution: [
+      [
+        { name: 'Quaxly' },
+      ],
+      [
+        { name: 'Quaxwell', candy: 25 },
+      ],
+      [
+        { name: 'Quaquaval', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: { rank: 283 },
@@ -1200,6 +1798,17 @@ const PVPOKE = {
     dex: 464,
     types: ['ground', 'rock'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Rhyhorn' },
+      ],
+      [
+        { name: 'Rhydon', candy: 25 },
+      ],
+      [
+        { name: 'Rhyperior', current: true, candy: 100, item: 'Sinnoh Stone' },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Rock Wrecker'],
     greatLeague: { rank: 679 },
@@ -1213,6 +1822,17 @@ const PVPOKE = {
     dex: 812,
     types: ['grass'],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Grookey' },
+      ],
+      [
+        { name: 'Thwackey', candy: 25 },
+      ],
+      [
+        { name: 'Rillaboom', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
@@ -1255,6 +1875,14 @@ const PVPOKE = {
     dex: 143,
     types: ['normal'],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Munchlax' },
+      ],
+      [
+        { name: 'Snorlax', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Yawn'],
     greatLeague: {
@@ -1290,6 +1918,17 @@ const PVPOKE = {
     megaForms: [
       { name: 'Mega', types: ['fighting', 'flying'] },
     ],
+    evolution: [
+      [
+        { name: 'Starly' },
+      ],
+      [
+        { name: 'Staravia', candy: 25 },
+      ],
+      [
+        { name: 'Staraptor', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Gust'],
     greatLeague: { rank: 710 },
@@ -1316,6 +1955,17 @@ const PVPOKE = {
     types: ['water', 'ground'],
     megaForms: [
       { name: 'Mega', types: ['water', 'ground'] },
+    ],
+    evolution: [
+      [
+        { name: 'Mudkip' },
+      ],
+      [
+        { name: 'Marshtomp', candy: 25 },
+      ],
+      [
+        { name: 'Swampert', current: true, candy: 100 },
+      ],
     ],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
@@ -1349,6 +1999,14 @@ const PVPOKE = {
   thievul: {
     dex: 828,
     types: ['dark'],
+    evolution: [
+      [
+        { name: 'Nickit' },
+      ],
+      [
+        { name: 'Thievul', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 1,
     specialMoves: ['Icy Wind'],
     greatLeague: {
@@ -1362,6 +2020,17 @@ const PVPOKE = {
   tinkaton: {
     dex: 959,
     types: ['fairy', 'steel'],
+    evolution: [
+      [
+        { name: 'Tinkatink' },
+      ],
+      [
+        { name: 'Tinkatuff', candy: 25 },
+      ],
+      [
+        { name: 'Tinkaton', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Gigaton Hammer'],
     greatLeague: {
@@ -1380,6 +2049,17 @@ const PVPOKE = {
   torterra: {
     dex: 389,
     types: ['grass', 'ground'],
+    evolution: [
+      [
+        { name: 'Turtwig' },
+      ],
+      [
+        { name: 'Grotle', candy: 25 },
+      ],
+      [
+        { name: 'Torterra', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 551 },
@@ -1392,6 +2072,14 @@ const PVPOKE = {
   toxapex: {
     dex: 748,
     types: ['poison', 'water'],
+    evolution: [
+      [
+        { name: 'Mareanie' },
+      ],
+      [
+        { name: 'Toxapex', current: true, candy: 50 },
+      ],
+    ],
     buddyKm: 3,
     greatLeague: { rank: 114 },
     ultraLeague: { rank: 766 },
@@ -1399,6 +2087,14 @@ const PVPOKE = {
   trevenant: {
     dex: 709,
     types: ['ghost', 'grass'],
+    evolution: [
+      [
+        { name: 'Phantump' },
+      ],
+      [
+        { name: 'Trevenant', current: true, candy: 200, tradeFree: true },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: { rank: 354 },
     ultraLeague: { rank: 154 },
@@ -1411,6 +2107,17 @@ const PVPOKE = {
     dex: 763,
     types: ['grass'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Bounsweet' },
+      ],
+      [
+        { name: 'Steenee', candy: 25 },
+      ],
+      [
+        { name: 'Tsareena', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['High Jump Kick'],
     greatLeague: { rank: 997 },
@@ -1419,6 +2126,14 @@ const PVPOKE = {
   tyrantrum: {
     dex: 697,
     types: ['rock', 'dragon'],
+    evolution: [
+      [
+        { name: 'Tyrunt' },
+      ],
+      [
+        { name: 'Tyrantrum', current: true, candy: 50, time: 'day' },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: { rank: 732 },
     ultraLeague: { rank: 568 },
@@ -1431,6 +2146,14 @@ const PVPOKE = {
     dex: 197,
     types: ['dark'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Eevee' },
+      ],
+      [
+        { name: 'Umbreon', current: true, candy: 25, buddyKm: 10, time: 'night', quest: true },
+      ],
+    ],
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Psychic'],
     greatLeague: {
@@ -1448,6 +2171,17 @@ const PVPOKE = {
       { name: 'Mega', types: ['grass', 'poison'] },
     ],
     maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { name: 'Bulbasaur' },
+      ],
+      [
+        { name: 'Ivysaur', candy: 25 },
+      ],
+      [
+        { name: 'Venusaur', current: true, candy: 100 },
+      ],
+    ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: { rank: 419 },
@@ -1460,6 +2194,17 @@ const PVPOKE = {
   vigoroth: {
     dex: 288,
     types: ['normal'],
+    evolution: [
+      [
+        { name: 'Slakoth' },
+      ],
+      [
+        { name: 'Vigoroth', current: true, candy: 25 },
+      ],
+      [
+        { name: 'Slaking', candy: 100 },
+      ],
+    ],
     buddyKm: 5,
     greatLeague: {
       rank: 21,
@@ -1482,6 +2227,14 @@ const PVPOKE = {
     dex: 547,
     types: ['grass', 'fairy'],
     maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Cottonee' },
+      ],
+      [
+        { name: 'Whimsicott', current: true, candy: 50, item: 'Sun Stone' },
+      ],
+    ],
     buddyKm: 1,
     greatLeague: { rank: 382 },
     ultraLeague: { rank: 482 },

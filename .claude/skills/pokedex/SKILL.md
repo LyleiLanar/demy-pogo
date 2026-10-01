@@ -22,9 +22,10 @@ Először a gépi adat:
 
 ```
 node tools/pvpoke-lookup.mjs <név vagy azonosító>
+node tools/pvpoke-lookup.mjs --json <név>   # a pvpoke.js-be kerülő teljes bejegyzés
 ```
 
-Kiírja: `id`, típus, címkék (legendary, shadoweligible…), fejlődési sor, buddy km,
+Kiírja: `id`, típus, címkék (legendary, shadoweligible…), fejlődési ág cukorárral és feltétellel, buddy km,
 Elite mozdulatok, Mega formák, **Dynamax / Gigantamax**, GL/UL helyezés és szett a normál és a
 Shadow formára. A szavak sorrendje mindegy („alolan ninetales”). Ha több találat van
 (pl. sima és hisui forma), a felhasználó által mutatottat válaszd.
@@ -80,7 +81,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 - Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`, `forms.gigantamax`
   (a kártya Max formájában a faj `maxBattle`-je a Dynamax, a `forms.gigantamax.maxBattle` a Gigantamax fül)
   (a Shadow és a Mega nem külön faj). A Megának csak raidje van, a Shadow-nak nincs Max Battle-je.
-- Módtól független, de fajra szóló tanács: `notes`; fejlődés és cukorár: `evolution`.
+- Módtól független, de fajra szóló tanács: `notes`. A fejlődési ág és a cukorár gépi adat
+  (a kártyán a név alatt), ne írd be; a „NE fejleszd X-szé” jellegű tanács a `warning`-ba megy.
 - Általános, nem fajhoz kötött tanács: az `index.html` Tippek fülére, ne a fajhoz.
 - Ne írd be:
   - amit a PvPoke-adat már mutat (szett, nehéz ellenfelek, helyezés);
@@ -119,7 +121,6 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   verdict: 'transfer',
   raid: { rating: 'bad', note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók.' },
   // nincs maxBattle: a lookup szerint nincs Dynamax formája
-  evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
 },
 ```
 
