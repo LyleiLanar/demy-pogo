@@ -93,7 +93,12 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
     „PvP-re alacsony Attack, magas Defense/HP”, „95% fölötti rank a jó”, „fokozatosan 30–35-ös
     szintig húzd”, „a többi mehet cukorért”, „Pinap Berryvel kapd el”, „egy magas Attackos
     példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”,
-    „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”;
+    „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”,
+    „a Community Day ritka, tarts meg fejletlen példányt / cukrot”, „tematikus kupákban előkerülhet”,
+    „a második Charged Attackot érdemes feloldani”;
+  - amit a helyezés mutat („ma nincs a top 100-ban”, „a meta része”, „csak niche”, „a Shadow
+    változat jobb”), és hogy a Shadow / Mega erősebb: ilyenkor a forma kapjon saját értékelést
+    (`forms.shadow.raid`, `forms.mega.raid`);
   - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
   - hogy milyen típusú támadó („Fire támadó”), ha a módnál van mozdulatlista: a mozdulatok
     típusikonja mutatja. Mozdulatlista nélkül maradhat.
