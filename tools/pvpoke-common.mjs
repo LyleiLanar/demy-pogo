@@ -7,6 +7,8 @@ export const LEAGUES = { greatLeague: 1500, ultraLeague: 2500 };
 export const DETAIL_RANK_LIMIT = 100;
 const MATCHUP_COUNT = 3;
 const REGIONAL_FORMS = ['Alolan', 'Galarian', 'Hisuian', 'Paldean'];
+// Legendás, mitikus és Ultra Beast: mindig marad (a kártyán arany név).
+const LEGENDARY_TAGS = ['legendary', 'mythical', 'ultrabeast'];
 
 export async function fetchJson(path) {
   const response = await fetch(`${DATA_URL}/${path}`);
@@ -81,6 +83,7 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, g
   const species = data.speciesById.get(id);
   if (!species) return undefined;
   const entry = { dex: species.dex, types: species.types.filter((type) => type !== 'none') };
+  if ((species.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag))) entry.legendary = true;
   const megaForms = megaFormsOf(id, data.gamemaster);
   if (megaForms.length) entry.megaForms = megaForms;
   const speciesMaxForms = gameMaster ? maxFormsOf(id, gameMaster) : [];

@@ -1,6 +1,7 @@
 // A Pokédex kártyái: formaváltó, módfülek, mozdulatok és a faj általános adatai.
 
 const VERDICT_LABELS = { keep: 'Marad', scan: 'Szkenneld', transfer: 'Cukorért' };
+const LEGENDARY_LABEL = 'Legendás: marad';
 const RATING_LABELS = { good: 'Erős', ok: 'Közepes', bad: 'Gyenge' };
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
 const EVOLUTION_TIME_LABELS = { day: 'csak nappal', night: 'csak éjjel', dusk: 'csak alkonyatkor', fullMoon: 'csak teliholdkor' };
@@ -9,7 +10,7 @@ const EVOLUTION_GENDER_LABELS = { male: 'csak hím', female: 'csak nőstény' };
 function renderModeTab(mode, isSelected) {
   return `
     <button type="button" class="mode-tab rating-${mode.rating}" aria-pressed="${isSelected}"
-      data-mode="${mode.key}">${mode.label}</button>`;
+      aria-label="${mode.title}: ${RATING_LABELS[mode.rating]}" data-mode="${mode.key}">${mode.label}</button>`;
 }
 
 // Egy ajánlott mozdulat a típusa ikonjával. Ha csak Elite TM-mel vagy eseményen szerezhető meg,
@@ -50,23 +51,27 @@ function renderModePanel(mode, species, isSelected) {
   ].join('');
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
-      <p class="mode-title">${mode.title}: <b class="rating-text-${mode.rating}">${RATING_LABELS[mode.rating]}</b></p>
       ${detail}${note}
       ${facts ? `<dl class="mon-facts">${facts}</dl>` : ''}
       ${renderList('mon-notes', mode.tips)}
     </div>`;
 }
 
-function renderVerdict(species) {
-  return `<span class="verdict verdict-${species.verdict}">${VERDICT_LABELS[species.verdict]}</span>`;
+// A faj neve a döntés színével (zöld = marad, szürke = szkenneld, piros = cukorért; legendás: arany);
+// koppintásra a buborék kiírja a döntést.
+function renderSpeciesName(species) {
+  const tone = species.stats.legendary ? 'legendary' : species.verdict;
+  const label = species.stats.legendary ? LEGENDARY_LABEL : VERDICT_LABELS[species.verdict];
+  return `<span class="mon-verdict verdict-name-${tone}" data-tooltip="${label}">${escapeHtml(species.name)}</span>`;
 }
 
-// A módválasztó sor; a döntés (Marad / Szkenneld / Cukorért) a sor jobb szélén.
+// A módválasztó sor és alatta a kiválasztott mód leírása (az értékelést a fül színe mutatja).
 function renderGameModes(modes, species) {
-  const selected = modes.length ? defaultModeIndex(modes) : -1;
+  if (modes.length === 0) return '';
+  const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
-      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}${renderVerdict(species)}</div>
+      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
       ${modes.map((mode, i) => renderModePanel(mode, species, i === selected)).join('')}
     </div>`;
 }
@@ -146,7 +151,7 @@ function renderPokemonCard(species) {
   return `
     <article class="mon" data-search="${escapeHtml(searchText)}" data-dex="${species.dex ?? ''}">
       <div class="mon-head">
-        <h3 class="mon-name">${escapeHtml(species.name)} ${dex}</h3>
+        <h3 class="mon-name">${renderSpeciesName(species)} ${dex}</h3>
         ${headTypes.join('')}
       </div>
       ${renderEvolution(species)}

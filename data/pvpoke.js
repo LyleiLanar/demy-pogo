@@ -1,6 +1,7 @@
 // GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
+// legendary: legendás, mitikus vagy Ultra Beast
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
 // evolution: a fejlődési ág fokonként (elágazásnál egy fokon több faj); a current a faj maga,
@@ -615,6 +616,7 @@ const PVPOKE = {
   deoxys_defense: {
     dex: 386,
     types: ['psychic'],
+    legendary: true,
     buddyKm: 20,
     greatLeague: {
       rank: 33,
@@ -1031,6 +1033,7 @@ const PVPOKE = {
   moltres_galarian: {
     dex: 146,
     types: ['dark', 'flying'],
+    legendary: true,
     buddyKm: 20,
     greatLeague: {
       rank: 71,
@@ -1149,6 +1152,7 @@ const PVPOKE = {
   guzzlord: {
     dex: 799,
     types: ['dark', 'dragon'],
+    legendary: true,
     buddyKm: 20,
     greatLeague: {
       rank: 44,
@@ -1626,6 +1630,7 @@ const PVPOKE = {
   melmetal: {
     dex: 809,
     types: ['steel'],
+    legendary: true,
     evolution: [
       [
         { name: 'Meltan' },
@@ -1688,6 +1693,7 @@ const PVPOKE = {
   moltres: {
     dex: 146,
     types: ['fire', 'flying'],
+    legendary: true,
     maxForms: ['Dynamax'],
     buddyKm: 20,
     specialMoves: ['Sky Attack'],

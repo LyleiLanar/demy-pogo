@@ -6,7 +6,7 @@
 <title>Pokémon GO puska</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="style.css?v=2026-10-01.9">
+<link rel="stylesheet" href="style.css?v=2026-10-01.10">
 </head>
 <body>
 
@@ -142,11 +142,13 @@
       <summary>Súgó</summary>
       <p class="sub">Fajonkénti tanácsok. Shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány mindig marad, akármit ír a kártya.</p>
       <div class="box legend-box"><ul>
-        <li><span class="verdict verdict-keep">Marad</span> tartsd meg, érdemes építeni</li>
-        <li><span class="verdict verdict-scan">Szkenneld</span> PvP-jelölt: az alacsony Attackosakat nézd meg Poke Genie-vel, a legjobb marad, a többi mehet cukorért</li>
-        <li><span class="verdict verdict-transfer">Cukorért</span> mehet cukorért, egy maradhat a Pokédexért</li>
+        <li>A név színe a döntés (koppintásra ki is írja):</li>
+        <li><b class="verdict-name-keep">zöld</b> = marad, érdemes építeni</li>
+        <li><b class="verdict-name-scan">szürke</b> = szkenneld: PvP-jelölt, az alacsony Attackosakat nézd meg Poke Genie-vel, a legjobb marad, a többi mehet cukorért</li>
+        <li><b class="verdict-name-transfer">piros</b> = mehet cukorért, egy maradhat a Pokédexért</li>
+        <li><b class="verdict-name-legendary">arany</b> = legendás, mitikus vagy Ultra Beast: marad</li>
         <li>A kártya fülei (Raid, GL, UL, Max, Gym): <b class="rating-text-good">zöld</b> = erős, <b class="rating-text-ok">szürke</b> = közepes, <b class="rating-text-bad">piros</b> = gyenge</li>
-      <li>A név mellett jobbra a (kiválasztott forma) típusa, alatta két oszlopban, hogy minek ellenálló (bal) és mire érzékeny (jobb); a döntés (Marad / Szkenneld / Cukorért) a módválasztó sor végén. Ott a szürke ikon sima hatás, a <b class="rating-text-good">zöld</b> kettős ellenállás, a <b class="rating-text-bad">piros</b> kettős érzékenység. Az ikonok jelentése a Tippek fül típustáblázatában.</li>
+      <li>A név mellett jobbra a (kiválasztott forma) típusa, alatta két oszlopban, hogy minek ellenálló (bal) és mire érzékeny (jobb). Ott a szürke ikon sima hatás, a <b class="rating-text-good">zöld</b> kettős ellenállás, a <b class="rating-text-bad">piros</b> kettős érzékenység. Az ikonok jelentése a Tippek fül típustáblázatában.</li>
       <li>A mozdulatok Fast Attack és Charged Attack szerint vannak szétválasztva, a típusuk ikonjával; a GL és UL fül alatt a PvPoke ajánlott szettje és a fontos párharcok. A ⚠️ speciális mozdulatot jelöl: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.</li>
       <li>A kártya tetején válthatsz a formák között (Normál / Shadow / Mega / Mega X / Mega Y / Max): a típus, az érzékenység, a fülek és az ajánlások a kiválasztott formához igazodnak. A Megának csak raidje van. A Max formában a Dynamax és a Gigantamax példány külön fület kap, mert ezek külön példányok, csak Max Battle-ből.</li>
       <li>A név mellett a Pokédex-szám. Típusra, számra és a fejlődési ág bármelyik tagjára is kereshetsz, pl. „fire”, „835” vagy „charmander”.</li>
@@ -168,17 +170,17 @@
   </section>
 </div>
 
-<script src="data/lists.js?v=2026-10-01.9"></script>
-<script src="data/types.js?v=2026-10-01.9"></script>
-<script src="data/pokemon.js?v=2026-10-01.9"></script>
-<script src="data/pvpoke.js?v=2026-10-01.9"></script>
-<script src="js/util.js?v=2026-10-01.9"></script>
-<script src="js/type-view.js?v=2026-10-01.9"></script>
-<script src="js/lists.js?v=2026-10-01.9"></script>
-<script src="js/rankings.js?v=2026-10-01.9"></script>
-<script src="js/species.js?v=2026-10-01.9"></script>
-<script src="js/pokedex.js?v=2026-10-01.9"></script>
-<script src="js/ui.js?v=2026-10-01.9"></script>
-<script src="js/main.js?v=2026-10-01.9"></script>
+<script src="data/lists.js?v=2026-10-01.10"></script>
+<script src="data/types.js?v=2026-10-01.10"></script>
+<script src="data/pokemon.js?v=2026-10-01.10"></script>
+<script src="data/pvpoke.js?v=2026-10-01.10"></script>
+<script src="js/util.js?v=2026-10-01.10"></script>
+<script src="js/type-view.js?v=2026-10-01.10"></script>
+<script src="js/lists.js?v=2026-10-01.10"></script>
+<script src="js/rankings.js?v=2026-10-01.10"></script>
+<script src="js/species.js?v=2026-10-01.10"></script>
+<script src="js/pokedex.js?v=2026-10-01.10"></script>
+<script src="js/ui.js?v=2026-10-01.10"></script>
+<script src="js/main.js?v=2026-10-01.10"></script>
 </body>
 </html>
