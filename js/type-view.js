@@ -5,11 +5,13 @@ function typeStyle(type) {
 }
 
 // Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip).
-// A multipleLabel a többszörös hatás leírása: ilyenkor az ikon dupla keretet kap (a mérete nem változik).
-function renderTypeBadge(typeKey, multipleLabel = '') {
+// A multipleLabel a többszörös hatás leírása a buborékba. A tone a chip színe a típus saját színe
+// helyett: 'plain' (szürke), 'good' (zöld) vagy 'bad' (piros); az Ellenálló / Érzékeny oszlop használja.
+function renderTypeBadge(typeKey, multipleLabel = '', tone = '') {
   const type = TYPES[typeKey];
   const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
-  return `<button type="button" class="type${multipleLabel ? ' type-multiple' : ''}" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
+  const colors = tone ? `class="type type-${tone}"` : `class="type" style="${typeStyle(type)}"`;
+  return `<button type="button" ${colors} data-tooltip="${label}" aria-label="${label}">`
     + `<span aria-hidden="true">${type.icon}</span></button>`;
 }
 
@@ -34,9 +36,12 @@ function damageMultiplier(attackType, defenseTypes) {
   }, 1);
 }
 
-function renderMatchupColumn(label, matchups, isMultiple, multipleLabel) {
+// Az oszlop ikonjai szürkék; a többszörös hatás a multipleTone színét kapja (zöld vagy piros).
+function renderMatchupColumn(label, matchups, isMultiple, multipleLabel, multipleTone) {
   const badges = matchups
-    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier) ? multipleLabel : ''))
+    .map(({ attackType, multiplier }) => (isMultiple(multiplier)
+      ? renderTypeBadge(attackType, multipleLabel, multipleTone)
+      : renderTypeBadge(attackType, '', 'plain')))
     .join('');
   return `
     <div class="mon-defense-col">
@@ -54,8 +59,8 @@ function renderDefense(defenseTypes) {
   const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
   return `
     <div class="mon-defense">
-      ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló')}
-      ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny')}
+      ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló', 'good')}
+      ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny', 'bad')}
     </div>`;
 }
 
