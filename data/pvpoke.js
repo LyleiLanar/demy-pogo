@@ -10,6 +10,7 @@
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })
+// bestIv: a ligában a legjobb IV ({ iv: 'Attack/Defense/HP', cp }) a game master CP-szorzóival
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok ({ id, name, rank, legendary }, mint az ágban)
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 
@@ -44,8 +45,12 @@ const PVPOKE = {
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
       ],
+      bestIv: { iv: '0/12/14', cp: 1500 },
     },
-    ultraLeague: { rank: 606 },
+    ultraLeague: {
+      rank: 606,
+      bestIv: { iv: '15/15/15', cp: 1746 },
+    },
   },
   alakazam: {
     dex: 65,
@@ -67,11 +72,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
-    greatLeague: { rank: 927 },
-    ultraLeague: { rank: 682 },
+    greatLeague: {
+      rank: 927,
+      bestIv: { iv: '1/15/15', cp: 1495 },
+    },
+    ultraLeague: {
+      rank: 682,
+      bestIv: { iv: '0/14/15', cp: 2497 },
+    },
     shadow: {
-      greatLeague: { rank: 844 },
-      ultraLeague: { rank: 658 },
+      greatLeague: {
+        rank: 844,
+        bestIv: { iv: '1/15/15', cp: 1495 },
+      },
+      ultraLeague: {
+        rank: 658,
+        bestIv: { iv: '0/14/15', cp: 2497 },
+      },
     },
   },
   ninetales_alolan: {
@@ -100,6 +117,7 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/14/12', cp: 1500 },
     },
     ultraLeague: {
       rank: 24,
@@ -114,6 +132,7 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
       ],
+      bestIv: { iv: '7/15/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
@@ -129,6 +148,7 @@ const PVPOKE = {
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         ],
+        bestIv: { iv: '0/14/12', cp: 1500 },
       },
       ultraLeague: {
         rank: 30,
@@ -143,6 +163,7 @@ const PVPOKE = {
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '7/15/15', cp: 2497 },
       },
     },
   },
@@ -175,8 +196,12 @@ const PVPOKE = {
         { id: 'thievul', name: 'Thievul', rank: 15 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/14/15', cp: 1497 },
     },
-    ultraLeague: { rank: 270 },
+    ultraLeague: {
+      rank: 270,
+      bestIv: { iv: '15/15/15', cp: 2266 },
+    },
     shadow: {
       greatLeague: {
         rank: 9,
@@ -191,8 +216,12 @@ const PVPOKE = {
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
           { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         ],
+        bestIv: { iv: '0/14/15', cp: 1497 },
       },
-      ultraLeague: { rank: 309 },
+      ultraLeague: {
+        rank: 309,
+        bestIv: { iv: '15/15/15', cp: 2266 },
+      },
     },
   },
   ampharos: {
@@ -214,7 +243,10 @@ const PVPOKE = {
     ],
     buddyKm: 5,
     specialMoves: ['Dragon Pulse'],
-    greatLeague: { rank: 220 },
+    greatLeague: {
+      rank: 220,
+      bestIv: { iv: '0/13/11', cp: 1499 },
+    },
     ultraLeague: {
       rank: 51,
       moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
@@ -228,9 +260,13 @@ const PVPOKE = {
         { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
+      bestIv: { iv: '0/13/15', cp: 2497 },
     },
     shadow: {
-      greatLeague: { rank: 221 },
+      greatLeague: {
+        rank: 221,
+        bestIv: { iv: '0/13/11', cp: 1499 },
+      },
       ultraLeague: {
         rank: 55,
         moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
@@ -244,6 +280,7 @@ const PVPOKE = {
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         ],
+        bestIv: { iv: '0/13/15', cp: 2497 },
       },
     },
   },
@@ -276,6 +313,7 @@ const PVPOKE = {
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
       ],
+      bestIv: { iv: '2/15/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 61,
@@ -290,6 +328,7 @@ const PVPOKE = {
         { id: 'florges', name: 'Florges', rank: 11 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
+      bestIv: { iv: '0/15/15', cp: 2492 },
     },
     shadow: {
       greatLeague: {
@@ -305,6 +344,7 @@ const PVPOKE = {
           { id: 'cramorant', name: 'Cramorant', rank: 4 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         ],
+        bestIv: { iv: '2/15/15', cp: 1499 },
       },
       ultraLeague: {
         rank: 72,
@@ -319,6 +359,7 @@ const PVPOKE = {
           { id: 'florges', name: 'Florges', rank: 11 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         ],
+        bestIv: { iv: '0/15/15', cp: 2492 },
       },
     },
   },
@@ -347,8 +388,12 @@ const PVPOKE = {
         { id: 'altaria', name: 'Altaria', rank: 2 },
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
       ],
+      bestIv: { iv: '0/10/15', cp: 1500 },
     },
-    ultraLeague: { rank: 561 },
+    ultraLeague: {
+      rank: 561,
+      bestIv: { iv: '15/15/15', cp: 2065 },
+    },
     shadow: {
       greatLeague: {
         rank: 30,
@@ -363,8 +408,12 @@ const PVPOKE = {
           { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8 },
           { id: 'cramorant', name: 'Cramorant', rank: 4 },
         ],
+        bestIv: { iv: '0/10/15', cp: 1500 },
       },
-      ultraLeague: { rank: 567 },
+      ultraLeague: {
+        rank: 567,
+        bestIv: { iv: '15/15/15', cp: 2065 },
+      },
     },
   },
   azumarill: {
@@ -395,8 +444,12 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/15/15', cp: 1499 },
     },
-    ultraLeague: { rank: 817 },
+    ultraLeague: {
+      rank: 817,
+      bestIv: { iv: '15/15/15', cp: 1795 },
+    },
   },
   bastiodon: {
     dex: 411,
@@ -410,11 +463,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 5,
-    greatLeague: { rank: 168 },
-    ultraLeague: { rank: 838 },
+    greatLeague: {
+      rank: 168,
+      bestIv: { iv: '0/15/14', cp: 1497 },
+    },
+    ultraLeague: {
+      rank: 838,
+      bestIv: { iv: '15/15/15', cp: 1741 },
+    },
     shadow: {
-      greatLeague: { rank: 323 },
-      ultraLeague: { rank: 841 },
+      greatLeague: {
+        rank: 323,
+        bestIv: { iv: '0/15/14', cp: 1497 },
+      },
+      ultraLeague: {
+        rank: 841,
+        bestIv: { iv: '15/15/15', cp: 1741 },
+      },
     },
   },
   baxcalibur: {
@@ -433,8 +498,14 @@ const PVPOKE = {
     ],
     buddyKm: 5,
     specialMoves: ['Glaive Rush'],
-    greatLeague: { rank: 499 },
-    ultraLeague: { rank: 347 },
+    greatLeague: {
+      rank: 499,
+      bestIv: { iv: '0/15/5', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 347,
+      bestIv: { iv: '1/15/15', cp: 2500 },
+    },
   },
   blaziken: {
     dex: 257,
@@ -455,11 +526,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Blast Burn', 'Stone Edge'],
-    greatLeague: { rank: 285 },
-    ultraLeague: { rank: 170 },
+    greatLeague: {
+      rank: 285,
+      bestIv: { iv: '1/15/15', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 170,
+      bestIv: { iv: '1/15/15', cp: 2499 },
+    },
     shadow: {
-      greatLeague: { rank: 239 },
-      ultraLeague: { rank: 174 },
+      greatLeague: {
+        rank: 239,
+        bestIv: { iv: '1/15/15', cp: 1499 },
+      },
+      ultraLeague: {
+        rank: 174,
+        bestIv: { iv: '1/15/15', cp: 2499 },
+      },
     },
   },
   blissey: {
@@ -479,8 +562,14 @@ const PVPOKE = {
     ],
     buddyKm: 5,
     specialMoves: ['Wild Charge'],
-    greatLeague: { rank: 934 },
-    ultraLeague: { rank: 639 },
+    greatLeague: {
+      rank: 934,
+      bestIv: { iv: '0/15/3', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 639,
+      bestIv: { iv: '0/15/14', cp: 2499 },
+    },
   },
   carbink: {
     dex: 703,
@@ -499,8 +588,12 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'quagsire', name: 'Shadow Quagsire', rank: 12 },
       ],
+      bestIv: { iv: '5/15/15', cp: 1498 },
     },
-    ultraLeague: { rank: 819 },
+    ultraLeague: {
+      rank: 819,
+      bestIv: { iv: '15/15/15', cp: 1658 },
+    },
   },
   charizard: {
     dex: 6,
@@ -523,11 +616,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
-    greatLeague: { rank: 259 },
-    ultraLeague: { rank: 101 },
+    greatLeague: {
+      rank: 259,
+      bestIv: { iv: '0/15/13', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 101,
+      bestIv: { iv: '0/13/15', cp: 2500 },
+    },
     shadow: {
-      greatLeague: { rank: 199 },
-      ultraLeague: { rank: 124 },
+      greatLeague: {
+        rank: 199,
+        bestIv: { iv: '0/15/13', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 124,
+        bestIv: { iv: '0/13/15', cp: 2500 },
+      },
     },
   },
   charjabug: {
@@ -559,6 +664,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'altaria', name: 'Altaria', rank: 2 },
       ],
+      bestIv: { iv: '0/13/15', cp: 1497 },
     },
     shadow: {
       greatLeague: {
@@ -574,6 +680,7 @@ const PVPOKE = {
           { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '0/13/15', cp: 1497 },
       },
     },
   },
@@ -589,8 +696,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 1,
-    greatLeague: { rank: 1118 },
-    ultraLeague: { rank: 836 },
+    greatLeague: {
+      rank: 1118,
+      bestIv: { iv: '0/13/15', cp: 1496 },
+    },
+    ultraLeague: {
+      rank: 836,
+      bestIv: { iv: '15/15/15', cp: 2315 },
+    },
   },
   cinderace: {
     dex: 815,
@@ -609,8 +722,14 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
-    greatLeague: { rank: 618 },
-    ultraLeague: { rank: 403 },
+    greatLeague: {
+      rank: 618,
+      bestIv: { iv: '0/15/15', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 403,
+      bestIv: { iv: '1/15/14', cp: 2499 },
+    },
   },
   clodsire: {
     dex: 980,
@@ -638,8 +757,12 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
       ],
+      bestIv: { iv: '0/14/13', cp: 1499 },
     },
-    ultraLeague: { rank: 348 },
+    ultraLeague: {
+      rank: 348,
+      bestIv: { iv: '15/15/15', cp: 2207 },
+    },
   },
   corviknight: {
     dex: 823,
@@ -671,6 +794,7 @@ const PVPOKE = {
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '0/13/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 2,
@@ -685,6 +809,7 @@ const PVPOKE = {
         { id: 'blastoise', name: 'Blastoise', rank: 29 },
         { id: 'dusknoir', name: 'Shadow Dusknoir', rank: 25 },
       ],
+      bestIv: { iv: '0/15/15', cp: 2498 },
     },
     shadow: {
       greatLeague: {
@@ -700,6 +825,7 @@ const PVPOKE = {
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
           { id: 'altaria', name: 'Altaria', rank: 2 },
         ],
+        bestIv: { iv: '0/13/14', cp: 1500 },
       },
       ultraLeague: {
         rank: 4,
@@ -714,6 +840,7 @@ const PVPOKE = {
           { id: 'feraligatr', name: 'Feraligatr', rank: 14 },
           { id: 'skeledirge', name: 'Skeledirge', rank: 21 },
         ],
+        bestIv: { iv: '0/15/15', cp: 2498 },
       },
     },
   },
@@ -734,6 +861,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8 },
       ],
+      bestIv: { iv: '0/14/11', cp: 1500 },
     },
     ultraLeague: {
       rank: 18,
@@ -748,6 +876,7 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14 },
       ],
+      bestIv: { iv: '15/15/15', cp: 2421 },
     },
   },
   darmanitan_standard: {
@@ -763,11 +892,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 823 },
-    ultraLeague: { rank: 534 },
+    greatLeague: {
+      rank: 823,
+      bestIv: { iv: '0/15/11', cp: 1498 },
+    },
+    ultraLeague: {
+      rank: 534,
+      bestIv: { iv: '0/13/15', cp: 2498 },
+    },
     shadow: {
-      greatLeague: { rank: 807 },
-      ultraLeague: { rank: 576 },
+      greatLeague: {
+        rank: 807,
+        bestIv: { iv: '0/15/11', cp: 1498 },
+      },
+      ultraLeague: {
+        rank: 576,
+        bestIv: { iv: '0/13/15', cp: 2498 },
+      },
     },
   },
   decidueye: {
@@ -786,15 +927,27 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
-    greatLeague: { rank: 565 },
-    ultraLeague: { rank: 212 },
+    greatLeague: {
+      rank: 565,
+      bestIv: { iv: '0/14/11', cp: 1497 },
+    },
+    ultraLeague: {
+      rank: 212,
+      bestIv: { iv: '0/14/13', cp: 2497 },
+    },
   },
   dedenne: {
     dex: 702,
     types: ['electric', 'fairy'],
     buddyKm: 3,
-    greatLeague: { rank: 268 },
-    ultraLeague: { rank: 605 },
+    greatLeague: {
+      rank: 268,
+      bestIv: { iv: '0/14/12', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 605,
+      bestIv: { iv: '15/15/15', cp: 2081 },
+    },
   },
   delphox: {
     dex: 655,
@@ -815,11 +968,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
-    greatLeague: { rank: 399 },
-    ultraLeague: { rank: 281 },
+    greatLeague: {
+      rank: 399,
+      bestIv: { iv: '0/11/14', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 281,
+      bestIv: { iv: '1/15/15', cp: 2493 },
+    },
     shadow: {
-      greatLeague: { rank: 460 },
-      ultraLeague: { rank: 285 },
+      greatLeague: {
+        rank: 460,
+        bestIv: { iv: '0/11/14', cp: 1499 },
+      },
+      ultraLeague: {
+        rank: 285,
+        bestIv: { iv: '1/15/15', cp: 2493 },
+      },
     },
   },
   deoxys_defense: {
@@ -840,6 +1005,7 @@ const PVPOKE = {
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         { id: 'altaria', name: 'Altaria', rank: 2 },
       ],
+      bestIv: { iv: '0/15/15', cp: 1500 },
     },
     ultraLeague: {
       rank: 42,
@@ -854,6 +1020,7 @@ const PVPOKE = {
         { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '12/13/15', cp: 2500 },
     },
   },
   dondozo: {
@@ -873,6 +1040,7 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         { id: 'altaria', name: 'Altaria', rank: 2 },
       ],
+      bestIv: { iv: '0/15/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 26,
@@ -887,6 +1055,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
       ],
+      bestIv: { iv: '0/14/15', cp: 2498 },
     },
   },
   doublade: {
@@ -917,6 +1086,7 @@ const PVPOKE = {
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
       ],
+      bestIv: { iv: '0/11/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 96,
@@ -931,6 +1101,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'skeledirge', name: 'Skeledirge', rank: 21 },
       ],
+      bestIv: { iv: '0/14/14', cp: 2499 },
     },
   },
   drifblim: {
@@ -945,11 +1116,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 5,
-    greatLeague: { rank: 363 },
-    ultraLeague: { rank: 137 },
+    greatLeague: {
+      rank: 363,
+      bestIv: { iv: '0/15/12', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 137,
+      bestIv: { iv: '1/15/15', cp: 2499 },
+    },
     shadow: {
-      greatLeague: { rank: 289 },
-      ultraLeague: { rank: 236 },
+      greatLeague: {
+        rank: 289,
+        bestIv: { iv: '0/15/12', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 236,
+        bestIv: { iv: '1/15/15', cp: 2499 },
+      },
     },
   },
   dubwool: {
@@ -965,8 +1148,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 163 },
-    ultraLeague: { rank: 375 },
+    greatLeague: {
+      rank: 163,
+      bestIv: { iv: '1/15/15', cp: 1497 },
+    },
+    ultraLeague: {
+      rank: 375,
+      bestIv: { iv: '15/15/15', cp: 2478 },
+    },
   },
   dusclops: {
     dex: 356,
@@ -996,6 +1185,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
       ],
+      bestIv: { iv: '0/11/15', cp: 1499 },
     },
     shadow: {
       greatLeague: {
@@ -1011,6 +1201,7 @@ const PVPOKE = {
           { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '0/11/15', cp: 1499 },
       },
     },
   },
@@ -1035,7 +1226,10 @@ const PVPOKE = {
     ],
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Body Slam'],
-    greatLeague: { rank: 1026 },
+    greatLeague: {
+      rank: 1026,
+      bestIv: { iv: '15/15/15', cp: 1210 },
+    },
   },
   eldegoss: {
     dex: 830,
@@ -1049,8 +1243,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 814 },
-    ultraLeague: { rank: 780 },
+    greatLeague: {
+      rank: 814,
+      bestIv: { iv: '0/14/15', cp: 1498 },
+    },
+    ultraLeague: {
+      rank: 780,
+      bestIv: { iv: '15/15/15', cp: 2255 },
+    },
   },
   empoleon: {
     dex: 395,
@@ -1081,6 +1281,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'quagsire', name: 'Shadow Quagsire', rank: 12 },
       ],
+      bestIv: { iv: '0/13/15', cp: 1500 },
     },
     ultraLeague: {
       rank: 7,
@@ -1095,6 +1296,7 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14 },
       ],
+      bestIv: { iv: '1/15/14', cp: 2500 },
     },
     shadow: {
       greatLeague: {
@@ -1110,6 +1312,7 @@ const PVPOKE = {
           { id: 'altaria', name: 'Altaria', rank: 2 },
           { id: 'corviknight', name: 'Corviknight', rank: 2 },
         ],
+        bestIv: { iv: '0/13/15', cp: 1500 },
       },
       ultraLeague: {
         rank: 9,
@@ -1124,6 +1327,7 @@ const PVPOKE = {
           { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
           { id: 'snorlax', name: 'Snorlax', rank: 3 },
         ],
+        bestIv: { iv: '1/15/14', cp: 2500 },
       },
     },
   },
@@ -1140,11 +1344,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 538 },
-    ultraLeague: { rank: 440 },
+    greatLeague: {
+      rank: 538,
+      bestIv: { iv: '2/15/15', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 440,
+      bestIv: { iv: '0/15/15', cp: 2495 },
+    },
     shadow: {
-      greatLeague: { rank: 461 },
-      ultraLeague: { rank: 365 },
+      greatLeague: {
+        rank: 461,
+        bestIv: { iv: '2/15/15', cp: 1499 },
+      },
+      ultraLeague: {
+        rank: 365,
+        bestIv: { iv: '0/15/15', cp: 2495 },
+      },
     },
   },
   fearow: {
@@ -1173,8 +1389,12 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
       ],
+      bestIv: { iv: '0/15/14', cp: 1498 },
     },
-    ultraLeague: { rank: 302 },
+    ultraLeague: {
+      rank: 302,
+      bestIv: { iv: '15/15/15', cp: 2257 },
+    },
   },
   feraligatr: {
     dex: 160,
@@ -1205,6 +1425,7 @@ const PVPOKE = {
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
       ],
+      bestIv: { iv: '0/11/13', cp: 1499 },
     },
     ultraLeague: {
       rank: 15,
@@ -1219,6 +1440,7 @@ const PVPOKE = {
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
         { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, legendary: true },
       ],
+      bestIv: { iv: '1/15/14', cp: 2497 },
     },
     shadow: {
       greatLeague: {
@@ -1234,6 +1456,7 @@ const PVPOKE = {
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
           { id: 'cramorant', name: 'Cramorant', rank: 4 },
         ],
+        bestIv: { iv: '0/11/13', cp: 1499 },
       },
       ultraLeague: {
         rank: 14,
@@ -1248,6 +1471,7 @@ const PVPOKE = {
           { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '1/15/14', cp: 2497 },
       },
     },
   },
@@ -1265,8 +1489,14 @@ const PVPOKE = {
     ],
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
-    greatLeague: { rank: 695 },
-    ultraLeague: { rank: 589 },
+    greatLeague: {
+      rank: 695,
+      bestIv: { iv: '0/15/13', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 589,
+      bestIv: { iv: '1/15/15', cp: 2498 },
+    },
   },
   florges: {
     dex: 671,
@@ -1297,6 +1527,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
       ],
+      bestIv: { iv: '0/14/13', cp: 1500 },
     },
     ultraLeague: {
       rank: 12,
@@ -1311,6 +1542,7 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
       ],
+      bestIv: { iv: '0/14/15', cp: 2498 },
     },
   },
   forretress: {
@@ -1338,6 +1570,7 @@ const PVPOKE = {
         { id: 'altaria', name: 'Altaria', rank: 2 },
         { id: 'quagsire', name: 'Shadow Quagsire', rank: 12 },
       ],
+      bestIv: { iv: '0/9/15', cp: 1500 },
     },
     ultraLeague: {
       rank: 31,
@@ -1352,6 +1585,7 @@ const PVPOKE = {
         { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
         { id: 'skeledirge', name: 'Skeledirge', rank: 21 },
       ],
+      bestIv: { iv: '9/15/15', cp: 2492 },
     },
     shadow: {
       greatLeague: {
@@ -1367,6 +1601,7 @@ const PVPOKE = {
           { id: 'altaria', name: 'Altaria', rank: 2 },
           { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         ],
+        bestIv: { iv: '0/9/15', cp: 1500 },
       },
       ultraLeague: {
         rank: 39,
@@ -1381,6 +1616,7 @@ const PVPOKE = {
           { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
           { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
         ],
+        bestIv: { iv: '9/15/15', cp: 2492 },
       },
     },
   },
@@ -1409,8 +1645,12 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
       ],
+      bestIv: { iv: '1/15/14', cp: 1500 },
     },
-    ultraLeague: { rank: 741 },
+    ultraLeague: {
+      rank: 741,
+      bestIv: { iv: '15/15/15', cp: 1987 },
+    },
   },
   corsola_galarian: {
     dex: 222,
@@ -1437,6 +1677,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/15/15', cp: 1498 },
     },
   },
   moltres_galarian: {
@@ -1457,6 +1698,7 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '0/13/12', cp: 1499 },
     },
     ultraLeague: {
       rank: 13,
@@ -1471,6 +1713,7 @@ const PVPOKE = {
         { id: 'florges', name: 'Florges', rank: 11 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '1/15/15', cp: 2497 },
     },
   },
   stunfisk_galarian: {
@@ -1490,8 +1733,12 @@ const PVPOKE = {
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
       ],
+      bestIv: { iv: '0/12/15', cp: 1498 },
     },
-    ultraLeague: { rank: 131 },
+    ultraLeague: {
+      rank: 131,
+      bestIv: { iv: '15/15/15', cp: 2445 },
+    },
   },
   gardevoir: {
     dex: 282,
@@ -1513,11 +1760,23 @@ const PVPOKE = {
     ],
     buddyKm: 5,
     specialMoves: ['Synchronoise'],
-    greatLeague: { rank: 991 },
-    ultraLeague: { rank: 654 },
+    greatLeague: {
+      rank: 991,
+      bestIv: { iv: '0/15/15', cp: 1496 },
+    },
+    ultraLeague: {
+      rank: 654,
+      bestIv: { iv: '0/12/15', cp: 2496 },
+    },
     shadow: {
-      greatLeague: { rank: 1012 },
-      ultraLeague: { rank: 664 },
+      greatLeague: {
+        rank: 1012,
+        bestIv: { iv: '0/15/15', cp: 1496 },
+      },
+      ultraLeague: {
+        rank: 664,
+        bestIv: { iv: '0/12/15', cp: 2496 },
+      },
     },
   },
   gigalith: {
@@ -1537,11 +1796,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Meteor Beam'],
-    greatLeague: { rank: 598 },
-    ultraLeague: { rank: 368 },
+    greatLeague: {
+      rank: 598,
+      bestIv: { iv: '0/11/15', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 368,
+      bestIv: { iv: '0/13/15', cp: 2497 },
+    },
     shadow: {
-      greatLeague: { rank: 651 },
-      ultraLeague: { rank: 517 },
+      greatLeague: {
+        rank: 651,
+        bestIv: { iv: '0/11/15', cp: 1499 },
+      },
+      ultraLeague: {
+        rank: 517,
+        bestIv: { iv: '0/13/15', cp: 2497 },
+      },
     },
   },
   gothitelle: {
@@ -1559,11 +1830,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 840 },
-    ultraLeague: { rank: 535 },
+    greatLeague: {
+      rank: 840,
+      bestIv: { iv: '0/15/15', cp: 1497 },
+    },
+    ultraLeague: {
+      rank: 535,
+      bestIv: { iv: '0/14/15', cp: 2500 },
+    },
     shadow: {
-      greatLeague: { rank: 940 },
-      ultraLeague: { rank: 598 },
+      greatLeague: {
+        rank: 940,
+        bestIv: { iv: '0/15/15', cp: 1497 },
+      },
+      ultraLeague: {
+        rank: 598,
+        bestIv: { iv: '0/14/15', cp: 2500 },
+      },
     },
   },
   greedent: {
@@ -1579,8 +1862,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 1,
-    greatLeague: { rank: 187 },
-    ultraLeague: { rank: 150 },
+    greatLeague: {
+      rank: 187,
+      bestIv: { iv: '0/12/14', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 150,
+      bestIv: { iv: '3/15/15', cp: 2495 },
+    },
   },
   guzzlord: {
     dex: 799,
@@ -1600,6 +1889,7 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '1/15/15', cp: 1497 },
     },
     ultraLeague: {
       rank: 19,
@@ -1614,6 +1904,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/15/14', cp: 2499 },
     },
   },
   gyarados: {
@@ -1633,7 +1924,10 @@ const PVPOKE = {
     ],
     buddyKm: 1,
     specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
-    greatLeague: { rank: 271 },
+    greatLeague: {
+      rank: 271,
+      bestIv: { iv: '0/14/15', cp: 1499 },
+    },
     ultraLeague: {
       rank: 75,
       moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
@@ -1647,9 +1941,13 @@ const PVPOKE = {
         { id: 'florges', name: 'Florges', rank: 11 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
+      bestIv: { iv: '0/15/14', cp: 2500 },
     },
     shadow: {
-      greatLeague: { rank: 261 },
+      greatLeague: {
+        rank: 261,
+        bestIv: { iv: '0/14/15', cp: 1499 },
+      },
       ultraLeague: {
         rank: 67,
         moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
@@ -1663,6 +1961,7 @@ const PVPOKE = {
           { id: 'empoleon', name: 'Empoleon', rank: 7 },
           { id: 'feraligatr', name: 'Feraligatr', rank: 14 },
         ],
+        bestIv: { iv: '0/15/14', cp: 2500 },
       },
     },
   },
@@ -1678,11 +1977,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 486 },
-    ultraLeague: { rank: 334 },
+    greatLeague: {
+      rank: 486,
+      bestIv: { iv: '0/14/14', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 334,
+      bestIv: { iv: '1/15/15', cp: 2500 },
+    },
     shadow: {
-      greatLeague: { rank: 443 },
-      ultraLeague: { rank: 349 },
+      greatLeague: {
+        rank: 443,
+        bestIv: { iv: '0/14/14', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 349,
+        bestIv: { iv: '1/15/15', cp: 2500 },
+      },
     },
   },
   hatterene: {
@@ -1701,8 +2012,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 5,
-    greatLeague: { rank: 724 },
-    ultraLeague: { rank: 493 },
+    greatLeague: {
+      rank: 724,
+      bestIv: { iv: '0/11/14', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 493,
+      bestIv: { iv: '1/15/15', cp: 2500 },
+    },
   },
   hippowdon: {
     dex: 450,
@@ -1729,6 +2046,7 @@ const PVPOKE = {
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
       ],
+      bestIv: { iv: '0/14/10', cp: 1499 },
     },
     ultraLeague: {
       rank: 99,
@@ -1743,6 +2061,7 @@ const PVPOKE = {
         { id: 'florges', name: 'Florges', rank: 11 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
+      bestIv: { iv: '0/14/15', cp: 2496 },
     },
     shadow: {
       greatLeague: {
@@ -1758,6 +2077,7 @@ const PVPOKE = {
           { id: 'altaria', name: 'Altaria', rank: 2 },
           { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
         ],
+        bestIv: { iv: '0/14/10', cp: 1499 },
       },
       ultraLeague: {
         rank: 92,
@@ -1772,6 +2092,7 @@ const PVPOKE = {
           { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
           { id: 'florges', name: 'Florges', rank: 11 },
         ],
+        bestIv: { iv: '0/14/15', cp: 2496 },
       },
     },
   },
@@ -1800,8 +2121,12 @@ const PVPOKE = {
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
       ],
+      bestIv: { iv: '1/14/14', cp: 1499 },
     },
-    ultraLeague: { rank: 165 },
+    ultraLeague: {
+      rank: 165,
+      bestIv: { iv: '15/15/15', cp: 2430 },
+    },
   },
   inteleon: {
     dex: 818,
@@ -1820,8 +2145,14 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
-    greatLeague: { rank: 865 },
-    ultraLeague: { rank: 716 },
+    greatLeague: {
+      rank: 865,
+      bestIv: { iv: '0/13/12', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 716,
+      bestIv: { iv: '1/15/13', cp: 2499 },
+    },
   },
   jellicent: {
     dex: 593,
@@ -1848,6 +2179,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
       ],
+      bestIv: { iv: '1/14/14', cp: 1498 },
     },
     ultraLeague: {
       rank: 16,
@@ -1862,6 +2194,7 @@ const PVPOKE = {
         { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
       ],
+      bestIv: { iv: '6/14/15', cp: 2500 },
     },
   },
   jumpluff: {
@@ -1893,8 +2226,12 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
       ],
+      bestIv: { iv: '0/14/14', cp: 1499 },
     },
-    ultraLeague: { rank: 700 },
+    ultraLeague: {
+      rank: 700,
+      bestIv: { iv: '15/15/15', cp: 1850 },
+    },
     shadow: {
       greatLeague: {
         rank: 81,
@@ -1909,8 +2246,12 @@ const PVPOKE = {
           { id: 'corviknight', name: 'Corviknight', rank: 2 },
           { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         ],
+        bestIv: { iv: '0/14/14', cp: 1499 },
       },
-      ultraLeague: { rank: 713 },
+      ultraLeague: {
+        rank: 713,
+        bestIv: { iv: '15/15/15', cp: 1850 },
+      },
     },
   },
   kilowattrel: {
@@ -1925,8 +2266,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 1,
-    greatLeague: { rank: 518 },
-    ultraLeague: { rank: 343 },
+    greatLeague: {
+      rank: 518,
+      bestIv: { iv: '0/15/14', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 343,
+      bestIv: { iv: '0/15/15', cp: 2495 },
+    },
   },
   lanturn: {
     dex: 171,
@@ -1940,8 +2287,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 279 },
-    ultraLeague: { rank: 414 },
+    greatLeague: {
+      rank: 279,
+      bestIv: { iv: '0/13/14', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 414,
+      bestIv: { iv: '15/15/15', cp: 2357 },
+    },
   },
   lapras: {
     dex: 131,
@@ -1962,6 +2315,7 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
       ],
+      bestIv: { iv: '0/10/14', cp: 1498 },
     },
     ultraLeague: {
       rank: 22,
@@ -1976,6 +2330,7 @@ const PVPOKE = {
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/15/15', cp: 2498 },
     },
     shadow: {
       greatLeague: {
@@ -1991,6 +2346,7 @@ const PVPOKE = {
           { id: 'quagsire', name: 'Shadow Quagsire', rank: 12 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '0/10/14', cp: 1498 },
       },
       ultraLeague: {
         rank: 23,
@@ -2005,6 +2361,7 @@ const PVPOKE = {
           { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
           { id: 'jellicent', name: 'Jellicent', rank: 16 },
         ],
+        bestIv: { iv: '0/15/15', cp: 2498 },
       },
     },
   },
@@ -2021,7 +2378,10 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Body Slam'],
-    greatLeague: { rank: 175 },
+    greatLeague: {
+      rank: 175,
+      bestIv: { iv: '8/14/15', cp: 1499 },
+    },
   },
   lokix: {
     dex: 920,
@@ -2035,8 +2395,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 1,
-    greatLeague: { rank: 350 },
-    ultraLeague: { rank: 266 },
+    greatLeague: {
+      rank: 350,
+      bestIv: { iv: '0/14/14', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 266,
+      bestIv: { iv: '5/15/15', cp: 2497 },
+    },
   },
   machamp: {
     dex: 68,
@@ -2055,11 +2421,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
-    greatLeague: { rank: 246 },
-    ultraLeague: { rank: 249 },
+    greatLeague: {
+      rank: 246,
+      bestIv: { iv: '0/14/11', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 249,
+      bestIv: { iv: '0/15/14', cp: 2497 },
+    },
     shadow: {
-      greatLeague: { rank: 194 },
-      ultraLeague: { rank: 175 },
+      greatLeague: {
+        rank: 194,
+        bestIv: { iv: '0/14/11', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 175,
+        bestIv: { iv: '0/15/14', cp: 2497 },
+      },
     },
   },
   malamar: {
@@ -2091,6 +2469,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'altaria', name: 'Altaria', rank: 2 },
       ],
+      bestIv: { iv: '0/15/9', cp: 1500 },
     },
     ultraLeague: {
       rank: 64,
@@ -2105,6 +2484,7 @@ const PVPOKE = {
         { id: 'florges', name: 'Florges', rank: 11 },
         { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
       ],
+      bestIv: { iv: '3/15/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
@@ -2120,6 +2500,7 @@ const PVPOKE = {
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '0/15/9', cp: 1500 },
       },
       ultraLeague: {
         rank: 56,
@@ -2134,6 +2515,7 @@ const PVPOKE = {
           { id: 'florges', name: 'Florges', rank: 11 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '3/15/15', cp: 2500 },
       },
     },
   },
@@ -2162,8 +2544,12 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
       ],
+      bestIv: { iv: '0/13/15', cp: 1498 },
     },
-    ultraLeague: { rank: 141 },
+    ultraLeague: {
+      rank: 141,
+      bestIv: { iv: '15/15/15', cp: 2417 },
+    },
   },
   mantine: {
     dex: 226,
@@ -2190,8 +2576,12 @@ const PVPOKE = {
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '0/15/14', cp: 1500 },
     },
-    ultraLeague: { rank: 133 },
+    ultraLeague: {
+      rank: 133,
+      bestIv: { iv: '15/15/15', cp: 2383 },
+    },
   },
   marowak: {
     dex: 105,
@@ -2218,8 +2608,12 @@ const PVPOKE = {
         { id: 'altaria', name: 'Altaria', rank: 2 },
         { id: 'quagsire', name: 'Shadow Quagsire', rank: 12 },
       ],
+      bestIv: { iv: '0/14/14', cp: 1500 },
     },
-    ultraLeague: { rank: 640 },
+    ultraLeague: {
+      rank: 640,
+      bestIv: { iv: '15/15/15', cp: 2075 },
+    },
     shadow: {
       greatLeague: {
         rank: 82,
@@ -2234,8 +2628,12 @@ const PVPOKE = {
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
           { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         ],
+        bestIv: { iv: '0/14/14', cp: 1500 },
       },
-      ultraLeague: { rank: 668 },
+      ultraLeague: {
+        rank: 668,
+        bestIv: { iv: '15/15/15', cp: 2075 },
+      },
     },
   },
   medicham: {
@@ -2266,6 +2664,7 @@ const PVPOKE = {
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
       ],
+      bestIv: { iv: '5/15/15', cp: 1499 },
     },
   },
   melmetal: {
@@ -2295,6 +2694,7 @@ const PVPOKE = {
         { id: 'quagsire', name: 'Shadow Quagsire', rank: 12 },
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
       ],
+      bestIv: { iv: '1/15/14', cp: 1499 },
     },
     ultraLeague: {
       rank: 5,
@@ -2309,6 +2709,7 @@ const PVPOKE = {
         { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
       ],
+      bestIv: { iv: '0/13/15', cp: 2495 },
     },
   },
   meowscarada: {
@@ -2327,8 +2728,14 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
-    greatLeague: { rank: 483 },
-    ultraLeague: { rank: 462 },
+    greatLeague: {
+      rank: 483,
+      bestIv: { iv: '0/13/13', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 462,
+      bestIv: { iv: '0/15/14', cp: 2496 },
+    },
   },
   mimikyu: {
     dex: 778,
@@ -2347,6 +2754,7 @@ const PVPOKE = {
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
         { id: 'morpeko_full_belly', name: 'Morpeko (Full Belly)', rank: 53 },
       ],
+      bestIv: { iv: '1/14/15', cp: 1500 },
     },
     ultraLeague: {
       rank: 10,
@@ -2361,6 +2769,7 @@ const PVPOKE = {
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '14/14/15', cp: 2497 },
     },
   },
   moltres: {
@@ -2370,11 +2779,23 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     buddyKm: 20,
     specialMoves: ['Sky Attack'],
-    greatLeague: { rank: 671 },
-    ultraLeague: { rank: 468 },
+    greatLeague: {
+      rank: 671,
+      bestIv: { iv: '1/15/15', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 468,
+      bestIv: { iv: '0/14/12', cp: 2499 },
+    },
     shadow: {
-      greatLeague: { rank: 685 },
-      ultraLeague: { rank: 495 },
+      greatLeague: {
+        rank: 685,
+        bestIv: { iv: '1/15/15', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 495,
+        bestIv: { iv: '0/14/12', cp: 2499 },
+      },
     },
   },
   ninetales: {
@@ -2403,6 +2824,7 @@ const PVPOKE = {
         { id: 'vigoroth', name: 'Vigoroth', rank: 22 },
         { id: 'altaria', name: 'Altaria', rank: 2 },
       ],
+      bestIv: { iv: '0/15/15', cp: 1495 },
     },
     ultraLeague: {
       rank: 34,
@@ -2417,6 +2839,7 @@ const PVPOKE = {
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14 },
       ],
+      bestIv: { iv: '9/15/15', cp: 2493 },
     },
     shadow: {
       greatLeague: {
@@ -2432,6 +2855,7 @@ const PVPOKE = {
           { id: 'cramorant', name: 'Cramorant', rank: 4 },
           { id: 'altaria', name: 'Altaria', rank: 2 },
         ],
+        bestIv: { iv: '0/15/15', cp: 1495 },
       },
       ultraLeague: {
         rank: 65,
@@ -2446,6 +2870,7 @@ const PVPOKE = {
           { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
           { id: 'snorlax', name: 'Snorlax', rank: 3 },
         ],
+        bestIv: { iv: '9/15/15', cp: 2493 },
       },
     },
   },
@@ -2461,8 +2886,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 506 },
-    ultraLeague: { rank: 214 },
+    greatLeague: {
+      rank: 506,
+      bestIv: { iv: '1/15/15', cp: 1495 },
+    },
+    ultraLeague: {
+      rank: 214,
+      bestIv: { iv: '0/14/15', cp: 2497 },
+    },
   },
   pyroar: {
     dex: 668,
@@ -2476,8 +2907,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 678 },
-    ultraLeague: { rank: 476 },
+    greatLeague: {
+      rank: 678,
+      bestIv: { iv: '0/15/10', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 476,
+      bestIv: { iv: '0/15/12', cp: 2500 },
+    },
   },
   quagsire: {
     dex: 195,
@@ -2505,8 +2942,12 @@ const PVPOKE = {
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
         { id: 'altaria', name: 'Altaria', rank: 2 },
       ],
+      bestIv: { iv: '0/15/14', cp: 1499 },
     },
-    ultraLeague: { rank: 453 },
+    ultraLeague: {
+      rank: 453,
+      bestIv: { iv: '15/15/15', cp: 2252 },
+    },
     shadow: {
       greatLeague: {
         rank: 12,
@@ -2521,8 +2962,12 @@ const PVPOKE = {
           { id: 'cramorant', name: 'Cramorant', rank: 4 },
           { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         ],
+        bestIv: { iv: '0/15/14', cp: 1499 },
       },
-      ultraLeague: { rank: 424 },
+      ultraLeague: {
+        rank: 424,
+        bestIv: { iv: '15/15/15', cp: 2252 },
+      },
     },
   },
   quaquaval: {
@@ -2541,8 +2986,14 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
-    greatLeague: { rank: 288 },
-    ultraLeague: { rank: 199 },
+    greatLeague: {
+      rank: 288,
+      bestIv: { iv: '0/15/15', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 199,
+      bestIv: { iv: '1/15/14', cp: 2497 },
+    },
   },
   rhyperior: {
     dex: 464,
@@ -2561,11 +3012,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Rock Wrecker'],
-    greatLeague: { rank: 688 },
-    ultraLeague: { rank: 485 },
+    greatLeague: {
+      rank: 688,
+      bestIv: { iv: '0/14/14', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 485,
+      bestIv: { iv: '0/14/14', cp: 2499 },
+    },
     shadow: {
-      greatLeague: { rank: 633 },
-      ultraLeague: { rank: 497 },
+      greatLeague: {
+        rank: 633,
+        bestIv: { iv: '0/14/14', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 497,
+        bestIv: { iv: '0/14/14', cp: 2499 },
+      },
     },
   },
   rillaboom: {
@@ -2598,6 +3061,7 @@ const PVPOKE = {
         { id: 'altaria', name: 'Altaria', rank: 2 },
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
       ],
+      bestIv: { iv: '0/12/13', cp: 1500 },
     },
     ultraLeague: {
       rank: 20,
@@ -2612,6 +3076,7 @@ const PVPOKE = {
         { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
       ],
+      bestIv: { iv: '0/14/15', cp: 2495 },
     },
   },
   sableye: {
@@ -2635,6 +3100,7 @@ const PVPOKE = {
         { id: 'altaria', name: 'Altaria', rank: 2 },
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
       ],
+      bestIv: { iv: '0/15/15', cp: 1499 },
     },
     shadow: {
       greatLeague: {
@@ -2650,6 +3116,7 @@ const PVPOKE = {
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
           { id: 'altaria', name: 'Altaria', rank: 2 },
         ],
+        bestIv: { iv: '0/15/15', cp: 1499 },
       },
     },
   },
@@ -2680,6 +3147,7 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
       ],
+      bestIv: { iv: '1/15/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 11,
@@ -2694,6 +3162,7 @@ const PVPOKE = {
         { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
       ],
+      bestIv: { iv: '0/12/15', cp: 2499 },
     },
     shadow: {
       greatLeague: {
@@ -2709,6 +3178,7 @@ const PVPOKE = {
           { id: 'tinkaton', name: 'Tinkaton', rank: 1 },
           { id: 'corviknight', name: 'Corviknight', rank: 2 },
         ],
+        bestIv: { iv: '1/15/14', cp: 1500 },
       },
       ultraLeague: {
         rank: 3,
@@ -2723,6 +3193,7 @@ const PVPOKE = {
           { id: 'virizion', name: 'Virizion', rank: 6, legendary: true },
           { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 13, legendary: true },
         ],
+        bestIv: { iv: '0/12/15', cp: 2499 },
       },
     },
   },
@@ -2745,11 +3216,23 @@ const PVPOKE = {
     ],
     buddyKm: 1,
     specialMoves: ['Gust'],
-    greatLeague: { rank: 713 },
-    ultraLeague: { rank: 505 },
+    greatLeague: {
+      rank: 713,
+      bestIv: { iv: '0/13/13', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 505,
+      bestIv: { iv: '2/15/14', cp: 2500 },
+    },
     shadow: {
-      greatLeague: { rank: 757 },
-      ultraLeague: { rank: 464 },
+      greatLeague: {
+        rank: 757,
+        bestIv: { iv: '0/13/13', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 464,
+        bestIv: { iv: '2/15/14', cp: 2500 },
+      },
     },
   },
   stunfisk: {
@@ -2769,8 +3252,12 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3 },
       ],
+      bestIv: { iv: '0/12/15', cp: 1498 },
     },
-    ultraLeague: { rank: 136 },
+    ultraLeague: {
+      rank: 136,
+      bestIv: { iv: '15/15/15', cp: 2445 },
+    },
   },
   swampert: {
     dex: 260,
@@ -2804,6 +3291,7 @@ const PVPOKE = {
         { id: 'altaria', name: 'Altaria', rank: 2 },
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
       ],
+      bestIv: { iv: '0/14/14', cp: 1498 },
     },
     ultraLeague: {
       rank: 54,
@@ -2818,6 +3306,7 @@ const PVPOKE = {
         { id: 'florges', name: 'Florges', rank: 11 },
         { id: 'jellicent', name: 'Jellicent', rank: 16 },
       ],
+      bestIv: { iv: '0/14/13', cp: 2499 },
     },
     shadow: {
       greatLeague: {
@@ -2833,6 +3322,7 @@ const PVPOKE = {
           { id: 'thievul', name: 'Thievul', rank: 15 },
           { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         ],
+        bestIv: { iv: '0/14/14', cp: 1498 },
       },
       ultraLeague: {
         rank: 89,
@@ -2847,6 +3337,7 @@ const PVPOKE = {
           { id: 'snorlax', name: 'Snorlax', rank: 3 },
           { id: 'florges', name: 'Florges', rank: 11 },
         ],
+        bestIv: { iv: '0/14/13', cp: 2499 },
       },
     },
   },
@@ -2876,8 +3367,12 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
       ],
+      bestIv: { iv: '0/15/11', cp: 1499 },
     },
-    ultraLeague: { rank: 172 },
+    ultraLeague: {
+      rank: 172,
+      bestIv: { iv: '15/15/15', cp: 2415 },
+    },
   },
   tinkaton: {
     dex: 959,
@@ -2908,6 +3403,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
       ],
+      bestIv: { iv: '1/14/14', cp: 1497 },
     },
     ultraLeague: {
       rank: 1,
@@ -2922,6 +3418,7 @@ const PVPOKE = {
         { id: 'mimikyu', name: 'Mimikyu', rank: 6 },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14 },
       ],
+      bestIv: { iv: '13/15/15', cp: 2499 },
     },
   },
   torterra: {
@@ -2940,11 +3437,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
-    greatLeague: { rank: 558 },
-    ultraLeague: { rank: 277 },
+    greatLeague: {
+      rank: 558,
+      bestIv: { iv: '0/11/13', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 277,
+      bestIv: { iv: '0/15/15', cp: 2497 },
+    },
     shadow: {
-      greatLeague: { rank: 708 },
-      ultraLeague: { rank: 338 },
+      greatLeague: {
+        rank: 708,
+        bestIv: { iv: '0/11/13', cp: 1500 },
+      },
+      ultraLeague: {
+        rank: 338,
+        bestIv: { iv: '0/15/15', cp: 2497 },
+      },
     },
   },
   toxapex: {
@@ -2959,8 +3468,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 3,
-    greatLeague: { rank: 115 },
-    ultraLeague: { rank: 770 },
+    greatLeague: {
+      rank: 115,
+      bestIv: { iv: '0/15/15', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 770,
+      bestIv: { iv: '15/15/15', cp: 1905 },
+    },
   },
   trevenant: {
     dex: 709,
@@ -2974,11 +3489,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 5,
-    greatLeague: { rank: 359 },
-    ultraLeague: { rank: 154 },
+    greatLeague: {
+      rank: 359,
+      bestIv: { iv: '0/15/15', cp: 1497 },
+    },
+    ultraLeague: {
+      rank: 154,
+      bestIv: { iv: '1/15/15', cp: 2500 },
+    },
     shadow: {
-      greatLeague: { rank: 295 },
-      ultraLeague: { rank: 147 },
+      greatLeague: {
+        rank: 295,
+        bestIv: { iv: '0/15/15', cp: 1497 },
+      },
+      ultraLeague: {
+        rank: 147,
+        bestIv: { iv: '1/15/15', cp: 2500 },
+      },
     },
   },
   tsareena: {
@@ -2998,8 +3525,14 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['High Jump Kick'],
-    greatLeague: { rank: 1003 },
-    ultraLeague: { rank: 627 },
+    greatLeague: {
+      rank: 1003,
+      bestIv: { iv: '0/15/13', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 627,
+      bestIv: { iv: '0/15/15', cp: 2499 },
+    },
   },
   tyrantrum: {
     dex: 697,
@@ -3013,11 +3546,23 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 5,
-    greatLeague: { rank: 739 },
-    ultraLeague: { rank: 574 },
+    greatLeague: {
+      rank: 739,
+      bestIv: { iv: '0/15/12', cp: 1498 },
+    },
+    ultraLeague: {
+      rank: 574,
+      bestIv: { iv: '0/12/15', cp: 2497 },
+    },
     shadow: {
-      greatLeague: { rank: 762 },
-      ultraLeague: { rank: 699 },
+      greatLeague: {
+        rank: 762,
+        bestIv: { iv: '0/15/12', cp: 1498 },
+      },
+      ultraLeague: {
+        rank: 699,
+        bestIv: { iv: '0/12/15', cp: 2497 },
+      },
     },
   },
   umbreon: {
@@ -3056,8 +3601,12 @@ const PVPOKE = {
         { id: 'cramorant', name: 'Cramorant', rank: 4 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, legendary: true },
       ],
+      bestIv: { iv: '0/15/15', cp: 1500 },
     },
-    ultraLeague: { rank: 123 },
+    ultraLeague: {
+      rank: 123,
+      bestIv: { iv: '15/15/15', cp: 2416 },
+    },
   },
   venusaur: {
     dex: 3,
@@ -3079,11 +3628,23 @@ const PVPOKE = {
     ],
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
-    greatLeague: { rank: 422 },
-    ultraLeague: { rank: 217 },
+    greatLeague: {
+      rank: 422,
+      bestIv: { iv: '0/14/11', cp: 1498 },
+    },
+    ultraLeague: {
+      rank: 217,
+      bestIv: { iv: '1/15/14', cp: 2499 },
+    },
     shadow: {
-      greatLeague: { rank: 445 },
-      ultraLeague: { rank: 253 },
+      greatLeague: {
+        rank: 445,
+        bestIv: { iv: '0/14/11', cp: 1498 },
+      },
+      ultraLeague: {
+        rank: 253,
+        bestIv: { iv: '1/15/14', cp: 2499 },
+      },
     },
   },
   vigoroth: {
@@ -3114,8 +3675,12 @@ const PVPOKE = {
         { id: 'corviknight', name: 'Corviknight', rank: 2 },
         { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
       ],
+      bestIv: { iv: '1/15/15', cp: 1499 },
     },
-    ultraLeague: { rank: 554 },
+    ultraLeague: {
+      rank: 554,
+      bestIv: { iv: '15/15/15', cp: 2225 },
+    },
     shadow: {
       greatLeague: {
         rank: 41,
@@ -3130,8 +3695,12 @@ const PVPOKE = {
           { id: 'cramorant', name: 'Cramorant', rank: 4 },
           { id: 'sableye', name: 'Shadow Sableye', rank: 19 },
         ],
+        bestIv: { iv: '1/15/15', cp: 1499 },
       },
-      ultraLeague: { rank: 555 },
+      ultraLeague: {
+        rank: 555,
+        bestIv: { iv: '15/15/15', cp: 2225 },
+      },
     },
   },
   whimsicott: {
@@ -3147,8 +3716,14 @@ const PVPOKE = {
       ],
     ],
     buddyKm: 1,
-    greatLeague: { rank: 379 },
-    ultraLeague: { rank: 482 },
+    greatLeague: {
+      rank: 379,
+      bestIv: { iv: '0/14/15', cp: 1499 },
+    },
+    ultraLeague: {
+      rank: 482,
+      bestIv: { iv: '15/15/15', cp: 2277 },
+    },
   },
 };
 

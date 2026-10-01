@@ -22,7 +22,7 @@
 //                'meta' = lila, a legjobbak közt; 'collect' = kék, gyűjtendő, érdemes építeni;
 //                'alternative' = zöld, átmenetileg jó, ha nincs jobb; 'trash' = szürke, kuka
 //     note       egy mondatos összegzés
-//     iv         milyen IV a jó ebben a módban
+//     iv         milyen IV a jó ebben a módban (a liga legjobb IV-jét a pvpoke.js adja, azt ne írd be)
 //     moves      ajánlott mozdulatok: { fast: [...], charged: [...], note }
 //     tips       további tanácsok ebben a módban
 //     upgrade    csak maxBattle: melyik Max mozdulatot fejleszd: ['attack', 'guard', 'spirit']
@@ -250,7 +250,6 @@ const POKEMON = [
     origin: 'Dedenne',
     raid: { rating: 'trash' },
     greatLeague: {
-      iv: 'Ha mégis építenéd: legjobb IV 0/14/12 (33-as szint, 1500 CP).',
       moves: {
         fast: ['Thunder Shock'],
         charged: ['Discharge', 'Play Rough'],
@@ -354,10 +353,7 @@ const POKEMON = [
     name: 'Fearow',
     origin: 'Spearow',
     raid: { rating: 'trash' },
-    greatLeague: {
-      iv: 'Legjobb IV: 0/15/14 (28,5-ös szint, 1498 CP).',
-      tips: ['Olcsó építeni, a Spearow gyakori, és a Great League-hez nem kell XL cukor.'],
-    },
+    greatLeague: { tips: ['Olcsó építeni, a Spearow gyakori, és a Great League-hez nem kell XL cukor.'] },
   },
   {
     id: 'feraligatr',

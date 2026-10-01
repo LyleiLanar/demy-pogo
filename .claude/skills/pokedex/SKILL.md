@@ -103,7 +103,8 @@ az értékét.
   (a kártyán a név alatt), ne írd be; a „NE fejleszd X-szé” jellegű tanács a `warning`-ba megy.
 - Általános, nem fajhoz kötött tanács: az `index.html` Tippek fülére, ne a fajhoz.
 - Ne írd be:
-  - amit a PvPoke-adat már mutat (szett, nehéz ellenfelek, helyezés);
+  - amit a PvPoke-adat már mutat (szett, nehéz ellenfelek, helyezés), és a liga legjobb IV-jét
+    (a szinkron számolja, a GL/UL fülön „Legjobb IV: 0/15/14 1498CP”);
   - a mindig érvényes kivételt (shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás,
     Lucky, @special mozdulatú példány marad) és a „kedvencnek jelöld” jellegű mondatokat;
   - a felhasználó saját példányát, és a csapatára szabott prioritást

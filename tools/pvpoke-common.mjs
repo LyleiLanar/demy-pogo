@@ -117,13 +117,58 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, g
   const shadowId = `${id}_shadow`;
   const shadow = {};
   for (const [key, ranking] of data.leagueRankings) {
+    // A legjobb IV a Shadow formánál is ugyanaz (ugyanazok az alapstatok).
+    const bestIv = gameMaster && bestLeagueIv(species.baseStats, LEAGUES[key], gameMaster.cpMultipliers);
     const league = describeLeague(ranking.get(id), data, detailRankLimit);
-    if (league) entry[key] = league;
+    if (league) entry[key] = bestIv ? { ...league, bestIv } : league;
     const shadowLeague = describeLeague(ranking.get(shadowId), data, detailRankLimit);
-    if (shadowLeague) shadow[key] = shadowLeague;
+    if (shadowLeague) shadow[key] = bestIv ? { ...shadowLeague, bestIv } : shadowLeague;
   }
   if (Object.keys(shadow).length) entry.shadow = shadow;
   return entry;
+}
+
+// ---------- Legjobb IV egy ligára ----------
+
+const MAX_LEVEL = 50;
+
+// Szintenkénti CP-szorzók 1-től MAX_LEVEL-ig, félszintekkel (a félszint a két szomszéd négyzetes közepe).
+function levelMultipliers(cpMultipliers) {
+  const levels = [];
+  for (let level = 1; level <= MAX_LEVEL; level += 1) {
+    const multiplier = cpMultipliers[level - 1];
+    levels.push(multiplier);
+    if (level < MAX_LEVEL) levels.push(Math.sqrt((multiplier ** 2 + cpMultipliers[level] ** 2) / 2));
+  }
+  return levels;
+}
+
+// A liga CP-határa alatt a legnagyobb stat productot (Attack × Defense × HP) adó IV, és a CP-je azon a
+// szinten, ameddig fel lehet húzni. Ez a PvP rank 1 (a Poke Genie is ehhez méri a 100%-ot).
+function bestLeagueIv(baseStats, cpLimit, cpMultipliers) {
+  const levels = levelMultipliers(cpMultipliers);
+  let best = null;
+  for (let attack = 0; attack <= 15; attack += 1) {
+    for (let defense = 0; defense <= 15; defense += 1) {
+      for (let hp = 0; hp <= 15; hp += 1) {
+        const atk = baseStats.atk + attack;
+        const def = baseStats.def + defense;
+        const sta = baseStats.hp + hp;
+        let candidate = null;
+        for (const multiplier of levels) {
+          const cp = Math.max(10, Math.floor((atk * Math.sqrt(def) * Math.sqrt(sta) * multiplier ** 2) / 10));
+          if (cp > cpLimit) break;
+          const statProduct = atk * multiplier * def * multiplier * Math.floor(sta * multiplier);
+          candidate = { statProduct, cp };
+        }
+        // Holtversenynél (azonos stat product) a később jövő, magasabb IV nyer.
+        if (candidate && (!best || candidate.statProduct >= best.statProduct)) {
+          best = { ...candidate, iv: `${attack}/${defense}/${hp}` };
+        }
+      }
+    }
+  }
+  return best && { iv: best.iv, cp: best.cp };
 }
 
 // ---------- A játék game mastere: Dynamax / Gigantamax, fejlődés ----------
@@ -195,7 +240,8 @@ export async function loadGameMaster() {
     if (evolutions.has(parentKey)) continue;
     evolutions.set(parentKey, new Map(branches.map((branch) => [goKey(branch.form || branch.evolution), evolutionCost(branch)])));
   }
-  return { maxForms, evolutions };
+  const levelSettings = templates.find((template) => template.templateId === 'PLAYER_LEVEL_SETTINGS');
+  return { maxForms, evolutions, cpMultipliers: levelSettings.data.playerLevel.cpMultiplier };
 }
 
 // PvPoke-azonosító → a game master fajneve, pl. ninetales_alolan → NINETALES_ALOLA.

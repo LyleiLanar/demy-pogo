@@ -68,7 +68,8 @@ function printSpecies(species, data, gameMaster, asJson) {
       if (!league) continue;
       const moveset = league.moveset
         ? `  Fast: ${league.moveset.fast.join(', ')} · Charged: ${league.moveset.charged.join(', ')}` : '';
-      console.log(`  ${formName.padEnd(6)} ${label}: ${String(league.rank).padStart(4)}. hely${moveset}`);
+      const bestIv = league.bestIv ? `  Legjobb IV: ${league.bestIv.iv} ${league.bestIv.cp}CP` : '';
+      console.log(`  ${formName.padEnd(6)} ${label}: ${String(league.rank).padStart(4)}. hely${bestIv}${moveset}`);
     }
   }
   if (!entry.shadow) console.log('  Shadow:       nincs rangsorolva (valószínűleg nincs Shadow változat)');

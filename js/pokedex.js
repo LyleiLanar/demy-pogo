@@ -69,6 +69,7 @@ function renderModePanel(mode, species, isSelected, tiers) {
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
   const facts = [
     renderFact('Fejleszd', mode.upgradeLabels.join(', ')),
+    renderFact('Legjobb IV', mode.bestIv && `${mode.bestIv.iv} ${mode.bestIv.cp}CP`),
     renderMoves(mode, species),
     renderFact('IV', mode.iv),
   ].join('');
