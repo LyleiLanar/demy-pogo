@@ -121,7 +121,7 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 ## 7. Generálás, verzió, ellenőrzés
 
 1. `node tools/sync-pvpoke.mjs` – frissíti a `data/pvpoke.js`-t (az új fajjal együtt).
-2. Az `index.html` összes `?v=` verzióját írd át a mai dátumra
+2. `node tools/bump-version.mjs` – az `index.html` összes `?v=` verzióját a mai dátumra írja
    (ha aznap már volt változás: `2026-09-29.2`, `.3`…).
 3. Ellenőrizd, hogy a fájl betölthető:
    `node -e "$(cat data/pokemon.js); console.log(POKEMON.length)"`.
