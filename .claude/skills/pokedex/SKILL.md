@@ -55,6 +55,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 
 - `keep`: raidben vagy gymben erős, vagy legendás / mitikus / Ultra Beast.
 - `scan`: GL vagy UL top 100 (normál vagy Shadow forma).
+- Ha a faj tovább fejlődik (pl. Eevee), a döntés a legjobb fejlődéséből jön: ha bármelyik
+  fejlődése `keep` vagy `scan` lenne, az alapforma is az. A lookupot a fejlődésekre is futtasd.
 - `transfer`: minden más. A csak Max Battle-ben jó faj is `transfer`, mert a Dynamax példány
   a mindig érvényes kivétel miatt amúgy is marad.
 

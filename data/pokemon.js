@@ -341,12 +341,21 @@ const POKEMON = [
     id: 'eevee',
     name: 'Eevee',
     origin: 'Eevee',
-    verdict: 'transfer',
-    raid: { rating: 'bad', note: 'Fejletlenül nem támadó; a fejlődései közül több hasznos.' },
-    maxBattle: { rating: 'bad' },
+    verdict: 'scan',
+    raid: {
+      rating: 'bad',
+      note: 'Fejletlenül nem támadó. Fejlesztve a Glaceon jó Ice támadó, a Flareon és az Espeon tartalék.',
+    },
+    greatLeague: {
+      note: 'Fejletlenül nem játszható, de Umbreonná fejlesztve top 50-es: ezért szkenneld.',
+    },
+    maxBattle: {
+      rating: 'bad',
+      note: 'Fejletlenül gyenge. Dynamax Glaceonnak fejlesztve az egyik legjobb Ice Max támadó.',
+    },
     notes: [
+      'A két jó irány: Umbreon (Great League) és Glaceon (raid, Max Battle). A Sylveon, a Flareon, az Espeon és a Leafeon tartaléknak jó, a Vaporeon és a Jolteon ma gyenge.',
       'Névtrükk: ha fejlesztés előtt átnevezed, a kiválasztott formát kapod. Rainer = Vaporeon, Sparky = Jolteon, Pyro = Flareon, Sakura = Espeon, Tamao = Umbreon, Linnea = Leafeon, Rea = Glaceon, Kira = Sylveon. Mindegyik név csak egyszer működik.',
-      'Elküldés előtt nézd meg, kell-e jó IV-s példány valamelyik fejlődéshez (pl. Umbreon, Flareon).',
     ],
   },
   {
