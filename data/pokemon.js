@@ -371,7 +371,6 @@ const POKEMON = [
     name: 'Empoleon',
     origin: 'Piplup',
     verdict: 'scan',
-    warning: 'Hydro Cannon kell hozzá',
     raid: { rating: 'ok' },
   },
   {
@@ -398,7 +397,6 @@ const POKEMON = [
     name: 'Feraligatr',
     origin: 'Totodile',
     verdict: 'scan',
-    warning: 'Hydro Cannon kell hozzá',
     raid: { rating: 'ok' },
   },
   {
@@ -761,7 +759,6 @@ const POKEMON = [
     name: 'Swampert',
     origin: 'Mudkip',
     verdict: 'scan',
-    warning: 'Hydro Cannon kell hozzá',
     raid: { rating: 'ok' },
   },
   {

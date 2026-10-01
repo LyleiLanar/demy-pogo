@@ -79,7 +79,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   a játékbeli angol mozdulatnévvel (a lookup is így írja). Ha a PvPoke-szett jó, a GL/UL-hez
   ne írj `moves`-t, mert a kártya magától mutatja.
 - Speciális mozdulat (csak Elite TM-mel vagy eseményen szerezhető meg): a ⚠️ jelölés és a szövege
-  automatikus a game master alapján, kézzel nem kell jelölni.
+  automatikus a game master alapján, kézzel nem kell jelölni, és `warning` sem kell hozzá
+  („Hydro Cannon kell hozzá”): a szettben ott a mozdulat a ⚠️ jellel.
 - Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`, `forms.gigantamax`
   (a kártya Max formájában a faj `maxBattle`-je a Dynamax, a `forms.gigantamax.maxBattle` a Gigantamax fül)
   (a Shadow és a Mega nem külön faj). A Megának csak raidje van, a Shadow-nak nincs Max Battle-je.
