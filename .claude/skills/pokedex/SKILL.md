@@ -67,9 +67,13 @@ A ligáké a PvPoke teljes (1000+ fajos) rangsorából számolódik; a heti szin
 A raid / Max / gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben
 lévő fajokhoz: `meta` csak az, ami abban a típusban vagy szerepben tényleg a legjobbak közé tartozik.
 
-A faj `tier` mezője alsó határ a név színére, csak ha a módok nem mutatják az értékét: pl.
-`collect` az Eevee-nél, ami magában gyenge, de fejlesztési alap (Umbreon, Glaceon). Ha a faj
-tovább fejlődik, futtasd a lookupot a fejlődéseire is.
+A fejlődési ág minden foka a saját harci ereje szerint színes: ami a Pokédexben van, a kártyája
+szerint, a többi a ligahelyezése szerint. Ezért a gyenge alapforma (pl. Eevee) maradhat szürke: az
+ágban látszik, mivé érdemes fejleszteni. Ha egy fejlődés raidben vagy Max Battle-ben jó, de nincs a
+Pokédexben, vedd fel, különben az ágban alulértékelt színt kap.
+
+A faj `tier` mezője alsó határ a név színére; ritkán kell, csak ha a módok és az ág sem mutatja
+az értékét.
 
 ## 4. Módok értékelése
 

@@ -73,7 +73,8 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-dex{font:500 .75rem Barlow,sans-serif;color:var(--muted);letter-spacing:.02em;margin-left:2px}
 .mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
 .mon-evolution{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px}
-.mon-evolution b{color:var(--ink)}
+.evo-link{appearance:none;margin:0;padding:0;border:0;background:none;font:inherit;font-weight:600;color:inherit;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.evo-link.evo-current{font-weight:800;text-decoration:none}
 .evo-arrow{appearance:none;margin:0;padding:0 5px;border:0;border-radius:6px;background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted);font:600 .85rem/1.4 Barlow,sans-serif;cursor:pointer}
 .evo-arrow:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .evo-or{color:var(--muted);margin:0 2px}

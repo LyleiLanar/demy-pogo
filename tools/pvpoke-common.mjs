@@ -208,11 +208,21 @@ const isPlayableForm = (species) => species && species.released !== false && !/_
 // fokról). undefined, ha a faj nem fejlődik és nem is fejlődésből jön.
 function evolutionBranchOf(id, data, gameMaster) {
   const byId = (speciesId) => data.speciesById.get(speciesId);
-  const stage = (species, parentId, current = false) => ({
-    name: displayName(species.speciesName),
-    ...(current ? { current: true } : {}),
-    ...(parentId ? evolutionCostOf(parentId, species.speciesId, gameMaster) : {}),
-  });
+  // A fok harci ereje a színhez: a legjobb GL/UL helyezés (normál vagy Shadow), és hogy legendás-e.
+  // A Pokédexben lévő fajoknál a kártya a saját értékelését használja, ez a többi fokra kell.
+  const bestRankOf = (speciesId) => Math.min(...data.leagueRankings.flatMap(([, ranking]) =>
+    [ranking.get(speciesId)?.rank, ranking.get(`${speciesId}_shadow`)?.rank].filter(Boolean)));
+  const stage = (species, parentId, current = false) => {
+    const rank = bestRankOf(species.speciesId);
+    return {
+      id: species.speciesId,
+      name: displayName(species.speciesName),
+      ...(current ? { current: true } : {}),
+      ...(Number.isFinite(rank) ? { rank } : {}),
+      ...((species.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag)) ? { legendary: true } : {}),
+      ...(parentId ? evolutionCostOf(parentId, species.speciesId, gameMaster) : {}),
+    };
+  };
 
   const self = byId(id);
   const stages = [[stage(self, self.family?.parent, true)]];

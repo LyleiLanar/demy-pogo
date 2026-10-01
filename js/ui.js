@@ -58,14 +58,20 @@ function setupTabs() {
 
 // ---------- Pokédex keresés ----------
 
+const NO_RESULT_TEXT = 'Nincs találat: vagy nincs ilyen Pokémon, vagy még nincs a Pokédexben, és feltöltésre vár. Kérdezz rá, és felvesszük.';
+const NOT_ADDED_TEXT = (name) => `${name} még nincs a Pokédexben, feltöltésre vár. Kérdezz rá, és felvesszük.`;
+
 function setupPokedexSearch() {
   const input = document.getElementById('dex-search');
   const cards = [...document.querySelectorAll('#dex-list .mon')];
   const count = document.getElementById('dex-count');
   const emptyMessage = document.getElementById('dex-empty');
+  // Ha egy névre koppintottak (fejlődési ág, GL Top 50), csak az a faj látszik; gépeléskor ez megszűnik.
+  let selectedSpecies = null;
 
-  // Szám (vagy #szám) pontos Pokédex-számra keres, minden más a név, alapforma és típus szövegében.
+  // Szám (vagy #szám) pontos Pokédex-számra keres, minden más a név, alapforma, fejlődési ág és típus szövegében.
   function matchesQuery(card, rawQuery) {
+    if (selectedSpecies) return card.dataset.id === selectedSpecies.id;
     const dexQuery = /^#?(\d+)$/.exec(rawQuery);
     if (dexQuery) return card.dataset.dex === String(Number(dexQuery[1]));
     return card.dataset.search.includes(normalizeForSearch(rawQuery));
@@ -80,17 +86,23 @@ function setupPokedexSearch() {
       if (matches) visible += 1;
     });
     count.textContent = `${visible} / ${cards.length} faj`;
+    emptyMessage.textContent = selectedSpecies ? NOT_ADDED_TEXT(selectedSpecies.name) : NO_RESULT_TEXT;
     emptyMessage.hidden = visible > 0;
   }
 
-  input.addEventListener('input', filter);
-
-  // A GL Top 50 nevei a Pokédexben nyitják meg a fajt.
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest('a[data-pokemon]');
-    if (!link) return;
-    input.value = link.dataset.pokemon;
+  input.addEventListener('input', () => {
+    selectedSpecies = null;
     filter();
+  });
+
+  // A fejlődési ág és a GL Top 50 nevei a Pokédexben csak azt az egy fajt mutatják.
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('[data-species]');
+    if (!link) return;
+    selectedSpecies = { id: link.dataset.species, name: link.dataset.name };
+    input.value = link.dataset.name;
+    filter();
+    window.scrollTo(0, 0);
   });
 
   filter();

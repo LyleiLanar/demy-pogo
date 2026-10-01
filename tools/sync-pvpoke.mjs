@@ -76,7 +76,8 @@ async function main() {
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
 // evolution: a fejlődési ág fokonként (elágazásnál egy fokon több faj); a current a faj maga,
-//   candy és a többi mező az előző fokról ide fejlődés ára és feltételei (game master)
+//   candy és a többi mező az előző fokról ide fejlődés ára és feltételei (game master);
+//   id, rank (legjobb GL/UL helyezés) és legendary a fok színéhez
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })

@@ -5,7 +5,8 @@
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
 // maxForms: Dynamax / Gigantamax formák (a játék game masteréből, PokeMiners)
 // evolution: a fejlődési ág fokonként (elágazásnál egy fokon több faj); a current a faj maga,
-//   candy és a többi mező az előző fokról ide fejlődés ára és feltételei (game master)
+//   candy és a többi mező az előző fokról ide fejlődés ára és feltételei (game master);
+//   id, rank (legjobb GL/UL helyezés) és legendary a fok színéhez
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })
@@ -20,13 +21,13 @@ const PVPOKE = {
     types: ['steel', 'ghost'],
     evolution: [
       [
-        { name: 'Honedge' },
+        { id: 'honedge', name: 'Honedge', rank: 864 },
       ],
       [
-        { name: 'Doublade', candy: 25 },
+        { id: 'doublade', name: 'Doublade', rank: 74, candy: 25 },
       ],
       [
-        { name: 'Aegislash (Shield)', current: true, candy: 100 },
+        { id: 'aegislash_shield', name: 'Aegislash (Shield)', current: true, rank: 80, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -47,13 +48,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Abra' },
+        { id: 'abra', name: 'Abra' },
       ],
       [
-        { name: 'Kadabra', candy: 25 },
+        { id: 'kadabra', name: 'Kadabra', rank: 1096, candy: 25 },
       ],
       [
-        { name: 'Alakazam', current: true, candy: 100, tradeFree: true },
+        { id: 'alakazam', name: 'Alakazam', current: true, rank: 656, candy: 100, tradeFree: true },
       ],
     ],
     buddyKm: 3,
@@ -70,10 +71,10 @@ const PVPOKE = {
     types: ['ice', 'fairy'],
     evolution: [
       [
-        { name: 'Alolan Vulpix' },
+        { id: 'vulpix_alolan', name: 'Alolan Vulpix' },
       ],
       [
-        { name: 'Alolan Ninetales', current: true, candy: 50 },
+        { id: 'ninetales_alolan', name: 'Alolan Ninetales', current: true, rank: 25, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -113,10 +114,10 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Swablu' },
+        { id: 'swablu', name: 'Swablu' },
       ],
       [
-        { name: 'Altaria', current: true, candy: 400 },
+        { id: 'altaria', name: 'Altaria', current: true, rank: 2, candy: 400 },
       ],
     ],
     buddyKm: 1,
@@ -146,13 +147,13 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Mareep' },
+        { id: 'mareep', name: 'Mareep' },
       ],
       [
-        { name: 'Flaaffy', candy: 25 },
+        { id: 'flaaffy', name: 'Flaaffy', rank: 898, candy: 25 },
       ],
       [
-        { name: 'Ampharos', current: true, candy: 100 },
+        { id: 'ampharos', name: 'Ampharos', current: true, rank: 52, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -179,13 +180,13 @@ const PVPOKE = {
     types: ['fighting', 'ghost'],
     evolution: [
       [
-        { name: 'Mankey' },
+        { id: 'mankey', name: 'Mankey', rank: 789 },
       ],
       [
-        { name: 'Primeape', candy: 50 },
+        { id: 'primeape', name: 'Primeape', rank: 247, candy: 50 },
       ],
       [
-        { name: 'Annihilape', current: true, candy: 100, quest: true },
+        { id: 'annihilape', name: 'Annihilape', current: true, rank: 31, candy: 100, quest: true },
       ],
     ],
     buddyKm: 3,
@@ -222,10 +223,10 @@ const PVPOKE = {
     types: ['water', 'bug'],
     evolution: [
       [
-        { name: 'Dewpider' },
+        { id: 'dewpider', name: 'Dewpider' },
       ],
       [
-        { name: 'Araquanid', current: true, candy: 50 },
+        { id: 'araquanid', name: 'Araquanid', current: true, rank: 16, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -251,13 +252,13 @@ const PVPOKE = {
     types: ['water', 'fairy'],
     evolution: [
       [
-        { name: 'Azurill' },
+        { id: 'azurill', name: 'Azurill' },
       ],
       [
-        { name: 'Marill', candy: 25 },
+        { id: 'marill', name: 'Marill', candy: 25 },
       ],
       [
-        { name: 'Azumarill', current: true, candy: 25 },
+        { id: 'azumarill', name: 'Azumarill', current: true, rank: 32, candy: 25 },
       ],
     ],
     buddyKm: 3,
@@ -274,10 +275,10 @@ const PVPOKE = {
     types: ['rock', 'steel'],
     evolution: [
       [
-        { name: 'Shieldon' },
+        { id: 'shieldon', name: 'Shieldon' },
       ],
       [
-        { name: 'Bastiodon', current: true, candy: 50 },
+        { id: 'bastiodon', name: 'Bastiodon', current: true, rank: 168, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -293,13 +294,13 @@ const PVPOKE = {
     types: ['dragon', 'ice'],
     evolution: [
       [
-        { name: 'Frigibax' },
+        { id: 'frigibax', name: 'Frigibax', rank: 631 },
       ],
       [
-        { name: 'Arctibax', candy: 25 },
+        { id: 'arctibax', name: 'Arctibax', rank: 301, candy: 25 },
       ],
       [
-        { name: 'Baxcalibur', current: true, candy: 100 },
+        { id: 'baxcalibur', name: 'Baxcalibur', current: true, rank: 343, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -315,13 +316,13 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Torchic' },
+        { id: 'torchic', name: 'Torchic' },
       ],
       [
-        { name: 'Combusken', candy: 25 },
+        { id: 'combusken', name: 'Combusken', rank: 615, candy: 25 },
       ],
       [
-        { name: 'Blaziken', current: true, candy: 100 },
+        { id: 'blaziken', name: 'Blaziken', current: true, rank: 170, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -339,13 +340,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Happiny' },
+        { id: 'happiny', name: 'Happiny' },
       ],
       [
-        { name: 'Chansey', candy: 25, buddyKm: 15, quest: true },
+        { id: 'chansey', name: 'Chansey', rank: 607, candy: 25, buddyKm: 15, quest: true },
       ],
       [
-        { name: 'Blissey', current: true, candy: 50 },
+        { id: 'blissey', name: 'Blissey', current: true, rank: 632, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -375,13 +376,13 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Charmander' },
+        { id: 'charmander', name: 'Charmander' },
       ],
       [
-        { name: 'Charmeleon', candy: 25 },
+        { id: 'charmeleon', name: 'Charmeleon', rank: 540, candy: 25 },
       ],
       [
-        { name: 'Charizard', current: true, candy: 100 },
+        { id: 'charizard', name: 'Charizard', current: true, rank: 103, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -398,13 +399,13 @@ const PVPOKE = {
     types: ['bug', 'electric'],
     evolution: [
       [
-        { name: 'Grubbin' },
+        { id: 'grubbin', name: 'Grubbin' },
       ],
       [
-        { name: 'Charjabug', current: true, candy: 25 },
+        { id: 'charjabug', name: 'Charjabug', current: true, rank: 41, candy: 25 },
       ],
       [
-        { name: 'Vikavolt', candy: 100, item: 'Magnetic Lure' },
+        { id: 'vikavolt', name: 'Vikavolt', rank: 305, candy: 100, item: 'Magnetic Lure' },
       ],
     ],
     buddyKm: 1,
@@ -429,10 +430,10 @@ const PVPOKE = {
     types: ['grass'],
     evolution: [
       [
-        { name: 'Cherubi' },
+        { id: 'cherubi', name: 'Cherubi' },
       ],
       [
-        { name: 'Cherrim (Overcast)', current: true, candy: 50 },
+        { id: 'cherrim_overcast', name: 'Cherrim (Overcast)', current: true, rank: 830, candy: 50 },
       ],
     ],
     buddyKm: 1,
@@ -445,13 +446,13 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Scorbunny' },
+        { id: 'scorbunny', name: 'Scorbunny' },
       ],
       [
-        { name: 'Raboot', candy: 25 },
+        { id: 'raboot', name: 'Raboot', rank: 869, candy: 25 },
       ],
       [
-        { name: 'Cinderace', current: true, candy: 100 },
+        { id: 'cinderace', name: 'Cinderace', current: true, rank: 398, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -464,10 +465,10 @@ const PVPOKE = {
     types: ['poison', 'ground'],
     evolution: [
       [
-        { name: 'Paldean Wooper' },
+        { id: 'wooper_paldean', name: 'Paldean Wooper' },
       ],
       [
-        { name: 'Clodsire', current: true, candy: 50 },
+        { id: 'clodsire', name: 'Clodsire', current: true, rank: 17, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -486,13 +487,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Rookidee' },
+        { id: 'rookidee', name: 'Rookidee' },
       ],
       [
-        { name: 'Corvisquire', candy: 25 },
+        { id: 'corvisquire', name: 'Corvisquire', rank: 608, candy: 25 },
       ],
       [
-        { name: 'Corviknight', current: true, candy: 100 },
+        { id: 'corviknight', name: 'Corviknight', current: true, rank: 2, candy: 100 },
       ],
     ],
     buddyKm: 1,
@@ -547,10 +548,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Darumaka' },
+        { id: 'darumaka', name: 'Darumaka', rank: 709 },
       ],
       [
-        { name: 'Darmanitan (Standard)', current: true, candy: 50 },
+        { id: 'darmanitan_standard', name: 'Darmanitan (Standard)', current: true, rank: 531, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -566,13 +567,13 @@ const PVPOKE = {
     types: ['grass', 'ghost'],
     evolution: [
       [
-        { name: 'Rowlet' },
+        { id: 'rowlet', name: 'Rowlet', rank: 1053 },
       ],
       [
-        { name: 'Dartrix', candy: 25 },
+        { id: 'dartrix', name: 'Dartrix', rank: 187, candy: 25 },
       ],
       [
-        { name: 'Decidueye', current: true, candy: 100 },
+        { id: 'decidueye', name: 'Decidueye', current: true, rank: 217, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -595,13 +596,13 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Fennekin' },
+        { id: 'fennekin', name: 'Fennekin' },
       ],
       [
-        { name: 'Braixen', candy: 25 },
+        { id: 'braixen', name: 'Braixen', rank: 512, candy: 25 },
       ],
       [
-        { name: 'Delphox', current: true, candy: 100 },
+        { id: 'delphox', name: 'Delphox', current: true, rank: 274, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -653,13 +654,13 @@ const PVPOKE = {
     types: ['steel', 'ghost'],
     evolution: [
       [
-        { name: 'Honedge' },
+        { id: 'honedge', name: 'Honedge', rank: 864 },
       ],
       [
-        { name: 'Doublade', current: true, candy: 25 },
+        { id: 'doublade', name: 'Doublade', current: true, rank: 74, candy: 25 },
       ],
       [
-        { name: 'Aegislash (Shield)', candy: 100 },
+        { id: 'aegislash_shield', name: 'Aegislash (Shield)', rank: 80, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -681,10 +682,10 @@ const PVPOKE = {
     types: ['ghost', 'flying'],
     evolution: [
       [
-        { name: 'Drifloon' },
+        { id: 'drifloon', name: 'Drifloon', rank: 643 },
       ],
       [
-        { name: 'Drifblim', current: true, candy: 50 },
+        { id: 'drifblim', name: 'Drifblim', current: true, rank: 137, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -701,10 +702,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Wooloo' },
+        { id: 'wooloo', name: 'Wooloo' },
       ],
       [
-        { name: 'Dubwool', current: true, candy: 50 },
+        { id: 'dubwool', name: 'Dubwool', current: true, rank: 161, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -716,13 +717,13 @@ const PVPOKE = {
     types: ['ghost'],
     evolution: [
       [
-        { name: 'Duskull' },
+        { id: 'duskull', name: 'Duskull' },
       ],
       [
-        { name: 'Dusclops', current: true, candy: 25 },
+        { id: 'dusclops', name: 'Dusclops', current: true, rank: 70, candy: 25 },
       ],
       [
-        { name: 'Dusknoir', candy: 100, item: 'Sinnoh Stone' },
+        { id: 'dusknoir', name: 'Dusknoir', rank: 24, candy: 100, item: 'Sinnoh Stone' },
       ],
     ],
     buddyKm: 3,
@@ -747,17 +748,17 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Eevee', current: true },
+        { id: 'eevee', name: 'Eevee', current: true, rank: 1023 },
       ],
       [
-        { name: 'Vaporeon', candy: 25 },
-        { name: 'Jolteon', candy: 25 },
-        { name: 'Flareon', candy: 25 },
-        { name: 'Espeon', candy: 25, buddyKm: 10, time: 'day', quest: true },
-        { name: 'Umbreon', candy: 25, buddyKm: 10, time: 'night', quest: true },
-        { name: 'Leafeon', candy: 25, item: 'Mossy Lure' },
-        { name: 'Glaceon', candy: 25, item: 'Glacial Lure' },
-        { name: 'Sylveon', candy: 25, quest: true },
+        { id: 'vaporeon', name: 'Vaporeon', rank: 387, candy: 25 },
+        { id: 'jolteon', name: 'Jolteon', rank: 504, candy: 25 },
+        { id: 'flareon', name: 'Flareon', rank: 586, candy: 25 },
+        { id: 'espeon', name: 'Espeon', rank: 645, candy: 25, buddyKm: 10, time: 'day', quest: true },
+        { id: 'umbreon', name: 'Umbreon', rank: 28, candy: 25, buddyKm: 10, time: 'night', quest: true },
+        { id: 'leafeon', name: 'Leafeon', rank: 614, candy: 25, item: 'Mossy Lure' },
+        { id: 'glaceon', name: 'Glaceon', rank: 784, candy: 25, item: 'Glacial Lure' },
+        { id: 'sylveon', name: 'Sylveon', rank: 102, candy: 25, quest: true },
       ],
     ],
     buddyKm: 5,
@@ -769,10 +770,10 @@ const PVPOKE = {
     types: ['grass'],
     evolution: [
       [
-        { name: 'Gossifleur' },
+        { id: 'gossifleur', name: 'Gossifleur' },
       ],
       [
-        { name: 'Eldegoss', current: true, candy: 50 },
+        { id: 'eldegoss', name: 'Eldegoss', current: true, rank: 775, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -784,13 +785,13 @@ const PVPOKE = {
     types: ['water', 'steel'],
     evolution: [
       [
-        { name: 'Piplup' },
+        { id: 'piplup', name: 'Piplup', rank: 1077 },
       ],
       [
-        { name: 'Prinplup', candy: 25 },
+        { id: 'prinplup', name: 'Prinplup', rank: 811, candy: 25 },
       ],
       [
-        { name: 'Empoleon', current: true, candy: 100 },
+        { id: 'empoleon', name: 'Empoleon', current: true, rank: 8, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -828,10 +829,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Drilbur' },
+        { id: 'drilbur', name: 'Drilbur', rank: 401 },
       ],
       [
-        { name: 'Excadrill', current: true, candy: 50 },
+        { id: 'excadrill', name: 'Excadrill', current: true, rank: 361, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -847,10 +848,10 @@ const PVPOKE = {
     types: ['normal', 'flying'],
     evolution: [
       [
-        { name: 'Spearow' },
+        { id: 'spearow', name: 'Spearow' },
       ],
       [
-        { name: 'Fearow', current: true, candy: 50 },
+        { id: 'fearow', name: 'Fearow', current: true, rank: 25, candy: 50 },
       ],
     ],
     buddyKm: 1,
@@ -868,13 +869,13 @@ const PVPOKE = {
     types: ['water'],
     evolution: [
       [
-        { name: 'Totodile' },
+        { id: 'totodile', name: 'Totodile', rank: 846 },
       ],
       [
-        { name: 'Croconaw', candy: 25 },
+        { id: 'croconaw', name: 'Croconaw', rank: 224, candy: 25 },
       ],
       [
-        { name: 'Feraligatr', current: true, candy: 100 },
+        { id: 'feraligatr', name: 'Feraligatr', current: true, rank: 14, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -912,10 +913,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Eevee' },
+        { id: 'eevee', name: 'Eevee', rank: 1023 },
       ],
       [
-        { name: 'Flareon', current: true, candy: 25 },
+        { id: 'flareon', name: 'Flareon', current: true, rank: 586, candy: 25 },
       ],
     ],
     buddyKm: 5,
@@ -928,13 +929,13 @@ const PVPOKE = {
     types: ['fairy'],
     evolution: [
       [
-        { name: 'Flabebe' },
+        { id: 'flabebe', name: 'Flabebe', rank: 1119 },
       ],
       [
-        { name: 'Floette', candy: 25 },
+        { id: 'floette', name: 'Floette', rank: 784, candy: 25 },
       ],
       [
-        { name: 'Florges', current: true, candy: 100, quest: true },
+        { id: 'florges', name: 'Florges', current: true, rank: 11, candy: 100, quest: true },
       ],
     ],
     buddyKm: 3,
@@ -957,10 +958,10 @@ const PVPOKE = {
     types: ['bug', 'steel'],
     evolution: [
       [
-        { name: 'Pineco' },
+        { id: 'pineco', name: 'Pineco', rank: 978 },
       ],
       [
-        { name: 'Forretress', current: true, candy: 50 },
+        { id: 'forretress', name: 'Forretress', current: true, rank: 31, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -996,10 +997,10 @@ const PVPOKE = {
     types: ['normal'],
     evolution: [
       [
-        { name: 'Sentret' },
+        { id: 'sentret', name: 'Sentret' },
       ],
       [
-        { name: 'Furret', current: true, candy: 25 },
+        { id: 'furret', name: 'Furret', current: true, rank: 43, candy: 25 },
       ],
     ],
     buddyKm: 1,
@@ -1016,10 +1017,10 @@ const PVPOKE = {
     types: ['ghost'],
     evolution: [
       [
-        { name: 'Galarian Corsola', current: true },
+        { id: 'corsola_galarian', name: 'Galarian Corsola', current: true, rank: 8 },
       ],
       [
-        { name: 'Cursola', candy: 50 },
+        { id: 'cursola', name: 'Cursola', rank: 680, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1069,13 +1070,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Ralts' },
+        { id: 'ralts', name: 'Ralts' },
       ],
       [
-        { name: 'Kirlia', candy: 25 },
+        { id: 'kirlia', name: 'Kirlia', candy: 25 },
       ],
       [
-        { name: 'Gardevoir', current: true, candy: 100 },
+        { id: 'gardevoir', name: 'Gardevoir', current: true, rank: 648, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -1093,13 +1094,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Roggenrola' },
+        { id: 'roggenrola', name: 'Roggenrola', rank: 1089 },
       ],
       [
-        { name: 'Boldore', candy: 50 },
+        { id: 'boldore', name: 'Boldore', rank: 804, candy: 50 },
       ],
       [
-        { name: 'Gigalith', current: true, candy: 200, tradeFree: true },
+        { id: 'gigalith', name: 'Gigalith', current: true, rank: 362, candy: 200, tradeFree: true },
       ],
     ],
     buddyKm: 3,
@@ -1116,13 +1117,13 @@ const PVPOKE = {
     types: ['psychic'],
     evolution: [
       [
-        { name: 'Gothita' },
+        { id: 'gothita', name: 'Gothita' },
       ],
       [
-        { name: 'Gothorita', candy: 25 },
+        { id: 'gothorita', name: 'Gothorita', rank: 881, candy: 25 },
       ],
       [
-        { name: 'Gothitelle', current: true, candy: 100 },
+        { id: 'gothitelle', name: 'Gothitelle', current: true, rank: 528, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -1139,10 +1140,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Skwovet' },
+        { id: 'skwovet', name: 'Skwovet' },
       ],
       [
-        { name: 'Greedent', current: true, candy: 50 },
+        { id: 'greedent', name: 'Greedent', current: true, rank: 148, candy: 50 },
       ],
     ],
     buddyKm: 1,
@@ -1176,10 +1177,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Magikarp' },
+        { id: 'magikarp', name: 'Magikarp' },
       ],
       [
-        { name: 'Gyarados', current: true, candy: 400 },
+        { id: 'gyarados', name: 'Gyarados', current: true, rank: 67, candy: 400 },
       ],
     ],
     buddyKm: 1,
@@ -1206,10 +1207,10 @@ const PVPOKE = {
     types: ['fighting'],
     evolution: [
       [
-        { name: 'Makuhita' },
+        { id: 'makuhita', name: 'Makuhita' },
       ],
       [
-        { name: 'Hariyama', current: true, candy: 50 },
+        { id: 'hariyama', name: 'Hariyama', current: true, rank: 330, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1226,13 +1227,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Hatenna' },
+        { id: 'hatenna', name: 'Hatenna' },
       ],
       [
-        { name: 'Hattrem', candy: 25 },
+        { id: 'hattrem', name: 'Hattrem', rank: 695, candy: 25 },
       ],
       [
-        { name: 'Hatterene', current: true, candy: 100 },
+        { id: 'hatterene', name: 'Hatterene', current: true, rank: 495, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -1244,10 +1245,10 @@ const PVPOKE = {
     types: ['ground'],
     evolution: [
       [
-        { name: 'Hippopotas' },
+        { id: 'hippopotas', name: 'Hippopotas', rank: 305 },
       ],
       [
-        { name: 'Hippowdon', current: true, candy: 50 },
+        { id: 'hippowdon', name: 'Hippowdon', current: true, rank: 50, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1283,10 +1284,10 @@ const PVPOKE = {
     types: ['electric', 'grass'],
     evolution: [
       [
-        { name: 'Hisuian Voltorb' },
+        { id: 'voltorb_hisuian', name: 'Hisuian Voltorb' },
       ],
       [
-        { name: 'Hisuian Electrode', current: true, candy: 50 },
+        { id: 'electrode_hisuian', name: 'Hisuian Electrode', current: true, rank: 34, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1304,13 +1305,13 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Sobble' },
+        { id: 'sobble', name: 'Sobble' },
       ],
       [
-        { name: 'Drizzile', candy: 25 },
+        { id: 'drizzile', name: 'Drizzile', rank: 1066, candy: 25 },
       ],
       [
-        { name: 'Inteleon', current: true, candy: 100 },
+        { id: 'inteleon', name: 'Inteleon', current: true, rank: 710, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -1323,10 +1324,10 @@ const PVPOKE = {
     types: ['water', 'ghost'],
     evolution: [
       [
-        { name: 'Frillish' },
+        { id: 'frillish', name: 'Frillish', rank: 425 },
       ],
       [
-        { name: 'Jellicent', current: true, candy: 50 },
+        { id: 'jellicent', name: 'Jellicent', current: true, rank: 16, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1348,13 +1349,13 @@ const PVPOKE = {
     types: ['grass', 'flying'],
     evolution: [
       [
-        { name: 'Hoppip' },
+        { id: 'hoppip', name: 'Hoppip' },
       ],
       [
-        { name: 'Skiploom', candy: 25 },
+        { id: 'skiploom', name: 'Skiploom', candy: 25 },
       ],
       [
-        { name: 'Jumpluff', current: true, candy: 100 },
+        { id: 'jumpluff', name: 'Jumpluff', current: true, rank: 55, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -1381,10 +1382,10 @@ const PVPOKE = {
     types: ['electric', 'flying'],
     evolution: [
       [
-        { name: 'Wattrel' },
+        { id: 'wattrel', name: 'Wattrel' },
       ],
       [
-        { name: 'Kilowattrel', current: true, candy: 50 },
+        { id: 'kilowattrel', name: 'Kilowattrel', current: true, rank: 344, candy: 50 },
       ],
     ],
     buddyKm: 1,
@@ -1396,10 +1397,10 @@ const PVPOKE = {
     types: ['water', 'electric'],
     evolution: [
       [
-        { name: 'Chinchou' },
+        { id: 'chinchou', name: 'Chinchou', rank: 1024 },
       ],
       [
-        { name: 'Lanturn', current: true, candy: 50 },
+        { id: 'lanturn', name: 'Lanturn', current: true, rank: 163, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1444,10 +1445,10 @@ const PVPOKE = {
     types: ['normal'],
     evolution: [
       [
-        { name: 'Lickitung', current: true },
+        { id: 'lickitung', name: 'Lickitung', current: true, rank: 170 },
       ],
       [
-        { name: 'Lickilicky', candy: 100, item: 'Sinnoh Stone' },
+        { id: 'lickilicky', name: 'Lickilicky', rank: 100, candy: 100, item: 'Sinnoh Stone' },
       ],
     ],
     buddyKm: 3,
@@ -1459,10 +1460,10 @@ const PVPOKE = {
     types: ['bug', 'dark'],
     evolution: [
       [
-        { name: 'Nymble' },
+        { id: 'nymble', name: 'Nymble' },
       ],
       [
-        { name: 'Lokix', current: true, candy: 50 },
+        { id: 'lokix', name: 'Lokix', current: true, rank: 260, candy: 50 },
       ],
     ],
     buddyKm: 1,
@@ -1475,13 +1476,13 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Machop' },
+        { id: 'machop', name: 'Machop', rank: 492 },
       ],
       [
-        { name: 'Machoke', candy: 25 },
+        { id: 'machoke', name: 'Machoke', rank: 237, candy: 25 },
       ],
       [
-        { name: 'Machamp', current: true, candy: 100, tradeFree: true },
+        { id: 'machamp', name: 'Machamp', current: true, rank: 171, candy: 100, tradeFree: true },
       ],
     ],
     buddyKm: 3,
@@ -1502,10 +1503,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Inkay' },
+        { id: 'inkay', name: 'Inkay' },
       ],
       [
-        { name: 'Malamar', current: true, candy: 50 },
+        { id: 'malamar', name: 'Malamar', current: true, rank: 42, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1541,10 +1542,10 @@ const PVPOKE = {
     types: ['dark', 'flying'],
     evolution: [
       [
-        { name: 'Vullaby' },
+        { id: 'vullaby', name: 'Vullaby', rank: 420 },
       ],
       [
-        { name: 'Mandibuzz', current: true, candy: 50 },
+        { id: 'mandibuzz', name: 'Mandibuzz', current: true, rank: 51, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -1561,10 +1562,10 @@ const PVPOKE = {
     types: ['water', 'flying'],
     evolution: [
       [
-        { name: 'Mantyke' },
+        { id: 'mantyke', name: 'Mantyke', rank: 749 },
       ],
       [
-        { name: 'Mantine', current: true, candy: 50 },
+        { id: 'mantine', name: 'Mantine', current: true, rank: 26, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -1581,10 +1582,10 @@ const PVPOKE = {
     types: ['ground'],
     evolution: [
       [
-        { name: 'Cubone' },
+        { id: 'cubone', name: 'Cubone', rank: 937 },
       ],
       [
-        { name: 'Marowak', current: true, candy: 50 },
+        { id: 'marowak', name: 'Marowak', current: true, rank: 19, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1613,10 +1614,10 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Meditite' },
+        { id: 'meditite', name: 'Meditite' },
       ],
       [
-        { name: 'Medicham', current: true, candy: 50 },
+        { id: 'medicham', name: 'Medicham', current: true, rank: 54, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1633,10 +1634,10 @@ const PVPOKE = {
     legendary: true,
     evolution: [
       [
-        { name: 'Meltan' },
+        { id: 'meltan', name: 'Meltan', rank: 1130, legendary: true },
       ],
       [
-        { name: 'Melmetal', current: true, candy: 400 },
+        { id: 'melmetal', name: 'Melmetal', current: true, rank: 1, legendary: true, candy: 400 },
       ],
     ],
     buddyKm: 20,
@@ -1659,13 +1660,13 @@ const PVPOKE = {
     types: ['grass', 'dark'],
     evolution: [
       [
-        { name: 'Sprigatito' },
+        { id: 'sprigatito', name: 'Sprigatito' },
       ],
       [
-        { name: 'Floragato', candy: 25 },
+        { id: 'floragato', name: 'Floragato', rank: 831, candy: 25 },
       ],
       [
-        { name: 'Meowscarada', current: true, candy: 100 },
+        { id: 'meowscarada', name: 'Meowscarada', current: true, rank: 462, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -1709,10 +1710,10 @@ const PVPOKE = {
     types: ['fire'],
     evolution: [
       [
-        { name: 'Vulpix' },
+        { id: 'vulpix', name: 'Vulpix' },
       ],
       [
-        { name: 'Ninetales', current: true, candy: 50 },
+        { id: 'ninetales', name: 'Ninetales', current: true, rank: 3, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1749,10 +1750,10 @@ const PVPOKE = {
     types: ['steel'],
     evolution: [
       [
-        { name: 'Galarian Meowth' },
+        { id: 'meowth_galarian', name: 'Galarian Meowth' },
       ],
       [
-        { name: 'Perrserker', current: true, candy: 50 },
+        { id: 'perrserker', name: 'Perrserker', current: true, rank: 214, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1764,10 +1765,10 @@ const PVPOKE = {
     types: ['fire', 'normal'],
     evolution: [
       [
-        { name: 'Litleo' },
+        { id: 'litleo', name: 'Litleo', rank: 484 },
       ],
       [
-        { name: 'Pyroar', current: true, candy: 50, gender: 'male' },
+        { id: 'pyroar', name: 'Pyroar', current: true, rank: 470, candy: 50, gender: 'male' },
       ],
     ],
     buddyKm: 3,
@@ -1779,10 +1780,10 @@ const PVPOKE = {
     types: ['water', 'ground'],
     evolution: [
       [
-        { name: 'Wooper' },
+        { id: 'wooper', name: 'Wooper' },
       ],
       [
-        { name: 'Quagsire', current: true, candy: 50 },
+        { id: 'quagsire', name: 'Quagsire', current: true, rank: 12, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -1809,13 +1810,13 @@ const PVPOKE = {
     types: ['water', 'fighting'],
     evolution: [
       [
-        { name: 'Quaxly' },
+        { id: 'quaxly', name: 'Quaxly' },
       ],
       [
-        { name: 'Quaxwell', candy: 25 },
+        { id: 'quaxwell', name: 'Quaxwell', rank: 498, candy: 25 },
       ],
       [
-        { name: 'Quaquaval', current: true, candy: 100 },
+        { id: 'quaquaval', name: 'Quaquaval', current: true, rank: 201, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -1829,13 +1830,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Rhyhorn' },
+        { id: 'rhyhorn', name: 'Rhyhorn', rank: 897 },
       ],
       [
-        { name: 'Rhydon', candy: 25 },
+        { id: 'rhydon', name: 'Rhydon', rank: 808, candy: 25 },
       ],
       [
-        { name: 'Rhyperior', current: true, candy: 100, item: 'Sinnoh Stone' },
+        { id: 'rhyperior', name: 'Rhyperior', current: true, rank: 477, candy: 100, item: 'Sinnoh Stone' },
       ],
     ],
     buddyKm: 3,
@@ -1853,13 +1854,13 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Grookey' },
+        { id: 'grookey', name: 'Grookey' },
       ],
       [
-        { name: 'Thwackey', candy: 25 },
+        { id: 'thwackey', name: 'Thwackey', rank: 783, candy: 25 },
       ],
       [
-        { name: 'Rillaboom', current: true, candy: 100 },
+        { id: 'rillaboom', name: 'Rillaboom', current: true, rank: 21, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -1906,10 +1907,10 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Munchlax' },
+        { id: 'munchlax', name: 'Munchlax', rank: 291 },
       ],
       [
-        { name: 'Snorlax', current: true, candy: 50 },
+        { id: 'snorlax', name: 'Snorlax', current: true, rank: 3, candy: 50 },
       ],
     ],
     buddyKm: 5,
@@ -1949,13 +1950,13 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Starly' },
+        { id: 'starly', name: 'Starly' },
       ],
       [
-        { name: 'Staravia', candy: 25 },
+        { id: 'staravia', name: 'Staravia', rank: 646, candy: 25 },
       ],
       [
-        { name: 'Staraptor', current: true, candy: 100 },
+        { id: 'staraptor', name: 'Staraptor', current: true, rank: 458, candy: 100 },
       ],
     ],
     buddyKm: 1,
@@ -1987,13 +1988,13 @@ const PVPOKE = {
     ],
     evolution: [
       [
-        { name: 'Mudkip' },
+        { id: 'mudkip', name: 'Mudkip' },
       ],
       [
-        { name: 'Marshtomp', candy: 25 },
+        { id: 'marshtomp', name: 'Marshtomp', rank: 406, candy: 25 },
       ],
       [
-        { name: 'Swampert', current: true, candy: 100 },
+        { id: 'swampert', name: 'Swampert', current: true, rank: 48, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -2030,10 +2031,10 @@ const PVPOKE = {
     types: ['dark'],
     evolution: [
       [
-        { name: 'Nickit' },
+        { id: 'nickit', name: 'Nickit' },
       ],
       [
-        { name: 'Thievul', current: true, candy: 50 },
+        { id: 'thievul', name: 'Thievul', current: true, rank: 15, candy: 50 },
       ],
     ],
     buddyKm: 1,
@@ -2051,13 +2052,13 @@ const PVPOKE = {
     types: ['fairy', 'steel'],
     evolution: [
       [
-        { name: 'Tinkatink' },
+        { id: 'tinkatink', name: 'Tinkatink' },
       ],
       [
-        { name: 'Tinkatuff', candy: 25 },
+        { id: 'tinkatuff', name: 'Tinkatuff', rank: 308, candy: 25 },
       ],
       [
-        { name: 'Tinkaton', current: true, candy: 100 },
+        { id: 'tinkaton', name: 'Tinkaton', current: true, rank: 1, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -2080,13 +2081,13 @@ const PVPOKE = {
     types: ['grass', 'ground'],
     evolution: [
       [
-        { name: 'Turtwig' },
+        { id: 'turtwig', name: 'Turtwig', rank: 1116 },
       ],
       [
-        { name: 'Grotle', candy: 25 },
+        { id: 'grotle', name: 'Grotle', rank: 698, candy: 25 },
       ],
       [
-        { name: 'Torterra', current: true, candy: 100 },
+        { id: 'torterra', name: 'Torterra', current: true, rank: 270, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -2103,10 +2104,10 @@ const PVPOKE = {
     types: ['poison', 'water'],
     evolution: [
       [
-        { name: 'Mareanie' },
+        { id: 'mareanie', name: 'Mareanie' },
       ],
       [
-        { name: 'Toxapex', current: true, candy: 50 },
+        { id: 'toxapex', name: 'Toxapex', current: true, rank: 114, candy: 50 },
       ],
     ],
     buddyKm: 3,
@@ -2118,10 +2119,10 @@ const PVPOKE = {
     types: ['ghost', 'grass'],
     evolution: [
       [
-        { name: 'Phantump' },
+        { id: 'phantump', name: 'Phantump' },
       ],
       [
-        { name: 'Trevenant', current: true, candy: 200, tradeFree: true },
+        { id: 'trevenant', name: 'Trevenant', current: true, rank: 145, candy: 200, tradeFree: true },
       ],
     ],
     buddyKm: 5,
@@ -2138,13 +2139,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Bounsweet' },
+        { id: 'bounsweet', name: 'Bounsweet' },
       ],
       [
-        { name: 'Steenee', candy: 25 },
+        { id: 'steenee', name: 'Steenee', candy: 25 },
       ],
       [
-        { name: 'Tsareena', current: true, candy: 100 },
+        { id: 'tsareena', name: 'Tsareena', current: true, rank: 624, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -2157,10 +2158,10 @@ const PVPOKE = {
     types: ['rock', 'dragon'],
     evolution: [
       [
-        { name: 'Tyrunt' },
+        { id: 'tyrunt', name: 'Tyrunt', rank: 706 },
       ],
       [
-        { name: 'Tyrantrum', current: true, candy: 50, time: 'day' },
+        { id: 'tyrantrum', name: 'Tyrantrum', current: true, rank: 568, candy: 50, time: 'day' },
       ],
     ],
     buddyKm: 5,
@@ -2177,10 +2178,19 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Eevee' },
+        { id: 'eevee', name: 'Eevee', rank: 1023 },
       ],
       [
-        { name: 'Umbreon', current: true, candy: 25, buddyKm: 10, time: 'night', quest: true },
+        {
+          id: 'umbreon',
+          name: 'Umbreon',
+          current: true,
+          rank: 28,
+          candy: 25,
+          buddyKm: 10,
+          time: 'night',
+          quest: true,
+        },
       ],
     ],
     buddyKm: 5,
@@ -2202,13 +2212,13 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { name: 'Bulbasaur' },
+        { id: 'bulbasaur', name: 'Bulbasaur', rank: 1065 },
       ],
       [
-        { name: 'Ivysaur', candy: 25 },
+        { id: 'ivysaur', name: 'Ivysaur', rank: 788, candy: 25 },
       ],
       [
-        { name: 'Venusaur', current: true, candy: 100 },
+        { id: 'venusaur', name: 'Venusaur', current: true, rank: 211, candy: 100 },
       ],
     ],
     buddyKm: 3,
@@ -2225,13 +2235,13 @@ const PVPOKE = {
     types: ['normal'],
     evolution: [
       [
-        { name: 'Slakoth' },
+        { id: 'slakoth', name: 'Slakoth' },
       ],
       [
-        { name: 'Vigoroth', current: true, candy: 25 },
+        { id: 'vigoroth', name: 'Vigoroth', current: true, rank: 21, candy: 25 },
       ],
       [
-        { name: 'Slaking', candy: 100 },
+        { id: 'slaking', name: 'Slaking', rank: 843, candy: 100 },
       ],
     ],
     buddyKm: 5,
@@ -2258,10 +2268,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { name: 'Cottonee' },
+        { id: 'cottonee', name: 'Cottonee' },
       ],
       [
-        { name: 'Whimsicott', current: true, candy: 50, item: 'Sun Stone' },
+        { id: 'whimsicott', name: 'Whimsicott', current: true, rank: 382, candy: 50, item: 'Sun Stone' },
       ],
     ],
     buddyKm: 1,

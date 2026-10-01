@@ -63,8 +63,7 @@ function renderModePanel(mode, species, isSelected) {
 }
 
 // A faj neve a ritkaság színével (arany, lila, kék, zöld, szürke); koppintásra a buborék kiírja a jelentését.
-function renderSpeciesName(species) {
-  const tier = speciesTier(species);
+function renderSpeciesName(species, tier) {
   return `<span class="mon-tier tier-${tier}" data-tooltip="${TIER_LABELS[tier]}">${escapeHtml(species.name)}</span>`;
 }
 
@@ -117,9 +116,19 @@ function evolutionCostText(stage) {
   ].filter(Boolean).join(' · ');
 }
 
-// Egy faj az ágban; az első fok kivételével előtte a nyíl, amire koppintva látszik az ár.
-function renderEvolutionStage(stage, isFirst) {
-  const name = stage.current ? `<b>${escapeHtml(stage.name)}</b>` : escapeHtml(stage.name);
+// Egy fok színe a saját harci erejéből: ha a faj a Pokédexben van, a kártyája szerint (tiers), különben
+// a legjobb GL/UL helyezéséből (raid- és Max-adat nélkül), legendásnál arany.
+function stageTier(stage, tiers) {
+  if (tiers.has(stage.id)) return tiers.get(stage.id);
+  if (stage.legendary) return 'legendary';
+  return stage.rank ? leagueRating(stage) : 'trash';
+}
+
+// Egy faj az ágban, a színével; a nevére koppintva a Pokédex csak azt a fajt mutatja (setupPokedexSearch).
+// Az első fok kivételével előtte a nyíl, amire koppintva látszik a fejlődés ára.
+function renderEvolutionStage(stage, isFirst, tiers) {
+  const name = `<button type="button" class="evo-link tier-${stageTier(stage, tiers)}${stage.current ? ' evo-current' : ''}"
+    data-species="${stage.id}" data-name="${escapeHtml(stage.name)}">${escapeHtml(stage.name)}</button>`;
   if (isFirst) return `<span class="evo-name">${name}</span>`;
   const cost = escapeHtml(evolutionCostText(stage));
   return `<span class="evo-name"><button type="button" class="evo-arrow" data-tooltip="${cost}" aria-label="${cost}">→</button> ${name}</span>`;
@@ -127,11 +136,11 @@ function renderEvolutionStage(stage, isFirst) {
 
 // A név alatti sor: a faj fejlődési ága (pl. Charmander → Charmeleon → Charizard), elágazásnál
 // a fokon „/” választja el a lehetőségeket. Ha a faj nem fejlődik, a származása (origin) látszik.
-function renderEvolution(species) {
+function renderEvolution(species, tiers) {
   const stages = species.stats.evolution;
   if (!stages) return `<p class="mon-origin">${escapeHtml(species.origin)}</p>`;
   const html = stages
-    .map((options, i) => options.map((stage) => renderEvolutionStage(stage, i === 0)).join('<span class="evo-or">/</span>'))
+    .map((options, i) => options.map((stage) => renderEvolutionStage(stage, i === 0, tiers)).join('<span class="evo-or">/</span>'))
     .join('');
   return `<p class="mon-origin mon-evolution">${html}</p>`;
 }
@@ -140,7 +149,7 @@ function evolutionNames(species) {
   return (species.stats.evolution || []).flat().map((stage) => stage.name);
 }
 
-function renderPokemonCard(species) {
+function renderPokemonCard(species, tiers) {
   const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
   const searchText = normalizeForSearch(`${species.name} ${species.origin} ${evolutionNames(species).join(' ')} ${typeNames}`);
   const dex = species.dex ? `<span class="mon-dex">#${species.dex}</span>` : '';
@@ -152,12 +161,12 @@ function renderPokemonCard(species) {
     <span class="mon-types" data-form="${form.key}" ${i === 0 ? '' : 'hidden'}>${renderTypeBadges(form.types)}</span>`);
 
   return `
-    <article class="mon" data-search="${escapeHtml(searchText)}" data-dex="${species.dex ?? ''}">
+    <article class="mon" data-id="${species.id}" data-search="${escapeHtml(searchText)}" data-dex="${species.dex ?? ''}">
       <div class="mon-head">
-        <h3 class="mon-name">${renderSpeciesName(species)} ${dex}</h3>
+        <h3 class="mon-name">${renderSpeciesName(species, tiers.get(species.id))} ${dex}</h3>
         ${headTypes.join('')}
       </div>
-      ${renderEvolution(species)}
+      ${renderEvolution(species, tiers)}
       ${warning}
       ${renderForms(species)}
       ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
@@ -166,6 +175,7 @@ function renderPokemonCard(species) {
 }
 
 function renderPokedex(pokemon) {
-  const cards = [...pokemon].sort(byDexNumber).map(renderPokemonCard).join('');
-  return `${cards}<p class="sub" id="dex-empty" hidden>Nincs ilyen faj a listán. Kérdezz rá, és felvesszük.</p>`;
+  const tiers = new Map(pokemon.map((species) => [species.id, speciesTier(species)]));
+  const cards = [...pokemon].sort(byDexNumber).map((species) => renderPokemonCard(species, tiers)).join('');
+  return `${cards}<p class="sub" id="dex-empty" hidden></p>`;
 }

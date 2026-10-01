@@ -8,8 +8,8 @@
 //   origin       amit a vadonban elkapsz, vagy ahonnan szerzed (a keresés is ezt nézi; a kártyán csak akkor
 //                látszik, ha a fajnak nincs fejlődési ága, mert az ág a pvpoke.js-ből jön, cukorárral)
 //   tier         a név színe legalább ez legyen (alapból a módok legjobb értékeléséből számolódik,
-//                js/species.js, speciesTier); pl. 'collect' az Eevee-nél, ami magában gyenge, de
-//                fejlesztési alap. A legendás / mitikus / Ultra Beast mindig arany (pvpoke.js: legendary).
+//                js/species.js, speciesTier); ritkán kell, mert a fejlődési ág színei mutatják, mivé
+//                érdemes fejleszteni. A legendás / mitikus / Ultra Beast mindig arany (pvpoke.js: legendary).
 //   warning      rövid, kiemelt figyelmeztetés (a GL Top 50 fülön is látszik)
 //
 //   Játékmódok (a kártya fülei). Minden módban csak az ahhoz kellő tanács van.
@@ -313,7 +313,6 @@ const POKEMON = [
     id: 'eevee',
     name: 'Eevee',
     origin: 'Eevee',
-    tier: 'collect',
     raid: {
       rating: 'trash',
       note: 'Fejletlenül nem támadó. Fejlesztve a Glaceon jó Ice támadó, a Flareon és az Espeon tartalék.',
