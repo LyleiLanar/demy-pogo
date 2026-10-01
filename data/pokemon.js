@@ -338,6 +338,18 @@ const POKEMON = [
     greatLeague: { tips: ['Nagyon bírja a sebzést, kezdőknek is jól játszható.'] },
   },
   {
+    id: 'eevee',
+    name: 'Eevee',
+    origin: 'Eevee',
+    verdict: 'transfer',
+    raid: { rating: 'bad', note: 'Fejletlenül nem támadó; a fejlődései közül több hasznos.' },
+    maxBattle: { rating: 'bad' },
+    notes: [
+      'Névtrükk: ha fejlesztés előtt átnevezed, a kiválasztott formát kapod. Rainer = Vaporeon, Sparky = Jolteon, Pyro = Flareon, Sakura = Espeon, Tamao = Umbreon, Linnea = Leafeon, Rea = Glaceon, Kira = Sylveon. Mindegyik név csak egyszer működik.',
+      'Elküldés előtt nézd meg, kell-e jó IV-s példány valamelyik fejlődéshez (pl. Umbreon, Flareon).',
+    ],
+  },
+  {
     id: 'eldegoss',
     name: 'Eldegoss',
     origin: 'Gossifleur',

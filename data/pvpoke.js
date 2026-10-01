@@ -739,6 +739,29 @@ const PVPOKE = {
       },
     },
   },
+  eevee: {
+    dex: 133,
+    types: ['normal'],
+    maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { name: 'Eevee', current: true },
+      ],
+      [
+        { name: 'Vaporeon', candy: 25 },
+        { name: 'Jolteon', candy: 25 },
+        { name: 'Flareon', candy: 25 },
+        { name: 'Espeon', candy: 25, buddyKm: 10, time: 'day', quest: true },
+        { name: 'Umbreon', candy: 25, buddyKm: 10, time: 'night', quest: true },
+        { name: 'Leafeon', candy: 25, item: 'Mossy Lure' },
+        { name: 'Glaceon', candy: 25, item: 'Glacial Lure' },
+        { name: 'Sylveon', candy: 25, quest: true },
+      ],
+    ],
+    buddyKm: 5,
+    specialMoves: ['Last Resort', 'Body Slam'],
+    greatLeague: { rank: 1023 },
+  },
   eldegoss: {
     dex: 830,
     types: ['grass'],

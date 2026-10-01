@@ -77,6 +77,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .evo-arrow{appearance:none;margin:0;padding:0 5px;border:0;border-radius:6px;background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted);font:600 .85rem/1.4 Barlow,sans-serif;cursor:pointer}
 .evo-arrow:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .evo-or{color:var(--muted);margin:0 2px}
+.evo-name{white-space:nowrap}
 .verdict{flex:none;font:600 .72rem Barlow,sans-serif;border-radius:4px;padding:2px 7px;letter-spacing:.04em;text-transform:uppercase}
 .verdict-keep{background:var(--good);color:var(--good-ink)}
 .verdict-scan{background:var(--meh);color:var(--meh-ink)}

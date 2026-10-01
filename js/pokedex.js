@@ -114,8 +114,7 @@ function renderEvolutionStage(stage, isFirst) {
   const name = stage.current ? `<b>${escapeHtml(stage.name)}</b>` : escapeHtml(stage.name);
   if (isFirst) return `<span class="evo-name">${name}</span>`;
   const cost = escapeHtml(evolutionCostText(stage));
-  return `<button type="button" class="evo-arrow" data-tooltip="${cost}" aria-label="${cost}">→</button>`
-    + `<span class="evo-name">${name}</span>`;
+  return `<span class="evo-name"><button type="button" class="evo-arrow" data-tooltip="${cost}" aria-label="${cost}">→</button> ${name}</span>`;
 }
 
 // A név alatti sor: a faj fejlődési ága (pl. Charmander → Charmeleon → Charizard), elágazásnál
