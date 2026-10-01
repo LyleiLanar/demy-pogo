@@ -51,14 +51,21 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 - Ha semmi nem biztos, használhatod a saját tudásodat, de jelöld bizonytalannak, és javasold,
   hogy a felhasználó nézze meg (pl. Leek Duck).
 
-## 3. Döntés (`verdict`)
+## 3. Ritkaság (a név színe, `tier`)
 
-- `keep`: raidben vagy gymben erős, vagy legendás / mitikus / Ultra Beast.
-- `scan`: GL vagy UL top 100 (normál vagy Shadow forma).
-- Ha a faj tovább fejlődik (pl. Eevee), a döntés a legjobb fejlődéséből jön: ha bármelyik
-  fejlődése `keep` vagy `scan` lenne, az alapforma is az. A lookupot a fejlődésekre is futtasd.
-- `transfer`: minden más. A csak Max Battle-ben jó faj is `transfer`, mert a Dynamax példány
-  a mindig érvényes kivétel miatt amúgy is marad.
+A név színe magától számolódik a módok értékeléséből (`js/species.js`, `speciesTier`), és a heti
+szinkronnal frissül, ezért általában nem kell beírni:
+
+- arany: legendás / mitikus / Ultra Beast (a PvPoke-adatból);
+- lila (meta): bármelyik forma top 20 GL/UL-ben, vagy valamelyik módban `good`;
+- zöld (alternatíva): top 100 GL/UL-ben, vagy valamelyik módban `ok`;
+- szürke (kuka): minden más.
+
+Kézzel (`tier`) csak akkor, ha a számolt szín félrevezető:
+- `collect` (kék, gyűjtendő): magában gyenge, de érdemes megtartani, pl. fejlesztési alap
+  (Eevee → Umbreon). Ha a faj tovább fejlődik, futtasd a lookupot a fejlődéseire is.
+- `meta` / `alternative` / `trash`: ha az értékelések alapján más jönne ki, mint ami igaz;
+  ilyenkor mondd meg a felhasználónak, miért írtad felül.
 
 ## 4. Módok értékelése
 
@@ -121,7 +128,6 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   id: 'decidueye',
   name: 'Decidueye',
   origin: 'Rowlet',
-  verdict: 'transfer',
   raid: { rating: 'bad', note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók.' },
   // nincs maxBattle: a lookup szerint nincs Dynamax formája
 },

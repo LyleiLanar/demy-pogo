@@ -3,6 +3,10 @@
 
 // A ligák értékelése a helyezésből jön.
 const LEAGUE_RATING_LIMITS = { good: 50, ok: 100 };
+// A név színe (Diablo-szerű ritkaság): lila = meta, ha valamelyik formája top 20-as GL/UL-ben, vagy
+// valamelyik módban erős; zöld = alternatíva, ha top 100-as vagy valahol közepes; különben szürke.
+const TIER_META_RANK_LIMIT = 20;
+const TIER_ALTERNATIVE_RANK_LIMIT = 100;
 const GAME_MODES = [
   { key: 'raid', label: 'Raid', title: 'Raid' },
   { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true },
@@ -121,4 +125,22 @@ function defaultModeIndex(modes) {
   const ratingIndex = (mode) => RATING_ORDER.indexOf(mode.rating);
   const best = Math.min(...modes.map(ratingIndex));
   return modes.findIndex((mode) => ratingIndex(mode) === best);
+}
+
+// A faj ritkasága a név színéhez: 'legendary', a kézi felülírás (species.tier, pl. 'collect'), vagy a
+// formák és módok értékeléséből számolva 'meta' / 'alternative' / 'trash'.
+function speciesTier(species) {
+  if (species.stats.legendary) return 'legendary';
+  if (species.tier) return species.tier;
+  let bestRank = Infinity;
+  const ratings = [];
+  for (const form of speciesForms(species)) {
+    for (const mode of gameModesOf(species, form)) {
+      if (mode.isLeague) bestRank = Math.min(bestRank, mode.rank);
+      else ratings.push(mode.rating);
+    }
+  }
+  if (bestRank <= TIER_META_RANK_LIMIT || ratings.includes('good')) return 'meta';
+  if (bestRank <= TIER_ALTERNATIVE_RANK_LIMIT || ratings.includes('ok')) return 'alternative';
+  return 'trash';
 }

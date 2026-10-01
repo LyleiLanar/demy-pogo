@@ -1,7 +1,12 @@
 // A Pokédex kártyái: formaváltó, módfülek, mozdulatok és a faj általános adatai.
 
-const VERDICT_LABELS = { keep: 'Marad', scan: 'Szkenneld', transfer: 'Cukorért' };
-const LEGENDARY_LABEL = 'Legendás: marad';
+const TIER_LABELS = {
+  legendary: 'Legendás: meta és ritka, marad',
+  meta: 'Meta: ez a tuti',
+  collect: 'Gyűjtendő: tartsd meg',
+  alternative: 'Alternatíva: átmenetileg jó, de van jobb',
+  trash: 'Kuka: mehet cukorért',
+};
 const RATING_LABELS = { good: 'Erős', ok: 'Közepes', bad: 'Gyenge' };
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
 const EVOLUTION_TIME_LABELS = { day: 'csak nappal', night: 'csak éjjel', dusk: 'csak alkonyatkor', fullMoon: 'csak teliholdkor' };
@@ -57,12 +62,10 @@ function renderModePanel(mode, species, isSelected) {
     </div>`;
 }
 
-// A faj neve a döntés színével (zöld = marad, szürke = szkenneld, piros = cukorért; legendás: arany);
-// koppintásra a buborék kiírja a döntést.
+// A faj neve a ritkaság színével (arany, lila, kék, zöld, szürke); koppintásra a buborék kiírja a jelentését.
 function renderSpeciesName(species) {
-  const tone = species.stats.legendary ? 'legendary' : species.verdict;
-  const label = species.stats.legendary ? LEGENDARY_LABEL : VERDICT_LABELS[species.verdict];
-  return `<span class="mon-verdict verdict-name-${tone}" data-tooltip="${label}">${escapeHtml(species.name)}</span>`;
+  const tier = speciesTier(species);
+  return `<span class="mon-tier tier-${tier}" data-tooltip="${TIER_LABELS[tier]}">${escapeHtml(species.name)}</span>`;
 }
 
 // A módválasztó sor és alatta a kiválasztott mód leírása (az értékelést a fül színe mutatja).
