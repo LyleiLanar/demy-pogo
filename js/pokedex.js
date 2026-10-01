@@ -1,13 +1,13 @@
 // A Pokédex kártyái: formaváltó, módfülek, mozdulatok és a faj általános adatai.
 
 const TIER_LABELS = {
-  legendary: 'Legendás: meta és ritka, marad',
-  meta: 'Meta: ez a tuti',
-  collect: 'Gyűjtendő: tartsd meg',
+  legendary: 'Legendás: meta, és még ritka is',
+  meta: 'Meta: ez a tuti (legalább egy módban)',
+  collect: 'Gyűjtendő: érdemes megtartani, építeni',
   alternative: 'Alternatíva: átmenetileg jó, de van jobb',
   trash: 'Kuka: mehet cukorért',
 };
-const RATING_LABELS = { good: 'Erős', ok: 'Közepes', bad: 'Gyenge' };
+const RATING_LABELS = { meta: 'Meta', collect: 'Gyűjtendő', alternative: 'Alternatíva', trash: 'Kuka' };
 const SPECIAL_MOVE_TEXT = 'Speciális mozdulat: csak Elite TM-mel vagy eseményen (pl. Community Day) szerezhető meg.';
 const EVOLUTION_TIME_LABELS = { day: 'csak nappal', night: 'csak éjjel', dusk: 'csak alkonyatkor', fullMoon: 'csak teliholdkor' };
 const EVOLUTION_GENDER_LABELS = { male: 'csak hím', female: 'csak nőstény' };

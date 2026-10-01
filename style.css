@@ -1,21 +1,21 @@
 :root{
   --bg:#EEF1F5; --surface:#FFFFFF; --ink:#18212C; --muted:#5A6676; --line:#D7DDE5;
   --accent:#D93A34; --accent-ink:#FFFFFF; --code-bg:#E4E9F0; --warn-bg:#FFF1E6; --warn-ink:#8A3A06;
-  --good:#1F8A4C; --good-ink:#FFFFFF; --tier-legendary:#B07D0A; --tier-meta:#8A3FD1; --tier-collect:#2563C9; --tier-alternative:#1F8A4C; --tier-trash:#8A929C; --meh:#6B7684; --meh-ink:#FFFFFF; --bad:#D93A34; --bad-ink:#FFFFFF;
+  --good:#1F8A4C; --good-ink:#FFFFFF; --tier-legendary:#B07D0A; --tier-meta:#8A3FD1; --tier-collect:#2563C9; --tier-alternative:#1F8A4C; --tier-trash:#8A929C; --tier-ink:#FFFFFF; --meh:#6B7684; --meh-ink:#FFFFFF; --bad:#D93A34; --bad-ink:#FFFFFF;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#10151C; --surface:#18202A; --ink:#E7ECF2; --muted:#98A4B3; --line:#2A3441;
     --accent:#F0605A; --accent-ink:#10151C; --code-bg:#222C38; --warn-bg:#2E2014; --warn-ink:#F5B37E;
-    --good:#4CC47F; --good-ink:#10151C; --tier-legendary:#E9BE4E; --tier-meta:#B98CFF; --tier-collect:#6EA8FF; --tier-alternative:#4CC47F; --tier-trash:#7D8794; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
+    --good:#4CC47F; --good-ink:#10151C; --tier-legendary:#E9BE4E; --tier-meta:#B98CFF; --tier-collect:#6EA8FF; --tier-alternative:#4CC47F; --tier-trash:#7D8794; --tier-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#10151C; --surface:#18202A; --ink:#E7ECF2; --muted:#98A4B3; --line:#2A3441;
   --accent:#F0605A; --accent-ink:#10151C; --code-bg:#222C38; --warn-bg:#2E2014; --warn-ink:#F5B37E;
-    --good:#4CC47F; --good-ink:#10151C; --tier-legendary:#E9BE4E; --tier-meta:#B98CFF; --tier-collect:#6EA8FF; --tier-alternative:#4CC47F; --tier-trash:#7D8794; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
+    --good:#4CC47F; --good-ink:#10151C; --tier-legendary:#E9BE4E; --tier-meta:#B98CFF; --tier-collect:#6EA8FF; --tier-alternative:#4CC47F; --tier-trash:#7D8794; --tier-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
   color-scheme:dark;
 }
 body{background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,-apple-system,sans-serif}
@@ -95,8 +95,10 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mode-tab{--rating:var(--meh);--rating-ink:var(--meh-ink);font:600 .85rem Barlow,sans-serif;min-width:52px;padding:6px 10px;border-radius:8px;border:2px solid var(--rating);background:var(--surface);color:var(--rating);cursor:pointer}
 .mode-tab[aria-pressed="true"]{background:var(--rating);color:var(--rating-ink)}
 .mode-tab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.mode-tab.rating-good{--rating:var(--good);--rating-ink:var(--good-ink)}
-.mode-tab.rating-bad{--rating:var(--bad);--rating-ink:var(--bad-ink)}
+.mode-tab.rating-meta{--rating:var(--tier-meta);--rating-ink:var(--tier-ink)}
+.mode-tab.rating-collect{--rating:var(--tier-collect);--rating-ink:var(--tier-ink)}
+.mode-tab.rating-alternative{--rating:var(--tier-alternative);--rating-ink:var(--tier-ink)}
+.mode-tab.rating-trash{--rating:var(--tier-trash);--rating-ink:var(--tier-ink)}
 .mode-panel{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--code-bg)}
 .mode-panel p{margin:2px 0}
 .mode-detail{color:var(--muted);font-size:.92rem}

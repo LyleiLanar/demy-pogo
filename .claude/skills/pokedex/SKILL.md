@@ -51,27 +51,31 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 - Ha semmi nem biztos, használhatod a saját tudásodat, de jelöld bizonytalannak, és javasold,
   hogy a felhasználó nézze meg (pl. Leek Duck).
 
-## 3. Ritkaság (a név színe, `tier`)
+## 3. Színek (Diablo-szerű ritkaság)
 
-A név színe magától számolódik a módok értékeléséből (`js/species.js`, `speciesTier`), és a heti
-szinkronnal frissül, ezért általában nem kell beírni:
+Minden mód (Raid, GL, UL, Max, Gym) külön színt kap, a név színe a faj legjobb módjáé bármelyik
+formában (`js/species.js`, `speciesTier`). Egy faj lehet raidben szürke, Max Battle-ben lila.
+Értékek, a legjobbtól:
 
-- arany: legendás / mitikus / Ultra Beast (a PvPoke-adatból);
-- lila (meta): bármelyik forma top 20 GL/UL-ben, vagy valamelyik módban `good`;
-- zöld (alternatíva): top 100 GL/UL-ben, vagy valamelyik módban `ok`;
-- szürke (kuka): minden más.
+- `meta` (lila): a legjobbak közt abban a módban; ligában top 20.
+- `collect` (kék, gyűjtendő): érdemes megtartani és építeni; ligában top 50.
+- `alternative` (zöld): átmenetileg jó, ha nincs jobb; ligában top 100.
+- `trash` (szürke): kuka.
+- Arany név: legendás / mitikus / Ultra Beast, a PvPoke-adatból magától.
 
-Kézzel (`tier`) csak akkor, ha a számolt szín félrevezető:
-- `collect` (kék, gyűjtendő): magában gyenge, de érdemes megtartani, pl. fejlesztési alap
-  (Eevee → Umbreon). Ha a faj tovább fejlődik, futtasd a lookupot a fejlődéseire is.
-- `meta` / `alternative` / `trash`: ha az értékelések alapján más jönne ki, mint ami igaz;
-  ilyenkor mondd meg a felhasználónak, miért írtad felül.
+A ligáké a PvPoke teljes (1000+ fajos) rangsorából számolódik; a heti szinkronnal frissül.
+A raid / Max / gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben
+lévő fajokhoz: `meta` csak az, ami abban a típusban vagy szerepben tényleg a legjobbak közé tartozik.
+
+A faj `tier` mezője alsó határ a név színére, csak ha a módok nem mutatják az értékét: pl.
+`collect` az Eevee-nél, ami magában gyenge, de fejlesztési alap (Umbreon, Glaceon). Ha a faj
+tovább fejlődik, futtasd a lookupot a fejlődéseire is.
 
 ## 4. Módok értékelése
 
 - `greatLeague`, `ultraLeague`: a helyezés és a szín a `data/pvpoke.js`-ből jön, ezt ne írd be.
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
-- `raid`: `rating` = `good` / `ok` / `bad`, egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
+- `raid`: `rating` = `meta` / `collect` / `alternative` / `trash` (lásd 3.), egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
   ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
 - `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája. Az `upgrade`
   mondja meg, melyik Max mozdulatot fejleszd (`attack` / `guard` / `spirit`); gyenge értékelésnél hagyd ki.
@@ -128,7 +132,7 @@ Kézzel (`tier`) csak akkor, ha a számolt szín félrevezető:
   id: 'decidueye',
   name: 'Decidueye',
   origin: 'Rowlet',
-  raid: { rating: 'bad', note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók.' },
+  raid: { rating: 'trash', note: 'Vékony támadó; vannak jobb Grass támadók.' },
   // nincs maxBattle: a lookup szerint nincs Dynamax formája
 },
 ```
