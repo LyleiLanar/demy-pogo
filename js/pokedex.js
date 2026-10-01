@@ -44,20 +44,39 @@ function renderMoves(mode, species) {
     + renderFact('', moves.note);
 }
 
-function renderModePanel(mode, species, isSelected) {
+// A PvPoke legfontosabb párharcai két oszlopban: balra akiket megver, jobbra akik ellen kikap.
+// A nevek színezett linkek, mint a fejlődési ágban.
+function renderMatchupList(label, opponents, tiers) {
+  const links = (opponents || []).map((opponent) => `<li>${renderSpeciesLink(opponent, tiers)}</li>`).join('');
+  return `
+    <div class="mon-matchup-col">
+      <span class="mon-defense-label">${label}</span>
+      <ul class="mon-matchup-list">${links || '<li class="mon-defense-none">–</li>'}</ul>
+    </div>`;
+}
+
+function renderMatchups(mode, tiers) {
+  if (!mode.beats && !mode.losesTo) return '';
+  return `
+    <div class="mon-matchups">
+      ${renderMatchupList('Jól megy ellene', mode.beats, tiers)}
+      ${renderMatchupList('Nehéz ellenfél', mode.losesTo, tiers)}
+    </div>`;
+}
+
+function renderModePanel(mode, species, isSelected, tiers) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
   const facts = [
     renderFact('Fejleszd', mode.upgradeLabels.join(', ')),
     renderMoves(mode, species),
-    renderFact('Jól megy ellene', mode.beats && mode.beats.join(', ')),
-    renderFact('Nehéz ellenfél', mode.losesTo && mode.losesTo.join(', ')),
     renderFact('IV', mode.iv),
   ].join('');
   return `
     <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
       ${detail}${note}
       ${facts ? `<dl class="mon-facts">${facts}</dl>` : ''}
+      ${renderMatchups(mode, tiers)}
       ${renderList('mon-notes', mode.tips)}
     </div>`;
 }
@@ -68,29 +87,29 @@ function renderSpeciesName(species, tier) {
 }
 
 // A módválasztó sor és alatta a kiválasztott mód leírása (az értékelést a fül színe mutatja).
-function renderGameModes(modes, species) {
+function renderGameModes(modes, species, tiers) {
   if (modes.length === 0) return '';
   const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
       <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
-      ${modes.map((mode, i) => renderModePanel(mode, species, i === selected)).join('')}
+      ${modes.map((mode, i) => renderModePanel(mode, species, i === selected, tiers)).join('')}
     </div>`;
 }
 
-function renderFormPanel(species, form, isSelected) {
+function renderFormPanel(species, form, isSelected, tiers) {
   return `
     <div class="form-panel" data-form="${form.key}" ${isSelected ? '' : 'hidden'}>
       ${renderDefense(form.types)}
-      ${renderGameModes(gameModesOf(species, form), species)}
+      ${renderGameModes(gameModesOf(species, form), species, tiers)}
       ${renderList('mon-notes', form.overrides.notes)}
     </div>`;
 }
 
 // Formaváltó a kártya tetején; csak akkor, ha több forma van.
-function renderForms(species) {
+function renderForms(species, tiers) {
   const forms = speciesForms(species);
-  const panels = forms.map((form, i) => renderFormPanel(species, form, i === 0)).join('');
+  const panels = forms.map((form, i) => renderFormPanel(species, form, i === 0, tiers)).join('');
   if (forms.length === 1) return `<div class="forms">${panels}</div>`;
   const tabs = forms.map((form, i) => `
     <button type="button" class="form-tab" aria-pressed="${i === 0}" data-form="${form.key}">${escapeHtml(form.name)}</button>`);
@@ -116,7 +135,7 @@ function evolutionCostText(stage) {
   ].filter(Boolean).join(' · ');
 }
 
-// Egy fok színe a saját harci erejéből: ha a faj a Pokédexben van, a kártyája szerint (tiers), különben
+// Egy faj (ági fok, ellenfél) színe a saját harci erejéből: ha a Pokédexben van, a kártyája szerint (tiers), különben
 // a legjobb GL/UL helyezéséből (raid- és Max-adat nélkül), legendásnál arany.
 function stageTier(stage, tiers) {
   if (tiers.has(stage.id)) return tiers.get(stage.id);
@@ -124,11 +143,16 @@ function stageTier(stage, tiers) {
   return stage.rank ? leagueRating(stage) : 'trash';
 }
 
-// Egy faj az ágban, a színével; a nevére koppintva a Pokédex csak azt a fajt mutatja (setupNavigation).
-// Az első fok kivételével előtte a nyíl, amire koppintva látszik a fejlődés ára.
+// Egy másik faj neve a színével (fejlődési ág, párharcok); koppintásra a Pokédex csak azt a fajt mutatja
+// (setupNavigation).
+function renderSpeciesLink(ref, tiers, extraClass = '') {
+  return `<button type="button" class="species-link tier-${stageTier(ref, tiers)}${extraClass}"
+    data-species="${ref.id}" data-name="${escapeHtml(ref.name)}">${escapeHtml(ref.name)}</button>`;
+}
+
+// Egy faj az ágban; az első fok kivételével előtte a nyíl, amire koppintva látszik a fejlődés ára.
 function renderEvolutionStage(stage, isFirst, tiers) {
-  const name = `<button type="button" class="evo-link tier-${stageTier(stage, tiers)}${stage.current ? ' evo-current' : ''}"
-    data-species="${stage.id}" data-name="${escapeHtml(stage.name)}">${escapeHtml(stage.name)}</button>`;
+  const name = renderSpeciesLink(stage, tiers, stage.current ? ' evo-current' : '');
   if (isFirst) return `<span class="evo-name">${name}</span>`;
   const cost = escapeHtml(evolutionCostText(stage));
   return `<span class="evo-name"><button type="button" class="evo-arrow" data-tooltip="${cost}" aria-label="${cost}">→</button> ${name}</span>`;
@@ -168,7 +192,7 @@ function renderPokemonCard(species, tiers) {
       </div>
       ${renderEvolution(species, tiers)}
       ${warning}
-      ${renderForms(species)}
+      ${renderForms(species, tiers)}
       ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
       ${renderList('mon-notes', species.notes)}
     </article>`;

@@ -43,16 +43,36 @@ function rankIndex(rankings) {
 // Egy forma (normál vagy Shadow) helyezése egy ligában; top 100-ban a szett és a párharcok is.
 function describeLeague(rankingEntry, data, detailRankLimit) {
   if (!rankingEntry) return undefined;
-  const { moves, names } = data;
+  const { moves } = data;
   const league = { rank: rankingEntry.rank };
   if (rankingEntry.rank > detailRankLimit) return league;
 
   // A PvPoke-szett: az első a gyors (Fast), a többi a töltött (Charged) mozdulat.
   const [fastMove, ...chargedMoves] = rankingEntry.moveset.map((moveId) => moves.get(moveId) || moveId);
   league.moveset = { fast: [fastMove], charged: chargedMoves };
-  league.beats = rankingEntry.matchups.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
-  league.losesTo = rankingEntry.counters.slice(0, MATCHUP_COUNT).map((m) => names.get(m.opponent));
+  league.beats = rankingEntry.matchups.slice(0, MATCHUP_COUNT).map((m) => speciesRef(m.opponent, data));
+  league.losesTo = rankingEntry.counters.slice(0, MATCHUP_COUNT).map((m) => speciesRef(m.opponent, data));
   return league;
+}
+
+// Egy faj legjobb GL/UL helyezése a normál vagy a Shadow formájával (Infinity, ha nincs rangsorolva).
+function bestRankOf(speciesId, data) {
+  return Math.min(...data.leagueRankings.flatMap(([, ranking]) =>
+    [ranking.get(speciesId)?.rank, ranking.get(`${speciesId}_shadow`)?.rank].filter(Boolean)));
+}
+
+// Hivatkozás egy másik fajra (fejlődési ág, párharcok): az azonosító a kártyára mutat (a Shadow
+// formáé is az alapfajéra), a név a megjelenítéshez, a legjobb helyezés és a legendás jelző a színhez.
+function speciesRef(speciesId, data) {
+  const id = speciesId.replace(/_shadow$/, '');
+  const species = data.speciesById.get(id);
+  const rank = bestRankOf(id, data);
+  return {
+    id,
+    name: data.names.get(speciesId) || speciesId,
+    ...(Number.isFinite(rank) ? { rank } : {}),
+    ...((species?.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag)) ? { legendary: true } : {}),
+  };
 }
 
 // A csak Elite TM-mel vagy eseményen (pl. Community Day) megszerezhető mozdulatok neve.
@@ -208,21 +228,13 @@ const isPlayableForm = (species) => species && species.released !== false && !/_
 // fokról). undefined, ha a faj nem fejlődik és nem is fejlődésből jön.
 function evolutionBranchOf(id, data, gameMaster) {
   const byId = (speciesId) => data.speciesById.get(speciesId);
-  // A fok harci ereje a színhez: a legjobb GL/UL helyezés (normál vagy Shadow), és hogy legendás-e.
-  // A Pokédexben lévő fajoknál a kártya a saját értékelését használja, ez a többi fokra kell.
-  const bestRankOf = (speciesId) => Math.min(...data.leagueRankings.flatMap(([, ranking]) =>
-    [ranking.get(speciesId)?.rank, ranking.get(`${speciesId}_shadow`)?.rank].filter(Boolean)));
-  const stage = (species, parentId, current = false) => {
-    const rank = bestRankOf(species.speciesId);
-    return {
-      id: species.speciesId,
-      name: displayName(species.speciesName),
-      ...(current ? { current: true } : {}),
-      ...(Number.isFinite(rank) ? { rank } : {}),
-      ...((species.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag)) ? { legendary: true } : {}),
-      ...(parentId ? evolutionCostOf(parentId, species.speciesId, gameMaster) : {}),
-    };
-  };
+  // A fok színéhez a speciesRef adja a helyezést és a legendás jelzőt (a Pokédexben lévő fajoknál
+  // a kártya a saját értékelését használja).
+  const stage = (species, parentId, current = false) => ({
+    ...speciesRef(species.speciesId, data),
+    ...(current ? { current: true } : {}),
+    ...(parentId ? evolutionCostOf(parentId, species.speciesId, gameMaster) : {}),
+  });
 
   const self = byId(id);
   const stages = [[stage(self, self.family?.parent, true)]];
