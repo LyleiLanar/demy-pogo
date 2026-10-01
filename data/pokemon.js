@@ -17,7 +17,9 @@
 //                rating csak ott kell, ahol nincs számolt adat (pl. csak Normal támadása van)
 //   greatLeague  { note, iv, moves, tips }: a helyezés és a rating a pvpoke.js-ből jön
 //   ultraLeague  { note, iv, moves, tips }
-//   maxBattle    { rating, note, upgrade, iv, moves, tips }: a Dynamax példány (a kártya Max formája)
+//   maxBattle    { note, iv, moves, tips }: a Dynamax példány (a kártya Max formája); a három szerep
+//                (támadó, tank, gyógyító), a szín és a Fejleszd számolt (pvpoke.js maxBattle); rating és
+//                upgrade csak ott kell, ahol nincs számolt adat
 //   gym          { rating, note, iv, moves, tips }
 //     rating     a mód színe, Diablo-szerű ritkaság (a név színe a legjobb módé):
 //                'meta' = lila, a legjobbak közt; 'collect' = kék, gyűjtendő, érdemes építeni;
@@ -54,12 +56,7 @@ const POKEMON = [
       ],
     },
   },
-  {
-    id: 'alakazam',
-    name: 'Alakazam',
-    origin: 'Abra',
-    maxBattle: { rating: 'trash' },
-  },
+  { id: 'alakazam', name: 'Alakazam', origin: 'Abra' },
   { id: 'ninetales_alolan', name: 'Alolan Ninetales', origin: 'alolai Vulpix' },
   { id: 'altaria', name: 'Altaria', origin: 'Swablu' },
   {
@@ -89,7 +86,6 @@ const POKEMON = [
     id: 'blissey',
     name: 'Blissey',
     origin: 'Chansey / Happiny',
-    maxBattle: { rating: 'meta', upgrade: ['spirit'] },
     gym: { rating: 'meta' },
   },
   { id: 'carbink', name: 'Carbink', origin: 'Carbink' },
@@ -107,12 +103,6 @@ const POKEMON = [
     ultraLeague: {
       moves: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Dragon Claw'] },
     },
-    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
-    forms: {
-      gigantamax: {
-        maxBattle: { rating: 'meta', upgrade: ['attack'] },
-      },
-    },
   },
   {
     id: 'charjabug',
@@ -121,21 +111,11 @@ const POKEMON = [
     warning: 'NE fejleszd Vikavolttá!',
   },
   { id: 'cherrim_overcast', name: 'Cherrim', origin: 'Cherubi' },
-  {
-    id: 'cinderace',
-    name: 'Cinderace',
-    origin: 'Scorbunny',
-    maxBattle: { rating: 'collect', upgrade: ['attack'] },
-  },
+  { id: 'cinderace', name: 'Cinderace', origin: 'Scorbunny' },
   { id: 'clodsire', name: 'Clodsire', origin: 'paldeai Wooper' },
   { id: 'corviknight', name: 'Corviknight', origin: 'Rookidee' },
   { id: 'cramorant', name: 'Cramorant', origin: 'Cramorant' },
-  {
-    id: 'darmanitan_standard',
-    name: 'Darmanitan',
-    origin: 'Darumaka',
-    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
-  },
+  { id: 'darmanitan_standard', name: 'Darmanitan', origin: 'Darumaka' },
   {
     id: 'decidueye',
     name: 'Decidueye',
@@ -184,7 +164,6 @@ const POKEMON = [
     name: 'Dubwool',
     origin: 'Wooloo',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'trash' },
   },
   {
     id: 'dusclops',
@@ -198,10 +177,7 @@ const POKEMON = [
     name: 'Eevee',
     origin: 'Eevee',
     raid: { rating: 'trash' },
-    maxBattle: {
-      rating: 'trash',
-      note: 'Dynamax Glaceonnak fejlesztve az egyik legjobb Ice Max támadó.',
-    },
+    maxBattle: { note: 'Dynamax Glaceonnak fejlesztve az egyik legjobb Ice Max támadó.' },
     notes: [
       'A két jó irány: Umbreon (Great League) és Glaceon (raid, Max Battle). A Sylveon, a Flareon, az Espeon és a Leafeon tartaléknak jó, a Vaporeon és a Jolteon ma gyenge.',
       'Névtrükk: ha fejlesztés előtt átnevezed, a kiválasztott formát kapod. Rainer = Vaporeon, Sparky = Jolteon, Pyro = Flareon, Sakura = Espeon, Tamao = Umbreon, Linnea = Leafeon, Rea = Glaceon, Kira = Sylveon. Mindegyik név csak egyszer működik.',
@@ -214,12 +190,7 @@ const POKEMON = [
     notes: ['Egy alacsony Attackos Gossifleur maradhat a Little Cupra (500 CP).'],
   },
   { id: 'empoleon', name: 'Empoleon', origin: 'Piplup' },
-  {
-    id: 'excadrill',
-    name: 'Excadrill',
-    origin: 'Drilbur',
-    maxBattle: { rating: 'meta', upgrade: ['attack'] },
-  },
+  { id: 'excadrill', name: 'Excadrill', origin: 'Drilbur' },
   {
     id: 'fearow',
     name: 'Fearow',
@@ -227,12 +198,7 @@ const POKEMON = [
     greatLeague: { tips: ['Olcsó építeni, a Spearow gyakori, és a Great League-hez nem kell XL cukor.'] },
   },
   { id: 'feraligatr', name: 'Feraligatr', origin: 'Totodile' },
-  {
-    id: 'flareon',
-    name: 'Flareon',
-    origin: 'Eevee',
-    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
-  },
+  { id: 'flareon', name: 'Flareon', origin: 'Eevee' },
   { id: 'florges', name: 'Florges', origin: 'Flabébé' },
   {
     id: 'forretress',
@@ -258,24 +224,18 @@ const POKEMON = [
     origin: 'legendás (Max Battle / raid)',
   },
   { id: 'stunfisk_galarian', name: 'Galarian Stunfisk', origin: 'Galarian Stunfisk' },
-  {
-    id: 'gardevoir',
-    name: 'Gardevoir',
-    origin: 'Ralts',
-    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
-  },
+  { id: 'gardevoir', name: 'Gardevoir', origin: 'Ralts' },
   {
     id: 'gigalith',
     name: 'Gigalith',
     origin: 'Roggenrola',
-    maxBattle: { rating: 'trash', note: 'Jobb: Rhyperior.' },
+    maxBattle: { note: 'Jobb: Rhyperior.' },
   },
   { id: 'gothitelle', name: 'Gothitelle', origin: 'Gothita' },
   {
     id: 'greedent',
     name: 'Greedent',
     origin: 'Skwovet',
-    maxBattle: { rating: 'alternative', upgrade: ['spirit'] },
     notes: ['Részben felhős időben több Skwovet jön.'],
   },
   { id: 'guzzlord', name: 'Guzzlord', origin: 'raidből (Ultra Beast)' },
@@ -297,20 +257,10 @@ const POKEMON = [
     origin: 'Makuhita',
     raid: { note: 'Jobb: Machamp, Lucario, Conkeldurr.' },
   },
-  {
-    id: 'hatterene',
-    name: 'Hatterene',
-    origin: 'Hatenna',
-    maxBattle: { rating: 'trash' },
-  },
+  { id: 'hatterene', name: 'Hatterene', origin: 'Hatenna' },
   { id: 'hippowdon', name: 'Hippowdon', origin: 'Hippopotas' },
   { id: 'electrode_hisuian', name: 'Hisuian Electrode', origin: 'hisui Voltorb' },
-  {
-    id: 'inteleon',
-    name: 'Inteleon',
-    origin: 'Sobble',
-    maxBattle: { rating: 'collect', upgrade: ['attack'], tips: ['Fire, Rock és Ground bossok ellen.'] },
-  },
+  { id: 'inteleon', name: 'Inteleon', origin: 'Sobble' },
   { id: 'jellicent', name: 'Jellicent', origin: 'Frillish' },
   { id: 'jumpluff', name: 'Jumpluff', origin: 'Hoppip' },
   { id: 'kilowattrel', name: 'Kilowattrel', origin: 'Wattrel' },
@@ -328,7 +278,6 @@ const POKEMON = [
     name: 'Machamp',
     origin: 'Machop',
     raid: { note: 'Olcsón építhető.' },
-    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
   },
   { id: 'malamar', name: 'Malamar', origin: 'Inkay' },
   { id: 'mandibuzz', name: 'Mandibuzz', origin: 'Vullaby' },
@@ -338,16 +287,7 @@ const POKEMON = [
   { id: 'melmetal', name: 'Melmetal', origin: 'Meltan (Mystery Boxból)' },
   { id: 'meowscarada', name: 'Meowscarada', origin: 'Sprigatito' },
   { id: 'mimikyu', name: 'Mimikyu', origin: 'Mimikyu' },
-  {
-    id: 'moltres',
-    name: 'Moltres',
-    origin: 'legendás (raid / Max Battle)',
-    maxBattle: {
-      rating: 'collect',
-      upgrade: ['attack', 'guard'],
-      moves: { fast: ['Wing Attack'] },
-    },
-  },
+  { id: 'moltres', name: 'Moltres', origin: 'legendás (raid / Max Battle)' },
   { id: 'ninetales', name: 'Ninetales', origin: 'Vulpix (a sima, nem az alolai)' },
   { id: 'perrserker', name: 'Perrserker', origin: 'Galarian Meowth' },
   {
@@ -360,12 +300,7 @@ const POKEMON = [
   },
   { id: 'quagsire', name: 'Quagsire', origin: 'Wooper (a sima, nem a paldeai)' },
   { id: 'quaquaval', name: 'Quaquaval', origin: 'Quaxly' },
-  {
-    id: 'rhyperior',
-    name: 'Rhyperior',
-    origin: 'Rhyhorn',
-    maxBattle: { rating: 'meta', upgrade: ['guard'] },
-  },
+  { id: 'rhyperior', name: 'Rhyperior', origin: 'Rhyhorn' },
   { id: 'rillaboom', name: 'Rillaboom', origin: 'Grookey' },
   { id: 'sableye', name: 'Sableye', origin: 'Sableye' },
   {
@@ -387,25 +322,10 @@ const POKEMON = [
   },
   { id: 'toxapex', name: 'Toxapex', origin: 'Mareanie' },
   { id: 'trevenant', name: 'Trevenant', origin: 'Phantump' },
-  {
-    id: 'tsareena',
-    name: 'Tsareena',
-    origin: 'Bounsweet',
-    maxBattle: { rating: 'trash' },
-  },
+  { id: 'tsareena', name: 'Tsareena', origin: 'Bounsweet' },
   { id: 'tyrantrum', name: 'Tyrantrum', origin: 'Tyrunt' },
   { id: 'umbreon', name: 'Umbreon', origin: 'Eevee' },
-  {
-    id: 'venusaur',
-    name: 'Venusaur',
-    origin: 'Bulbasaur',
-    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
-  },
+  { id: 'venusaur', name: 'Venusaur', origin: 'Bulbasaur' },
   { id: 'vigoroth', name: 'Vigoroth', origin: 'Slakoth', warning: 'NE fejleszd Slakinggé!' },
-  {
-    id: 'whimsicott',
-    name: 'Whimsicott',
-    origin: 'Cottonee',
-    maxBattle: { rating: 'trash' },
-  },
+  { id: 'whimsicott', name: 'Whimsicott', origin: 'Cottonee' },
 ];

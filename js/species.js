@@ -7,6 +7,12 @@ const RATING_ORDER = ['meta', 'collect', 'alternative', 'trash'];
 const LEAGUE_RATING_LIMITS = { meta: 20, collect: 50, alternative: 100 };
 // A raidé a számolt raid-helyezésből jön: hányadik a legjobb támadó típusában (Shadow és Mega formákkal együtt).
 const RAID_RATING_LIMITS = { meta: 10, collect: 25, alternative: 50 };
+// Max Battle: a támadó a Max mozdulata típusán belül (típusonként 10–50 faj), a tank és a gyógyító az
+// összes Dynamax / Gigantamax formájú faj között (kb. 160) rangsorolva.
+const MAX_ATTACKER_RATING_LIMITS = { meta: 3, collect: 6, alternative: 12 };
+// …és a típus legjobbjához mért erő (0–1) is kell hozzá, mert némelyik típusban csak pár támadó van.
+const MAX_ATTACKER_STRENGTH_LIMITS = { meta: 0.9, collect: 0.8, alternative: 0.65 };
+const MAX_SUPPORT_RATING_LIMITS = { meta: 10, collect: 25, alternative: 50 };
 const GAME_MODES = [
   { key: 'raid', label: 'Raid', title: 'Raid', ratingLimits: RAID_RATING_LIMITS },
   { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true, ratingLimits: LEAGUE_RATING_LIMITS },
@@ -21,7 +27,6 @@ const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
 const MAX_MOVE_LABELS = { attack: '⚔️ Max Attack', guard: '🛡️ Max Guard', spirit: '💚 Max Spirit' };
 const GIGANTAMAX_MOVE_LABELS = { ...MAX_MOVE_LABELS, attack: '⚔️ G-Max mozdulat' };
 // A Max forma fülei: a Dynamax és a Gigantamax külön példány, külön értékeléssel.
-// Dynamax = a faj maxBattle mezője, Gigantamax = forms.gigantamax.maxBattle.
 const MAX_MODES = [
   { key: 'dynamax', label: 'Dynamax', title: 'Dynamax', moveLabels: MAX_MOVE_LABELS },
   { key: 'gigantamax', label: 'Gigantamax', title: 'Gigantamax', moveLabels: GIGANTAMAX_MOVE_LABELS },
@@ -95,15 +100,41 @@ function modeDetail(mode, data) {
 
 // A Max forma fülei: Dynamax (a faj maxBattle mezője) és Gigantamax (forms.gigantamax.maxBattle,
 // csak ha a game master szerint a fajnak van Gigantamax formája).
+// A Max forma fülei: Dynamax és Gigantamax. Mindkettőnél három szerep számolt helyezéssel (pvpoke.js
+// maxBattle): támadó (a Max mozdulat típusán belül), tank és gyógyító (az összes Max-képes faj között).
+// A fül színe a legjobb szerepé; a Fejleszd sor a kék vagy lila szerepek mozdulata (ha nincs ilyen,
+// semmit nem érdemes fejleszteni). A kézi maxBattle / forms.gigantamax.maxBattle mezőből a megjegyzés és a tippek jönnek;
+// értékelést csak ott ad, ahol nincs számolt adat.
+// A támadó színe a helyezésből és a típus legjobbjához mért erőből; a kettő közül a gyengébb.
+function maxAttackerRating(attacker) {
+  const byRank = rankRating(attacker.rank, MAX_ATTACKER_RATING_LIMITS);
+  const byStrength = Object.keys(MAX_ATTACKER_STRENGTH_LIMITS).find((key) => attacker.strength >= MAX_ATTACKER_STRENGTH_LIMITS[key]) || 'trash';
+  return RATING_ORDER[Math.max(RATING_ORDER.indexOf(byRank), RATING_ORDER.indexOf(byStrength))];
+}
+
 function maxModesOf(species) {
-  const hasGigantamax = (species.stats.maxForms || []).includes('Gigantamax');
-  const data = {
-    dynamax: species.maxBattle,
-    gigantamax: hasGigantamax ? species.forms?.gigantamax?.maxBattle : undefined,
-  };
-  return MAX_MODES
-    .filter((mode) => data[mode.key]?.rating)
-    .map((mode) => ({ ...mode, ...data[mode.key], detail: '', upgradeLabels: upgradeLabelsOf(data[mode.key].upgrade, mode.moveLabels) }));
+  const computed = species.stats.maxBattle;
+  const curated = { dynamax: species.maxBattle, gigantamax: species.forms?.gigantamax?.maxBattle };
+  const forms = species.stats.maxForms || [];
+  return MAX_MODES.map((mode) => {
+    if (!computed || !forms.includes(mode.title)) {
+      const data = curated[mode.key];
+      return data?.rating ? { ...mode, ...data, detail: '', roles: [], upgradeLabels: upgradeLabelsOf(data.upgrade, mode.moveLabels) } : null;
+    }
+    // A támadó szerep hiányzik, ha a Max mozdulat Normal típusú lenne (az nem számít).
+    const attacker = computed[mode.key];
+    const roles = [
+      ...(attacker ? [{ key: 'attacker', upgrade: 'attack', ...attacker, rating: maxAttackerRating(attacker) }] : []),
+      { key: 'tank', upgrade: 'guard', rank: computed.tankRank, rating: rankRating(computed.tankRank, MAX_SUPPORT_RATING_LIMITS) },
+      { key: 'healer', upgrade: 'spirit', rank: computed.healerRank, rating: rankRating(computed.healerRank, MAX_SUPPORT_RATING_LIMITS) },
+    ];
+    const rating = bestRating(roles.map((role) => role.rating));
+    const strong = roles.filter((role) => role.rating === 'meta' || role.rating === 'collect');
+    return {
+      ...mode, ...curated[mode.key], rating, roles, detail: '',
+      upgradeLabels: upgradeLabelsOf(strong.map((role) => role.upgrade), mode.moveLabels),
+    };
+  }).filter(Boolean);
 }
 
 // A kártya fülei: csak azok a módok, amelyek a formához tartoznak és van róluk adat.

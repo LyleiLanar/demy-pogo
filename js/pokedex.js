@@ -64,10 +64,21 @@ function renderMatchups(mode, tiers) {
     </div>`;
 }
 
+const MAX_ROLE_LABELS = { attacker: 'Támadó', tank: 'Tank', healer: 'Gyógyító' };
+
+// Max Battle szerep: a helyezés a szerep színével; a támadónál a Max mozdulat, a típusa és (Dynamaxnál)
+// a Fast mozdulat, amitől a típusa jön.
+function renderRoleFact(role) {
+  const attack = role.key === 'attacker'
+    ? `${role.move}${role.fast ? ` (${role.fast})` : ''}: ${TYPES[role.type].name} ` : '';
+  return `<dt>${MAX_ROLE_LABELS[role.key]}</dt><dd class="tier-${role.rating}">${escapeHtml(`${attack}${role.rank}. hely`)}</dd>`;
+}
+
 function renderModePanel(mode, species, isSelected, tiers) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
   const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
   const facts = [
+    ...(mode.roles || []).map((role) => renderRoleFact(role)),
     renderFact('Fejleszd', mode.upgradeLabels.join(', ')),
     renderFact('Legjobb IV', mode.bestIv && `${mode.bestIv.iv} ${mode.bestIv.cp}CP`),
     renderMoves(mode, species),

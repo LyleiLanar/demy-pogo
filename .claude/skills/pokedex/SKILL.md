@@ -39,7 +39,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 | PvP-helyezés, szett, párharcok, típus, Mega | PvPoke (`github.com/pvpoke/pvpoke`) | a lookup / sync script |
 | Dynamax, Gigantamax, Mega, mozdulatok, Elite TM | a játék game mastere (PokeMiners, `github.com/PokeMiners/game_masters`) | a lookup script |
 | Raid-helyezés és szett | számolt a game masterből (sync / lookup) | a lookup script |
-| Max Battle szerep, raid-ellenőrzés | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
+| Max Battle szerep (támadó / tank / gyógyító) | számolt a game masterből (sync / lookup) | a lookup script |
+| Max Battle és raid ellenőrzése, aktuális bossok | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
 | Aktuális események, Max Battle bossok, Community Day | Leek Duck, Pokémon GO Hub | WebSearch |
 | Általános leírás | Bulbapedia | WebSearch |
 
@@ -68,8 +69,12 @@ A ligáké a PvPoke teljes (1000+ fajos) rangsorából számolódik; a heti szin
 A raidé is számolt: a game masterből DPS³ × TDO pontszám (40-es szint, 15/15/15), és a faj
 legjobb támadó típusában elért helyezés minden fajhoz és formához (Shadow, Mega) mérve: top 10 lila,
 top 25 kék, top 50 zöld. A Normal típus nem számít (semmire nem hatásos).
-A Max és a gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben
-lévő fajokhoz: `meta` csak az, ami abban a szerepben tényleg a legjobbak közé tartozik.
+A Max Battle is számolt, a Dynamax és a Gigantamax formára külön, három szerepben: támadó (a Max
+mozdulat típusán belül: top 3 lila, top 6 kék, top 12 zöld, és a típus legjobbjához mérve is erős
+kell legyen), tank és gyógyító (az összes Max-képes faj között: top 10 / 25 / 50). A fül színe a
+legjobb szerepé, a Fejleszd a kék és lila szerepek mozdulata.
+A gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben lévő fajokhoz:
+`meta` csak az, ami abban a szerepben tényleg a legjobbak közé tartozik.
 
 A fejlődési ág minden foka a saját harci ereje szerint színes: ami a Pokédexben van, a kártyája
 szerint, a többi a ligahelyezése szerint. Ezért a gyenge alapforma (pl. Eevee) maradhat szürke: az
@@ -86,10 +91,8 @@ az értékét.
 - `raid`: a helyezés, a szín és a szett számolt (lookup: „Raid:” sor), ezt ne írd be. Kézzel csak
   plusz tanács (`note`, `tips`, más szett a `moves`-ban, ha a számolt mellett van jó alternatíva).
   `rating` csak akkor kell, ha nincs számolt adat (pl. csak Normal támadása van).
-- `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája. Az `upgrade`
-  mondja meg, melyik Max mozdulatot fejleszd (`attack` / `guard` / `spirit`); gyenge értékelésnél hagyd ki.
-  Gigantamaxhoz: `forms.gigantamax.maxBattle` (saját `rating`, `note`, `upgrade`).
-  Az értékeléshez (támadó, védő, gyógyító) keress rá WebSearch-csel; ha nem egyértelmű, hagyd ki.
+- `maxBattle` (Dynamax) és `forms.gigantamax.maxBattle`: a szerepek, a szín és a Fejleszd számolt
+  (lookup), ezt ne írd be; kézzel csak `note` / `tips`, ha van konkrét plusz (pl. jobb alternatíva).
 - `gym`: csak ha kifejezetten jó gym védő.
 
 ## 5. A tanácsok helye

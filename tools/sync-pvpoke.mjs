@@ -84,6 +84,8 @@ async function main() {
 // bestIv: a ligában a legjobb IV ({ iv: 'Attack/Defense/HP', cp }) a game master CP-szorzóival
 // raid: számolt raid-helyezés ({ type, rank, moveset }) a legjobb támadó típusában, a game masterből;
 //   a shadow.raid és a megaForms[].raid ugyanígy
+// maxBattle: Dynamax / Gigantamax szerepek helyezése (40-es szint, a játék game masteréből):
+//   tankRank, healerRank, dynamax / gigantamax: { type, rank, move, fast } a támadó rangsorban
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok ({ id, name, rank, legendary }, mint az ágban)
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 

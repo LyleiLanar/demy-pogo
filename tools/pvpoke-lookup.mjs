@@ -65,6 +65,13 @@ function printSpecies(species, data, gameMaster, asJson) {
   raidLine('Raid:', entry.raid);
   raidLine('Shadow raid:', entry.shadow?.raid);
   (entry.megaForms || []).forEach((mega) => raidLine(`${mega.name} raid:`, mega.raid));
+  const max = entry.maxBattle;
+  if (max) {
+    const attacker = (label, a) => a && console.log(`  ${label.padEnd(13)} ${a.move}${a.fast ? ` (${a.fast})` : ''}: ${a.type} ${a.rank}. hely (${Math.round(a.strength * 100)}%)`);
+    attacker('Dynamax:', max.dynamax);
+    attacker('Gigantamax:', max.gigantamax);
+    console.log(`  Max tank:     ${max.tankRank}. hely · gyógyító: ${max.healerRank}. hely`);
+  }
   const forms = [['Normál', entry], ['Shadow', entry.shadow]];
   for (const [formName, form] of forms) {
     if (!form) continue;

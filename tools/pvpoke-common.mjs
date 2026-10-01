@@ -120,6 +120,8 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, g
   const evolution = gameMaster && evolutionBranchOf(id, data, gameMaster);
   if (evolution) entry.evolution = evolution;
   if (raidRankings?.has(id)) entry.raid = raidRankings.get(id);
+  const maxBattle = gameMaster && maxRankingsOf(data, gameMaster).get(id);
+  if (maxBattle) entry.maxBattle = maxBattle;
   if (species.buddyDistance) entry.buddyKm = species.buddyDistance;
   const specialMoves = specialMovesOf(species, data.moves);
   if (specialMoves.length) entry.specialMoves = specialMoves;
@@ -272,6 +274,106 @@ function raidRankingsOf(data, gameMaster) {
   return rankings;
 }
 
+// ---------- Max Battle: támadó, tank és gyógyító ----------
+
+// A Max mozdulatok ereje nincs a game masterben (a szerver tudja); a közölt értékek a 3. (MAX) szintre:
+// Max Attack 350, G-Max mozdulat 450 (Bulbapedia, Pokémon GO Hub). A Max Guard pajzsa és a Max Spirit
+// gyógyítása (a használó max HP-jának 16%-a) a bíráson és a HP-n múlik.
+// Három rangsor a Dynamax / Gigantamax formájú fajok között (40-es szint, 15/15/15):
+// - támadó: Max mozdulat ereje × Attack × STAB, típusonként (Dynamaxnál a Fast mozdulat típusa adja);
+// - tank: Defense × HP;
+// - gyógyító: HP × √(Defense × HP) (a gyógyítás a HP-val nő, és közben bírni is kell).
+// A Normal típusú Max mozdulat kimarad, mint a raidnél.
+const MAX_ATTACK_POWER = 350;
+const GIGANTAMAX_ATTACK_POWER = 450;
+const MAX_MOVE_WORDS = {
+  voltcrash: 'Volt Crash', chistrike: 'Chi Strike', goldrush: 'Gold Rush', foamburst: 'Foam Burst',
+  vinelash: 'Vine Lash', stunshock: 'Stun Shock', sandblast: 'Sand Blast', drumsolo: 'Drum Solo',
+  oneblow: 'One Blow', rapidflow: 'Rapid Flow', windrage: 'Wind Rage',
+};
+
+// „max_flare” → „Max Flare”, „gmax_wildfire” → „G-Max Wildfire”.
+function maxMoveName(vfxName = '') {
+  const [prefix, word = ''] = vfxName.split('_');
+  const title = MAX_MOVE_WORDS[word] || word.charAt(0).toUpperCase() + word.slice(1);
+  return `${prefix === 'gmax' ? 'G-Max' : 'Max'} ${title}`;
+}
+
+const rankBy = (list, score, key) => [...list].sort((a, b) => score(b) - score(a)).forEach((item, index) => { item[key] = index + 1; });
+
+// speciesId → { tankRank, healerRank, dynamax: { type, rank, strength, move, fast }, gigantamax: { … } };
+// a strength a támadó pontszáma a típus legjobbjához képest (0–1).
+const maxRankingsCache = new WeakMap();
+function maxRankingsOf(data, gameMaster) {
+  if (maxRankingsCache.has(gameMaster)) return maxRankingsCache.get(gameMaster);
+  const multiplier = gameMaster.cpMultipliers[RAID_LEVEL - 1];
+  const pool = [];
+  const attackers = [];
+  for (const species of data.gamemaster.pokemon) {
+    const tags = species.tags || [];
+    if (species.released === false || tags.some((tag) => tag.startsWith('duplicate') || tag === 'shadow' || tag === 'mega')) continue;
+    const forms = maxFormsOf(species.speciesId, gameMaster);
+    if (!forms.length) continue;
+    const types = species.types.filter((type) => type !== 'none');
+    const base = species.baseStats;
+    const atk = (base.atk + 15) * multiplier;
+    const def = (base.def + 15) * multiplier;
+    const hp = Math.floor((base.hp + 15) * multiplier);
+    const entry = { id: species.speciesId, tank: def * hp, healer: hp * Math.sqrt(def * hp) };
+    pool.push(entry);
+    const stab = (type) => (types.includes(type) ? STAB : 1);
+
+    if (forms.includes('Dynamax')) {
+      // Típusonként a legerősebb Fast mozdulat (PvE DPS) adja a Max mozdulat típusát.
+      const bestFastByType = new Map();
+      for (const moveId of species.fastMoves || []) {
+        const move = pveMoveOf(moveId, true, gameMaster.pveMoves);
+        if (!move || RAID_EXCLUDED_TYPES.has(move.type)) continue;
+        const dps = move.power / move.seconds;
+        if (!bestFastByType.has(move.type) || dps > bestFastByType.get(move.type).dps) bestFastByType.set(move.type, { moveId, dps });
+      }
+      for (const [type, fast] of bestFastByType) {
+        attackers.push({
+          id: species.speciesId, form: 'dynamax', type, score: MAX_ATTACK_POWER * atk * stab(type),
+          move: gameMaster.dynamaxMoves.get(type)?.name, fast: data.moves.get(fast.moveId) || fast.moveId,
+        });
+      }
+    }
+    const gigantamaxMove = forms.includes('Gigantamax') && gameMaster.gigantamaxMoves.get(goSpeciesName(species.speciesId));
+    if (gigantamaxMove && !RAID_EXCLUDED_TYPES.has(gigantamaxMove.type)) {
+      attackers.push({
+        id: species.speciesId, form: 'gigantamax', type: gigantamaxMove.type,
+        score: GIGANTAMAX_ATTACK_POWER * atk * stab(gigantamaxMove.type), move: gigantamaxMove.name,
+      });
+    }
+  }
+  rankBy(pool, (item) => item.tank, 'tankRank');
+  rankBy(pool, (item) => item.healer, 'healerRank');
+  const attackersByType = new Map();
+  for (const attacker of attackers) {
+    if (!attackersByType.has(attacker.type)) attackersByType.set(attacker.type, []);
+    attackersByType.get(attacker.type).push(attacker);
+  }
+  for (const list of attackersByType.values()) {
+    rankBy(list, (item) => item.score, 'rank');
+    // Kevés támadós típusban a helyezés önmagában félrevezető: az erő a típus legjobbjához képest is kell.
+    const best = Math.max(...list.map((item) => item.score));
+    list.forEach((item) => { item.strength = Math.round((item.score / best) * 100) / 100; });
+  }
+
+  const rankings = new Map(pool.map((item) => [item.id, { tankRank: item.tankRank, healerRank: item.healerRank }]));
+  for (const attacker of attackers) {
+    const result = rankings.get(attacker.id);
+    if (result[attacker.form] && result[attacker.form].rank <= attacker.rank) continue;
+    result[attacker.form] = {
+      type: attacker.type, rank: attacker.rank, strength: attacker.strength, move: attacker.move,
+      ...(attacker.fast ? { fast: attacker.fast } : {}),
+    };
+  }
+  maxRankingsCache.set(gameMaster, rankings);
+  return rankings;
+}
+
 // ---------- A játék game mastere: Dynamax / Gigantamax, fejlődés ----------
 
 // A játék kibányászott game mastere (PokeMiners). A PvPoke nem tartja nyilván a Dynamaxot és a
@@ -327,8 +429,13 @@ export async function loadGameMaster() {
   const maxForms = new Map();
   const evolutions = new Map();
   const pveMoves = new Map();
+  const maxMoves = new Map();
   for (const template of templates) {
     const move = template.data?.moveSettings;
+    if (move && /^VN_BM_/.test(move.movementId)) {
+      maxMoves.set(move.movementId, { type: move.pokemonType.replace('POKEMON_TYPE_', '').toLowerCase(), name: maxMoveName(move.vfxName) });
+      continue;
+    }
     if (move && typeof move.movementId === 'string') {
       pveMoves.set(move.movementId, {
         type: move.pokemonType.replace('POKEMON_TYPE_', '').toLowerCase(),
@@ -353,7 +460,16 @@ export async function loadGameMaster() {
     evolutions.set(parentKey, new Map(branches.map((branch) => [goKey(branch.form || branch.evolution), evolutionCost(branch)])));
   }
   const levelSettings = templates.find((template) => template.templateId === 'PLAYER_LEVEL_SETTINGS');
-  return { maxForms, evolutions, pveMoves, cpMultipliers: levelSettings.data.playerLevel.cpMultiplier };
+  const settingsOf = (templateId) => templates.find((template) => template.templateId === templateId).data;
+  // Típus → Max mozdulat (Dynamax), és faj → G-Max mozdulat (Gigantamax).
+  const dynamaxMoves = new Map(settingsOf('BREAD_MOVE_MAPPING_SETTINGS').breadMoveMappings.mappings
+    .map((mapping) => [mapping.type.replace('POKEMON_TYPE_', '').toLowerCase(), maxMoves.get(mapping.move)]));
+  const gigantamaxMoves = new Map(settingsOf('SOURDOUGH_MOVE_MAPPING_SETTINGS').sourdoughMoveMappingSettings.mappings
+    .map((mapping) => [goKey(mapping.form || mapping.pokemonId), maxMoves.get(mapping.move)]));
+  return {
+    maxForms, evolutions, pveMoves, dynamaxMoves, gigantamaxMoves,
+    cpMultipliers: levelSettings.data.playerLevel.cpMultiplier,
+  };
 }
 
 // PvPoke-azonosító → a game master fajneve, pl. ninetales_alolan → NINETALES_ALOLA.

@@ -13,6 +13,8 @@
 // bestIv: a ligában a legjobb IV ({ iv: 'Attack/Defense/HP', cp }) a game master CP-szorzóival
 // raid: számolt raid-helyezés ({ type, rank, moveset }) a legjobb támadó típusában, a game masterből;
 //   a shadow.raid és a megaForms[].raid ugyanígy
+// maxBattle: Dynamax / Gigantamax szerepek helyezése (40-es szint, a játék game masteréből):
+//   tankRank, healerRank, dynamax / gigantamax: { type, rank, move, fast } a támadó rangsorban
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok ({ id, name, rank, legendary }, mint az ágban)
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 
@@ -93,6 +95,11 @@ const PVPOKE = {
       type: 'psychic',
       rank: 24,
       moveset: { fast: ['Psycho Cut'], charged: ['Psychic'] },
+    },
+    maxBattle: {
+      tankRank: 86,
+      healerRank: 96,
+      dynamax: { type: 'psychic', rank: 1, strength: 1, move: 'Max Mindstorm', fast: 'Confusion' },
     },
     buddyKm: 3,
     specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
@@ -734,6 +741,11 @@ const PVPOKE = {
       rank: 109,
       moveset: { fast: ['Zen Headbutt'], charged: ['Psychic'] },
     },
+    maxBattle: {
+      tankRank: 1,
+      healerRank: 1,
+      dynamax: { type: 'psychic', rank: 30, strength: 0.42, move: 'Max Mindstorm', fast: 'Zen Headbutt' },
+    },
     buddyKm: 5,
     specialMoves: ['Wild Charge'],
     greatLeague: {
@@ -816,6 +828,12 @@ const PVPOKE = {
       type: 'fire',
       rank: 35,
       moveset: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
+    },
+    maxBattle: {
+      tankRank: 52,
+      healerRank: 52,
+      dynamax: { type: 'flying', rank: 3, strength: 0.89, move: 'Max Airstream', fast: 'Air Slash' },
+      gigantamax: { type: 'fire', rank: 2, strength: 0.94, move: 'G-Max Wildfire' },
     },
     buddyKm: 3,
     specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
@@ -961,6 +979,12 @@ const PVPOKE = {
       rank: 33,
       moveset: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
     },
+    maxBattle: {
+      tankRank: 58,
+      healerRank: 51,
+      dynamax: { type: 'fire', rank: 8, strength: 0.78, move: 'Max Flare', fast: 'Fire Spin' },
+      gigantamax: { type: 'fire', rank: 1, strength: 1, move: 'G-Max Fireball' },
+    },
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
     greatLeague: {
@@ -1032,6 +1056,11 @@ const PVPOKE = {
       type: 'flying',
       rank: 55,
       moveset: { fast: ['Air Slash'], charged: ['Sky Attack'] },
+    },
+    maxBattle: {
+      tankRank: 21,
+      healerRank: 20,
+      dynamax: { type: 'flying', rank: 4, strength: 0.67, move: 'Max Airstream', fast: 'Air Slash' },
     },
     buddyKm: 1,
     specialMoves: ['Iron Head', 'Air Cutter'],
@@ -1166,6 +1195,11 @@ const PVPOKE = {
       type: 'fire',
       rank: 30,
       moveset: { fast: ['Fire Fang'], charged: ['Overheat'] },
+    },
+    maxBattle: {
+      tankRank: 79,
+      healerRank: 42,
+      dynamax: { type: 'fire', rank: 3, strength: 0.85, move: 'Max Flare', fast: 'Fire Fang' },
     },
     buddyKm: 3,
     greatLeague: {
@@ -1492,6 +1526,11 @@ const PVPOKE = {
         { id: 'dubwool', name: 'Dubwool', rank: 163, current: true, candy: 50 },
       ],
     ],
+    maxBattle: {
+      tankRank: 42,
+      healerRank: 53,
+      dynamax: { type: 'fighting', rank: 24, strength: 0.45, move: 'Max Knuckle', fast: 'Double Kick' },
+    },
     buddyKm: 3,
     greatLeague: {
       rank: 163,
@@ -1599,6 +1638,7 @@ const PVPOKE = {
         { id: 'sylveon', name: 'Sylveon', rank: 104, raidRank: 11, candy: 25, quest: true },
       ],
     ],
+    maxBattle: { tankRank: 111, healerRank: 112 },
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Body Slam'],
     greatLeague: {
@@ -1740,6 +1780,11 @@ const PVPOKE = {
       type: 'ground',
       rank: 18,
       moveset: { fast: ['Mud Slap'], charged: ['Earthquake'] },
+    },
+    maxBattle: {
+      tankRank: 55,
+      healerRank: 27,
+      dynamax: { type: 'ground', rank: 1, strength: 1, move: 'Max Quake', fast: 'Mud Slap' },
     },
     buddyKm: 3,
     greatLeague: {
@@ -1914,6 +1959,11 @@ const PVPOKE = {
       type: 'fire',
       rank: 37,
       moveset: { fast: ['Fire Spin'], charged: ['Overheat'] },
+    },
+    maxBattle: {
+      tankRank: 67,
+      healerRank: 73,
+      dynamax: { type: 'fire', rank: 6, strength: 0.8, move: 'Max Flare', fast: 'Fire Spin' },
     },
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
@@ -2223,6 +2273,11 @@ const PVPOKE = {
       rank: 6,
       moveset: { fast: ['Charm'], charged: ['Dazzling Gleam'] },
     },
+    maxBattle: {
+      tankRank: 48,
+      healerRank: 64,
+      dynamax: { type: 'fairy', rank: 1, strength: 1, move: 'Max Starfall', fast: 'Charm' },
+    },
     buddyKm: 5,
     specialMoves: ['Synchronoise'],
     greatLeague: {
@@ -2280,6 +2335,11 @@ const PVPOKE = {
       type: 'rock',
       rank: 15,
       moveset: { fast: ['Smack Down'], charged: ['Meteor Beam'] },
+    },
+    maxBattle: {
+      tankRank: 27,
+      healerRank: 37,
+      dynamax: { type: 'rock', rank: 2, strength: 0.94, move: 'Max Rockfall', fast: 'Smack Down' },
     },
     buddyKm: 3,
     specialMoves: ['Meteor Beam'],
@@ -2376,6 +2436,11 @@ const PVPOKE = {
       rank: 112,
       moveset: { fast: ['Bullet Seed'], charged: ['Trailblaze'] },
     },
+    maxBattle: {
+      tankRank: 23,
+      healerRank: 9,
+      dynamax: { type: 'grass', rank: 12, strength: 0.45, move: 'Max Overgrowth', fast: 'Bullet Seed' },
+    },
     buddyKm: 1,
     greatLeague: {
       rank: 187,
@@ -2456,6 +2521,11 @@ const PVPOKE = {
       type: 'water',
       rank: 28,
       moveset: { fast: ['Waterfall'], charged: ['Hydro Pump'] },
+    },
+    maxBattle: {
+      tankRank: 26,
+      healerRank: 26,
+      dynamax: { type: 'dark', rank: 7, strength: 0.67, move: 'Max Darkness', fast: 'Bite' },
     },
     buddyKm: 1,
     specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
@@ -2571,6 +2641,11 @@ const PVPOKE = {
       type: 'fairy',
       rank: 10,
       moveset: { fast: ['Charm'], charged: ['Dazzling Gleam'] },
+    },
+    maxBattle: {
+      tankRank: 78,
+      healerRank: 86,
+      dynamax: { type: 'fairy', rank: 2, strength: 1, move: 'Max Starfall', fast: 'Charm' },
     },
     buddyKm: 5,
     greatLeague: {
@@ -2733,6 +2808,12 @@ const PVPOKE = {
       type: 'water',
       rank: 17,
       moveset: { fast: ['Water Gun'], charged: ['Hydro Cannon'] },
+    },
+    maxBattle: {
+      tankRank: 87,
+      healerRank: 78,
+      dynamax: { type: 'water', rank: 4, strength: 0.78, move: 'Max Geyser', fast: 'Water Gun' },
+      gigantamax: { type: 'water', rank: 1, strength: 1, move: 'G-Max Hydrosnipe' },
     },
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
@@ -2929,6 +3010,12 @@ const PVPOKE = {
       rank: 37,
       moveset: { fast: ['Frost Breath'], charged: ['Blizzard'] },
     },
+    maxBattle: {
+      tankRank: 12,
+      healerRank: 6,
+      dynamax: { type: 'ice', rank: 9, strength: 0.7, move: 'Max Hailstorm', fast: 'Frost Breath' },
+      gigantamax: { type: 'ice', rank: 3, strength: 0.9, move: 'G-Max Resonance' },
+    },
     buddyKm: 5,
     specialMoves: ['Ice Shard', 'Dragon Pulse', 'Ice Beam'],
     greatLeague: {
@@ -3074,6 +3161,12 @@ const PVPOKE = {
       rank: 36,
       moveset: { fast: ['Counter'], charged: ['Dynamic Punch'] },
     },
+    maxBattle: {
+      tankRank: 47,
+      healerRank: 43,
+      dynamax: { type: 'fighting', rank: 5, strength: 0.78, move: 'Max Knuckle', fast: 'Counter' },
+      gigantamax: { type: 'fighting', rank: 1, strength: 1, move: 'G-Max Chi Strike' },
+    },
     buddyKm: 3,
     specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
     greatLeague: {
@@ -3131,6 +3224,11 @@ const PVPOKE = {
       type: 'psychic',
       rank: 102,
       moveset: { fast: ['Psycho Cut'], charged: ['Psybeam'] },
+    },
+    maxBattle: {
+      tankRank: 50,
+      healerRank: 46,
+      dynamax: { type: 'flying', rank: 8, strength: 0.6, move: 'Max Airstream', fast: 'Peck' },
     },
     buddyKm: 3,
     greatLeague: {
@@ -3526,6 +3624,11 @@ const PVPOKE = {
       rank: 10,
       moveset: { fast: ['Wing Attack'], charged: ['Fly'] },
     },
+    maxBattle: {
+      tankRank: 35,
+      healerRank: 35,
+      dynamax: { type: 'flying', rank: 1, strength: 1, move: 'Max Airstream', fast: 'Wing Attack' },
+    },
     buddyKm: 20,
     specialMoves: ['Sky Attack'],
     greatLeague: {
@@ -3824,6 +3927,11 @@ const PVPOKE = {
       rank: 11,
       moveset: { fast: ['Smack Down'], charged: ['Rock Wrecker'] },
     },
+    maxBattle: {
+      tankRank: 13,
+      healerRank: 8,
+      dynamax: { type: 'rock', rank: 1, strength: 1, move: 'Max Rockfall', fast: 'Smack Down' },
+    },
     buddyKm: 3,
     specialMoves: ['Rock Wrecker'],
     greatLeague: {
@@ -3873,6 +3981,12 @@ const PVPOKE = {
       type: 'grass',
       rank: 13,
       moveset: { fast: ['Razor Leaf'], charged: ['Frenzy Plant'] },
+    },
+    maxBattle: {
+      tankRank: 34,
+      healerRank: 25,
+      dynamax: { type: 'grass', rank: 3, strength: 0.78, move: 'Max Overgrowth', fast: 'Razor Leaf' },
+      gigantamax: { type: 'grass', rank: 1, strength: 1, move: 'G-Max Drum Solo' },
     },
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
@@ -3927,6 +4041,11 @@ const PVPOKE = {
       rank: 81,
       moveset: { fast: ['Shadow Claw'], charged: ['Shadow Sneak'] },
     },
+    maxBattle: {
+      tankRank: 104,
+      healerRank: 113,
+      dynamax: { type: 'ghost', rank: 7, strength: 0.44, move: 'Max Phantasm', fast: 'Shadow Claw' },
+    },
     buddyKm: 5,
     greatLeague: {
       rank: 37,
@@ -3978,6 +4097,11 @@ const PVPOKE = {
         { id: 'snorlax', name: 'Snorlax', rank: 3, current: true, candy: 50 },
       ],
     ],
+    maxBattle: {
+      tankRank: 6,
+      healerRank: 3,
+      dynamax: { type: 'ghost', rank: 6, strength: 0.48, move: 'Max Phantasm', fast: 'Lick' },
+    },
     buddyKm: 5,
     specialMoves: ['Yawn'],
     greatLeague: {
@@ -4474,6 +4598,11 @@ const PVPOKE = {
       rank: 24,
       moveset: { fast: ['Magical Leaf'], charged: ['Grass Knot'] },
     },
+    maxBattle: {
+      tankRank: 45,
+      healerRank: 54,
+      dynamax: { type: 'grass', rank: 4, strength: 0.73, move: 'Max Overgrowth', fast: 'Razor Leaf' },
+    },
     buddyKm: 3,
     specialMoves: ['High Jump Kick'],
     greatLeague: {
@@ -4567,6 +4696,11 @@ const PVPOKE = {
       rank: 94,
       moveset: { fast: ['Snarl'], charged: ['Foul Play'] },
     },
+    maxBattle: {
+      tankRank: 10,
+      healerRank: 13,
+      dynamax: { type: 'dark', rank: 17, strength: 0.45, move: 'Max Darkness', fast: 'Feint Attack' },
+    },
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Psychic'],
     greatLeague: {
@@ -4620,6 +4754,12 @@ const PVPOKE = {
       type: 'grass',
       rank: 22,
       moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant'] },
+    },
+    maxBattle: {
+      tankRank: 37,
+      healerRank: 47,
+      dynamax: { type: 'grass', rank: 6, strength: 0.65, move: 'Max Overgrowth', fast: 'Razor Leaf' },
+      gigantamax: { type: 'grass', rank: 2, strength: 0.84, move: 'G-Max Vine Lash' },
     },
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
@@ -4743,6 +4883,11 @@ const PVPOKE = {
       type: 'fairy',
       rank: 33,
       moveset: { fast: ['Charm'], charged: ['Moonblast'] },
+    },
+    maxBattle: {
+      tankRank: 76,
+      healerRank: 85,
+      dynamax: { type: 'fairy', rank: 7, strength: 0.71, move: 'Max Starfall', fast: 'Charm' },
     },
     buddyKm: 1,
     greatLeague: {
