@@ -66,6 +66,12 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 /* Pokédex */
 .search{box-sizing:border-box;width:100%;font:500 1rem Barlow,sans-serif;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
 .search:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.search-box{position:relative}
+.search-box .search{padding-right:44px}
+.search::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;display:none}
+.search-clear{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:34px;height:34px;padding:0;border:0;border-radius:50%;background:var(--code-bg);color:var(--muted);font:600 1rem/1 system-ui,sans-serif;cursor:pointer}
+.search-clear:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.search-clear[hidden]{display:none}
 .dex{display:grid;gap:10px}
 .mon{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .mon-head{display:flex;justify-content:space-between;align-items:center;gap:8px}

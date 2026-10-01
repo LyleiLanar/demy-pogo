@@ -124,7 +124,7 @@ function stageTier(stage, tiers) {
   return stage.rank ? leagueRating(stage) : 'trash';
 }
 
-// Egy faj az ágban, a színével; a nevére koppintva a Pokédex csak azt a fajt mutatja (setupPokedexSearch).
+// Egy faj az ágban, a színével; a nevére koppintva a Pokédex csak azt a fajt mutatja (setupNavigation).
 // Az első fok kivételével előtte a nyíl, amire koppintva látszik a fejlődés ára.
 function renderEvolutionStage(stage, isFirst, tiers) {
   const name = `<button type="button" class="evo-link tier-${stageTier(stage, tiers)}${stage.current ? ' evo-current' : ''}"

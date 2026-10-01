@@ -19,7 +19,8 @@ Statikus oldal GitHub Pages-en, build nélkül.
   - `rankings.js`: GL Top 50 fül
   - `species.js`: a Pokédex adatlogikája (POKEMON + PVPOKE, formák, módok, értékelés)
   - `pokedex.js`: a Pokédex kártyái
-  - `ui.js`: fülek, keresés, formaváltó, súgóbuborék, másolás
+  - `ui.js`: fülek, keresés és navigáció (böngésző-előzmények, `#/dex/umbreon` cím), formaváltó,
+    súgóbuborék, másolás
   - `main.js`: indítás
 - `tools/`: `sync-pvpoke.mjs` (data/pvpoke.js generálása), `pvpoke-lookup.mjs` (egy faj gépi adatai:
   PvPoke + a játék game mastere, Dynamaxszal), `pvpoke-common.mjs` (közös kód),
