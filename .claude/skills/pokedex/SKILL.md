@@ -129,7 +129,7 @@ az értékét.
     „nem prioritás”) a fül színe, a típust („Psychic támadó”) a típusikonok, a szerepet („tank”,
     „gyógyító”) a Fejleszd sor, a szintet a Legjobb IV. A `note` csak konkrét infóra kell: jobb
     alternatíva („Jobb: Rhyperior.”), feltétel („Csak Frenzy Plant-tel jó.”), költség („Olcsón
-    építhető.”), szerep, ha a kártya nem mutatja („Szólóban is jó Mega.”);
+    építhető.”), szerep, ha a kártya nem mutatja;
   - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
   - hogy milyen típusú támadó („Fire támadó”), ha a módnál van mozdulatlista: a mozdulatok
     típusikonja mutatja. Mozdulatlista nélkül maradhat.

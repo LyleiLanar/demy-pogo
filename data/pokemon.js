@@ -69,7 +69,6 @@ const POKEMON = [
     forms: {
       mega: {
         raid: {
-          note: 'Szólóban is jó Mega.',
           moves: { charged: ['Dragon Pulse'] },
         },
       },
@@ -401,11 +400,6 @@ const POKEMON = [
     name: 'Venusaur',
     origin: 'Bulbasaur',
     maxBattle: { rating: 'alternative', upgrade: ['attack'] },
-    forms: {
-      mega: {
-        raid: { note: 'Szólóban is hasznos Mega.' },
-      },
-    },
   },
   { id: 'vigoroth', name: 'Vigoroth', origin: 'Slakoth', warning: 'NE fejleszd Slakinggé!' },
   {
