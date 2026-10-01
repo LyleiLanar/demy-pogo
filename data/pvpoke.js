@@ -49,6 +49,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 606,
+      moveset: { fast: ['Psycho Cut'], charged: ['Shadow Ball', 'Flash Cannon'] },
       bestIv: { iv: '15/15/15', cp: 1746 },
     },
   },
@@ -74,19 +75,23 @@ const PVPOKE = {
     specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
     greatLeague: {
       rank: 927,
+      moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
       bestIv: { iv: '1/15/15', cp: 1495 },
     },
     ultraLeague: {
       rank: 682,
+      moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
       bestIv: { iv: '0/14/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
         rank: 844,
+        moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
         bestIv: { iv: '1/15/15', cp: 1495 },
       },
       ultraLeague: {
         rank: 658,
+        moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
         bestIv: { iv: '0/14/15', cp: 2497 },
       },
     },
@@ -200,6 +205,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 270,
+      moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
       bestIv: { iv: '15/15/15', cp: 2266 },
     },
     shadow: {
@@ -220,6 +226,7 @@ const PVPOKE = {
       },
       ultraLeague: {
         rank: 309,
+        moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
         bestIv: { iv: '15/15/15', cp: 2266 },
       },
     },
@@ -245,6 +252,7 @@ const PVPOKE = {
     specialMoves: ['Dragon Pulse'],
     greatLeague: {
       rank: 220,
+      moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
       bestIv: { iv: '0/13/11', cp: 1499 },
     },
     ultraLeague: {
@@ -265,6 +273,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 221,
+        moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
         bestIv: { iv: '0/13/11', cp: 1499 },
       },
       ultraLeague: {
@@ -392,6 +401,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 561,
+      moveset: { fast: ['Infestation'], charged: ['Water Pulse', 'Mirror Coat'] },
       bestIv: { iv: '15/15/15', cp: 2065 },
     },
     shadow: {
@@ -412,6 +422,7 @@ const PVPOKE = {
       },
       ultraLeague: {
         rank: 567,
+        moveset: { fast: ['Infestation'], charged: ['Water Pulse', 'Mirror Coat'] },
         bestIv: { iv: '15/15/15', cp: 2065 },
       },
     },
@@ -448,6 +459,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 817,
+      moveset: { fast: ['Bubble'], charged: ['Play Rough', 'Ice Beam'] },
       bestIv: { iv: '15/15/15', cp: 1795 },
     },
   },
@@ -465,19 +477,23 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 168,
+      moveset: { fast: ['Smack Down'], charged: ['Stone Edge', 'Flamethrower'] },
       bestIv: { iv: '0/15/14', cp: 1497 },
     },
     ultraLeague: {
       rank: 838,
+      moveset: { fast: ['Smack Down'], charged: ['Stone Edge', 'Flamethrower'] },
       bestIv: { iv: '15/15/15', cp: 1741 },
     },
     shadow: {
       greatLeague: {
         rank: 323,
+        moveset: { fast: ['Smack Down'], charged: ['Stone Edge', 'Flamethrower'] },
         bestIv: { iv: '0/15/14', cp: 1497 },
       },
       ultraLeague: {
         rank: 841,
+        moveset: { fast: ['Smack Down'], charged: ['Stone Edge', 'Flamethrower'] },
         bestIv: { iv: '15/15/15', cp: 1741 },
       },
     },
@@ -500,10 +516,12 @@ const PVPOKE = {
     specialMoves: ['Glaive Rush'],
     greatLeague: {
       rank: 499,
+      moveset: { fast: ['Dragon Breath'], charged: ['Glaive Rush', 'Avalanche'] },
       bestIv: { iv: '0/15/5', cp: 1500 },
     },
     ultraLeague: {
       rank: 347,
+      moveset: { fast: ['Dragon Breath'], charged: ['Glaive Rush', 'Avalanche'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
   },
@@ -528,19 +546,23 @@ const PVPOKE = {
     specialMoves: ['Blast Burn', 'Stone Edge'],
     greatLeague: {
       rank: 285,
+      moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blast Burn'] },
       bestIv: { iv: '1/15/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 170,
+      moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blast Burn'] },
       bestIv: { iv: '1/15/15', cp: 2499 },
     },
     shadow: {
       greatLeague: {
         rank: 239,
+        moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blaze Kick'] },
         bestIv: { iv: '1/15/15', cp: 1499 },
       },
       ultraLeague: {
         rank: 174,
+        moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blast Burn'] },
         bestIv: { iv: '1/15/15', cp: 2499 },
       },
     },
@@ -564,10 +586,12 @@ const PVPOKE = {
     specialMoves: ['Wild Charge'],
     greatLeague: {
       rank: 934,
+      moveset: { fast: ['Zen Headbutt'], charged: ['Wild Charge', 'Dazzling Gleam'] },
       bestIv: { iv: '0/15/3', cp: 1499 },
     },
     ultraLeague: {
       rank: 639,
+      moveset: { fast: ['Zen Headbutt'], charged: ['Wild Charge', 'Dazzling Gleam'] },
       bestIv: { iv: '0/15/14', cp: 2499 },
     },
   },
@@ -592,6 +616,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 819,
+      moveset: { fast: ['Rock Throw'], charged: ['Moonblast', 'Rock Slide'] },
       bestIv: { iv: '15/15/15', cp: 1658 },
     },
   },
@@ -618,19 +643,23 @@ const PVPOKE = {
     specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
     greatLeague: {
       rank: 259,
+      moveset: { fast: ['Ember'], charged: ['Blast Burn', 'Air Cutter'] },
       bestIv: { iv: '0/15/13', cp: 1500 },
     },
     ultraLeague: {
       rank: 101,
+      moveset: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Air Cutter'] },
       bestIv: { iv: '0/13/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
         rank: 199,
+        moveset: { fast: ['Ember'], charged: ['Blast Burn', 'Air Cutter'] },
         bestIv: { iv: '0/15/13', cp: 1500 },
       },
       ultraLeague: {
         rank: 124,
+        moveset: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Air Cutter'] },
         bestIv: { iv: '0/13/15', cp: 2500 },
       },
     },
@@ -698,10 +727,12 @@ const PVPOKE = {
     buddyKm: 1,
     greatLeague: {
       rank: 1118,
+      moveset: { fast: ['Bullet Seed'], charged: ['Dazzling Gleam', 'Solar Beam'] },
       bestIv: { iv: '0/13/15', cp: 1496 },
     },
     ultraLeague: {
       rank: 836,
+      moveset: { fast: ['Bullet Seed'], charged: ['Dazzling Gleam', 'Solar Beam'] },
       bestIv: { iv: '15/15/15', cp: 2315 },
     },
   },
@@ -724,10 +755,12 @@ const PVPOKE = {
     specialMoves: ['Blast Burn'],
     greatLeague: {
       rank: 618,
+      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn', 'Pyro Ball'] },
       bestIv: { iv: '0/15/15', cp: 1500 },
     },
     ultraLeague: {
       rank: 403,
+      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn', 'Pyro Ball'] },
       bestIv: { iv: '1/15/14', cp: 2499 },
     },
   },
@@ -761,6 +794,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 348,
+      moveset: { fast: ['Poison Sting'], charged: ['Stone Edge', 'Earthquake'] },
       bestIv: { iv: '15/15/15', cp: 2207 },
     },
   },
@@ -894,19 +928,23 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 823,
+      moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
       bestIv: { iv: '0/15/11', cp: 1498 },
     },
     ultraLeague: {
       rank: 534,
+      moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
       bestIv: { iv: '0/13/15', cp: 2498 },
     },
     shadow: {
       greatLeague: {
         rank: 807,
+        moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
         bestIv: { iv: '0/15/11', cp: 1498 },
       },
       ultraLeague: {
         rank: 576,
+        moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
         bestIv: { iv: '0/13/15', cp: 2498 },
       },
     },
@@ -929,10 +967,12 @@ const PVPOKE = {
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
       rank: 565,
+      moveset: { fast: ['Leafage'], charged: ['Frenzy Plant', 'Spirit Shackle'] },
       bestIv: { iv: '0/14/11', cp: 1497 },
     },
     ultraLeague: {
       rank: 212,
+      moveset: { fast: ['Astonish'], charged: ['Frenzy Plant', 'Spirit Shackle'] },
       bestIv: { iv: '0/14/13', cp: 2497 },
     },
   },
@@ -942,10 +982,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 268,
+      moveset: { fast: ['Thunder Shock'], charged: ['Discharge', 'Play Rough'] },
       bestIv: { iv: '0/14/12', cp: 1500 },
     },
     ultraLeague: {
       rank: 605,
+      moveset: { fast: ['Thunder Shock'], charged: ['Discharge', 'Parabolic Charge'] },
       bestIv: { iv: '15/15/15', cp: 2081 },
     },
   },
@@ -970,19 +1012,23 @@ const PVPOKE = {
     specialMoves: ['Blast Burn'],
     greatLeague: {
       rank: 399,
+      moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
       bestIv: { iv: '0/11/14', cp: 1499 },
     },
     ultraLeague: {
       rank: 281,
+      moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
       bestIv: { iv: '1/15/15', cp: 2493 },
     },
     shadow: {
       greatLeague: {
         rank: 460,
+        moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
         bestIv: { iv: '0/11/14', cp: 1499 },
       },
       ultraLeague: {
         rank: 285,
+        moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
         bestIv: { iv: '1/15/15', cp: 2493 },
       },
     },
@@ -1118,19 +1164,23 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 363,
+      moveset: { fast: ['Hex'], charged: ['Icy Wind', 'Shadow Ball'] },
       bestIv: { iv: '0/15/12', cp: 1500 },
     },
     ultraLeague: {
       rank: 137,
+      moveset: { fast: ['Hex'], charged: ['Icy Wind', 'Shadow Ball'] },
       bestIv: { iv: '1/15/15', cp: 2499 },
     },
     shadow: {
       greatLeague: {
         rank: 289,
+        moveset: { fast: ['Astonish'], charged: ['Icy Wind', 'Shadow Ball'] },
         bestIv: { iv: '0/15/12', cp: 1500 },
       },
       ultraLeague: {
         rank: 236,
+        moveset: { fast: ['Hex'], charged: ['Shadow Ball', 'Icy Wind'] },
         bestIv: { iv: '1/15/15', cp: 2499 },
       },
     },
@@ -1150,10 +1200,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 163,
+      moveset: { fast: ['Take Down'], charged: ['Body Slam', 'Wild Charge'] },
       bestIv: { iv: '1/15/15', cp: 1497 },
     },
     ultraLeague: {
       rank: 375,
+      moveset: { fast: ['Double Kick'], charged: ['Body Slam', 'Wild Charge'] },
       bestIv: { iv: '15/15/15', cp: 2478 },
     },
   },
@@ -1228,6 +1280,7 @@ const PVPOKE = {
     specialMoves: ['Last Resort', 'Body Slam'],
     greatLeague: {
       rank: 1026,
+      moveset: { fast: ['Quick Attack'], charged: ['Swift', 'Dig'] },
       bestIv: { iv: '15/15/15', cp: 1210 },
     },
   },
@@ -1245,10 +1298,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 814,
+      moveset: { fast: ['Bullet Seed'], charged: ['Energy Ball', 'Grass Knot'] },
       bestIv: { iv: '0/14/15', cp: 1498 },
     },
     ultraLeague: {
       rank: 780,
+      moveset: { fast: ['Bullet Seed'], charged: ['Energy Ball', 'Grass Knot'] },
       bestIv: { iv: '15/15/15', cp: 2255 },
     },
   },
@@ -1346,19 +1401,23 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 538,
+      moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
       bestIv: { iv: '2/15/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 440,
+      moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
       bestIv: { iv: '0/15/15', cp: 2495 },
     },
     shadow: {
       greatLeague: {
         rank: 461,
+        moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
         bestIv: { iv: '2/15/15', cp: 1499 },
       },
       ultraLeague: {
         rank: 365,
+        moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
         bestIv: { iv: '0/15/15', cp: 2495 },
       },
     },
@@ -1393,6 +1452,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 302,
+      moveset: { fast: ['Peck'], charged: ['Drill Peck', 'Drill Run'] },
       bestIv: { iv: '15/15/15', cp: 2257 },
     },
   },
@@ -1491,10 +1551,12 @@ const PVPOKE = {
     specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
     greatLeague: {
       rank: 695,
+      moveset: { fast: ['Ember'], charged: ['Heat Wave', 'Superpower'] },
       bestIv: { iv: '0/15/13', cp: 1500 },
     },
     ultraLeague: {
       rank: 589,
+      moveset: { fast: ['Ember'], charged: ['Superpower', 'Heat Wave'] },
       bestIv: { iv: '1/15/15', cp: 2498 },
     },
   },
@@ -1649,6 +1711,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 741,
+      moveset: { fast: ['Sucker Punch'], charged: ['Swift', 'Brick Break'] },
       bestIv: { iv: '15/15/15', cp: 1987 },
     },
   },
@@ -1737,6 +1800,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 131,
+      moveset: { fast: ['Mud Shot'], charged: ['Rock Slide', 'Earthquake'] },
       bestIv: { iv: '15/15/15', cp: 2445 },
     },
   },
@@ -1762,19 +1826,23 @@ const PVPOKE = {
     specialMoves: ['Synchronoise'],
     greatLeague: {
       rank: 991,
+      moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
       bestIv: { iv: '0/15/15', cp: 1496 },
     },
     ultraLeague: {
       rank: 654,
+      moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
       bestIv: { iv: '0/12/15', cp: 2496 },
     },
     shadow: {
       greatLeague: {
         rank: 1012,
+        moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
         bestIv: { iv: '0/15/15', cp: 1496 },
       },
       ultraLeague: {
         rank: 664,
+        moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
         bestIv: { iv: '0/12/15', cp: 2496 },
       },
     },
@@ -1798,19 +1866,23 @@ const PVPOKE = {
     specialMoves: ['Meteor Beam'],
     greatLeague: {
       rank: 598,
+      moveset: { fast: ['Lock On'], charged: ['Superpower', 'Meteor Beam'] },
       bestIv: { iv: '0/11/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 368,
+      moveset: { fast: ['Lock On'], charged: ['Superpower', 'Meteor Beam'] },
       bestIv: { iv: '0/13/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
         rank: 651,
+        moveset: { fast: ['Lock On'], charged: ['Superpower', 'Meteor Beam'] },
         bestIv: { iv: '0/11/15', cp: 1499 },
       },
       ultraLeague: {
         rank: 517,
+        moveset: { fast: ['Lock On'], charged: ['Meteor Beam', 'Superpower'] },
         bestIv: { iv: '0/13/15', cp: 2497 },
       },
     },
@@ -1832,19 +1904,23 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 840,
+      moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
       bestIv: { iv: '0/15/15', cp: 1497 },
     },
     ultraLeague: {
       rank: 535,
+      moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
       bestIv: { iv: '0/14/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
         rank: 940,
+        moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
         bestIv: { iv: '0/15/15', cp: 1497 },
       },
       ultraLeague: {
         rank: 598,
+        moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
         bestIv: { iv: '0/14/15', cp: 2500 },
       },
     },
@@ -1864,10 +1940,12 @@ const PVPOKE = {
     buddyKm: 1,
     greatLeague: {
       rank: 187,
+      moveset: { fast: ['Bite'], charged: ['Body Slam', 'Trailblaze'] },
       bestIv: { iv: '0/12/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 150,
+      moveset: { fast: ['Bite'], charged: ['Body Slam', 'Trailblaze'] },
       bestIv: { iv: '3/15/15', cp: 2495 },
     },
   },
@@ -1926,6 +2004,7 @@ const PVPOKE = {
     specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
     greatLeague: {
       rank: 271,
+      moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
       bestIv: { iv: '0/14/15', cp: 1499 },
     },
     ultraLeague: {
@@ -1946,6 +2025,7 @@ const PVPOKE = {
     shadow: {
       greatLeague: {
         rank: 261,
+        moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
         bestIv: { iv: '0/14/15', cp: 1499 },
       },
       ultraLeague: {
@@ -1979,19 +2059,23 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 486,
+      moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
       bestIv: { iv: '0/14/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 334,
+      moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
         rank: 443,
+        moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
         bestIv: { iv: '0/14/14', cp: 1500 },
       },
       ultraLeague: {
         rank: 349,
+        moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
         bestIv: { iv: '1/15/15', cp: 2500 },
       },
     },
@@ -2014,10 +2098,12 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 724,
+      moveset: { fast: ['Psycho Cut'], charged: ['Psyshock', 'Power Whip'] },
       bestIv: { iv: '0/11/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 493,
+      moveset: { fast: ['Psycho Cut'], charged: ['Psyshock', 'Power Whip'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
   },
@@ -2125,6 +2211,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 165,
+      moveset: { fast: ['Thunder Shock'], charged: ['Wild Charge', 'Energy Ball'] },
       bestIv: { iv: '15/15/15', cp: 2430 },
     },
   },
@@ -2147,10 +2234,12 @@ const PVPOKE = {
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
       rank: 865,
+      moveset: { fast: ['Water Gun'], charged: ['Snipe Shot', 'Hydro Cannon'] },
       bestIv: { iv: '0/13/12', cp: 1500 },
     },
     ultraLeague: {
       rank: 716,
+      moveset: { fast: ['Water Gun'], charged: ['Snipe Shot', 'Shadow Ball'] },
       bestIv: { iv: '1/15/13', cp: 2499 },
     },
   },
@@ -2230,6 +2319,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 700,
+      moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
       bestIv: { iv: '15/15/15', cp: 1850 },
     },
     shadow: {
@@ -2250,6 +2340,7 @@ const PVPOKE = {
       },
       ultraLeague: {
         rank: 713,
+        moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
         bestIv: { iv: '15/15/15', cp: 1850 },
       },
     },
@@ -2268,10 +2359,12 @@ const PVPOKE = {
     buddyKm: 1,
     greatLeague: {
       rank: 518,
+      moveset: { fast: ['Thunder Shock'], charged: ['Acrobatics', 'Aerial Ace'] },
       bestIv: { iv: '0/15/14', cp: 1499 },
     },
     ultraLeague: {
       rank: 343,
+      moveset: { fast: ['Thunder Shock'], charged: ['Acrobatics', 'Aerial Ace'] },
       bestIv: { iv: '0/15/15', cp: 2495 },
     },
   },
@@ -2289,10 +2382,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 279,
+      moveset: { fast: ['Spark'], charged: ['Surf', 'Thunderbolt'] },
       bestIv: { iv: '0/13/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 414,
+      moveset: { fast: ['Spark'], charged: ['Surf', 'Thunderbolt'] },
       bestIv: { iv: '15/15/15', cp: 2357 },
     },
   },
@@ -2380,6 +2475,7 @@ const PVPOKE = {
     specialMoves: ['Body Slam'],
     greatLeague: {
       rank: 175,
+      moveset: { fast: ['Lick'], charged: ['Body Slam', 'Power Whip'] },
       bestIv: { iv: '8/14/15', cp: 1499 },
     },
   },
@@ -2397,10 +2493,12 @@ const PVPOKE = {
     buddyKm: 1,
     greatLeague: {
       rank: 350,
+      moveset: { fast: ['Sucker Punch'], charged: ['X-Scissor', 'Trailblaze'] },
       bestIv: { iv: '0/14/14', cp: 1499 },
     },
     ultraLeague: {
       rank: 266,
+      moveset: { fast: ['Sucker Punch'], charged: ['X-Scissor', 'Trailblaze'] },
       bestIv: { iv: '5/15/15', cp: 2497 },
     },
   },
@@ -2423,19 +2521,23 @@ const PVPOKE = {
     specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
     greatLeague: {
       rank: 246,
+      moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
       bestIv: { iv: '0/14/11', cp: 1500 },
     },
     ultraLeague: {
       rank: 249,
+      moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
       bestIv: { iv: '0/15/14', cp: 2497 },
     },
     shadow: {
       greatLeague: {
         rank: 194,
+        moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
         bestIv: { iv: '0/14/11', cp: 1500 },
       },
       ultraLeague: {
         rank: 175,
+        moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
         bestIv: { iv: '0/15/14', cp: 2497 },
       },
     },
@@ -2548,6 +2650,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 141,
+      moveset: { fast: ['Snarl'], charged: ['Dark Pulse', 'Shadow Ball'] },
       bestIv: { iv: '15/15/15', cp: 2417 },
     },
   },
@@ -2580,6 +2683,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 133,
+      moveset: { fast: ['Wing Attack'], charged: ['Twister', 'Water Pulse'] },
       bestIv: { iv: '15/15/15', cp: 2383 },
     },
   },
@@ -2612,6 +2716,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 640,
+      moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
       bestIv: { iv: '15/15/15', cp: 2075 },
     },
     shadow: {
@@ -2632,6 +2737,7 @@ const PVPOKE = {
       },
       ultraLeague: {
         rank: 668,
+        moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
         bestIv: { iv: '15/15/15', cp: 2075 },
       },
     },
@@ -2730,10 +2836,12 @@ const PVPOKE = {
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
       rank: 483,
+      moveset: { fast: ['Leafage'], charged: ['Night Slash', 'Frenzy Plant'] },
       bestIv: { iv: '0/13/13', cp: 1499 },
     },
     ultraLeague: {
       rank: 462,
+      moveset: { fast: ['Leafage'], charged: ['Night Slash', 'Frenzy Plant'] },
       bestIv: { iv: '0/15/14', cp: 2496 },
     },
   },
@@ -2781,19 +2889,23 @@ const PVPOKE = {
     specialMoves: ['Sky Attack'],
     greatLeague: {
       rank: 671,
+      moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
       bestIv: { iv: '1/15/15', cp: 1500 },
     },
     ultraLeague: {
       rank: 468,
+      moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
       bestIv: { iv: '0/14/12', cp: 2499 },
     },
     shadow: {
       greatLeague: {
         rank: 685,
+        moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
         bestIv: { iv: '1/15/15', cp: 1500 },
       },
       ultraLeague: {
         rank: 495,
+        moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
         bestIv: { iv: '0/14/12', cp: 2499 },
       },
     },
@@ -2888,10 +3000,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 506,
+      moveset: { fast: ['Shadow Claw'], charged: ['Close Combat', 'Trailblaze'] },
       bestIv: { iv: '1/15/15', cp: 1495 },
     },
     ultraLeague: {
       rank: 214,
+      moveset: { fast: ['Shadow Claw'], charged: ['Close Combat', 'Foul Play'] },
       bestIv: { iv: '0/14/15', cp: 2497 },
     },
   },
@@ -2909,10 +3023,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 678,
+      moveset: { fast: ['Incinerate'], charged: ['Flame Charge', 'Dark Pulse'] },
       bestIv: { iv: '0/15/10', cp: 1500 },
     },
     ultraLeague: {
       rank: 476,
+      moveset: { fast: ['Incinerate'], charged: ['Flame Charge', 'Dark Pulse'] },
       bestIv: { iv: '0/15/12', cp: 2500 },
     },
   },
@@ -2946,6 +3062,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 453,
+      moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
       bestIv: { iv: '15/15/15', cp: 2252 },
     },
     shadow: {
@@ -2966,6 +3083,7 @@ const PVPOKE = {
       },
       ultraLeague: {
         rank: 424,
+        moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
         bestIv: { iv: '15/15/15', cp: 2252 },
       },
     },
@@ -2988,10 +3106,12 @@ const PVPOKE = {
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
       rank: 288,
+      moveset: { fast: ['Low Kick'], charged: ['Close Combat', 'Hydro Cannon'] },
       bestIv: { iv: '0/15/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 199,
+      moveset: { fast: ['Low Kick'], charged: ['Close Combat', 'Hydro Cannon'] },
       bestIv: { iv: '1/15/14', cp: 2497 },
     },
   },
@@ -3014,19 +3134,23 @@ const PVPOKE = {
     specialMoves: ['Rock Wrecker'],
     greatLeague: {
       rank: 688,
+      moveset: { fast: ['Mud Slap'], charged: ['Drill Run', 'Rock Wrecker'] },
       bestIv: { iv: '0/14/14', cp: 1500 },
     },
     ultraLeague: {
       rank: 485,
+      moveset: { fast: ['Mud Slap'], charged: ['Drill Run', 'Rock Wrecker'] },
       bestIv: { iv: '0/14/14', cp: 2499 },
     },
     shadow: {
       greatLeague: {
         rank: 633,
+        moveset: { fast: ['Mud Slap'], charged: ['Drill Run', 'Rock Wrecker'] },
         bestIv: { iv: '0/14/14', cp: 1500 },
       },
       ultraLeague: {
         rank: 497,
+        moveset: { fast: ['Mud Slap'], charged: ['Drill Run', 'Rock Wrecker'] },
         bestIv: { iv: '0/14/14', cp: 2499 },
       },
     },
@@ -3218,19 +3342,23 @@ const PVPOKE = {
     specialMoves: ['Gust'],
     greatLeague: {
       rank: 713,
+      moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Close Combat'] },
       bestIv: { iv: '0/13/13', cp: 1500 },
     },
     ultraLeague: {
       rank: 505,
+      moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Close Combat'] },
       bestIv: { iv: '2/15/14', cp: 2500 },
     },
     shadow: {
       greatLeague: {
         rank: 757,
+        moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Close Combat'] },
         bestIv: { iv: '0/13/13', cp: 1500 },
       },
       ultraLeague: {
         rank: 464,
+        moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Close Combat'] },
         bestIv: { iv: '2/15/14', cp: 2500 },
       },
     },
@@ -3256,6 +3384,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 136,
+      moveset: { fast: ['Thunder Shock'], charged: ['Mud Bomb', 'Discharge'] },
       bestIv: { iv: '15/15/15', cp: 2445 },
     },
   },
@@ -3371,6 +3500,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 172,
+      moveset: { fast: ['Sucker Punch'], charged: ['Night Slash', 'Icy Wind'] },
       bestIv: { iv: '15/15/15', cp: 2415 },
     },
   },
@@ -3439,19 +3569,23 @@ const PVPOKE = {
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
       rank: 558,
+      moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
       bestIv: { iv: '0/11/13', cp: 1500 },
     },
     ultraLeague: {
       rank: 277,
+      moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
       bestIv: { iv: '0/15/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
         rank: 708,
+        moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
         bestIv: { iv: '0/11/13', cp: 1500 },
       },
       ultraLeague: {
         rank: 338,
+        moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
         bestIv: { iv: '0/15/15', cp: 2497 },
       },
     },
@@ -3470,10 +3604,12 @@ const PVPOKE = {
     buddyKm: 3,
     greatLeague: {
       rank: 115,
+      moveset: { fast: ['Bite'], charged: ['Brine', 'Sludge Wave'] },
       bestIv: { iv: '0/15/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 770,
+      moveset: { fast: ['Poison Jab'], charged: ['Brine', 'Sludge Wave'] },
       bestIv: { iv: '15/15/15', cp: 1905 },
     },
   },
@@ -3491,19 +3627,23 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 359,
+      moveset: { fast: ['Shadow Claw'], charged: ['Seed Bomb', 'Shadow Ball'] },
       bestIv: { iv: '0/15/15', cp: 1497 },
     },
     ultraLeague: {
       rank: 154,
+      moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Seed Bomb'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
         rank: 295,
+        moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Foul Play'] },
         bestIv: { iv: '0/15/15', cp: 1497 },
       },
       ultraLeague: {
         rank: 147,
+        moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Seed Bomb'] },
         bestIv: { iv: '1/15/15', cp: 2500 },
       },
     },
@@ -3527,10 +3667,12 @@ const PVPOKE = {
     specialMoves: ['High Jump Kick'],
     greatLeague: {
       rank: 1003,
+      moveset: { fast: ['Magical Leaf'], charged: ['Triple Axel', 'High Jump Kick'] },
       bestIv: { iv: '0/15/13', cp: 1499 },
     },
     ultraLeague: {
       rank: 627,
+      moveset: { fast: ['Magical Leaf'], charged: ['Triple Axel', 'High Jump Kick'] },
       bestIv: { iv: '0/15/15', cp: 2499 },
     },
   },
@@ -3548,19 +3690,23 @@ const PVPOKE = {
     buddyKm: 5,
     greatLeague: {
       rank: 739,
+      moveset: { fast: ['Dragon Tail'], charged: ['Rock Tomb', 'Crunch'] },
       bestIv: { iv: '0/15/12', cp: 1498 },
     },
     ultraLeague: {
       rank: 574,
+      moveset: { fast: ['Dragon Tail'], charged: ['Rock Tomb', 'Crunch'] },
       bestIv: { iv: '0/12/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
         rank: 762,
+        moveset: { fast: ['Dragon Tail'], charged: ['Crunch', 'Rock Tomb'] },
         bestIv: { iv: '0/15/12', cp: 1498 },
       },
       ultraLeague: {
         rank: 699,
+        moveset: { fast: ['Dragon Tail'], charged: ['Meteor Beam', 'Rock Tomb'] },
         bestIv: { iv: '0/12/15', cp: 2497 },
       },
     },
@@ -3605,6 +3751,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 123,
+      moveset: { fast: ['Snarl'], charged: ['Dark Pulse', 'Last Resort'] },
       bestIv: { iv: '15/15/15', cp: 2416 },
     },
   },
@@ -3630,19 +3777,23 @@ const PVPOKE = {
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
       rank: 422,
+      moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
       bestIv: { iv: '0/14/11', cp: 1498 },
     },
     ultraLeague: {
       rank: 217,
+      moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
       bestIv: { iv: '1/15/14', cp: 2499 },
     },
     shadow: {
       greatLeague: {
         rank: 445,
+        moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
         bestIv: { iv: '0/14/11', cp: 1498 },
       },
       ultraLeague: {
         rank: 253,
+        moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
         bestIv: { iv: '1/15/14', cp: 2499 },
       },
     },
@@ -3679,6 +3830,7 @@ const PVPOKE = {
     },
     ultraLeague: {
       rank: 554,
+      moveset: { fast: ['Scratch'], charged: ['Body Slam', 'Rock Slide'] },
       bestIv: { iv: '15/15/15', cp: 2225 },
     },
     shadow: {
@@ -3699,6 +3851,7 @@ const PVPOKE = {
       },
       ultraLeague: {
         rank: 555,
+        moveset: { fast: ['Scratch'], charged: ['Body Slam', 'Rock Slide'] },
         bestIv: { iv: '15/15/15', cp: 2225 },
       },
     },
@@ -3718,10 +3871,12 @@ const PVPOKE = {
     buddyKm: 1,
     greatLeague: {
       rank: 379,
+      moveset: { fast: ['Fairy Wind'], charged: ['Seed Bomb', 'Moonblast'] },
       bestIv: { iv: '0/14/15', cp: 1499 },
     },
     ultraLeague: {
       rank: 482,
+      moveset: { fast: ['Fairy Wind'], charged: ['Moonblast', 'Seed Bomb'] },
       bestIv: { iv: '15/15/15', cp: 2277 },
     },
   },
@@ -3729,27 +3884,38 @@ const PVPOKE = {
 
 const PVPOKE_MOVE_TYPES = {
   Acrobatics: 'flying',
+  'Aerial Ace': 'flying',
   'Air Cutter': 'flying',
   'Aqua Tail': 'water',
   Astonish: 'ghost',
+  'Aura Sphere': 'fighting',
+  Avalanche: 'ice',
   Bite: 'dark',
   'Blast Burn': 'fire',
+  'Blaze Kick': 'fire',
   'Body Slam': 'normal',
   'Bone Club': 'ground',
   'Brave Bird': 'flying',
   'Brick Break': 'fighting',
+  Brine: 'water',
   'Brutal Swing': 'dark',
   Bubble: 'water',
   Bulldoze: 'ground',
+  'Bullet Seed': 'grass',
   'Chilling Water': 'water',
+  'Close Combat': 'fighting',
+  Confusion: 'psychic',
   Counter: 'fighting',
   'Cross Chop': 'fighting',
   Crunch: 'dark',
   'Dark Pulse': 'dark',
+  'Dazzling Gleam': 'fairy',
+  Dig: 'ground',
   'Disarming Voice': 'fairy',
   Discharge: 'electric',
   Dive: 'water',
   'Double Iron Bash': 'steel',
+  'Double Kick': 'fighting',
   'Dragon Breath': 'dragon',
   'Dragon Claw': 'dragon',
   'Dragon Pulse': 'dragon',
@@ -3764,24 +3930,41 @@ const PVPOKE_MOVE_TYPES = {
   Ember: 'fire',
   'Energy Ball': 'grass',
   'Fairy Wind': 'fairy',
+  'Fire Punch': 'fire',
   'Fire Spin': 'fire',
+  'Flame Charge': 'fire',
   Flamethrower: 'fire',
+  'Flash Cannon': 'steel',
   Fly: 'flying',
+  'Force Palm': 'fighting',
   'Foul Play': 'dark',
   'Frenzy Plant': 'grass',
+  'Future Sight': 'psychic',
   'Gigaton Hammer': 'steel',
+  'Glaive Rush': 'dragon',
+  'Grass Knot': 'grass',
   'Gyro Ball': 'steel',
+  'Heat Wave': 'fire',
+  'Heavy Slam': 'steel',
   Hex: 'ghost',
+  'High Jump Kick': 'fighting',
   'Hydro Cannon': 'water',
   'Hydro Pump': 'water',
   'Ice Beam': 'ice',
   'Ice Punch': 'ice',
   'Icy Wind': 'ice',
+  Incinerate: 'fire',
   Infestation: 'bug',
   'Iron Head': 'steel',
+  'Karate Chop': 'fighting',
   'Last Resort': 'normal',
+  Leafage: 'grass',
+  Lick: 'ghost',
+  'Lock On': 'normal',
   'Low Kick': 'fighting',
+  'Magical Leaf': 'grass',
   'Metal Sound': 'steel',
+  'Meteor Beam': 'rock',
   'Mirror Coat': 'psychic',
   Moonblast: 'fairy',
   'Mud Bomb': 'ground',
@@ -3791,29 +3974,43 @@ const PVPOKE_MOVE_TYPES = {
   'Night Slash': 'dark',
   Outrage: 'dragon',
   Overheat: 'fire',
+  'Parabolic Charge': 'electric',
   Payback: 'dark',
   Peck: 'flying',
   'Play Rough': 'fairy',
+  'Poison Jab': 'poison',
   'Poison Sting': 'poison',
   'Powder Snow': 'ice',
   'Power Gem': 'rock',
+  'Power Whip': 'grass',
   'Psycho Boost': 'psychic',
   'Psycho Cut': 'psychic',
+  Psyshock: 'psychic',
   Psywave: 'psychic',
+  'Pyro Ball': 'fire',
+  'Quick Attack': 'normal',
   'Rage Fist': 'ghost',
   'Rock Slide': 'rock',
   'Rock Throw': 'rock',
   'Rock Tomb': 'rock',
+  'Rock Wrecker': 'rock',
   'Sacred Sword': 'fighting',
   'Sand Attack': 'ground',
   'Sand Tomb': 'ground',
   Scratch: 'normal',
+  'Seed Bomb': 'grass',
   'Shadow Ball': 'ghost',
   'Shadow Claw': 'ghost',
   'Shadow Punch': 'ghost',
   'Shadow Sneak': 'ghost',
+  Sludge: 'poison',
   'Sludge Bomb': 'poison',
+  'Sludge Wave': 'poison',
+  'Smack Down': 'rock',
   Snarl: 'dark',
+  'Snipe Shot': 'water',
+  'Solar Beam': 'grass',
+  Spark: 'electric',
   'Sparkling Aria': 'water',
   'Spirit Shackle': 'ghost',
   'Stone Edge': 'rock',
@@ -3821,12 +4018,16 @@ const PVPOKE_MOVE_TYPES = {
   Superpower: 'fighting',
   Surf: 'water',
   Swift: 'normal',
+  'Take Down': 'normal',
   'Thunder Shock': 'electric',
   Thunderbolt: 'electric',
   Trailblaze: 'grass',
+  'Triple Axel': 'ice',
   Twister: 'dragon',
+  'Upper Hand': 'fighting',
   'Vine Whip': 'grass',
   'Volt Switch': 'electric',
+  'Water Gun': 'water',
   'Water Pulse': 'water',
   Waterfall: 'water',
   'Weather Ball (Fire)': 'fire',
@@ -3835,4 +4036,5 @@ const PVPOKE_MOVE_TYPES = {
   'Wild Charge': 'electric',
   'Wing Attack': 'flying',
   'X-Scissor': 'bug',
+  'Zen Headbutt': 'psychic',
 };

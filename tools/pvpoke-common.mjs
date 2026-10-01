@@ -3,7 +3,7 @@
 
 export const DATA_URL = 'https://raw.githubusercontent.com/pvpoke/pvpoke/master/src/data';
 export const LEAGUES = { greatLeague: 1500, ultraLeague: 2500 };
-// E helyezés fölött csak a helyezést adjuk vissza, a szett és a párharcok ott már nem érdekesek.
+// E helyezés fölött a párharcok már nem érdekesek (a szett és a helyezés minden fajnál megvan).
 export const DETAIL_RANK_LIMIT = 100;
 const MATCHUP_COUNT = 3;
 const REGIONAL_FORMS = ['Alolan', 'Galarian', 'Hisuian', 'Paldean'];
@@ -44,12 +44,11 @@ function rankIndex(rankings) {
 function describeLeague(rankingEntry, data, detailRankLimit) {
   if (!rankingEntry) return undefined;
   const { moves } = data;
-  const league = { rank: rankingEntry.rank };
-  if (rankingEntry.rank > detailRankLimit) return league;
-
   // A PvPoke-szett: az első a gyors (Fast), a többi a töltött (Charged) mozdulat.
   const [fastMove, ...chargedMoves] = rankingEntry.moveset.map((moveId) => moves.get(moveId) || moveId);
-  league.moveset = { fast: [fastMove], charged: chargedMoves };
+  const league = { rank: rankingEntry.rank, moveset: { fast: [fastMove], charged: chargedMoves } };
+  if (rankingEntry.rank > detailRankLimit) return league;
+
   league.beats = rankingEntry.matchups.slice(0, MATCHUP_COUNT).map((m) => speciesRef(m.opponent, data));
   league.losesTo = rankingEntry.counters.slice(0, MATCHUP_COUNT).map((m) => speciesRef(m.opponent, data));
   return league;
