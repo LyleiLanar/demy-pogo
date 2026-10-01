@@ -79,7 +79,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-dex{font:500 .75rem Barlow,sans-serif;color:var(--muted);letter-spacing:.02em;margin-left:2px}
 .mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
 .mon-evolution{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px}
-.species-link{appearance:none;margin:0;padding:0;border:0;background:none;font:inherit;font-weight:600;color:inherit;text-align:inherit;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.species-link{appearance:none;margin:0;padding:0;border:0;background:none;font:inherit;font-weight:600;color:inherit;text-align:inherit;cursor:pointer;text-decoration:none}
 .species-link.evo-current{font-weight:800;text-decoration:none}
 .mon-matchups{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 0}
 .mon-matchup-col{min-width:0}
