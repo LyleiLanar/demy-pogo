@@ -1,5 +1,5 @@
 // A Pokédex adatai: a kézzel írt tanácsok (POKEMON) és a PvPoke-adatok (PVPOKE) összefésülése,
-// a fajok formái és a formákhoz tartozó módok (Raid, GL, UL, Gym, Max).
+// a fajok formái és a formákhoz tartozó módok (Raid, GL, UL, Max).
 
 // Az értékelés Diablo-szerű ritkaság, a legjobbtól: lila (meta), kék (gyűjtendő), zöld (alternatíva),
 // szürke (kuka). A ligáké a PvPoke teljes rangsorában elért helyezésből jön.
@@ -17,9 +17,8 @@ const GAME_MODES = [
   { key: 'raid', label: 'Raid', title: 'Raid', ratingLimits: RAID_RATING_LIMITS },
   { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true, ratingLimits: LEAGUE_RATING_LIMITS },
   { key: 'ultraLeague', label: 'UL', title: 'Ultra League', isLeague: true, ratingLimits: LEAGUE_RATING_LIMITS },
-  { key: 'gym', label: 'Gym', title: 'Gym' },
 ];
-// Formák: a Shadow-nak nincs gymje, a Megának csak raidje van.
+// Formák: a Megának csak raidje van.
 const SHADOW_MODE_KEYS = ['raid', 'greatLeague', 'ultraLeague'];
 const MEGA_MODE_KEYS = ['raid'];
 const MEGA_FORM_KEYS = { Mega: 'mega', 'Mega X': 'megaX', 'Mega Y': 'megaY' };
@@ -168,8 +167,8 @@ function bestRating(ratings) {
   return RATING_ORDER.find((rating) => ratings.includes(rating)) || 'trash';
 }
 
-// A név színe: legendásnál arany, különben a faj legjobb módja bármelyik formában (Raid, GL, UL, Max,
-// Gym). A kézi tier (pl. 'collect') alsó határ: a név legalább ilyen színű.
+// A név színe: legendásnál arany, különben a faj legjobb módja bármelyik formában (Raid, GL, UL, Max).
+// A kézi tier (pl. 'collect') alsó határ: a név legalább ilyen színű.
 function speciesTier(species) {
   if (species.stats.legendary) return 'legendary';
   const ratings = speciesForms(species).flatMap((form) => gameModesOf(species, form).map((mode) => mode.rating));

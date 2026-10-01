@@ -55,7 +55,7 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 
 ## 3. Színek (Diablo-szerű ritkaság)
 
-Minden mód (Raid, GL, UL, Max, Gym) külön színt kap, a név színe a faj legjobb módjáé bármelyik
+Minden mód (Raid, GL, UL, Max) külön színt kap, a név színe a faj legjobb módjáé bármelyik
 formában (`js/species.js`, `speciesTier`). Egy faj lehet raidben szürke, Max Battle-ben lila.
 Értékek, a legjobbtól:
 
@@ -73,8 +73,6 @@ A Max Battle is számolt, a Dynamax és a Gigantamax formára külön, három sz
 mozdulat típusán belül: top 3 lila, top 6 kék, top 12 zöld, és a típus legjobbjához mérve is erős
 kell legyen), tank és gyógyító (az összes Max-képes faj között: top 10 / 25 / 50). A fül színe a
 legjobb szerepé, a Fejleszd a kék és lila szerepek mozdulata.
-A gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben lévő fajokhoz:
-`meta` csak az, ami abban a szerepben tényleg a legjobbak közé tartozik.
 
 A fejlődési ág minden foka a saját harci ereje szerint színes: ami a Pokédexben van, a kártyája
 szerint, a többi a ligahelyezése szerint. Ezért a gyenge alapforma (pl. Eevee) maradhat szürke: az
@@ -93,7 +91,6 @@ az értékét.
   `rating` csak akkor kell, ha nincs számolt adat (pl. csak Normal támadása van).
 - `maxBattle` (Dynamax) és `forms.gigantamax.maxBattle`: a szerepek, a szín és a Fejleszd számolt
   (lookup), ezt ne írd be; kézzel csak `note` / `tips`, ha van konkrét plusz (pl. jobb alternatíva).
-- `gym`: csak ha kifejezetten jó gym védő.
 
 ## 5. A tanácsok helye
 

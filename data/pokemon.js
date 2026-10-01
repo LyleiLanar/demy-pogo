@@ -20,7 +20,6 @@
 //   maxBattle    { note, iv, moves, tips }: a Dynamax példány (a kártya Max formája); a három szerep
 //                (támadó, tank, gyógyító), a szín és a Fejleszd számolt (pvpoke.js maxBattle); rating és
 //                upgrade csak ott kell, ahol nincs számolt adat
-//   gym          { rating, note, iv, moves, tips }
 //     rating     a mód színe, Diablo-szerű ritkaság (a név színe a legjobb módé):
 //                'meta' = lila, a legjobbak közt; 'collect' = kék, gyűjtendő, érdemes építeni;
 //                'alternative' = zöld, átmenetileg jó, ha nincs jobb; 'trash' = szürke, kuka
@@ -82,12 +81,7 @@ const POKEMON = [
     notes: ['A Frigibax ritka, ne küldj el semmit a vonalból, amíg nincs egy jó Baxcaliburod.'],
   },
   { id: 'blaziken', name: 'Blaziken', origin: 'Torchic' },
-  {
-    id: 'blissey',
-    name: 'Blissey',
-    origin: 'Chansey / Happiny',
-    gym: { rating: 'meta' },
-  },
+  { id: 'blissey', name: 'Blissey', origin: 'Chansey / Happiny' },
   { id: 'carbink', name: 'Carbink', origin: 'Carbink' },
   {
     id: 'charizard',
