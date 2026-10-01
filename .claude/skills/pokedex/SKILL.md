@@ -79,7 +79,7 @@ az értékét.
 
 - `greatLeague`, `ultraLeague`: a helyezés és a szín a `data/pvpoke.js`-ből jön, ezt ne írd be.
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
-- `raid`: `rating` = `meta` / `collect` / `alternative` / `trash` (lásd 3.), egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
+- `raid`: `rating` = `meta` / `collect` / `alternative` / `trash` (lásd 3.); `note` csak ha van mit hozzátenni (lásd 5.). A PvPoke nem ad raidadatot:
   ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
 - `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája. Az `upgrade`
   mondja meg, melyik Max mozdulatot fejleszd (`attack` / `guard` / `spirit`); gyenge értékelésnél hagyd ki.
@@ -120,6 +120,11 @@ az értékét.
   - amit a helyezés mutat („ma nincs a top 100-ban”, „a meta része”, „csak niche”, „a Shadow
     változat jobb”), és hogy a Shadow / Mega erősebb: ilyenkor a forma kapjon saját értékelést
     (`forms.shadow.raid`, `forms.mega.raid`);
+  - amit a kártya már mutat: az értékelés szavát („erős”, „közepes”, „gyenge”, „az egyik legjobb”,
+    „nem prioritás”) a fül színe, a típust („Psychic támadó”) a típusikonok, a szerepet („tank”,
+    „gyógyító”) a Fejleszd sor, a szintet a Legjobb IV. A `note` csak konkrét infóra kell: jobb
+    alternatíva („Jobb: Rhyperior.”), feltétel („Csak Frenzy Plant-tel jó.”), költség („Olcsón
+    építhető.”), szerep, ha a kártya nem mutatja („Szólóban is jó Mega.”);
   - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
   - hogy milyen típusú támadó („Fire támadó”), ha a módnál van mozdulatlista: a mozdulatok
     típusikonja mutatja. Mozdulatlista nélkül maradhat.

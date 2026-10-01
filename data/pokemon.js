@@ -57,14 +57,14 @@ const POKEMON = [
     id: 'alakazam',
     name: 'Alakazam',
     origin: 'Abra',
-    raid: { rating: 'alternative', note: 'Közepes Psychic támadó, nagyon vékony.' },
-    maxBattle: { rating: 'trash', note: 'Psychic támadó, nagyon vékony. Alacsony prioritás.' },
+    raid: { rating: 'alternative' },
+    maxBattle: { rating: 'trash' },
     forms: {
       shadow: {
-        raid: { rating: 'collect', note: 'Erős Psychic támadó, de nagyon vékony.' },
+        raid: { rating: 'collect' },
       },
       mega: {
-        raid: { rating: 'collect', note: 'Erős Psychic Mega.' },
+        raid: { rating: 'collect' },
       },
     },
   },
@@ -84,8 +84,7 @@ const POKEMON = [
     id: 'ampharos',
     name: 'Ampharos',
     origin: 'Mareep',
-    raid: { rating: 'trash', note: 'Mega nélkül gyenge Electric támadó.' },
-    ultraLeague: { note: '35–40-es szintre kell húzni.' },
+    raid: { rating: 'trash' },
     forms: {
       mega: {
         raid: {
@@ -119,7 +118,7 @@ const POKEMON = [
     id: 'baxcalibur',
     name: 'Baxcalibur',
     origin: 'Frigibax',
-    raid: { rating: 'meta', note: 'Az egyik legjobb Ice raid támadó.' },
+    raid: { rating: 'meta' },
     notes: ['A Frigibax ritka, ne küldj el semmit a vonalból, amíg nincs egy jó Baxcaliburod.'],
   },
   {
@@ -144,8 +143,8 @@ const POKEMON = [
     name: 'Blissey',
     origin: 'Chansey / Happiny',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'meta', note: 'A Dynamax Blissey a legjobb gyógyító.', upgrade: ['spirit'] },
-    gym: { rating: 'meta', note: 'Az egyik legjobb gym védő.' },
+    maxBattle: { rating: 'meta', upgrade: ['spirit'] },
+    gym: { rating: 'meta' },
   },
   {
     id: 'carbink',
@@ -168,17 +167,13 @@ const POKEMON = [
     ultraLeague: {
       moves: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Dragon Claw'] },
     },
-    maxBattle: {
-      rating: 'alternative',
-      note: 'Használható Fire támadó; a Gigantamax sokkal erősebb.',
-      upgrade: ['attack'],
-    },
+    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
     forms: {
       megaY: {
-        raid: { note: 'A legjobb Fire Mega raidhez.' },
+        raid: { rating: 'meta' },
       },
       gigantamax: {
-        maxBattle: { rating: 'meta', note: 'A legerősebb G-Max támadó.', upgrade: ['attack'] },
+        maxBattle: { rating: 'meta', upgrade: ['attack'] },
       },
     },
   },
@@ -193,14 +188,14 @@ const POKEMON = [
     id: 'cherrim_overcast',
     name: 'Cherrim',
     origin: 'Cherubi',
-    raid: { rating: 'trash', note: 'Gyenge Grass típus.' },
+    raid: { rating: 'trash' },
   },
   {
     id: 'cinderace',
     name: 'Cinderace',
     origin: 'Scorbunny',
-    raid: { rating: 'alternative', note: 'Közepes Fire támadó.' },
-    maxBattle: { rating: 'collect', note: 'Erős Fire támadó.', upgrade: ['attack'] },
+    raid: { rating: 'alternative' },
+    maxBattle: { rating: 'collect', upgrade: ['attack'] },
   },
   {
     id: 'clodsire',
@@ -225,16 +220,13 @@ const POKEMON = [
     name: 'Darmanitan',
     origin: 'Darumaka',
     raid: { rating: 'alternative' },
-    maxBattle: { rating: 'alternative', note: 'Fire támadó.', upgrade: ['attack'] },
+    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
   },
   {
     id: 'decidueye',
     name: 'Decidueye',
     origin: 'Rowlet',
-    raid: {
-      rating: 'trash',
-      note: 'Vékony támadó; vannak jobb Grass támadók, pl. a Frenzy Plant-es Venusaur.',
-    },
+    raid: { rating: 'trash', note: 'Jobb Grass támadó: Venusaur (Frenzy Plant).' },
     ultraLeague: {
       moves: {
         fast: ['Astonish'],
@@ -264,7 +256,7 @@ const POKEMON = [
     origin: 'Fennekin',
     raid: {
       rating: 'alternative',
-      note: 'A Mega Charizard Y jobb; tartalék raidre és Rocket ellen.',
+      note: 'Jobb: Mega Charizard Y. Rocket ellen tartaléknak jó.',
       moves: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
     },
   },
@@ -298,7 +290,7 @@ const POKEMON = [
     name: 'Dubwool',
     origin: 'Wooloo',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'trash', note: 'Gyenge szerepben.' },
+    maxBattle: { rating: 'trash' },
   },
   {
     id: 'dusclops',
@@ -312,16 +304,10 @@ const POKEMON = [
     id: 'eevee',
     name: 'Eevee',
     origin: 'Eevee',
-    raid: {
-      rating: 'trash',
-      note: 'Fejletlenül nem támadó. Fejlesztve a Glaceon jó Ice támadó, a Flareon és az Espeon tartalék.',
-    },
-    greatLeague: {
-      note: 'Fejletlenül nem játszható, de Umbreonná fejlesztve top 50-es: ezért szkenneld.',
-    },
+    raid: { rating: 'trash' },
     maxBattle: {
       rating: 'trash',
-      note: 'Fejletlenül gyenge. Dynamax Glaceonnak fejlesztve az egyik legjobb Ice Max támadó.',
+      note: 'Dynamax Glaceonnak fejlesztve az egyik legjobb Ice Max támadó.',
     },
     notes: [
       'A két jó irány: Umbreon (Great League) és Glaceon (raid, Max Battle). A Sylveon, a Flareon, az Espeon és a Leafeon tartaléknak jó, a Vaporeon és a Jolteon ma gyenge.',
@@ -346,7 +332,7 @@ const POKEMON = [
     name: 'Excadrill',
     origin: 'Drilbur',
     raid: { rating: 'collect' },
-    maxBattle: { rating: 'meta', note: 'Fő támadó.', upgrade: ['attack'] },
+    maxBattle: { rating: 'meta', upgrade: ['attack'] },
   },
   {
     id: 'fearow',
@@ -366,7 +352,7 @@ const POKEMON = [
     name: 'Flareon',
     origin: 'Eevee',
     raid: { rating: 'alternative' },
-    maxBattle: { rating: 'alternative', note: 'Tartalék Fire támadó.', upgrade: ['attack'] },
+    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
   },
   {
     id: 'florges',
@@ -397,7 +383,7 @@ const POKEMON = [
     id: 'moltres_galarian',
     name: 'Galarian Moltres',
     origin: 'legendás (Max Battle / raid)',
-    raid: { rating: 'alternative', note: 'Nem kiemelkedő.' },
+    raid: { rating: 'alternative' },
   },
   {
     id: 'stunfisk_galarian',
@@ -410,27 +396,27 @@ const POKEMON = [
     name: 'Gardevoir',
     origin: 'Ralts',
     raid: { rating: 'alternative' },
-    maxBattle: { rating: 'alternative', note: 'Fairy/Psychic támadó.', upgrade: ['attack'] },
+    maxBattle: { rating: 'alternative', upgrade: ['attack'] },
   },
   {
     id: 'gigalith',
     name: 'Gigalith',
     origin: 'Roggenrola',
-    raid: { rating: 'trash', note: 'Vannak jobb Rock támadók.' },
-    maxBattle: { rating: 'trash', note: 'A Rhyperior mellett nem prioritás.' },
+    raid: { rating: 'trash' },
+    maxBattle: { rating: 'trash', note: 'Jobb: Rhyperior.' },
   },
   {
     id: 'gothitelle',
     name: 'Gothitelle',
     origin: 'Gothita',
-    raid: { rating: 'trash', note: 'Vannak jobb Psychic támadók.' },
+    raid: { rating: 'trash' },
   },
   {
     id: 'greedent',
     name: 'Greedent',
     origin: 'Skwovet',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'alternative', note: 'Gyógyító, csak csapatban hasznos.', upgrade: ['spirit'] },
+    maxBattle: { rating: 'alternative', upgrade: ['spirit'] },
     notes: ['Részben felhős időben több Skwovet jön.'],
   },
   {
@@ -456,17 +442,14 @@ const POKEMON = [
     id: 'hariyama',
     name: 'Hariyama',
     origin: 'Makuhita',
-    raid: {
-      rating: 'alternative',
-      note: 'Közepes Fighting támadó, a Machamp, Lucario és Conkeldurr jobb.',
-    },
+    raid: { rating: 'alternative', note: 'Jobb: Machamp, Lucario, Conkeldurr.' },
   },
   {
     id: 'hatterene',
     name: 'Hatterene',
     origin: 'Hatenna',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'trash', note: 'Nem prioritás.' },
+    maxBattle: { rating: 'trash' },
   },
   {
     id: 'hippowdon',
@@ -484,12 +467,7 @@ const POKEMON = [
     id: 'inteleon',
     name: 'Inteleon',
     origin: 'Sobble',
-    maxBattle: {
-      rating: 'collect',
-      note: 'Water támadó.',
-      upgrade: ['attack'],
-      tips: ['Fire, Rock és Ground bossok ellen.'],
-    },
+    maxBattle: { rating: 'collect', upgrade: ['attack'], tips: ['Fire, Rock és Ground bossok ellen.'] },
   },
   {
     id: 'jellicent',
@@ -539,7 +517,7 @@ const POKEMON = [
     origin: 'Machop',
     raid: {
       rating: 'collect',
-      note: 'Megbízható, olcsó raides támadó.',
+      note: 'Olcsón építhető.',
       moves: { fast: ['Counter'], charged: ['Dynamic Punch', 'Cross Chop'] },
     },
     maxBattle: { rating: 'alternative', upgrade: ['attack'] },
@@ -591,16 +569,15 @@ const POKEMON = [
     id: 'moltres',
     name: 'Moltres',
     origin: 'legendás (raid / Max Battle)',
-    raid: { rating: 'alternative', note: 'Tisztességes Fire és Flying támadó.' },
+    raid: { rating: 'alternative' },
     maxBattle: {
       rating: 'collect',
-      note: 'Támadó és tank (Fire/Flying).',
       upgrade: ['attack', 'guard'],
       moves: { fast: ['Wing Attack'] },
     },
     forms: {
       shadow: {
-        raid: { rating: 'meta', note: 'Az egyik legjobb Fire támadó.' },
+        raid: { rating: 'meta' },
       },
     },
   },
@@ -642,7 +619,7 @@ const POKEMON = [
     name: 'Rhyperior',
     origin: 'Rhyhorn',
     raid: { rating: 'meta' },
-    maxBattle: { rating: 'meta', note: 'Védő (tank).', upgrade: ['guard'] },
+    maxBattle: { rating: 'meta', upgrade: ['guard'] },
   },
   {
     id: 'rillaboom',
@@ -691,7 +668,7 @@ const POKEMON = [
     id: 'torterra',
     name: 'Torterra',
     origin: 'Turtwig',
-    raid: { rating: 'alternative', note: 'Frenzy Plant-tel tisztességes Grass/Ground támadó.' },
+    raid: { rating: 'alternative', note: 'Csak Frenzy Plant-tel jó.' },
   },
   {
     id: 'toxapex',
@@ -710,7 +687,7 @@ const POKEMON = [
     name: 'Tsareena',
     origin: 'Bounsweet',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'trash', note: 'Gyenge szerepben.' },
+    maxBattle: { rating: 'trash' },
   },
   { id: 'tyrantrum', name: 'Tyrantrum', origin: 'Tyrunt' },
   {
@@ -749,6 +726,6 @@ const POKEMON = [
     name: 'Whimsicott',
     origin: 'Cottonee',
     raid: { rating: 'trash' },
-    maxBattle: { rating: 'trash', note: 'Gyenge szerepben.' },
+    maxBattle: { rating: 'trash' },
   },
 ];
