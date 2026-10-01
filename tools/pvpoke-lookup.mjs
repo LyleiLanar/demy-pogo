@@ -60,6 +60,11 @@ function printSpecies(species, data, gameMaster, asJson) {
   console.log(`  Elite / esemény mozdulat: ${(entry.specialMoves || []).join(', ') || '-'}`);
   console.log(`  Mega:         ${(entry.megaForms || []).map((mega) => `${mega.name} (${mega.types.join('/')})`).join(', ') || 'nincs'}`);
   console.log(`  Max Battle:   ${(entry.maxForms || []).join(', ') || 'nincs Dynamax / Gigantamax forma'}`);
+  const raidLine = (label, raid) => raid
+    && console.log(`  ${label.padEnd(13)} ${raid.type} támadóként ${raid.rank}. hely  Fast: ${raid.moveset.fast.join(', ')} · Charged: ${raid.moveset.charged.join(', ')}`);
+  raidLine('Raid:', entry.raid);
+  raidLine('Shadow raid:', entry.shadow?.raid);
+  (entry.megaForms || []).forEach((mega) => raidLine(`${mega.name} raid:`, mega.raid));
   const forms = [['Normál', entry], ['Shadow', entry.shadow]];
   for (const [formName, form] of forms) {
     if (!form) continue;

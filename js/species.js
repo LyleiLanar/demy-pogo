@@ -5,10 +5,12 @@
 // szürke (kuka). A ligáké a PvPoke teljes rangsorában elért helyezésből jön.
 const RATING_ORDER = ['meta', 'collect', 'alternative', 'trash'];
 const LEAGUE_RATING_LIMITS = { meta: 20, collect: 50, alternative: 100 };
+// A raidé a számolt raid-helyezésből jön: hányadik a legjobb támadó típusában (Shadow és Mega formákkal együtt).
+const RAID_RATING_LIMITS = { meta: 10, collect: 25, alternative: 50 };
 const GAME_MODES = [
-  { key: 'raid', label: 'Raid', title: 'Raid' },
-  { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true },
-  { key: 'ultraLeague', label: 'UL', title: 'Ultra League', isLeague: true },
+  { key: 'raid', label: 'Raid', title: 'Raid', ratingLimits: RAID_RATING_LIMITS },
+  { key: 'greatLeague', label: 'GL', title: 'Great League', isLeague: true, ratingLimits: LEAGUE_RATING_LIMITS },
+  { key: 'ultraLeague', label: 'UL', title: 'Ultra League', isLeague: true, ratingLimits: LEAGUE_RATING_LIMITS },
   { key: 'gym', label: 'Gym', title: 'Gym' },
 ];
 // Formák: a Shadow-nak nincs gymje, a Megának csak raidje van.
@@ -44,8 +46,9 @@ function byDexNumber(a, b) {
   return (a.dex ?? Infinity) - (b.dex ?? Infinity) || a.name.localeCompare(b.name, 'hu');
 }
 
-function leagueRating(league) {
-  const rating = Object.keys(LEAGUE_RATING_LIMITS).find((key) => league.rank <= LEAGUE_RATING_LIMITS[key]);
+// Helyezésből értékelés a megadott határokkal (liga vagy raid).
+function rankRating(rank, limits) {
+  const rating = Object.keys(limits).find((key) => rank <= limits[key]);
   return rating || 'trash';
 }
 
@@ -65,7 +68,7 @@ function speciesForms(species) {
   }
   (species.stats.megaForms || []).forEach((mega) => {
     const key = MEGA_FORM_KEYS[mega.name];
-    forms.push({ key, name: mega.name, types: mega.types, modeKeys: MEGA_MODE_KEYS, leagues: {}, overrides: overrides[key] || {} });
+    forms.push({ key, name: mega.name, types: mega.types, modeKeys: MEGA_MODE_KEYS, leagues: { raid: mega.raid }, overrides: overrides[key] || {} });
   });
   // Max: a Dynamax és a Gigantamax példányok, ha van róluk értékelés.
   if (maxModesOf(species).length) {
@@ -74,14 +77,20 @@ function speciesForms(species) {
   return forms;
 }
 
-// Egy mód adatai egy formában: az alap tanács, a forma felülírása és (ligáknál) a PvPoke-adat.
+// Egy mód adatai egy formában: az alap tanács, a forma felülírása és a számolt adat (liga: PvPoke,
+// raid: a game masterből számolt helyezés). Ha van számolt helyezés, az adja az értékelést.
 function modeData(species, form, mode) {
   const curated = { ...species[mode.key], ...form.overrides[mode.key] };
-  if (mode.isLeague) {
-    const league = form.leagues[mode.key];
-    return league ? { ...curated, ...league, rating: leagueRating(league) } : undefined;
-  }
+  const computed = form.leagues[mode.key];
+  if (computed && mode.ratingLimits) return { ...curated, ...computed, rating: rankRating(computed.rank, mode.ratingLimits) };
+  if (mode.isLeague) return undefined;
   return curated.rating ? curated : undefined;
+}
+
+function modeDetail(mode, data) {
+  if (mode.isLeague) return `${data.rank}. hely`;
+  if (data.type && data.rank) return `${TYPES[data.type].name} támadóként ${data.rank}. hely`;
+  return '';
 }
 
 // A Max forma fülei: Dynamax (a faj maxBattle mezője) és Gigantamax (forms.gigantamax.maxBattle,
@@ -107,7 +116,7 @@ function gameModesOf(species, form) {
     .map(({ data, ...mode }) => ({
       ...mode,
       ...data,
-      detail: mode.isLeague ? `${data.rank}. hely` : '',
+      detail: modeDetail(mode, data),
       upgradeLabels: [],
     }));
 }

@@ -82,6 +82,8 @@ async function main() {
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
 // moveset: az ajánlott szett ({ fast, charged })
 // bestIv: a ligában a legjobb IV ({ iv: 'Attack/Defense/HP', cp }) a game master CP-szorzóival
+// raid: számolt raid-helyezés ({ type, rank, moveset }) a legjobb támadó típusában, a game masterből;
+//   a shadow.raid és a megaForms[].raid ugyanígy
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok ({ id, name, rank, legendary }, mint az ágban)
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 

@@ -38,7 +38,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 |---|---|---|
 | PvP-helyezés, szett, párharcok, típus, Mega | PvPoke (`github.com/pvpoke/pvpoke`) | a lookup / sync script |
 | Dynamax, Gigantamax, Mega, mozdulatok, Elite TM | a játék game mastere (PokeMiners, `github.com/PokeMiners/game_masters`) | a lookup script |
-| Raid-erő, legjobb raid-támadók, Max Battle szerep | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
+| Raid-helyezés és szett | számolt a game masterből (sync / lookup) | a lookup script |
+| Max Battle szerep, raid-ellenőrzés | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
 | Aktuális események, Max Battle bossok, Community Day | Leek Duck, Pokémon GO Hub | WebSearch |
 | Általános leírás | Bulbapedia | WebSearch |
 
@@ -64,8 +65,11 @@ formában (`js/species.js`, `speciesTier`). Egy faj lehet raidben szürke, Max B
 - Arany név: legendás / mitikus / Ultra Beast, a PvPoke-adatból magától.
 
 A ligáké a PvPoke teljes (1000+ fajos) rangsorából számolódik; a heti szinkronnal frissül.
-A raid / Max / gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben
-lévő fajokhoz: `meta` csak az, ami abban a típusban vagy szerepben tényleg a legjobbak közé tartozik.
+A raidé is számolt: a game masterből DPS³ × TDO pontszám (40-es szint, 15/15/15), és a faj
+legjobb támadó típusában elért helyezés minden fajhoz és formához (Shadow, Mega) mérve: top 10 lila,
+top 25 kék, top 50 zöld. A Normal típus nem számít (semmire nem hatásos).
+A Max és a gym színét kézzel adod meg (`rating`), az egész játékhoz mérve, nem a Pokédexben
+lévő fajokhoz: `meta` csak az, ami abban a szerepben tényleg a legjobbak közé tartozik.
 
 A fejlődési ág minden foka a saját harci ereje szerint színes: ami a Pokédexben van, a kártyája
 szerint, a többi a ligahelyezése szerint. Ezért a gyenge alapforma (pl. Eevee) maradhat szürke: az
@@ -79,8 +83,9 @@ az értékét.
 
 - `greatLeague`, `ultraLeague`: a helyezés és a szín a `data/pvpoke.js`-ből jön, ezt ne írd be.
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
-- `raid`: `rating` = `meta` / `collect` / `alternative` / `trash` (lásd 3.); `note` csak ha van mit hozzátenni (lásd 5.). A PvPoke nem ad raidadatot:
-  ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
+- `raid`: a helyezés, a szín és a szett számolt (lookup: „Raid:” sor), ezt ne írd be. Kézzel csak
+  plusz tanács (`note`, `tips`, más szett a `moves`-ban, ha a számolt mellett van jó alternatíva).
+  `rating` csak akkor kell, ha nincs számolt adat (pl. csak Normal támadása van).
 - `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája. Az `upgrade`
   mondja meg, melyik Max mozdulatot fejleszd (`attack` / `guard` / `spirit`); gyenge értékelésnél hagyd ki.
   Gigantamaxhoz: `forms.gigantamax.maxBattle` (saját `rating`, `note`, `upgrade`).

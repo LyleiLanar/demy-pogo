@@ -25,15 +25,20 @@ export function displayName(speciesName) {
 }
 
 // A faj Mega formái (Mega, Mega X, Mega Y) a típusukkal. Shadow nem evolválhat Megává.
-function megaFormsOf(id, gamemaster) {
+// A raid a raidRankings-ből jön, ha megvan (loadGameMaster után).
+function megaFormsOf(id, gamemaster, raidRankings) {
   if (id.endsWith('_shadow')) return [];
   return gamemaster.pokemon
     .filter((species) => /^_mega(_[xy])?$/.test(species.speciesId.slice(id.length)) && species.speciesId.startsWith(id))
     .filter((species) => species.released !== false)
-    .map((species) => ({
-      name: /\((Mega(?: [XY])?)\)$/.exec(species.speciesName)[1],
-      types: species.types.filter((type) => type !== 'none'),
-    }));
+    .map((species) => {
+      const raid = raidRankings?.get(species.speciesId);
+      return {
+        name: /\((Mega(?: [XY])?)\)$/.exec(species.speciesName)[1],
+        types: species.types.filter((type) => type !== 'none'),
+        ...(raid ? { raid } : {}),
+      };
+    });
 }
 
 function rankIndex(rankings) {
@@ -61,15 +66,18 @@ function bestRankOf(speciesId, data) {
 }
 
 // Hivatkozás egy másik fajra (fejlődési ág, párharcok): az azonosító a kártyára mutat (a Shadow
-// formáé is az alapfajéra), a név a megjelenítéshez, a legjobb helyezés és a legendás jelző a színhez.
+// formáé is az alapfajéra), a név a megjelenítéshez, a legjobb liga- és raid-helyezés és a legendás
+// jelző a színhez. A raid-helyezéshez a data.raidRankings kell (describeSpecies tölti ki).
 function speciesRef(speciesId, data) {
   const id = speciesId.replace(/_shadow$/, '');
   const species = data.speciesById.get(id);
   const rank = bestRankOf(id, data);
+  const raidRank = Math.min(...[id, `${id}_shadow`].map((key) => data.raidRankings?.get(key)?.rank).filter(Boolean));
   return {
     id,
     name: data.names.get(speciesId) || speciesId,
     ...(Number.isFinite(rank) ? { rank } : {}),
+    ...(Number.isFinite(raidRank) ? { raidRank } : {}),
     ...((species?.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag)) ? { legendary: true } : {}),
   };
 }
@@ -103,12 +111,15 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, g
   if (!species) return undefined;
   const entry = { dex: species.dex, types: species.types.filter((type) => type !== 'none') };
   if ((species.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag))) entry.legendary = true;
-  const megaForms = megaFormsOf(id, data.gamemaster);
+  const raidRankings = gameMaster && raidRankingsOf(data, gameMaster);
+  if (raidRankings) data.raidRankings = raidRankings;
+  const megaForms = megaFormsOf(id, data.gamemaster, raidRankings);
   if (megaForms.length) entry.megaForms = megaForms;
   const speciesMaxForms = gameMaster ? maxFormsOf(id, gameMaster) : [];
   if (speciesMaxForms.length) entry.maxForms = speciesMaxForms;
   const evolution = gameMaster && evolutionBranchOf(id, data, gameMaster);
   if (evolution) entry.evolution = evolution;
+  if (raidRankings?.has(id)) entry.raid = raidRankings.get(id);
   if (species.buddyDistance) entry.buddyKm = species.buddyDistance;
   const specialMoves = specialMovesOf(species, data.moves);
   if (specialMoves.length) entry.specialMoves = specialMoves;
@@ -123,6 +134,7 @@ export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, g
     const shadowLeague = describeLeague(ranking.get(shadowId), data, detailRankLimit);
     if (shadowLeague) shadow[key] = bestIv ? { ...shadowLeague, bestIv } : shadowLeague;
   }
+  if (raidRankings?.has(shadowId)) shadow.raid = raidRankings.get(shadowId);
   if (Object.keys(shadow).length) entry.shadow = shadow;
   return entry;
 }
@@ -168,6 +180,96 @@ function bestLeagueIv(baseStats, cpLimit, cpMultipliers) {
     }
   }
   return best && { iv: best.iv, cp: best.cp };
+}
+
+// ---------- Raid: számolt helyezés típusonként ----------
+
+// A raidhez nincs letölthető rangsor, ezért a játék game masteréből számoljuk, ahogy a GamePress vagy a
+// DialgaDex: 40-es szint, 15/15/15 IV, semleges célpont. Egy szett ciklus-DPS-e a Fast mozdulatok és egy
+// Charged mozdulat ismétlődése (vagy csak Fast, ha az több); a pontszám DPS³ × TDO, ahol a TDO a DPS és
+// a bírás (Defense × HP) szorzata. Típusonként rangsorolunk (mindkét mozdulat abból a típusból), minden
+// megjelent fajt és formát beleszámolva (Shadow: 1,2× Attack, 5/6 Defense; Mega külön).
+// A Normal típus kimarad: semmire nem hatásos, raidben nem cél.
+const RAID_LEVEL = 40;
+const RAID_TARGET_DEFENSE = 180;
+const STAB = 1.2;
+const SHADOW_ATTACK = 1.2;
+const SHADOW_DEFENSE = 5 / 6;
+const RAID_EXCLUDED_MOVES = new Set(['RETURN', 'FRUSTRATION']);
+const RAID_EXCLUDED_TYPES = new Set(['normal']);
+
+function pveMoveOf(moveId, isFast, pveMoves) {
+  return pveMoves.get(isFast ? `${moveId}_FAST` : moveId) || pveMoves.get(moveId);
+}
+
+function raidDps(stats, types, fast, charged) {
+  const damage = (move) => Math.floor((0.5 * move.power * stats.atk / RAID_TARGET_DEFENSE) * (types.includes(move.type) ? STAB : 1)) + 1;
+  const fastDamage = damage(fast);
+  const fastsPerCharged = charged.energy / fast.energy;
+  const cycleDps = (fastsPerCharged * fastDamage + damage(charged)) / (fastsPerCharged * fast.seconds + charged.seconds);
+  return Math.max(cycleDps, fastDamage / fast.seconds);
+}
+
+// Minden faj és forma legjobb szettje típusonként, pontszámmal.
+function raidCandidates(data, gameMaster) {
+  const multiplier = gameMaster.cpMultipliers[RAID_LEVEL - 1];
+  const candidates = [];
+  for (const species of data.gamemaster.pokemon) {
+    const tags = species.tags || [];
+    if (species.released === false || tags.some((tag) => tag.startsWith('duplicate'))) continue;
+    const isShadow = tags.includes('shadow');
+    const types = species.types.filter((type) => type !== 'none');
+    const base = species.baseStats;
+    const stats = {
+      atk: (base.atk + 15) * multiplier * (isShadow ? SHADOW_ATTACK : 1),
+      def: (base.def + 15) * multiplier * (isShadow ? SHADOW_DEFENSE : 1),
+      hp: Math.floor((base.hp + 15) * multiplier),
+    };
+    const movesOf = (ids, isFast) => (ids || [])
+      .filter((moveId) => !RAID_EXCLUDED_MOVES.has(moveId))
+      .map((moveId) => ({ moveId, ...pveMoveOf(moveId, isFast, gameMaster.pveMoves) }))
+      .filter((move) => move.type);
+    const bestByType = new Map();
+    for (const fast of movesOf(species.fastMoves, true)) {
+      for (const charged of movesOf(species.chargedMoves, false)) {
+        if (fast.type !== charged.type || RAID_EXCLUDED_TYPES.has(fast.type)) continue;
+        const dps = raidDps(stats, types, fast, charged);
+        const score = dps ** 3 * dps * stats.def * stats.hp;
+        if (!bestByType.has(fast.type) || score > bestByType.get(fast.type).score) {
+          bestByType.set(fast.type, { score, fast: fast.moveId, charged: charged.moveId });
+        }
+      }
+    }
+    for (const [type, best] of bestByType) candidates.push({ id: species.speciesId, type, ...best });
+  }
+  return candidates;
+}
+
+// speciesId → a legjobb típusa a raid-rangsorban: { type, rank, moveset: { fast, charged } }.
+const raidRankingsCache = new WeakMap();
+function raidRankingsOf(data, gameMaster) {
+  if (raidRankingsCache.has(gameMaster)) return raidRankingsCache.get(gameMaster);
+  const candidates = raidCandidates(data, gameMaster);
+  const byType = new Map();
+  for (const candidate of candidates) {
+    if (!byType.has(candidate.type)) byType.set(candidate.type, []);
+    byType.get(candidate.type).push(candidate);
+  }
+  for (const list of byType.values()) {
+    list.sort((a, b) => b.score - a.score).forEach((candidate, index) => { candidate.rank = index + 1; });
+  }
+  const best = new Map();
+  for (const candidate of candidates) {
+    const current = best.get(candidate.id);
+    if (!current || candidate.rank < current.rank) best.set(candidate.id, candidate);
+  }
+  const rankings = new Map([...best].map(([id, candidate]) => [id, {
+    type: candidate.type,
+    rank: candidate.rank,
+    moveset: { fast: [data.moves.get(candidate.fast) || candidate.fast], charged: [data.moves.get(candidate.charged) || candidate.charged] },
+  }]));
+  raidRankingsCache.set(gameMaster, rankings);
+  return rankings;
 }
 
 // ---------- A játék game mastere: Dynamax / Gigantamax, fejlődés ----------
@@ -224,7 +326,18 @@ export async function loadGameMaster() {
   const templates = await response.json();
   const maxForms = new Map();
   const evolutions = new Map();
+  const pveMoves = new Map();
   for (const template of templates) {
+    const move = template.data?.moveSettings;
+    if (move && typeof move.movementId === 'string') {
+      pveMoves.set(move.movementId, {
+        type: move.pokemonType.replace('POKEMON_TYPE_', '').toLowerCase(),
+        power: move.power || 0,
+        seconds: move.durationMs / 1000,
+        energy: Math.abs(move.energyDelta || 0),
+      });
+      continue;
+    }
     const extended = /^EXTENDED_V\d{4}_POKEMON_(.+)$/.exec(template.templateId);
     if (extended) {
       const modes = new Set(JSON.stringify(template).match(/"breadMode":"BREAD_[A-Z_]+"/g) || []);
@@ -240,7 +353,7 @@ export async function loadGameMaster() {
     evolutions.set(parentKey, new Map(branches.map((branch) => [goKey(branch.form || branch.evolution), evolutionCost(branch)])));
   }
   const levelSettings = templates.find((template) => template.templateId === 'PLAYER_LEVEL_SETTINGS');
-  return { maxForms, evolutions, cpMultipliers: levelSettings.data.playerLevel.cpMultiplier };
+  return { maxForms, evolutions, pveMoves, cpMultipliers: levelSettings.data.playerLevel.cpMultiplier };
 }
 
 // PvPoke-azonosító → a game master fajneve, pl. ninetales_alolan → NINETALES_ALOLA.

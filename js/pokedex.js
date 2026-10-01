@@ -137,11 +137,14 @@ function evolutionCostText(stage) {
 }
 
 // Egy faj (ági fok, ellenfél) színe a saját harci erejéből: ha a Pokédexben van, a kártyája szerint (tiers), különben
-// a legjobb GL/UL helyezéséből (raid- és Max-adat nélkül), legendásnál arany.
+// a legjobb GL/UL és raid-helyezéséből (Max-adat nélkül), legendásnál arany.
 function stageTier(stage, tiers) {
   if (tiers.has(stage.id)) return tiers.get(stage.id);
   if (stage.legendary) return 'legendary';
-  return stage.rank ? leagueRating(stage) : 'trash';
+  const ratings = [];
+  if (stage.rank) ratings.push(rankRating(stage.rank, LEAGUE_RATING_LIMITS));
+  if (stage.raidRank) ratings.push(rankRating(stage.raidRank, RAID_RATING_LIMITS));
+  return bestRating(ratings);
 }
 
 // Egy másik faj neve a színével (fejlődési ág, párharcok); koppintásra a Pokédex csak azt a fajt mutatja

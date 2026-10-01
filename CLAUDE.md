@@ -8,7 +8,8 @@ Statikus oldal GitHub Pages-en, build nélkül.
   - `lists.js`: keresőkifejezések és linkek (`DATA`)
   - `pokemon.js`: fajonkénti, kézzel írt tanácsok (`POKEMON`), a mezők leírása a fájl elején
   - `pvpoke.js`: GENERÁLT (`PVPOKE`): típus, Mega formák, buddy km, GL/UL helyezés, ajánlott szett,
-    párharcok, a normál és a Shadow formára külön.
+    párharcok, legjobb IV, a game masterből számolt raid-helyezés és -szett, fejlődési ág, a normál és
+    a Shadow formára külön.
     Kézzel ne szerkeszd; frissítés: `node tools/sync-pvpoke.mjs` (a pokemon.js `id`-jai alapján)
   - `types.js`: a 18 típus ikonja, színe és típustáblázata (`TYPES`)
 - `js/`: a megjelenítés, sima (nem modul) scriptek, hogy `file://`-ról is működjön; a sorrend az
