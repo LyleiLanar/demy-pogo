@@ -5,13 +5,12 @@ function typeStyle(type) {
 }
 
 // Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip).
-// A multipleLabel a többszörös hatás leírása: ilyenkor felkiáltójel kerül az ikon mellé.
+// A multipleLabel a többszörös hatás leírása: ilyenkor az ikon dupla keretet kap (a mérete nem változik).
 function renderTypeBadge(typeKey, multipleLabel = '') {
   const type = TYPES[typeKey];
   const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
-  const marker = multipleLabel ? '<span class="type-multiple" aria-hidden="true">❗</span>' : '';
-  return `<button type="button" class="type" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
-    + `<span aria-hidden="true">${type.icon}</span>${marker}</button>`;
+  return `<button type="button" class="type${multipleLabel ? ' type-multiple' : ''}" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
+    + `<span aria-hidden="true">${type.icon}</span></button>`;
 }
 
 // A típustáblázat soraiban az ikon mellett a név is látszik, hogy az ikonok megtanulhatók legyenek.
