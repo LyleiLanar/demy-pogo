@@ -124,7 +124,7 @@ az értékét.
     példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”,
     „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”,
     „a Community Day ritka, tarts meg fejletlen példányt / cukrot”, „tematikus kupákban előkerülhet”,
-    „a második Charged Attackot érdemes feloldani”;
+    „a második Charged Attackot érdemes feloldani”, „részben felhős időben több jön” (időjárás-boost);
   - amit a helyezés mutat („ma nincs a top 100-ban”, „a meta része”, „csak niche”, „a Shadow
     változat jobb”), és hogy a Shadow / Mega erősebb: ilyenkor a forma kapjon saját értékelést
     (`forms.shadow.raid`, `forms.mega.raid`);

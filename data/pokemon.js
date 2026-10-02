@@ -49,7 +49,7 @@ const POKEMON = [
     name: 'Aegislash',
     origin: 'Honedge',
     greatLeague: {
-      iv: 'Mielőtt Stardustot teszel bele, nézd meg a Genie-ben az IV rankját mindkét formára, mert eltérhet.',
+      iv: 'A Legjobb IV a Shield formára szól; a Blade forma ereje is az IV-ből jön, ezért Stardust előtt nézd meg a Poke Genie-ben mindkét forma rankját.',
       tips: [
         'Harc közben két forma között vált, nehezen tanulható. Kezdőként a Doublade egyszerűbb.',
       ],
@@ -114,35 +114,10 @@ const POKEMON = [
     id: 'decidueye',
     name: 'Decidueye',
     origin: 'Rowlet',
-    raid: { note: 'Jobb Grass támadó: Venusaur (Frenzy Plant).' },
-    ultraLeague: {
-      moves: {
-        fast: ['Astonish'],
-        charged: ['Frenzy Plant', 'Spirit Shackle'],
-        note: 'Ha mégis építenéd.',
-      },
-    },
     notes: ['A hisui Decidueye (Grass/Fighting) külön faj, más a típusa és a szettje.'],
   },
-  {
-    id: 'dedenne',
-    name: 'Dedenne',
-    origin: 'Dedenne',
-    greatLeague: {
-      moves: {
-        fast: ['Thunder Shock'],
-        charged: ['Discharge', 'Play Rough'],
-        note: 'Ha mégis építenéd.',
-      },
-      tips: ['Nehéz ellenfelei: Shadow Quagsire, Mimikyu, Tinkaton.'],
-    },
-  },
-  {
-    id: 'delphox',
-    name: 'Delphox',
-    origin: 'Fennekin',
-    raid: { note: 'Jobb: Mega Charizard Y. Rocket ellen tartaléknak jó.' },
-  },
+  { id: 'dedenne', name: 'Dedenne', origin: 'Dedenne' },
+  { id: 'delphox', name: 'Delphox', origin: 'Fennekin' },
   { id: 'deoxys_defense', name: 'Deoxys (Defense)', origin: 'raidből (legendás)' },
   { id: 'dondozo', name: 'Dondozo', origin: 'Dondozo' },
   {
@@ -225,12 +200,7 @@ const POKEMON = [
     maxBattle: { note: 'Jobb: Rhyperior.' },
   },
   { id: 'gothitelle', name: 'Gothitelle', origin: 'Gothita' },
-  {
-    id: 'greedent',
-    name: 'Greedent',
-    origin: 'Skwovet',
-    notes: ['Részben felhős időben több Skwovet jön.'],
-  },
+  { id: 'greedent', name: 'Greedent', origin: 'Skwovet' },
   { id: 'guzzlord', name: 'Guzzlord', origin: 'raidből (Ultra Beast)' },
   {
     id: 'gyarados',
@@ -266,12 +236,7 @@ const POKEMON = [
     raid: { rating: 'trash' },
   },
   { id: 'lokix', name: 'Lokix', origin: 'Nymble' },
-  {
-    id: 'machamp',
-    name: 'Machamp',
-    origin: 'Machop',
-    raid: { note: 'Olcsón építhető.' },
-  },
+  { id: 'machamp', name: 'Machamp', origin: 'Machop' },
   { id: 'malamar', name: 'Malamar', origin: 'Inkay' },
   { id: 'mandibuzz', name: 'Mandibuzz', origin: 'Vullaby' },
   { id: 'mantine', name: 'Mantine', origin: 'Mantyke / Mantine' },
@@ -307,12 +272,7 @@ const POKEMON = [
   { id: 'swampert', name: 'Swampert', origin: 'Mudkip' },
   { id: 'thievul', name: 'Thievul', origin: 'Nickit' },
   { id: 'tinkaton', name: 'Tinkaton', origin: 'Tinkatink' },
-  {
-    id: 'torterra',
-    name: 'Torterra',
-    origin: 'Turtwig',
-    raid: { note: 'Csak Frenzy Plant-tel jó.' },
-  },
+  { id: 'torterra', name: 'Torterra', origin: 'Turtwig' },
   { id: 'toxapex', name: 'Toxapex', origin: 'Mareanie' },
   { id: 'trevenant', name: 'Trevenant', origin: 'Phantump' },
   { id: 'tsareena', name: 'Tsareena', origin: 'Bounsweet' },
