@@ -52,7 +52,7 @@ function renderMatchupColumn(label, matchups, isMultiple, multipleLabel, multipl
 
 // Minek ellenálló (bal oszlop) és mire érzékeny (jobb oszlop) a faj; a többszöröset előre véve.
 // A kevesebb ikonos oszlop a teljes szélességét kapja (legfeljebb a sor felét), a másik a maradékot,
-// így a lehető legtöbb ikon fér egymás mellé; a két oszlop között 24 px, középen elválasztó vonallal.
+// így a lehető legtöbb ikon fér egymás mellé; a két oszlop között 24 px.
 function renderDefense(defenseTypes) {
   if (defenseTypes.length === 0) return '';
   const matchups = Object.keys(TYPES)
@@ -62,7 +62,6 @@ function renderDefense(defenseTypes) {
   return `
     <div class="mon-defense">
       ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló', 'good', resistances.length < weaknesses.length)}
-      <span class="mon-defense-divider" aria-hidden="true"></span>
       ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny', 'bad', weaknesses.length <= resistances.length)}
     </div>`;
 }
