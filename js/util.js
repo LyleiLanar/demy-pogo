@@ -28,8 +28,10 @@ function renderFact(label, value) {
   return value ? `<dt>${label}</dt><dd>${escapeHtml(value)}</dd>` : '';
 }
 
-// Szöveges tanácsok a szakasz alján: minden tanács külön bekezdés, felsorolásjel nélkül.
+// Szöveges tanácsok a szakasz alján: minden tanács külön bekezdés, felsorolásjel nélkül; egy tanácson
+// belül a felsorolás tételei (\n) külön sorba kerülnek.
 function renderAdvice(items) {
   const texts = items.flat().filter(Boolean);
-  return texts.length ? `<div class="advice">${texts.map((text) => `<p>${escapeHtml(text)}</p>`).join('')}</div>` : '';
+  const paragraph = (text) => `<p>${text.split('\n').map(escapeHtml).join('<br>')}</p>`;
+  return texts.length ? `<div class="advice">${texts.map(paragraph).join('')}</div>` : '';
 }

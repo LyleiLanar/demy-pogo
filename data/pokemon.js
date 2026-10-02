@@ -91,7 +91,7 @@ const POKEMON = [
       moves: {
         fast: ['Fire Spin'],
         charged: ['Blast Burn', 'Overheat'],
-        note: 'Blast Burn nélkül az Overheat is elfogadható; a Dragon Claw-t cseréld le Charged TM-mel.',
+        note: 'Blast Burn nélkül az Overheat is elfogadható. A Dragon Claw-t cseréld le Charged TM-mel.',
       },
     },
     ultraLeague: {
@@ -240,7 +240,7 @@ const POKEMON = [
       moves: {
         fast: ['Waterfall', 'Bite'],
         charged: ['Hydro Pump', 'Crunch', 'Aqua Tail'],
-        note: 'Water szett: Waterfall + Hydro Pump; Dark szett: Bite + Crunch.',
+        note: 'Water szett: Waterfall + Hydro Pump\nDark szett: Bite + Crunch',
       },
     },
   },

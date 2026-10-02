@@ -96,7 +96,8 @@ az értékét.
 
 - Módhoz kötött tanács (IV, mozdulat, tipp): a megfelelő mód `iv`, `moves`, `tips` mezőjébe.
   Minden szöveges tanács (note, iv, moves.note, tips, notes) teljes mondat: a kártya a szakasz
-  aljára írja ki, külön bekezdésként, felsorolásjel nélkül.
+  aljára írja ki, külön bekezdésként, felsorolásjel nélkül. Felsorolásnál a tételeket `\n`
+  választja el (külön sorba kerülnek), ne pontosvessző: `'Water szett: Waterfall + Hydro Pump\nDark szett: Bite + Crunch'`.
 - Mozdulatok szétválasztva: `moves: { fast: ['Waterfall', 'Bite'], charged: ['Hydro Pump', 'Crunch'], note }`,
   a játékbeli angol mozdulatnévvel (a lookup is így írja). Ha a PvPoke-szett jó, a GL/UL-hez
   ne írj `moves`-t, mert a kártya magától mutatja.
