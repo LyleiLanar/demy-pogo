@@ -1,21 +1,21 @@
 :root{
   --bg:#EEF1F5; --surface:#FFFFFF; --ink:#18212C; --muted:#5A6676; --line:#D7DDE5;
   --accent:#D93A34; --accent-ink:#FFFFFF; --code-bg:#E4E9F0; --warn-bg:#FFF1E6; --warn-ink:#8A3A06;
-  --good:#1F8A4C; --good-ink:#FFFFFF; --meh:#6B7684; --meh-ink:#FFFFFF; --bad:#D93A34; --bad-ink:#FFFFFF;
+  --good:#1F8A4C; --good-ink:#FFFFFF; --tier-legendary:#B07D0A; --tier-meta:#8A3FD1; --tier-collect:#2563C9; --tier-alternative:#1F8A4C; --tier-trash:#8A929C; --tier-ink:#FFFFFF; --meh:#6B7684; --meh-ink:#FFFFFF; --bad:#D93A34; --bad-ink:#FFFFFF;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#10151C; --surface:#18202A; --ink:#E7ECF2; --muted:#98A4B3; --line:#2A3441;
     --accent:#F0605A; --accent-ink:#10151C; --code-bg:#222C38; --warn-bg:#2E2014; --warn-ink:#F5B37E;
-    --good:#4CC47F; --good-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
+    --good:#4CC47F; --good-ink:#10151C; --tier-legendary:#E9BE4E; --tier-meta:#B98CFF; --tier-collect:#6EA8FF; --tier-alternative:#4CC47F; --tier-trash:#7D8794; --tier-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#10151C; --surface:#18202A; --ink:#E7ECF2; --muted:#98A4B3; --line:#2A3441;
   --accent:#F0605A; --accent-ink:#10151C; --code-bg:#222C38; --warn-bg:#2E2014; --warn-ink:#F5B37E;
-    --good:#4CC47F; --good-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
+    --good:#4CC47F; --good-ink:#10151C; --tier-legendary:#E9BE4E; --tier-meta:#B98CFF; --tier-collect:#6EA8FF; --tier-alternative:#4CC47F; --tier-trash:#7D8794; --tier-ink:#10151C; --meh:#8E99A8; --meh-ink:#10151C; --bad:#F0605A; --bad-ink:#10151C;
   color-scheme:dark;
 }
 body{background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,-apple-system,sans-serif}
@@ -66,39 +66,63 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 /* Pokédex */
 .search{box-sizing:border-box;width:100%;font:500 1rem Barlow,sans-serif;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
 .search:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.search-box{position:relative}
+.search-box .search{padding-right:44px}
+.search::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;display:none}
+.search-clear{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:34px;height:34px;padding:0;border:0;border-radius:50%;background:var(--code-bg);color:var(--muted);font:600 1rem/1 system-ui,sans-serif;cursor:pointer}
+.search-clear:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.search-clear[hidden]{display:none}
 .dex{display:grid;gap:10px}
 .mon{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .mon-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .mon-name{font:700 1.2rem/1.2 "Barlow Condensed",Barlow,sans-serif;margin:0;color:var(--ink);text-transform:none;letter-spacing:.01em}
 .mon-dex{font:500 .75rem Barlow,sans-serif;color:var(--muted);letter-spacing:.02em;margin-left:2px}
 .mon-origin{color:var(--muted);margin:0 0 6px;font-size:.92rem}
-.verdict{flex:none;font:600 .72rem Barlow,sans-serif;border-radius:4px;padding:2px 7px;letter-spacing:.04em;text-transform:uppercase}
-.verdict-keep{background:var(--good);color:var(--good-ink)}
-.verdict-scan{background:var(--meh);color:var(--meh-ink)}
-.verdict-transfer{background:var(--bad);color:var(--bad-ink)}
+.mon-evolution{display:flex;flex-wrap:wrap;align-items:center;gap:2px 4px}
+.species-link{appearance:none;margin:0;padding:0;border:0;background:none;font:inherit;font-weight:600;color:inherit;text-align:inherit;cursor:pointer;text-decoration:none}
+.species-link.evo-current{font-weight:800;text-decoration:none}
+.mon-matchups{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 0}
+.mon-matchup-col{min-width:0}
+.mon-matchup-col+.mon-matchup-col{text-align:right}
+.mon-matchup-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.mon-defense-label.matchup-win{color:var(--good)}
+.mon-defense-label.matchup-loss{color:var(--bad)}
+.evo-arrow{appearance:none;margin:0;padding:0 5px;border:0;border-radius:6px;background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted);font:600 .85rem/1.4 Barlow,sans-serif;cursor:pointer}
+.evo-arrow:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.evo-or{color:var(--muted);margin:0 2px}
+.evo-name{white-space:nowrap}
+.mon-tier{cursor:pointer}
+.tier-legendary{color:var(--tier-legendary)}
+.tier-meta{color:var(--tier-meta)}
+.tier-collect{color:var(--tier-collect)}
+.tier-alternative{color:var(--tier-alternative)}
+.tier-trash{color:var(--tier-trash)}
 .mon-facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
 .mon-facts dt{color:var(--muted);font-size:.85rem;padding-top:1px}
 .mon-facts dd{margin:0}
-.mon-notes{margin-top:8px;font-size:.95rem}
+.mode-panel-empty{display:none}
+.advice{margin-top:10px;font-size:.95rem}
+.advice p{margin:0}
+.advice p+p{margin-top:5px}
 
 /* Kártya fülei: zöld = erős, szürke = közepes, piros = gyenge */
 .modes{margin:10px 0 0}
 .mode-tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.mode-tabs .verdict{margin-left:auto}
+.buddy-km{appearance:none;margin:0 0 0 auto;padding:0;border:0;background:none;color:var(--muted);font:600 .85rem Barlow,sans-serif;white-space:nowrap;cursor:pointer}
 .mode-tab{--rating:var(--meh);--rating-ink:var(--meh-ink);font:600 .85rem Barlow,sans-serif;min-width:52px;padding:6px 10px;border-radius:8px;border:2px solid var(--rating);background:var(--surface);color:var(--rating);cursor:pointer}
 .mode-tab[aria-pressed="true"]{background:var(--rating);color:var(--rating-ink)}
 .mode-tab:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.mode-tab.rating-good{--rating:var(--good);--rating-ink:var(--good-ink)}
-.mode-tab.rating-bad{--rating:var(--bad);--rating-ink:var(--bad-ink)}
+.mode-tab.rating-meta{--rating:var(--tier-meta);--rating-ink:var(--tier-ink)}
+.mode-tab.rating-collect{--rating:var(--tier-collect);--rating-ink:var(--tier-ink)}
+.mode-tab.rating-alternative{--rating:var(--tier-alternative);--rating-ink:var(--tier-ink)}
+.mode-tab.rating-trash{--rating:var(--tier-trash);--rating-ink:var(--tier-ink)}
 .mode-panel{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--code-bg)}
 .mode-panel p{margin:2px 0}
-.mode-title{font-weight:600}
 .mode-detail{color:var(--muted);font-size:.92rem}
 .rating-text-good{color:var(--good)}
 .rating-text-ok{color:var(--meh)}
 .rating-text-bad{color:var(--bad)}
 .legend-box{margin:10px 0;font-size:.92rem}
-.legend-box .verdict{margin-right:4px}
 
 /* Súgók: alapból zárva */
 .hint{margin:10px 0}
@@ -113,12 +137,22 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 /* Halvány típusszínű háttér és típusszínű keret, hogy minden ikon jól látsszon */
 .type{appearance:none;margin:0;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:1.7em;height:1.7em;padding:0 2px;border:1.5px solid var(--type-color);border-radius:999px;background:var(--surface);background:color-mix(in srgb,var(--type-color) 20%,var(--surface));color:var(--ink);font:.95rem/1 system-ui,sans-serif;white-space:nowrap;cursor:pointer}
 .type:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
-.type-multiple{font-size:.7em}
+.type{position:relative}
+.type-double::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--surface)}
+.type-double-good::after{background:var(--good)}
+.type-double-bad::after{background:var(--bad)}
 .type-label{height:auto;padding:3px 8px;gap:4px;font:600 .8rem/1.2 Barlow,sans-serif;cursor:default}
 .type-tooltip{position:absolute;z-index:20;max-width:260px;padding:5px 9px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.3 Barlow,sans-serif;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .mon-types{flex:none;display:flex;flex-wrap:wrap;gap:4px}
-.mon-weak{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.85rem}
-.mon-weak-label{color:var(--muted)}
+.mon-defense{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin:6px 0 0}
+.mon-defense-col{min-width:0;flex:1 1 0}
+.mon-defense-col-narrow{flex:0 0 auto;max-width:50%}
+.mon-defense-label{display:block;margin-bottom:3px;color:var(--muted);font-size:.8rem}
+.mon-defense-icons{display:flex;flex-wrap:wrap;gap:3px}
+.mon-defense-icons .type{min-width:1.5em;height:1.5em;font-size:.82rem}
+.mon-defense-none{color:var(--muted)}
+.mon-defense-col+.mon-defense-col{text-align:right}
+.mon-defense-col+.mon-defense-col .mon-defense-icons{justify-content:flex-end}
 .type-chart{display:grid;gap:8px;margin-top:6px}
 .type-row{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
 .type-row-head{margin-bottom:4px}

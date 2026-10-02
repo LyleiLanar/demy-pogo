@@ -22,9 +22,10 @@ Először a gépi adat:
 
 ```
 node tools/pvpoke-lookup.mjs <név vagy azonosító>
+node tools/pvpoke-lookup.mjs --json <név>   # a pvpoke.js-be kerülő teljes bejegyzés
 ```
 
-Kiírja: `id`, típus, címkék (legendary, shadoweligible…), fejlődési sor, buddy km,
+Kiírja: `id`, típus, címkék (legendary, shadoweligible…), fejlődési ág cukorárral és feltétellel, buddy km,
 Elite mozdulatok, Mega formák, **Dynamax / Gigantamax**, GL/UL helyezés és szett a normál és a
 Shadow formára. A szavak sorrendje mindegy („alolan ninetales”). Ha több találat van
 (pl. sima és hisui forma), a felhasználó által mutatottat válaszd.
@@ -37,7 +38,9 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 |---|---|---|
 | PvP-helyezés, szett, párharcok, típus, Mega | PvPoke (`github.com/pvpoke/pvpoke`) | a lookup / sync script |
 | Dynamax, Gigantamax, Mega, mozdulatok, Elite TM | a játék game mastere (PokeMiners, `github.com/PokeMiners/game_masters`) | a lookup script |
-| Raid-erő, legjobb raid-támadók, Max Battle szerep | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
+| Raid-helyezés és szett | számolt a game masterből (sync / lookup) | a lookup script |
+| Max Battle szerep (támadó / tank / gyógyító) | számolt a game masterből (sync / lookup) | a lookup script |
+| Max Battle és raid ellenőrzése, aktuális bossok | Pokebattler, Pokémon GO Hub (db.pokemongohub.net), GamePress, Serebii | WebSearch (a találati lista látszik, az oldalak közvetlenül le vannak tiltva) |
 | Aktuális események, Max Battle bossok, Community Day | Leek Duck, Pokémon GO Hub | WebSearch |
 | Általános leírás | Bulbapedia | WebSearch |
 
@@ -50,40 +53,66 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
 - Ha semmi nem biztos, használhatod a saját tudásodat, de jelöld bizonytalannak, és javasold,
   hogy a felhasználó nézze meg (pl. Leek Duck).
 
-## 3. Döntés (`verdict`)
+## 3. Színek (Diablo-szerű ritkaság)
 
-- `keep`: raidben vagy gymben erős, vagy legendás / mitikus / Ultra Beast.
-- `scan`: GL vagy UL top 100 (normál vagy Shadow forma).
-- `transfer`: minden más. A csak Max Battle-ben jó faj is `transfer`, mert a Dynamax példány
-  a mindig érvényes kivétel miatt amúgy is marad.
+Minden mód (Raid, GL, UL, Max) külön színt kap, a név színe a faj legjobb módjáé bármelyik
+formában (`js/species.js`, `speciesTier`). Egy faj lehet raidben szürke, Max Battle-ben lila.
+Értékek, a legjobbtól:
+
+- `meta` (lila): a legjobbak közt abban a módban; ligában top 20.
+- `collect` (kék, gyűjtendő): érdemes megtartani és építeni; ligában top 50.
+- `alternative` (zöld): átmenetileg jó, ha nincs jobb; ligában top 100.
+- `trash` (szürke): kuka.
+- Arany név: legendás / mitikus / Ultra Beast, a PvPoke-adatból magától.
+
+A ligáké a PvPoke teljes (1000+ fajos) rangsorából számolódik; a heti szinkronnal frissül.
+A raidé is számolt: a game masterből DPS³ × TDO pontszám (40-es szint, 15/15/15), és a faj
+legjobb támadó típusában elért helyezés minden fajhoz és formához (Shadow, Mega) mérve: top 10 lila,
+top 25 kék, top 50 zöld. A Normal típus nem számít (semmire nem hatásos).
+A Max Battle is számolt, a Dynamax és a Gigantamax formára külön, három szerepben: támadó (a Max
+mozdulat típusán belül: top 3 lila, top 6 kék, top 12 zöld, és a típus legjobbjához mérve is erős
+kell legyen), tank és gyógyító (az összes Max-képes faj között: top 10 / 25 / 50). A fül színe a
+legjobb szerepé, a Fejleszd a kék és lila szerepek mozdulata.
+
+A fejlődési ág minden foka a saját harci ereje szerint színes: ami a Pokédexben van, a kártyája
+szerint, a többi a ligahelyezése szerint. Ezért a gyenge alapforma (pl. Eevee) maradhat szürke: az
+ágban látszik, mivé érdemes fejleszteni. Ha egy fejlődés raidben vagy Max Battle-ben jó, de nincs a
+Pokédexben, vedd fel, különben az ágban alulértékelt színt kap.
+
+A faj `tier` mezője alsó határ a név színére; ritkán kell, csak ha a módok és az ág sem mutatja
+az értékét.
 
 ## 4. Módok értékelése
 
 - `greatLeague`, `ultraLeague`: a helyezés és a szín a `data/pvpoke.js`-ből jön, ezt ne írd be.
   Kézzel csak a plusz tanács kerül ide (`iv`, `moves`, `tips`, `note`).
-- `raid`: `rating` = `good` / `ok` / `bad`, egy mondatos `note`-tal. A PvPoke nem ad raidadatot:
-  ha nem vagy biztos, hagyd ki a `raid` mezőt, és mondd meg a felhasználónak.
-- `maxBattle`: csak ha a lookup szerint a fajnak van Dynamax vagy Gigantamax formája. Az `upgrade`
-  mondja meg, melyik Max mozdulatot fejleszd (`attack` / `guard` / `spirit`); gyenge értékelésnél hagyd ki.
-  Gigantamaxhoz: `forms.gigantamax.maxBattle` (saját `rating`, `note`, `upgrade`).
-  Az értékeléshez (támadó, védő, gyógyító) keress rá WebSearch-csel; ha nem egyértelmű, hagyd ki.
-- `gym`: csak ha kifejezetten jó gym védő.
+- `raid`: a helyezés, a szín és a szett számolt (lookup: „Raid:” sor), ezt ne írd be. Kézzel csak
+  plusz tanács (`note`, `tips`, más szett a `moves`-ban, ha a számolt mellett van jó alternatíva).
+  `rating` csak akkor kell, ha nincs számolt adat (pl. csak Normal támadása van).
+- `maxBattle` (Dynamax) és `forms.gigantamax.maxBattle`: a szerepek, a szín és a Fejleszd számolt
+  (lookup), ezt ne írd be; kézzel csak `note` / `tips`, ha van konkrét plusz (pl. jobb alternatíva).
 
 ## 5. A tanácsok helye
 
 - Módhoz kötött tanács (IV, mozdulat, tipp): a megfelelő mód `iv`, `moves`, `tips` mezőjébe.
+  Minden szöveges tanács (note, iv, moves.note, tips, notes) teljes mondat: a kártya a szakasz
+  aljára írja ki, külön bekezdésként, felsorolásjel nélkül. Felsorolásnál a tételeket `\n`
+  választja el (külön sorba kerülnek), ne pontosvessző: `'Water szett: Waterfall + Hydro Pump\nDark szett: Bite + Crunch'`.
 - Mozdulatok szétválasztva: `moves: { fast: ['Waterfall', 'Bite'], charged: ['Hydro Pump', 'Crunch'], note }`,
   a játékbeli angol mozdulatnévvel (a lookup is így írja). Ha a PvPoke-szett jó, a GL/UL-hez
   ne írj `moves`-t, mert a kártya magától mutatja.
 - Speciális mozdulat (csak Elite TM-mel vagy eseményen szerezhető meg): a ⚠️ jelölés és a szövege
-  automatikus a game master alapján, kézzel nem kell jelölni.
+  automatikus a game master alapján, kézzel nem kell jelölni, és `warning` sem kell hozzá
+  („Hydro Cannon kell hozzá”): a szettben ott a mozdulat a ⚠️ jellel.
 - Formához kötött tanács: `forms.shadow`, `forms.mega`, `forms.megaX`, `forms.megaY`, `forms.gigantamax`
   (a kártya Max formájában a faj `maxBattle`-je a Dynamax, a `forms.gigantamax.maxBattle` a Gigantamax fül)
   (a Shadow és a Mega nem külön faj). A Megának csak raidje van, a Shadow-nak nincs Max Battle-je.
-- Módtól független, de fajra szóló tanács: `notes`; fejlődés és cukorár: `evolution`.
+- Módtól független, de fajra szóló tanács: `notes`. A fejlődési ág és a cukorár gépi adat
+  (a kártyán a név alatt), ne írd be; a „NE fejleszd X-szé” jellegű tanács a `warning`-ba megy.
 - Általános, nem fajhoz kötött tanács: az `index.html` Tippek fülére, ne a fajhoz.
 - Ne írd be:
-  - amit a PvPoke-adat már mutat (szett, nehéz ellenfelek, helyezés);
+  - amit a PvPoke-adat már mutat (szett, nehéz ellenfelek, helyezés), és a liga legjobb IV-jét
+    (a szinkron számolja, a GL/UL fülön „Legjobb IV: 0/15/14 1498CP”);
   - a mindig érvényes kivételt (shiny, jelmezes, különleges hátterű, Dynamax, Shadow, legendás,
     Lucky, @special mozdulatú példány marad) és a „kedvencnek jelöld” jellegű mondatokat;
   - a felhasználó saját példányát, és a csapatára szabott prioritást
@@ -93,7 +122,17 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
     „PvP-re alacsony Attack, magas Defense/HP”, „95% fölötti rank a jó”, „fokozatosan 30–35-ös
     szintig húzd”, „a többi mehet cukorért”, „Pinap Berryvel kapd el”, „egy magas Attackos
     példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”,
-    „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”;
+    „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”,
+    „a Community Day ritka, tarts meg fejletlen példányt / cukrot”, „tematikus kupákban előkerülhet”,
+    „a második Charged Attackot érdemes feloldani”;
+  - amit a helyezés mutat („ma nincs a top 100-ban”, „a meta része”, „csak niche”, „a Shadow
+    változat jobb”), és hogy a Shadow / Mega erősebb: ilyenkor a forma kapjon saját értékelést
+    (`forms.shadow.raid`, `forms.mega.raid`);
+  - amit a kártya már mutat: az értékelés szavát („erős”, „közepes”, „gyenge”, „az egyik legjobb”,
+    „nem prioritás”) a fül színe, a típust („Psychic támadó”) a típusikonok, a szerepet („tank”,
+    „gyógyító”) a Fejleszd sor, a szintet a Legjobb IV. A `note` csak konkrét infóra kell: jobb
+    alternatíva („Jobb: Rhyperior.”), feltétel („Csak Frenzy Plant-tel jó.”), költség („Olcsón
+    építhető.”), szerep, ha a kártya nem mutatja;
   - a típusból adódó gyengeséget („Fighting boss ellen ne vidd”): a kártya Érzékeny sora mutatja.
   - hogy milyen típusú támadó („Fire támadó”), ha a módnál van mozdulatlista: a mozdulatok
     típusikonja mutatja. Mozdulatlista nélkül maradhat.
@@ -111,10 +150,8 @@ Bármilyen megbízható forrást használhatsz; ami nem gépi adat, annál mondd
   id: 'decidueye',
   name: 'Decidueye',
   origin: 'Rowlet',
-  verdict: 'transfer',
-  raid: { rating: 'bad', note: 'Grass/Ghost, vékony támadó; vannak jobb Grass támadók.' },
+  raid: { rating: 'trash', note: 'Vékony támadó; vannak jobb Grass támadók.' },
   // nincs maxBattle: a lookup szerint nincs Dynamax formája
-  evolution: 'Rowlet → Dartrix (25 cukor) → Decidueye (100 cukor).',
 },
 ```
 

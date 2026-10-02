@@ -3,7 +3,14 @@
 const TAB_STORAGE_KEY = 'tab';
 const COPY_FEEDBACK_MS = 1500;
 
-// ---------- Fülek ----------
+// ---------- Fülek, Pokédex-keresés és navigáció ----------
+
+// A navigáció a böngésző előzményeiben él (History API): a fül és a kiválasztott faj a címben van
+// (#/dex, #/dex/umbreon), így a vissza gomb (telefonon a vissza mozdulat) az előző fülre vagy fajra lép,
+// és a görgetés helye is visszajön. A gépelt keresés nem lép új bejegyzést, csak a mostanit frissíti.
+
+const NO_RESULT_TEXT = 'Nincs találat: vagy nincs ilyen Pokémon, vagy még nincs a Pokédexben, és feltöltésre vár. Kérdezz rá, és felvesszük.';
+const NOT_ADDED_TEXT = (name) => `${name} még nincs a Pokédexben, feltöltésre vár. Kérdezz rá, és felvesszük.`;
 
 function saveTab(tabId) {
   try {
@@ -21,57 +28,24 @@ function loadTab() {
   }
 }
 
-function setupTabs() {
-  const tabButtons = [...document.querySelectorAll('nav button')];
-  const isTab = (id) => tabButtons.some((button) => button.dataset.tab === id);
-
-  function showTab(tabId) {
-    tabButtons.forEach((button) => {
-      const isActive = button.dataset.tab === tabId;
-      button.setAttribute('aria-selected', isActive);
-      document.getElementById(button.dataset.tab).hidden = !isActive;
-    });
-    saveTab(tabId);
-  }
-
-  tabButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      showTab(button.dataset.tab);
-      window.scrollTo(0, 0);
-    });
-  });
-
-  // A fülre mutató linkek (pl. href="#top") is fület váltanak.
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest('a[href^="#"]');
-    const tabId = link && link.getAttribute('href').slice(1);
-    if (!isTab(tabId)) return;
-    event.preventDefault();
-    showTab(tabId);
-    window.scrollTo(0, 0);
-  });
-
-  const hashTab = location.hash.slice(1);
-  const startTab = isTab(hashTab) ? hashTab : loadTab();
-  if (isTab(startTab)) showTab(startTab);
-}
-
-// ---------- Pokédex keresés ----------
-
-function setupPokedexSearch() {
+// A Pokédex szűrése: gépelt szöveg (query) vagy egy kiválasztott faj (species: { id, name }).
+function createPokedexFilter() {
   const input = document.getElementById('dex-search');
+  const clearButton = document.getElementById('dex-search-clear');
   const cards = [...document.querySelectorAll('#dex-list .mon')];
   const count = document.getElementById('dex-count');
   const emptyMessage = document.getElementById('dex-empty');
+  let selectedSpecies = null;
 
-  // Szám (vagy #szám) pontos Pokédex-számra keres, minden más a név, alapforma és típus szövegében.
+  // Szám (vagy #szám) pontos Pokédex-számra keres, minden más a név, alapforma, fejlődési ág és típus szövegében.
   function matchesQuery(card, rawQuery) {
+    if (selectedSpecies) return card.dataset.id === selectedSpecies.id;
     const dexQuery = /^#?(\d+)$/.exec(rawQuery);
     if (dexQuery) return card.dataset.dex === String(Number(dexQuery[1]));
     return card.dataset.search.includes(normalizeForSearch(rawQuery));
   }
 
-  function filter() {
+  function apply() {
     const query = input.value.trim();
     let visible = 0;
     cards.forEach((card) => {
@@ -80,20 +54,126 @@ function setupPokedexSearch() {
       if (matches) visible += 1;
     });
     count.textContent = `${visible} / ${cards.length} faj`;
+    emptyMessage.textContent = selectedSpecies ? NOT_ADDED_TEXT(selectedSpecies.name) : NO_RESULT_TEXT;
     emptyMessage.hidden = visible > 0;
+    clearButton.hidden = input.value === '';
   }
 
-  input.addEventListener('input', filter);
+  return {
+    input,
+    clearButton,
+    // Az állapot: { query } vagy { species: { id, name } }.
+    set({ query = '', species = null }) {
+      selectedSpecies = species;
+      input.value = species ? species.name : query;
+      apply();
+    },
+    get() {
+      return selectedSpecies ? { species: selectedSpecies } : { query: input.value };
+    },
+  };
+}
 
-  // A GL Top 50 nevei a Pokédexben nyitják meg a fajt.
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest('a[data-pokemon]');
-    if (!link) return;
-    input.value = link.dataset.pokemon;
-    filter();
+// Egy faj neve az azonosítójából (a címből betöltéskor): a kártyáról vagy egy fejlődési ágból.
+function speciesNameOf(id) {
+  const link = document.querySelector(`[data-species="${CSS.escape(id)}"]`);
+  return link ? link.dataset.name : id;
+}
+
+function setupNavigation() {
+  const tabButtons = [...document.querySelectorAll('nav button')];
+  const isTab = (id) => tabButtons.some((button) => button.dataset.tab === id);
+  const pokedex = createPokedexFilter();
+  let currentTab = null;
+
+  function showTab(tabId) {
+    tabButtons.forEach((button) => {
+      const isActive = button.dataset.tab === tabId;
+      button.setAttribute('aria-selected', isActive);
+      document.getElementById(button.dataset.tab).hidden = !isActive;
+    });
+    currentTab = tabId;
+    saveTab(tabId);
+  }
+
+  function urlOf(state) {
+    return state.species ? `#/${state.tab}/${encodeURIComponent(state.species.id)}` : `#/${state.tab}`;
+  }
+
+  function render(state) {
+    showTab(state.tab);
+    pokedex.set(state);
+  }
+
+  // Új bejegyzés az előzményekben; előtte a mostanihoz elmentjük, hol tartott a görgetés.
+  function navigate(state) {
+    history.replaceState({ ...history.state, scrollY: window.scrollY }, '', location.href);
+    history.pushState(state, '', urlOf(state));
+    render(state);
+    window.scrollTo(0, 0);
+  }
+
+  // A mostani bejegyzés frissítése (gépelés, törlés): a vissza gomb nem lépked betűnként.
+  function updateCurrent() {
+    const state = { tab: currentTab, ...pokedex.get() };
+    history.replaceState(state, '', urlOf(state));
+  }
+
+  tabButtons.forEach((button) => {
+    button.addEventListener('click', () => navigate({ tab: button.dataset.tab }));
   });
 
-  filter();
+  document.addEventListener('click', (event) => {
+    // Egy faj neve (fejlődési ág, GL Top 50): a Pokédexben csak az a faj látszik.
+    const speciesLink = event.target.closest('[data-species]');
+    if (speciesLink) {
+      event.preventDefault();
+      navigate({ tab: 'dex', species: { id: speciesLink.dataset.species, name: speciesLink.dataset.name } });
+      return;
+    }
+    // A fülre mutató linkek (pl. href="#top") is fület váltanak.
+    const link = event.target.closest('a[href^="#"]');
+    const tabId = link && link.getAttribute('href').slice(1);
+    if (!isTab(tabId)) return;
+    event.preventDefault();
+    navigate({ tab: tabId });
+  });
+
+  pokedex.input.addEventListener('input', () => {
+    pokedex.set({ query: pokedex.input.value });
+    updateCurrent();
+  });
+
+  // Egykattintásos törlés.
+  pokedex.clearButton.addEventListener('click', () => {
+    pokedex.set({ query: '' });
+    updateCurrent();
+    pokedex.input.focus();
+  });
+
+  window.addEventListener('popstate', (event) => {
+    const state = event.state || stateFromLocation();
+    render(state);
+    window.scrollTo(0, state.scrollY || 0);
+  });
+
+  // A címből (#/dex/umbreon; a régi #dex alakot is elfogadja), különben az utoljára megnyitott fül.
+  function stateFromLocation() {
+    const [tabId, speciesId] = location.hash.replace(/^#\/?/, '').split('/');
+    if (isTab(tabId)) {
+      const id = speciesId && decodeURIComponent(speciesId);
+      return id ? { tab: tabId, species: { id, name: speciesNameOf(id) } } : { tab: tabId };
+    }
+    const savedTab = loadTab();
+    return { tab: isTab(savedTab) ? savedTab : tabButtons[0].dataset.tab };
+  }
+
+  // A görgetést mi állítjuk vissza (a cím #/ alakja miatt a böngésző horgonyhoz sem ugrik).
+  history.scrollRestoration = 'manual';
+  const startState = history.state?.tab ? history.state : stateFromLocation();
+  history.replaceState(startState, '', urlOf(startState));
+  render(startState);
+  window.scrollTo(0, startState.scrollY || 0);
 }
 
 // ---------- Kártya fülei és formaváltó ----------

@@ -31,7 +31,7 @@ function renderRankingEntry(species) {
   return `
     <li>
       <span class="n">${bestRank(species.greatLeagueRanks)}</span>
-      <a class="f" href="#dex" data-pokemon="${escapeHtml(species.name)}">${escapeHtml(species.name)}${shadowBadge}</a>
+      <a class="f" href="#dex" data-species="${species.id}" data-name="${escapeHtml(species.name)}">${escapeHtml(species.name)}${shadowBadge}</a>
       <span class="w">${details.join(' · ')}</span>
     </li>`;
 }

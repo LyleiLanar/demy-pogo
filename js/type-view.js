@@ -4,14 +4,15 @@ function typeStyle(type) {
   return `--type-color:${type.color}`;
 }
 
-// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip).
-// A multipleLabel a többszörös hatás leírása: ilyenkor felkiáltójel kerül az ikon mellé.
-function renderTypeBadge(typeKey, multipleLabel = '') {
+// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip). Mindenhol ugyanúgy néz ki
+// (a típus színe). A multipleLabel a többszörös hatás leírása a buborékba; a double ('good' / 'bad') egy
+// zöld vagy piros pötty a chip sarkában (kettős ellenállás / érzékenység), a méret nem változik.
+function renderTypeBadge(typeKey, multipleLabel = '', double = '') {
   const type = TYPES[typeKey];
   const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
-  const marker = multipleLabel ? '<span class="type-multiple" aria-hidden="true">❗</span>' : '';
-  return `<button type="button" class="type" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
-    + `<span aria-hidden="true">${type.icon}</span>${marker}</button>`;
+  const doubleClass = double ? ` type-double type-double-${double}` : '';
+  return `<button type="button" class="type${doubleClass}" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
+    + `<span aria-hidden="true">${type.icon}</span></button>`;
 }
 
 // A típustáblázat soraiban az ikon mellett a név is látszik, hogy az ikonok megtanulhatók legyenek.
@@ -35,23 +36,34 @@ function damageMultiplier(attackType, defenseTypes) {
   }, 1);
 }
 
-function renderMatchupRow(label, matchups, isMultiple, multipleLabel) {
-  if (matchups.length === 0) return '';
+// A többszörös hatás pöttyöt kap (multipleTone: zöld ellenállásnál, piros érzékenységnél).
+function renderMatchupColumn(label, matchups, isMultiple, multipleLabel, multipleTone, isNarrow) {
   const badges = matchups
-    .map(({ attackType, multiplier }) => renderTypeBadge(attackType, isMultiple(multiplier) ? multipleLabel : ''))
-    .join(' ');
-  return `<p class="mon-weak"><span class="mon-weak-label">${label}</span> ${badges}</p>`;
+    .map(({ attackType, multiplier }) => (isMultiple(multiplier)
+      ? renderTypeBadge(attackType, multipleLabel, multipleTone)
+      : renderTypeBadge(attackType)))
+    .join('');
+  return `
+    <div class="mon-defense-col${isNarrow ? ' mon-defense-col-narrow' : ''}">
+      <span class="mon-defense-label">${label}</span>
+      <div class="mon-defense-icons">${badges || '<span class="mon-defense-none">–</span>'}</div>
+    </div>`;
 }
 
-// Mire érzékeny és minek ellenálló a faj; a többszöröset előre véve.
+// Minek ellenálló (bal oszlop) és mire érzékeny (jobb oszlop) a faj; a többszöröset előre véve.
+// A kevesebb ikonos oszlop a teljes szélességét kapja (legfeljebb a sor felét), a másik a maradékot,
+// így a lehető legtöbb ikon fér egymás mellé; a két oszlop között 24 px.
 function renderDefense(defenseTypes) {
   if (defenseTypes.length === 0) return '';
   const matchups = Object.keys(TYPES)
     .map((attackType) => ({ attackType, multiplier: damageMultiplier(attackType, defenseTypes) }));
   const weaknesses = matchups.filter(({ multiplier }) => multiplier > 1).sort((a, b) => b.multiplier - a.multiplier);
   const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
-  return renderMatchupRow('Érzékeny:', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny')
-    + renderMatchupRow('Ellenálló:', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló');
+  return `
+    <div class="mon-defense">
+      ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló', 'good', resistances.length < weaknesses.length)}
+      ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny', 'bad', weaknesses.length <= resistances.length)}
+    </div>`;
 }
 
 function attackingTraits(attackType) {

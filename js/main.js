@@ -12,8 +12,7 @@ function renderContent(data, pokemon, rankingsDate) {
 }
 
 renderContent(DATA, combineSpeciesData(POKEMON, PVPOKE), PVPOKE_DATE);
-setupTabs();
-setupPokedexSearch();
+setupNavigation();
 setupModeTabs();
 setupTooltip();
 setupCopyButtons();
