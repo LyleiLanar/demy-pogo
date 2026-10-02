@@ -102,7 +102,7 @@ function renderBuddy(species) {
   const km = species.stats.buddyKm;
   if (!km) return '';
   const text = `Buddyként ${km} km-enként ad 1 cukrot`;
-  return `<button type="button" class="buddy-km" data-tooltip="${text}" aria-label="${text}">${km} km/🍬</button>`;
+  return `<button type="button" class="buddy-km" data-tooltip="${text}" aria-label="${text}">🍬: ${km} km</button>`;
 }
 
 function renderGameModes(modes, species, tiers) {
