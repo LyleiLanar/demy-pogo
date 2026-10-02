@@ -149,6 +149,7 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-defense-col-narrow{flex:0 0 auto;max-width:50%}
 .mon-defense-label{display:block;margin-bottom:3px;color:var(--muted);font-size:.8rem}
 .mon-defense-icons{display:flex;flex-wrap:wrap;gap:3px}
+.mon-defense-icons .type{min-width:1.5em;height:1.5em;font-size:.82rem}
 .mon-defense-none{color:var(--muted)}
 .mon-defense-col+.mon-defense-col{text-align:right}
 .mon-defense-col+.mon-defense-col .mon-defense-icons{justify-content:flex-end}
@@ -169,5 +170,6 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 /* Mozdulatok: Fast / Charged, speciálisnál ⚠️ */
 .moves{display:flex;flex-wrap:wrap;gap:4px 10px}
 .move{display:inline-flex;align-items:center;gap:4px}
+.move .type{min-width:1.5em;height:1.5em;font-size:.8rem}
 .move-warning{appearance:none;margin:0;padding:0 2px;border:0;background:none;font-size:.85rem;line-height:1;cursor:pointer}
 .move-warning:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-radius:4px}
