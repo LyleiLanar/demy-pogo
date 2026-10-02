@@ -30,30 +30,18 @@ function renderMove(name, species) {
   return `<span class="move">${typeBadge}${escapeHtml(name)}${warning}</span>`;
 }
 
-const CHARGED_ORDER_TEXTS = [
-  'Első Charged Attack: ha csak egy van, ez legyen',
-  'Második Charged Attack: ezt érdemes feloldani',
-];
-
-// Ha isOrdered, a mozdulatok sorszámot kapnak (ligában a PvPoke használati sorrendje szerint).
-function renderMoveFact(label, names, species, isOrdered = false) {
+function renderMoveFact(label, names, species) {
   if (!names || names.length === 0) return '';
-  const moves = names.map((name, i) => {
-    const order = isOrdered && CHARGED_ORDER_TEXTS[i]
-      ? `<button type="button" class="move-order" data-tooltip="${CHARGED_ORDER_TEXTS[i]}" aria-label="${CHARGED_ORDER_TEXTS[i]}">${i + 1}.</button>` : '';
-    return order + renderMove(name, species);
-  });
-  return `<dt>${label}</dt><dd class="moves">${moves.join('')}</dd>`;
+  return `<dt>${label}</dt><dd class="moves">${names.map((name) => renderMove(name, species)).join('')}</dd>`;
 }
 
 // A kézzel írt ajánlás (moves) elsőbbséget kap, különben a PvPoke-szett (moveset) látszik.
 function renderMoves(mode, species) {
   const moves = mode.moves || mode.moveset;
   if (!moves) return '';
-  // Sorszám csak a számolt ligaszettnél: a kézi szettben és raidben a Charged mozdulatok alternatívák.
-  const isOrdered = mode.isLeague && !mode.moves && moves.charged?.length > 1;
+  // Ligában a Charged mozdulatok fontosság szerint jönnek (a szinkron rendezi): elöl a fontosabb.
   return renderMoveFact('Fast Attack', moves.fast, species)
-    + renderMoveFact('Charged Attack', moves.charged, species, isOrdered);
+    + renderMoveFact('Charged Attack', moves.charged, species);
 }
 
 // A PvPoke legfontosabb párharcai két oszlopban: balra akiket megver (zöld felirat), jobbra akik ellen
