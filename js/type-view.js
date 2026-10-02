@@ -37,20 +37,22 @@ function damageMultiplier(attackType, defenseTypes) {
 }
 
 // A többszörös hatás pöttyöt kap (multipleTone: zöld ellenállásnál, piros érzékenységnél).
-function renderMatchupColumn(label, matchups, isMultiple, multipleLabel, multipleTone) {
+function renderMatchupColumn(label, matchups, isMultiple, multipleLabel, multipleTone, isNarrow) {
   const badges = matchups
     .map(({ attackType, multiplier }) => (isMultiple(multiplier)
       ? renderTypeBadge(attackType, multipleLabel, multipleTone)
       : renderTypeBadge(attackType)))
     .join('');
   return `
-    <div class="mon-defense-col">
+    <div class="mon-defense-col${isNarrow ? ' mon-defense-col-narrow' : ''}">
       <span class="mon-defense-label">${label}</span>
       <div class="mon-defense-icons">${badges || '<span class="mon-defense-none">–</span>'}</div>
     </div>`;
 }
 
 // Minek ellenálló (bal oszlop) és mire érzékeny (jobb oszlop) a faj; a többszöröset előre véve.
+// A kevesebb ikonos oszlop a teljes szélességét kapja (legfeljebb a sor felét), a másik a maradékot,
+// így a lehető legtöbb ikon fér egymás mellé; a két oszlop között legalább 16 px köz marad.
 function renderDefense(defenseTypes) {
   if (defenseTypes.length === 0) return '';
   const matchups = Object.keys(TYPES)
@@ -59,8 +61,8 @@ function renderDefense(defenseTypes) {
   const resistances = matchups.filter(({ multiplier }) => multiplier < 1).sort((a, b) => a.multiplier - b.multiplier);
   return `
     <div class="mon-defense">
-      ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló', 'good')}
-      ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny', 'bad')}
+      ${renderMatchupColumn('Ellenálló', resistances, (m) => m < TYPE_MULTIPLIERS.resist, 'duplán ellenálló', 'good', resistances.length < weaknesses.length)}
+      ${renderMatchupColumn('Érzékeny', weaknesses, (m) => m > TYPE_MULTIPLIERS.weak, 'duplán érzékeny', 'bad', weaknesses.length <= resistances.length)}
     </div>`;
 }
 

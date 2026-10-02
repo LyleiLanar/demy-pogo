@@ -144,8 +144,9 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .type-label{height:auto;padding:3px 8px;gap:4px;font:600 .8rem/1.2 Barlow,sans-serif;cursor:default}
 .type-tooltip{position:absolute;z-index:20;max-width:260px;padding:5px 9px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.3 Barlow,sans-serif;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .mon-types{flex:none;display:flex;flex-wrap:wrap;gap:4px}
-.mon-defense{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 0}
-.mon-defense-col{min-width:0}
+.mon-defense{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin:6px 0 0}
+.mon-defense-col{min-width:0;flex:1 1 0}
+.mon-defense-col-narrow{flex:0 0 auto;max-width:50%}
 .mon-defense-label{display:block;margin-bottom:3px;color:var(--muted);font-size:.8rem}
 .mon-defense-icons{display:flex;flex-wrap:wrap;gap:3px}
 .mon-defense-none{color:var(--muted)}
