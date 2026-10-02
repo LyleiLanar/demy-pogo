@@ -96,12 +96,12 @@ function renderSpeciesName(species, tier) {
 }
 
 // A módválasztó sor és alatta a kiválasztott mód leírása (az értékelést a fül színe mutatja).
-// Buddyként hány km-enként ad cukrot; a módválasztó sor elején, koppintásra kiírja a jelentését.
+// Buddyként hány km-enként ad cukrot; a módválasztó sor jobb szélén, koppintásra kiírja a jelentését.
 function renderBuddy(species) {
   const km = species.stats.buddyKm;
   if (!km) return '';
   const text = `Buddyként ${km} km-enként ad 1 cukrot`;
-  return `<button type="button" class="buddy-km" data-tooltip="${text}" aria-label="${text}">🍬 ${km} km</button>`;
+  return `<button type="button" class="buddy-km" data-tooltip="${text}" aria-label="${text}">🍬: ${km} km</button>`;
 }
 
 function renderGameModes(modes, species, tiers) {
@@ -110,7 +110,7 @@ function renderGameModes(modes, species, tiers) {
   const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
-      <div class="mode-tabs">${buddy}${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
+      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}${buddy}</div>
       ${modes.map((mode, i) => renderModePanel(mode, species, i === selected, tiers)).join('')}
     </div>`;
 }
