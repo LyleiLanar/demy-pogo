@@ -40,8 +40,7 @@ function renderMoves(mode, species) {
   const moves = mode.moves || mode.moveset;
   if (!moves) return '';
   return renderMoveFact('Fast Attack', moves.fast, species)
-    + renderMoveFact('Charged Attack', moves.charged, species)
-    + renderFact('', moves.note);
+    + renderMoveFact('Charged Attack', moves.charged, species);
 }
 
 // A PvPoke legfontosabb párharcai két oszlopban: balra akiket megver, jobbra akik ellen kikap.
@@ -76,21 +75,19 @@ function renderRoleFact(role) {
 
 function renderModePanel(mode, species, isSelected, tiers) {
   const detail = mode.detail ? `<p class="mode-detail">${escapeHtml(mode.detail)}</p>` : '';
-  const note = mode.note ? `<p>${escapeHtml(mode.note)}</p>` : '';
   const facts = [
     ...(mode.roles || []).map((role) => renderRoleFact(role)),
     renderFact('Fejleszd', mode.upgradeLabels.join(', ')),
     renderFact('Legjobb IV', mode.bestIv && `${mode.bestIv.iv} ${mode.bestIv.cp}CP`),
     renderMoves(mode, species),
-    renderFact('IV', mode.iv),
   ].join('');
+  // A mód szöveges tanácsai a panel alján: megjegyzés, IV-tanács, a szett megjegyzése, tippek.
+  const advice = renderAdvice([mode.note, mode.iv, mode.moves?.note, mode.tips || []]);
+  const content = [detail, facts && `<dl class="mon-facts">${facts}</dl>`, renderMatchups(mode, tiers), advice].join('');
+  // Ha a módról csak a szín ismert, nincs mit kiírni: üres doboz helyett nem látszik a panel.
+  const emptyClass = content.trim() ? '' : ' mode-panel-empty';
   return `
-    <div class="mode-panel" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>
-      ${detail}${note}
-      ${facts ? `<dl class="mon-facts">${facts}</dl>` : ''}
-      ${renderMatchups(mode, tiers)}
-      ${renderList('mon-notes', mode.tips)}
-    </div>`;
+    <div class="mode-panel${emptyClass}" data-mode="${mode.key}" ${isSelected ? '' : 'hidden'}>${content}</div>`;
 }
 
 // A faj neve a ritkaság színével (arany, lila, kék, zöld, szürke); koppintásra a buborék kiírja a jelentését.
@@ -114,7 +111,7 @@ function renderFormPanel(species, form, isSelected, tiers) {
     <div class="form-panel" data-form="${form.key}" ${isSelected ? '' : 'hidden'}>
       ${renderDefense(form.types)}
       ${renderGameModes(gameModesOf(species, form), species, tiers)}
-      ${renderList('mon-notes', form.overrides.notes)}
+      ${renderAdvice([form.overrides.notes || []])}
     </div>`;
 }
 
@@ -209,7 +206,7 @@ function renderPokemonCard(species, tiers) {
       ${warning}
       ${renderForms(species, tiers)}
       ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
-      ${renderList('mon-notes', species.notes)}
+      ${renderAdvice([species.notes || []])}
     </article>`;
 }
 

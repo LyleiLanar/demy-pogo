@@ -28,6 +28,8 @@ function renderFact(label, value) {
   return value ? `<dt>${label}</dt><dd>${escapeHtml(value)}</dd>` : '';
 }
 
-function renderList(className, items) {
-  return items ? `<ul class="${className}">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : '';
+// Szöveges tanácsok a szakasz alján: minden tanács külön bekezdés, felsorolásjel nélkül.
+function renderAdvice(items) {
+  const texts = items.flat().filter(Boolean);
+  return texts.length ? `<div class="advice">${texts.map((text) => `<p>${escapeHtml(text)}</p>`).join('')}</div>` : '';
 }

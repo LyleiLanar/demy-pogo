@@ -173,7 +173,6 @@ const POKEMON = [
     raid: { rating: 'trash' },
     maxBattle: { note: 'Dynamax Glaceonnak fejlesztve az egyik legjobb Ice Max támadó.' },
     notes: [
-      'A két jó irány: Umbreon (Great League) és Glaceon (raid, Max Battle). A Sylveon, a Flareon, az Espeon és a Leafeon tartaléknak jó, a Vaporeon és a Jolteon ma gyenge.',
       'Névtrükk: ha fejlesztés előtt átnevezed, a kiválasztott formát kapod. Rainer = Vaporeon, Sparky = Jolteon, Pyro = Flareon, Sakura = Espeon, Tamao = Umbreon, Linnea = Leafeon, Rea = Glaceon, Kira = Sylveon. Mindegyik név csak egyszer működik.',
     ],
   },

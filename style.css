@@ -98,7 +98,10 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-facts{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
 .mon-facts dt{color:var(--muted);font-size:.85rem;padding-top:1px}
 .mon-facts dd{margin:0}
-.mon-notes{margin-top:8px;font-size:.95rem}
+.mode-panel-empty{display:none}
+.advice{margin-top:10px;font-size:.95rem}
+.advice p{margin:0}
+.advice p+p{margin-top:5px}
 
 /* Kártya fülei: zöld = erős, szürke = közepes, piros = gyenge */
 .modes{margin:10px 0 0}
