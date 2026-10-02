@@ -85,6 +85,8 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-matchup-col{min-width:0}
 .mon-matchup-col+.mon-matchup-col{text-align:right}
 .mon-matchup-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.species-link.matchup-win{color:var(--good)}
+.species-link.matchup-loss{color:var(--bad)}
 .evo-arrow{appearance:none;margin:0;padding:0 5px;border:0;border-radius:6px;background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted);font:600 .85rem/1.4 Barlow,sans-serif;cursor:pointer}
 .evo-arrow:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .evo-or{color:var(--muted);margin:0 2px}
@@ -135,9 +137,10 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 /* Halvány típusszínű háttér és típusszínű keret, hogy minden ikon jól látsszon */
 .type{appearance:none;margin:0;display:inline-flex;align-items:center;justify-content:center;gap:1px;min-width:1.7em;height:1.7em;padding:0 2px;border:1.5px solid var(--type-color);border-radius:999px;background:var(--surface);background:color-mix(in srgb,var(--type-color) 20%,var(--surface));color:var(--ink);font:.95rem/1 system-ui,sans-serif;white-space:nowrap;cursor:pointer}
 .type:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
-.type-plain{--type-color:var(--meh)}
-.type-good{--type-color:var(--good)}
-.type-bad{--type-color:var(--bad)}
+.type{position:relative}
+.type-double::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--surface)}
+.type-double-good::after{background:var(--good)}
+.type-double-bad::after{background:var(--bad)}
 .type-label{height:auto;padding:3px 8px;gap:4px;font:600 .8rem/1.2 Barlow,sans-serif;cursor:default}
 .type-tooltip{position:absolute;z-index:20;max-width:260px;padding:5px 9px;border-radius:6px;background:var(--ink);color:var(--bg);font:600 .8rem/1.3 Barlow,sans-serif;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .mon-types{flex:none;display:flex;flex-wrap:wrap;gap:4px}
@@ -145,7 +148,6 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 .mon-defense-col{min-width:0}
 .mon-defense-label{display:block;margin-bottom:3px;color:var(--muted);font-size:.8rem}
 .mon-defense-icons{display:flex;flex-wrap:wrap;gap:3px}
-.mon-defense-icons .type{min-width:1.5em;height:1.5em;font-size:.82rem}
 .mon-defense-none{color:var(--muted)}
 .mon-defense-col+.mon-defense-col{text-align:right}
 .mon-defense-col+.mon-defense-col .mon-defense-icons{justify-content:flex-end}
@@ -166,6 +168,5 @@ html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom
 /* Mozdulatok: Fast / Charged, speciálisnál ⚠️ */
 .moves{display:flex;flex-wrap:wrap;gap:4px 10px}
 .move{display:inline-flex;align-items:center;gap:4px}
-.move .type{min-width:1.5em;height:1.5em;font-size:.8rem}
 .move-warning{appearance:none;margin:0;padding:0 2px;border:0;background:none;font-size:.85rem;line-height:1;cursor:pointer}
 .move-warning:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-radius:4px}

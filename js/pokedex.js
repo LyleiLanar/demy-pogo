@@ -43,10 +43,10 @@ function renderMoves(mode, species) {
     + renderMoveFact('Charged Attack', moves.charged, species);
 }
 
-// A PvPoke legfontosabb párharcai két oszlopban: balra akiket megver, jobbra akik ellen kikap.
-// A nevek színezett linkek, mint a fejlődési ágban.
-function renderMatchupList(label, opponents, tiers) {
-  const links = (opponents || []).map((opponent) => `<li>${renderSpeciesLink(opponent, tiers)}</li>`).join('');
+// A PvPoke legfontosabb párharcai két oszlopban: balra akiket megver (zöld), jobbra akik ellen kikap
+// (piros). A nevek linkek, mint a fejlődési ágban.
+function renderMatchupList(label, opponents, tiers, resultClass) {
+  const links = (opponents || []).map((opponent) => `<li>${renderSpeciesLink(opponent, tiers, ` ${resultClass}`)}</li>`).join('');
   return `
     <div class="mon-matchup-col">
       <span class="mon-defense-label">${label}</span>
@@ -58,8 +58,8 @@ function renderMatchups(mode, tiers) {
   if (!mode.beats && !mode.losesTo) return '';
   return `
     <div class="mon-matchups">
-      ${renderMatchupList('Jól megy ellene', mode.beats, tiers)}
-      ${renderMatchupList('Nehéz ellenfél', mode.losesTo, tiers)}
+      ${renderMatchupList('Jól megy ellene', mode.beats, tiers, 'matchup-win')}
+      ${renderMatchupList('Nehéz ellenfél', mode.losesTo, tiers, 'matchup-loss')}
     </div>`;
 }
 

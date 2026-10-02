@@ -4,14 +4,14 @@ function typeStyle(type) {
   return `--type-color:${type.color}`;
 }
 
-// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip).
-// A multipleLabel a többszörös hatás leírása a buborékba. A tone a chip színe a típus saját színe
-// helyett: 'plain' (szürke), 'good' (zöld) vagy 'bad' (piros); az Ellenálló / Érzékeny oszlop használja.
-function renderTypeBadge(typeKey, multipleLabel = '', tone = '') {
+// Csak az ikon látszik; koppintásra buborékban jelenik meg a név (setupTooltip). Mindenhol ugyanúgy néz ki
+// (a típus színe). A multipleLabel a többszörös hatás leírása a buborékba; a double ('good' / 'bad') egy
+// zöld vagy piros pötty a chip sarkában (kettős ellenállás / érzékenység), a méret nem változik.
+function renderTypeBadge(typeKey, multipleLabel = '', double = '') {
   const type = TYPES[typeKey];
   const label = multipleLabel ? `${type.name} (${multipleLabel})` : type.name;
-  const colors = tone ? `class="type type-${tone}"` : `class="type" style="${typeStyle(type)}"`;
-  return `<button type="button" ${colors} data-tooltip="${label}" aria-label="${label}">`
+  const doubleClass = double ? ` type-double type-double-${double}` : '';
+  return `<button type="button" class="type${doubleClass}" style="${typeStyle(type)}" data-tooltip="${label}" aria-label="${label}">`
     + `<span aria-hidden="true">${type.icon}</span></button>`;
 }
 
@@ -36,12 +36,12 @@ function damageMultiplier(attackType, defenseTypes) {
   }, 1);
 }
 
-// Az oszlop ikonjai szürkék; a többszörös hatás a multipleTone színét kapja (zöld vagy piros).
+// A többszörös hatás pöttyöt kap (multipleTone: zöld ellenállásnál, piros érzékenységnél).
 function renderMatchupColumn(label, matchups, isMultiple, multipleLabel, multipleTone) {
   const badges = matchups
     .map(({ attackType, multiplier }) => (isMultiple(multiplier)
       ? renderTypeBadge(attackType, multipleLabel, multipleTone)
-      : renderTypeBadge(attackType, '', 'plain')))
+      : renderTypeBadge(attackType)))
     .join('');
   return `
     <div class="mon-defense-col">
