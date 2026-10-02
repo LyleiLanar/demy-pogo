@@ -80,7 +80,7 @@ async function main() {
 //   id, rank (legjobb GL/UL helyezés) és legendary a fok színéhez
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
-// moveset: az ajánlott szett ({ fast, charged })
+// moveset: az ajánlott szett ({ fast, charged }); ligában a charged a szimulációk szerinti használat sorrendjében
 // bestIv: a ligában a legjobb IV ({ iv: 'Attack/Defense/HP', cp }) a game master CP-szorzóival
 // raid: számolt raid-helyezés ({ type, rank, moveset }) a legjobb támadó típusában, a game masterből;
 //   a shadow.raid és a megaForms[].raid ugyanígy
