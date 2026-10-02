@@ -1,5 +1,6 @@
 // GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// name: a faj neve (a kártya ezt mutatja, ha a pokemon.js nem ad meg mást)
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // legendary: legendás, mitikus vagy Ultra Beast
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
@@ -22,6 +23,7 @@ const PVPOKE_DATE = '2026. 10. 02.';
 
 const PVPOKE = {
   aegislash_shield: {
+    name: 'Aegislash (Shield)',
     dex: 681,
     types: ['steel', 'ghost'],
     evolution: [
@@ -58,6 +60,7 @@ const PVPOKE = {
     },
   },
   alakazam: {
+    name: 'Alakazam',
     dex: 65,
     types: ['psychic'],
     megaForms: [
@@ -132,6 +135,7 @@ const PVPOKE = {
     },
   },
   ninetales_alolan: {
+    name: 'Alolan Ninetales',
     dex: 38,
     types: ['ice', 'fairy'],
     evolution: [
@@ -225,6 +229,7 @@ const PVPOKE = {
     },
   },
   altaria: {
+    name: 'Altaria',
     dex: 334,
     types: ['dragon', 'flying'],
     megaForms: [
@@ -302,6 +307,7 @@ const PVPOKE = {
     },
   },
   ampharos: {
+    name: 'Ampharos',
     dex: 181,
     types: ['electric'],
     megaForms: [
@@ -382,6 +388,7 @@ const PVPOKE = {
     },
   },
   annihilape: {
+    name: 'Annihilape',
     dex: 979,
     types: ['fighting', 'ghost'],
     evolution: [
@@ -479,6 +486,7 @@ const PVPOKE = {
     },
   },
   araquanid: {
+    name: 'Araquanid',
     dex: 752,
     types: ['water', 'bug'],
     evolution: [
@@ -544,6 +552,7 @@ const PVPOKE = {
     },
   },
   azumarill: {
+    name: 'Azumarill',
     dex: 184,
     types: ['water', 'fairy'],
     evolution: [
@@ -585,6 +594,7 @@ const PVPOKE = {
     },
   },
   bastiodon: {
+    name: 'Bastiodon',
     dex: 411,
     types: ['rock', 'steel'],
     evolution: [
@@ -630,6 +640,7 @@ const PVPOKE = {
     },
   },
   baxcalibur: {
+    name: 'Baxcalibur',
     dex: 998,
     types: ['dragon', 'ice'],
     evolution: [
@@ -662,6 +673,7 @@ const PVPOKE = {
     },
   },
   blaziken: {
+    name: 'Blaziken',
     dex: 257,
     types: ['fire', 'fighting'],
     megaForms: [
@@ -722,6 +734,7 @@ const PVPOKE = {
     },
   },
   blissey: {
+    name: 'Blissey',
     dex: 242,
     types: ['normal'],
     maxForms: ['Dynamax'],
@@ -760,6 +773,7 @@ const PVPOKE = {
     },
   },
   carbink: {
+    name: 'Carbink',
     dex: 703,
     types: ['rock', 'fairy'],
     raid: {
@@ -790,6 +804,7 @@ const PVPOKE = {
     },
   },
   charizard: {
+    name: 'Charizard',
     dex: 6,
     types: ['fire', 'flying'],
     megaForms: [
@@ -866,6 +881,7 @@ const PVPOKE = {
     },
   },
   charjabug: {
+    name: 'Charjabug',
     dex: 737,
     types: ['bug', 'electric'],
     evolution: [
@@ -925,6 +941,7 @@ const PVPOKE = {
     },
   },
   cherrim_overcast: {
+    name: 'Cherrim (Overcast)',
     dex: 421,
     types: ['grass'],
     evolution: [
@@ -960,6 +977,7 @@ const PVPOKE = {
     },
   },
   cinderace: {
+    name: 'Cinderace',
     dex: 815,
     types: ['fire'],
     maxForms: ['Dynamax', 'Gigantamax'],
@@ -999,6 +1017,7 @@ const PVPOKE = {
     },
   },
   clodsire: {
+    name: 'Clodsire',
     dex: 980,
     types: ['poison', 'ground'],
     evolution: [
@@ -1038,6 +1057,7 @@ const PVPOKE = {
     },
   },
   corviknight: {
+    name: 'Corviknight',
     dex: 823,
     types: ['flying', 'steel'],
     maxForms: ['Dynamax'],
@@ -1133,6 +1153,7 @@ const PVPOKE = {
     },
   },
   cramorant: {
+    name: 'Cramorant',
     dex: 845,
     types: ['flying', 'water'],
     raid: {
@@ -1173,6 +1194,7 @@ const PVPOKE = {
     },
   },
   darmanitan_standard: {
+    name: 'Darmanitan (Standard)',
     dex: 555,
     types: ['fire'],
     maxForms: ['Dynamax'],
@@ -1231,6 +1253,7 @@ const PVPOKE = {
     },
   },
   decidueye: {
+    name: 'Decidueye',
     dex: 724,
     types: ['grass', 'ghost'],
     evolution: [
@@ -1263,6 +1286,7 @@ const PVPOKE = {
     },
   },
   dedenne: {
+    name: 'Dedenne',
     dex: 702,
     types: ['electric', 'fairy'],
     raid: {
@@ -1283,6 +1307,7 @@ const PVPOKE = {
     },
   },
   delphox: {
+    name: 'Delphox',
     dex: 655,
     types: ['fire', 'psychic'],
     megaForms: [
@@ -1343,6 +1368,7 @@ const PVPOKE = {
     },
   },
   deoxys_defense: {
+    name: 'Deoxys (Defense)',
     dex: 386,
     types: ['psychic'],
     legendary: true,
@@ -1384,6 +1410,7 @@ const PVPOKE = {
     },
   },
   dondozo: {
+    name: 'Dondozo',
     dex: 977,
     types: ['water'],
     raid: {
@@ -1424,6 +1451,7 @@ const PVPOKE = {
     },
   },
   doublade: {
+    name: 'Doublade',
     dex: 680,
     types: ['steel', 'ghost'],
     evolution: [
@@ -1470,6 +1498,7 @@ const PVPOKE = {
     },
   },
   drifblim: {
+    name: 'Drifblim',
     dex: 426,
     types: ['ghost', 'flying'],
     evolution: [
@@ -1515,6 +1544,7 @@ const PVPOKE = {
     },
   },
   dubwool: {
+    name: 'Dubwool',
     dex: 832,
     types: ['normal'],
     maxForms: ['Dynamax'],
@@ -1544,6 +1574,7 @@ const PVPOKE = {
     },
   },
   dusclops: {
+    name: 'Dusclops',
     dex: 356,
     types: ['ghost'],
     evolution: [
@@ -1602,6 +1633,7 @@ const PVPOKE = {
     },
   },
   eevee: {
+    name: 'Eevee',
     dex: 133,
     types: ['normal'],
     maxForms: ['Dynamax'],
@@ -1648,6 +1680,7 @@ const PVPOKE = {
     },
   },
   eldegoss: {
+    name: 'Eldegoss',
     dex: 830,
     types: ['grass'],
     evolution: [
@@ -1676,6 +1709,7 @@ const PVPOKE = {
     },
   },
   empoleon: {
+    name: 'Empoleon',
     dex: 395,
     types: ['water', 'steel'],
     evolution: [
@@ -1765,6 +1799,7 @@ const PVPOKE = {
     },
   },
   excadrill: {
+    name: 'Excadrill',
     dex: 530,
     types: ['ground', 'steel'],
     maxForms: ['Dynamax'],
@@ -1816,6 +1851,7 @@ const PVPOKE = {
     },
   },
   fearow: {
+    name: 'Fearow',
     dex: 22,
     types: ['normal', 'flying'],
     evolution: [
@@ -1855,6 +1891,7 @@ const PVPOKE = {
     },
   },
   feraligatr: {
+    name: 'Feraligatr',
     dex: 160,
     types: ['water'],
     evolution: [
@@ -1944,6 +1981,7 @@ const PVPOKE = {
     },
   },
   flareon: {
+    name: 'Flareon',
     dex: 136,
     types: ['fire'],
     maxForms: ['Dynamax'],
@@ -1979,6 +2017,7 @@ const PVPOKE = {
     },
   },
   florges: {
+    name: 'Florges',
     dex: 671,
     types: ['fairy'],
     evolution: [
@@ -2031,6 +2070,7 @@ const PVPOKE = {
     },
   },
   forretress: {
+    name: 'Forretress',
     dex: 205,
     types: ['bug', 'steel'],
     evolution: [
@@ -2106,6 +2146,7 @@ const PVPOKE = {
     },
   },
   furret: {
+    name: 'Furret',
     dex: 162,
     types: ['normal'],
     evolution: [
@@ -2139,6 +2180,7 @@ const PVPOKE = {
     },
   },
   corsola_galarian: {
+    name: 'Galarian Corsola',
     dex: 222,
     types: ['ghost'],
     evolution: [
@@ -2172,6 +2214,7 @@ const PVPOKE = {
     },
   },
   moltres_galarian: {
+    name: 'Galarian Moltres',
     dex: 146,
     types: ['dark', 'flying'],
     legendary: true,
@@ -2213,6 +2256,7 @@ const PVPOKE = {
     },
   },
   stunfisk_galarian: {
+    name: 'Galarian Stunfisk',
     dex: 618,
     types: ['ground', 'steel'],
     raid: {
@@ -2243,6 +2287,7 @@ const PVPOKE = {
     },
   },
   gardevoir: {
+    name: 'Gardevoir',
     dex: 282,
     types: ['psychic', 'fairy'],
     megaForms: [
@@ -2309,6 +2354,7 @@ const PVPOKE = {
     },
   },
   gigalith: {
+    name: 'Gigalith',
     dex: 526,
     types: ['rock'],
     maxForms: ['Dynamax'],
@@ -2372,6 +2418,7 @@ const PVPOKE = {
     },
   },
   gothitelle: {
+    name: 'Gothitelle',
     dex: 576,
     types: ['psychic'],
     evolution: [
@@ -2420,6 +2467,7 @@ const PVPOKE = {
     },
   },
   greedent: {
+    name: 'Greedent',
     dex: 820,
     types: ['normal'],
     maxForms: ['Dynamax'],
@@ -2454,6 +2502,7 @@ const PVPOKE = {
     },
   },
   guzzlord: {
+    name: 'Guzzlord',
     dex: 799,
     types: ['dark', 'dragon'],
     legendary: true,
@@ -2495,6 +2544,7 @@ const PVPOKE = {
     },
   },
   gyarados: {
+    name: 'Gyarados',
     dex: 130,
     types: ['water', 'flying'],
     megaForms: [
@@ -2578,6 +2628,7 @@ const PVPOKE = {
     },
   },
   hariyama: {
+    name: 'Hariyama',
     dex: 297,
     types: ['fighting'],
     evolution: [
@@ -2623,6 +2674,7 @@ const PVPOKE = {
     },
   },
   hatterene: {
+    name: 'Hatterene',
     dex: 858,
     types: ['psychic', 'fairy'],
     maxForms: ['Dynamax'],
@@ -2660,6 +2712,7 @@ const PVPOKE = {
     },
   },
   hippowdon: {
+    name: 'Hippowdon',
     dex: 450,
     types: ['ground'],
     evolution: [
@@ -2745,6 +2798,7 @@ const PVPOKE = {
     },
   },
   electrode_hisuian: {
+    name: 'Hisuian Electrode',
     dex: 101,
     types: ['electric', 'grass'],
     evolution: [
@@ -2790,6 +2844,7 @@ const PVPOKE = {
     },
   },
   inteleon: {
+    name: 'Inteleon',
     dex: 818,
     types: ['water'],
     maxForms: ['Dynamax', 'Gigantamax'],
@@ -2829,6 +2884,7 @@ const PVPOKE = {
     },
   },
   jellicent: {
+    name: 'Jellicent',
     dex: 593,
     types: ['water', 'ghost'],
     evolution: [
@@ -2877,6 +2933,7 @@ const PVPOKE = {
     },
   },
   jumpluff: {
+    name: 'Jumpluff',
     dex: 189,
     types: ['grass', 'flying'],
     evolution: [
@@ -2946,6 +3003,7 @@ const PVPOKE = {
     },
   },
   kilowattrel: {
+    name: 'Kilowattrel',
     dex: 941,
     types: ['electric', 'flying'],
     evolution: [
@@ -2974,6 +3032,7 @@ const PVPOKE = {
     },
   },
   lanturn: {
+    name: 'Lanturn',
     dex: 171,
     types: ['water', 'electric'],
     evolution: [
@@ -3002,6 +3061,7 @@ const PVPOKE = {
     },
   },
   lapras: {
+    name: 'Lapras',
     dex: 131,
     types: ['water', 'ice'],
     maxForms: ['Dynamax', 'Gigantamax'],
@@ -3087,6 +3147,7 @@ const PVPOKE = {
     },
   },
   lickitung: {
+    name: 'Lickitung',
     dex: 108,
     types: ['normal'],
     evolution: [
@@ -3106,6 +3167,7 @@ const PVPOKE = {
     },
   },
   lokix: {
+    name: 'Lokix',
     dex: 920,
     types: ['bug', 'dark'],
     evolution: [
@@ -3134,6 +3196,7 @@ const PVPOKE = {
     },
   },
   machamp: {
+    name: 'Machamp',
     dex: 68,
     types: ['fighting'],
     maxForms: ['Dynamax', 'Gigantamax'],
@@ -3198,6 +3261,7 @@ const PVPOKE = {
     },
   },
   malamar: {
+    name: 'Malamar',
     dex: 687,
     types: ['dark', 'psychic'],
     megaForms: [
@@ -3300,6 +3364,7 @@ const PVPOKE = {
     },
   },
   mandibuzz: {
+    name: 'Mandibuzz',
     dex: 630,
     types: ['dark', 'flying'],
     evolution: [
@@ -3338,6 +3403,7 @@ const PVPOKE = {
     },
   },
   mantine: {
+    name: 'Mantine',
     dex: 226,
     types: ['water', 'flying'],
     evolution: [
@@ -3376,6 +3442,7 @@ const PVPOKE = {
     },
   },
   marowak: {
+    name: 'Marowak',
     dex: 105,
     types: ['ground'],
     evolution: [
@@ -3441,6 +3508,7 @@ const PVPOKE = {
     },
   },
   medicham: {
+    name: 'Medicham',
     dex: 308,
     types: ['fighting', 'psychic'],
     megaForms: [
@@ -3485,6 +3553,7 @@ const PVPOKE = {
     },
   },
   melmetal: {
+    name: 'Melmetal',
     dex: 809,
     types: ['steel'],
     legendary: true,
@@ -3543,6 +3612,7 @@ const PVPOKE = {
     },
   },
   meowscarada: {
+    name: 'Meowscarada',
     dex: 908,
     types: ['grass', 'dark'],
     evolution: [
@@ -3575,6 +3645,7 @@ const PVPOKE = {
     },
   },
   mimikyu: {
+    name: 'Mimikyu',
     dex: 778,
     types: ['ghost', 'fairy'],
     raid: {
@@ -3615,6 +3686,7 @@ const PVPOKE = {
     },
   },
   moltres: {
+    name: 'Moltres',
     dex: 146,
     types: ['fire', 'flying'],
     legendary: true,
@@ -3660,6 +3732,7 @@ const PVPOKE = {
     },
   },
   ninetales: {
+    name: 'Ninetales',
     dex: 38,
     types: ['fire'],
     evolution: [
@@ -3746,6 +3819,7 @@ const PVPOKE = {
     },
   },
   perrserker: {
+    name: 'Perrserker',
     dex: 863,
     types: ['steel'],
     evolution: [
@@ -3774,6 +3848,7 @@ const PVPOKE = {
     },
   },
   pyroar: {
+    name: 'Pyroar',
     dex: 668,
     types: ['fire', 'normal'],
     evolution: [
@@ -3802,6 +3877,7 @@ const PVPOKE = {
     },
   },
   quagsire: {
+    name: 'Quagsire',
     dex: 195,
     types: ['water', 'ground'],
     evolution: [
@@ -3868,6 +3944,7 @@ const PVPOKE = {
     },
   },
   quaquaval: {
+    name: 'Quaquaval',
     dex: 914,
     types: ['water', 'fighting'],
     evolution: [
@@ -3900,6 +3977,7 @@ const PVPOKE = {
     },
   },
   rhyperior: {
+    name: 'Rhyperior',
     dex: 464,
     types: ['ground', 'rock'],
     maxForms: ['Dynamax'],
@@ -3963,6 +4041,7 @@ const PVPOKE = {
     },
   },
   rillaboom: {
+    name: 'Rillaboom',
     dex: 812,
     types: ['grass'],
     maxForms: ['Dynamax', 'Gigantamax'],
@@ -4022,6 +4101,7 @@ const PVPOKE = {
     },
   },
   sableye: {
+    name: 'Sableye',
     dex: 302,
     types: ['dark', 'ghost'],
     megaForms: [
@@ -4086,6 +4166,7 @@ const PVPOKE = {
     },
   },
   snorlax: {
+    name: 'Snorlax',
     dex: 143,
     types: ['normal'],
     maxForms: ['Dynamax', 'Gigantamax'],
@@ -4168,6 +4249,7 @@ const PVPOKE = {
     },
   },
   staraptor: {
+    name: 'Staraptor',
     dex: 398,
     types: ['normal', 'flying'],
     megaForms: [
@@ -4228,6 +4310,7 @@ const PVPOKE = {
     },
   },
   stunfisk: {
+    name: 'Stunfisk',
     dex: 618,
     types: ['ground', 'electric'],
     raid: {
@@ -4258,6 +4341,7 @@ const PVPOKE = {
     },
   },
   swampert: {
+    name: 'Swampert',
     dex: 260,
     types: ['water', 'ground'],
     megaForms: [
@@ -4358,6 +4442,7 @@ const PVPOKE = {
     },
   },
   thievul: {
+    name: 'Thievul',
     dex: 828,
     types: ['dark'],
     evolution: [
@@ -4397,6 +4482,7 @@ const PVPOKE = {
     },
   },
   tinkaton: {
+    name: 'Tinkaton',
     dex: 959,
     types: ['fairy', 'steel'],
     evolution: [
@@ -4449,6 +4535,7 @@ const PVPOKE = {
     },
   },
   torterra: {
+    name: 'Torterra',
     dex: 389,
     types: ['grass', 'ground'],
     evolution: [
@@ -4498,6 +4585,7 @@ const PVPOKE = {
     },
   },
   toxapex: {
+    name: 'Toxapex',
     dex: 748,
     types: ['poison', 'water'],
     evolution: [
@@ -4526,6 +4614,7 @@ const PVPOKE = {
     },
   },
   trevenant: {
+    name: 'Trevenant',
     dex: 709,
     types: ['ghost', 'grass'],
     evolution: [
@@ -4579,6 +4668,7 @@ const PVPOKE = {
     },
   },
   tsareena: {
+    name: 'Tsareena',
     dex: 763,
     types: ['grass'],
     maxForms: ['Dynamax'],
@@ -4617,6 +4707,7 @@ const PVPOKE = {
     },
   },
   tyrantrum: {
+    name: 'Tyrantrum',
     dex: 697,
     types: ['rock', 'dragon'],
     evolution: [
@@ -4670,6 +4761,7 @@ const PVPOKE = {
     },
   },
   umbreon: {
+    name: 'Umbreon',
     dex: 197,
     types: ['dark'],
     maxForms: ['Dynamax'],
@@ -4725,6 +4817,7 @@ const PVPOKE = {
     },
   },
   venusaur: {
+    name: 'Venusaur',
     dex: 3,
     types: ['grass', 'poison'],
     megaForms: [
@@ -4792,6 +4885,7 @@ const PVPOKE = {
     },
   },
   vigoroth: {
+    name: 'Vigoroth',
     dex: 288,
     types: ['normal'],
     evolution: [
@@ -4860,6 +4954,7 @@ const PVPOKE = {
     },
   },
   whimsicott: {
+    name: 'Whimsicott',
     dex: 547,
     types: ['grass', 'fairy'],
     maxForms: ['Dynamax'],

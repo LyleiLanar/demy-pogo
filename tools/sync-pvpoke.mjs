@@ -71,6 +71,7 @@ async function main() {
 
   const render = (date) => `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// name: a faj neve (a kártya ezt mutatja, ha a pokemon.js nem ad meg mást)
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // legendary: legendás, mitikus vagy Ultra Beast
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)

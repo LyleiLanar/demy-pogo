@@ -114,7 +114,7 @@ export async function loadPvpokeData() {
 export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, gameMaster = undefined) {
   const species = data.speciesById.get(id);
   if (!species) return undefined;
-  const entry = { dex: species.dex, types: species.types.filter((type) => type !== 'none') };
+  const entry = { name: displayName(species.speciesName), dex: species.dex, types: species.types.filter((type) => type !== 'none') };
   if ((species.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag))) entry.legendary = true;
   const raidRankings = gameMaster && raidRankingsOf(data, gameMaster);
   if (raidRankings) data.raidRankings = raidRankings;

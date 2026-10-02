@@ -142,16 +142,16 @@ az értékét.
 ## 6. Beírás
 
 - Ha a faj már szerepel, egészítsd ki vagy javítsd a meglévő bejegyzést, ne duplikáld.
-- Új fajt ábécérendben szúrj be (`localeCompare(..., 'hu')` szerint), a megfelelő `id`-vel.
-- Minta:
+- Új fajt az `id` szerinti ábécérendben szúrj be. Elég az azonosító: a név, a típus, a fejlődési ág
+  és minden értékelés a `data/pvpoke.js`-ből jön. `origin` csak akkor kell, ha a fajnak nincs
+  fejlődési ága, és nem nyilvánvaló, honnan szerezhető (pl. `'raidből (legendás)'`).
+- Minta: egy faj tanács nélkül, és egy tanáccsal:
 
 ```js
+{ id: 'glaceon' },
 {
-  id: 'decidueye',
-  name: 'Decidueye',
-  origin: 'Rowlet',
-  raid: { rating: 'trash', note: 'Vékony támadó; vannak jobb Grass támadók.' },
-  // nincs maxBattle: a lookup szerint nincs Dynamax formája
+  id: 'charjabug',
+  warning: 'NE fejleszd Vikavolttá!',
 },
 ```
 

@@ -37,6 +37,8 @@ function combineSpeciesData(pokemon, pvpoke) {
     const stats = pvpoke[species.id] || {};
     return {
       ...species,
+      // A név a PvPoke-adatból jön; a pokemon.js name mezője csak felülírja.
+      name: species.name || stats.name || species.id,
       stats,
       types: stats.types || [],
       dex: stats.dex,
