@@ -96,12 +96,21 @@ function renderSpeciesName(species, tier) {
 }
 
 // A módválasztó sor és alatta a kiválasztott mód leírása (az értékelést a fül színe mutatja).
+// Buddyként hány km-enként ad cukrot; a módválasztó sor elején, koppintásra kiírja a jelentését.
+function renderBuddy(species) {
+  const km = species.stats.buddyKm;
+  if (!km) return '';
+  const text = `Buddyként ${km} km-enként ad 1 cukrot`;
+  return `<button type="button" class="buddy-km" data-tooltip="${text}" aria-label="${text}">🍬 ${km} km</button>`;
+}
+
 function renderGameModes(modes, species, tiers) {
-  if (modes.length === 0) return '';
+  const buddy = renderBuddy(species);
+  if (modes.length === 0) return buddy ? `<div class="mode-tabs">${buddy}</div>` : '';
   const selected = defaultModeIndex(modes);
   return `
     <div class="modes">
-      <div class="mode-tabs">${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
+      <div class="mode-tabs">${buddy}${modes.map((mode, i) => renderModeTab(mode, i === selected)).join('')}</div>
       ${modes.map((mode, i) => renderModePanel(mode, species, i === selected, tiers)).join('')}
     </div>`;
 }
@@ -190,7 +199,6 @@ function renderPokemonCard(species, tiers) {
   const searchText = normalizeForSearch(`${species.name} ${species.origin} ${evolutionNames(species).join(' ')} ${typeNames}`);
   const dex = species.dex ? `<span class="mon-dex">#${species.dex}</span>` : '';
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
-  const general = renderFact('Buddy', species.stats.buddyKm && `${species.stats.buddyKm} km / cukor`);
 
   // A fejlécben a kiválasztott forma típusa (a Mega típusa eltérhet); formaváltáskor cserélődik.
   const headTypes = speciesForms(species).map((form, i) => `
@@ -205,7 +213,6 @@ function renderPokemonCard(species, tiers) {
       ${renderEvolution(species, tiers)}
       ${warning}
       ${renderForms(species, tiers)}
-      ${general ? `<dl class="mon-facts">${general}</dl>` : ''}
       ${renderAdvice([species.notes || []])}
     </article>`;
 }
