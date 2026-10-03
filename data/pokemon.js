@@ -75,6 +75,7 @@ const POKEMON = [
   },
   { id: 'blaziken' },
   { id: 'blissey' },
+  { id: 'bulbasaur' },
   { id: 'carbink' },
   {
     id: 'charizard',
