@@ -44,6 +44,9 @@
 // különleges hátterű, Dynamax, Shadow, legendás, Lucky és @special mozdulatú példány marad.
 
 const POKEMON = [
+  {id: 'cinderace'},
+  {id: 'raboot'},
+  {id: 'scorbunny'},
   {
     id: 'aegislash_shield',
     name: 'Aegislash',
