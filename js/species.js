@@ -33,7 +33,10 @@ const MAX_MODES = [
 
 // A kézzel írt tanácsok (POKEMON) és a generált PvPoke-adatok (PVPOKE) összefésülése.
 function combineSpeciesData(pokemon, pvpoke) {
-  return pokemon.map((species) => {
+  // Ha egy faj kétszer szerepel (pl. véletlenül újra felvették), a bejegyzései összeolvadnak.
+  const byId = new Map();
+  pokemon.forEach((species) => byId.set(species.id, { ...byId.get(species.id), ...species }));
+  return [...byId.values()].map((species) => {
     const stats = pvpoke[species.id] || {};
     return {
       ...species,

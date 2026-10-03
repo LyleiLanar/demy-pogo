@@ -58,7 +58,10 @@ async function main() {
 
   const result = {};
   const missing = [];
-  for (const { id } of pokemon) {
+  const ids = pokemon.map(({ id }) => id);
+  const duplicates = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
+  if (duplicates.length) console.warn(`Kétszer szerepel a pokemon.js-ben (az oldal összevonja): ${duplicates.join(', ')}`);
+  for (const id of new Set(ids)) {
     const entry = describeSpecies(id, data, DETAIL_RANK_LIMIT, gameMaster);
     if (entry) result[id] = entry;
     else missing.push(id);

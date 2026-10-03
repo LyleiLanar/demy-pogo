@@ -1,11 +1,15 @@
 # Hetente frissíti a PvPoke-adatot (data/pvpoke.js): GL/UL helyezés, szett, Megák, Dynamax.
 # Ha változott, a verziószámot is átírja, és commitol a main ágra; AI nem kell hozzá.
-# Kézzel is indítható: Actions → PvPoke-szinkron → Run workflow.
+# Kézzel is indítható: Actions → PvPoke-szinkron → Run workflow. A data/pokemon.js módosításakor is fut.
 name: PvPoke-szinkron
 
 on:
   schedule:
     - cron: '17 4 * * 1' # hétfőnként 04:17 UTC
+  # Ha a main-en változik a fajlista (pl. új faj), azonnal lefut, hogy a kártyája adatot kapjon.
+  push:
+    branches: [main]
+    paths: [data/pokemon.js]
   workflow_dispatch:
 
 permissions:

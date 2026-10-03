@@ -207,9 +207,11 @@ const POKEMON = [
   },
   { id: 'quagsire' },
   { id: 'quaquaval' },
+  { id: 'raboot' },
   { id: 'rhyperior' },
   { id: 'rillaboom' },
   { id: 'sableye' },
+  { id: 'scorbunny' },
   {
     id: 'snorlax',
     raid: { rating: 'trash' },
