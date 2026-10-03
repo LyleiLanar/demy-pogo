@@ -1,0 +1,75 @@
+# Új Pokémon felvétele a böngészőből: Actions → Pokémon felvétele → Run workflow, és beírod az id-t vagy
+# az angol nevet (többet vesszővel). Ha a PvPoke ismeri, beszúrja a data/pokemon.js-be, lefuttatja a
+# szinkront, verziót vált és commitol a main-re. Ha nincs ilyen vagy nem egyértelmű, a futás piros, és a
+# naplóban (meg az összegzőben) ott a javaslat.
+name: Pokémon felvétele
+
+on:
+  workflow_dispatch:
+    inputs:
+      pokemon:
+        description: 'Id vagy angol név, többet vesszővel (pl. glaceon, Galarian Stunfisk)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+
+# Ugyanaz a csoport, mint a szinkroné, hogy ne pusholjanak egyszerre.
+concurrency:
+  group: sync-pvpoke
+  cancel-in-progress: false
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Felvétel a data/pokemon.js-be
+        env:
+          POKEMON: ${{ inputs.pokemon }}
+        run: |
+          status=0
+          node tools/add-pokemon.mjs "$POKEMON" > result.txt 2>&1 || status=$?
+          cat result.txt
+          { echo '```'; cat result.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit $status
+
+      - name: Van új faj?
+        id: changes
+        run: |
+          if git diff --quiet -- data/pokemon.js; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # A GITHUB_TOKEN-nel pusholt commit nem indítja el a PvPoke-szinkront, ezért itt fut.
+      - name: PvPoke-adat letöltése
+        if: steps.changes.outputs.changed == 'true'
+        run: node tools/sync-pvpoke.mjs
+
+      - name: Verzió, commit, push
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          POKEMON: ${{ inputs.pokemon }}
+        run: |
+          node tools/bump-version.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/pokemon.js data/pvpoke.js index.html
+          git commit -m "Új Pokémon: $POKEMON"
+          git push
+
+      - name: GitHub Pages újraépítése
+        if: steps.changes.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
