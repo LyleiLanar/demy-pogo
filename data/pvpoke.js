@@ -18,9 +18,107 @@
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok ({ id, name, rank, legendary }, mint az ágban)
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 
-const PVPOKE_DATE = '2026. 10. 01.';
+const PVPOKE_DATE = '2026. 10. 03.';
 
 const PVPOKE = {
+  cinderace: {
+    dex: 815,
+    types: ['fire'],
+    maxForms: ['Dynamax', 'Gigantamax'],
+    evolution: [
+      [
+        { id: 'scorbunny', name: 'Scorbunny', raidRank: 108 },
+      ],
+      [
+        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 74, candy: 25 },
+      ],
+      [
+        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, current: true, candy: 100 },
+      ],
+    ],
+    raid: {
+      type: 'fire',
+      rank: 33,
+      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
+    },
+    maxBattle: {
+      tankRank: 58,
+      healerRank: 51,
+      dynamax: { type: 'fire', rank: 8, strength: 0.78, move: 'Max Flare', fast: 'Fire Spin' },
+      gigantamax: { type: 'fire', rank: 1, strength: 1, move: 'G-Max Fireball' },
+    },
+    buddyKm: 3,
+    specialMoves: ['Blast Burn'],
+    greatLeague: {
+      rank: 618,
+      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn', 'Pyro Ball'] },
+      bestIv: { iv: '0/15/15', cp: 1500 },
+    },
+    ultraLeague: {
+      rank: 403,
+      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn', 'Pyro Ball'] },
+      bestIv: { iv: '1/15/14', cp: 2499 },
+    },
+  },
+  raboot: {
+    dex: 814,
+    types: ['fire'],
+    maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { id: 'scorbunny', name: 'Scorbunny', raidRank: 108 },
+      ],
+      [
+        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 74, current: true, candy: 25 },
+      ],
+      [
+        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, candy: 100 },
+      ],
+    ],
+    raid: {
+      type: 'fire',
+      rank: 74,
+      moveset: { fast: ['Fire Spin'], charged: ['Flamethrower'] },
+    },
+    maxBattle: {
+      tankRank: 98,
+      healerRank: 92,
+      dynamax: { type: 'fire', rank: 14, strength: 0.57, move: 'Max Flare', fast: 'Fire Spin' },
+    },
+    buddyKm: 3,
+    greatLeague: {
+      rank: 874,
+      moveset: { fast: ['Fire Spin'], charged: ['Flame Charge', 'Flamethrower'] },
+      bestIv: { iv: '0/12/14', cp: 1499 },
+    },
+  },
+  scorbunny: {
+    dex: 813,
+    types: ['fire'],
+    maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { id: 'scorbunny', name: 'Scorbunny', raidRank: 108, current: true },
+      ],
+      [
+        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 74, candy: 25 },
+      ],
+      [
+        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, candy: 100 },
+      ],
+    ],
+    raid: {
+      type: 'fire',
+      rank: 108,
+      moveset: { fast: ['Fire Spin'], charged: ['Flamethrower'] },
+    },
+    maxBattle: {
+      tankRank: 143,
+      healerRank: 136,
+      dynamax: { type: 'fire', rank: 19, strength: 0.45, move: 'Max Flare', fast: 'Fire Spin' },
+    },
+    buddyKm: 3,
+  },
   aegislash_shield: {
     dex: 681,
     types: ['steel', 'ghost'],
@@ -957,45 +1055,6 @@ const PVPOKE = {
       rank: 836,
       moveset: { fast: ['Bullet Seed'], charged: ['Dazzling Gleam', 'Solar Beam'] },
       bestIv: { iv: '15/15/15', cp: 2315 },
-    },
-  },
-  cinderace: {
-    dex: 815,
-    types: ['fire'],
-    maxForms: ['Dynamax', 'Gigantamax'],
-    evolution: [
-      [
-        { id: 'scorbunny', name: 'Scorbunny', raidRank: 108 },
-      ],
-      [
-        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 74, candy: 25 },
-      ],
-      [
-        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, current: true, candy: 100 },
-      ],
-    ],
-    raid: {
-      type: 'fire',
-      rank: 33,
-      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn'] },
-    },
-    maxBattle: {
-      tankRank: 58,
-      healerRank: 51,
-      dynamax: { type: 'fire', rank: 8, strength: 0.78, move: 'Max Flare', fast: 'Fire Spin' },
-      gigantamax: { type: 'fire', rank: 1, strength: 1, move: 'G-Max Fireball' },
-    },
-    buddyKm: 3,
-    specialMoves: ['Blast Burn'],
-    greatLeague: {
-      rank: 618,
-      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn', 'Pyro Ball'] },
-      bestIv: { iv: '0/15/15', cp: 1500 },
-    },
-    ultraLeague: {
-      rank: 403,
-      moveset: { fast: ['Fire Spin'], charged: ['Blast Burn', 'Pyro Ball'] },
-      bestIv: { iv: '1/15/14', cp: 2499 },
     },
   },
   clodsire: {
