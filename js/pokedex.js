@@ -39,6 +39,7 @@ function renderMoveFact(label, names, species) {
 function renderMoves(mode, species) {
   const moves = mode.moves || mode.moveset;
   if (!moves) return '';
+  // Ligában a Charged mozdulatok fontosság szerint jönnek (a szinkron rendezi): elöl a fontosabb.
   return renderMoveFact('Fast Attack', moves.fast, species)
     + renderMoveFact('Charged Attack', moves.charged, species);
 }
@@ -183,7 +184,7 @@ function renderEvolutionStage(stage, isFirst, tiers) {
 // a fokon „/” választja el a lehetőségeket. Ha a faj nem fejlődik, a származása (origin) látszik.
 function renderEvolution(species, tiers) {
   const stages = species.stats.evolution;
-  if (!stages) return `<p class="mon-origin">${escapeHtml(species.origin)}</p>`;
+  if (!stages) return species.origin ? `<p class="mon-origin">${escapeHtml(species.origin)}</p>` : '';
   const html = stages
     .map((options, i) => options.map((stage) => renderEvolutionStage(stage, i === 0, tiers)).join('<span class="evo-or">/</span>'))
     .join('');
@@ -196,7 +197,7 @@ function evolutionNames(species) {
 
 function renderPokemonCard(species, tiers) {
   const typeNames = species.types.map((type) => TYPES[type].name).join(' ');
-  const searchText = normalizeForSearch(`${species.name} ${species.origin} ${evolutionNames(species).join(' ')} ${typeNames}`);
+  const searchText = normalizeForSearch(`${species.name} ${species.origin || ''} ${evolutionNames(species).join(' ')} ${typeNames}`);
   const dex = species.dex ? `<span class="mon-dex">#${species.dex}</span>` : '';
   const warning = species.warning ? `<div class="warn">${escapeHtml(species.warning)}</div>` : '';
 

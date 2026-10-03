@@ -58,7 +58,10 @@ async function main() {
 
   const result = {};
   const missing = [];
-  for (const { id } of pokemon) {
+  const ids = pokemon.map(({ id }) => id);
+  const duplicates = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
+  if (duplicates.length) console.warn(`Kétszer szerepel a pokemon.js-ben (az oldal összevonja): ${duplicates.join(', ')}`);
+  for (const id of new Set(ids)) {
     const entry = describeSpecies(id, data, DETAIL_RANK_LIMIT, gameMaster);
     if (entry) result[id] = entry;
     else missing.push(id);
@@ -71,6 +74,7 @@ async function main() {
 
   const render = (date) => `// GENERÁLT FÁJL, ne szerkeszd kézzel. Frissítés: node tools/sync-pvpoke.mjs
 // Forrás: github.com/pvpoke/pvpoke (gamemaster és rankings-1500/2500).
+// name: a faj neve (a kártya ezt mutatja, ha a pokemon.js nem ad meg mást)
 // dex: a Pokédex-szám (a regionális formáknak ugyanaz, mint az alapfajnak)
 // legendary: legendás, mitikus vagy Ultra Beast
 // megaForms: a faj Mega formái a típusukkal (csak raidben számítanak)
@@ -80,7 +84,7 @@ async function main() {
 //   id, rank (legjobb GL/UL helyezés) és legendary a fok színéhez
 // shadow: a Shadow változat Great és Ultra League adatai
 // specialMoves: csak Elite TM-mel vagy eseményen megszerezhető mozdulatok
-// moveset: az ajánlott szett ({ fast, charged })
+// moveset: az ajánlott szett ({ fast, charged }); ligában a charged a szimulációk szerinti használat sorrendjében
 // bestIv: a ligában a legjobb IV ({ iv: 'Attack/Defense/HP', cp }) a game master CP-szorzóival
 // raid: számolt raid-helyezés ({ type, rank, moveset }) a legjobb támadó típusában, a game masterből;
 //   a shadow.raid és a megaForms[].raid ugyanígy

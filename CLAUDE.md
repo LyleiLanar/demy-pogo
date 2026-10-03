@@ -26,7 +26,7 @@ Statikus oldal GitHub Pages-en, build nélkül.
 - `tools/`: `sync-pvpoke.mjs` (data/pvpoke.js generálása), `pvpoke-lookup.mjs` (egy faj gépi adatai:
   PvPoke + a játék game mastere, Dynamaxszal), `pvpoke-common.mjs` (közös kód),
   `bump-version.mjs` (az index.html `?v=` verzióinak átírása)
-- `.github/workflows/sync-pvpoke.yml`: hetente lefuttatja a szinkront, és ha változott az adat,
+- `.github/workflows/sync-pvpoke.yml`: hetente és a `data/pokemon.js` minden módosításakor lefuttatja a szinkront, és ha változott az adat,
   verziót vált és commitol a main-re. A helyezések frissítéséhez tehát nem kell kézzel szinkronizálni.
 
 Az `index.html`-ben a CSS és JS hivatkozásoknak verziója van (`?v=ÉÉÉÉ-HH-NN`). Ha bármelyik

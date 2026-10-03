@@ -49,8 +49,13 @@ function rankIndex(rankings) {
 function describeLeague(rankingEntry, data, detailRankLimit) {
   if (!rankingEntry) return undefined;
   const { moves } = data;
-  // A PvPoke-szett: az első a gyors (Fast), a többi a töltött (Charged) mozdulat.
-  const [fastMove, ...chargedMoves] = rankingEntry.moveset.map((moveId) => moves.get(moveId) || moveId);
+  // A PvPoke-szett: az első a gyors (Fast), a többi a töltött (Charged) mozdulat. A Charged mozdulatok
+  // sorrendje a szimulációk szerinti használat (moves.chargedMoves[].uses): az első az, amit elsőnek érdemes
+  // megtanítani, a második a feloldandó.
+  const uses = new Map((rankingEntry.moves?.chargedMoves || []).map((move) => [move.moveId, move.uses]));
+  const [fastId, ...chargedIds] = rankingEntry.moveset;
+  chargedIds.sort((a, b) => (uses.get(b) || 0) - (uses.get(a) || 0));
+  const [fastMove, ...chargedMoves] = [fastId, ...chargedIds].map((moveId) => moves.get(moveId) || moveId);
   const league = { rank: rankingEntry.rank, moveset: { fast: [fastMove], charged: chargedMoves } };
   if (rankingEntry.rank > detailRankLimit) return league;
 
@@ -109,7 +114,7 @@ export async function loadPvpokeData() {
 export function describeSpecies(id, data, detailRankLimit = DETAIL_RANK_LIMIT, gameMaster = undefined) {
   const species = data.speciesById.get(id);
   if (!species) return undefined;
-  const entry = { dex: species.dex, types: species.types.filter((type) => type !== 'none') };
+  const entry = { name: displayName(species.speciesName), dex: species.dex, types: species.types.filter((type) => type !== 'none') };
   if ((species.tags || []).some((tag) => LEGENDARY_TAGS.includes(tag))) entry.legendary = true;
   const raidRankings = gameMaster && raidRankingsOf(data, gameMaster);
   if (raidRankings) data.raidRankings = raidRankings;

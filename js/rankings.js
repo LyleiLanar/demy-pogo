@@ -24,7 +24,10 @@ function topPokemon(pokemon) {
 function renderRankingEntry(species) {
   const { rank, shadowRank } = species.greatLeagueRanks;
   const shadowBadge = isTopRank(rank) && isTopRank(shadowRank) ? '<span class="s">S</span>' : '';
-  const details = [escapeHtml(species.origin)];
+  // Az alapforma (amit a vadonban elkapsz) a fejlődési ágból, különben a kézi origin.
+  const baseName = species.stats.evolution?.[0]?.[0]?.name;
+  const origin = baseName && baseName !== species.name ? baseName : species.origin;
+  const details = origin ? [escapeHtml(origin)] : [];
   if (!isTopRank(rank)) details.push('csak a Shadow változat van a top 50-ben');
   if (species.warning) details.push(`<b>${escapeHtml(species.warning)}</b>`);
 

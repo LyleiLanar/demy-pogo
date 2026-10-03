@@ -124,7 +124,7 @@ az értékét.
     példány maradjon a Megához”, „a Shadow Frustrationnel jön”, „a Genie PvP %-a félrevezető”,
     „a Gigantamax csak Max Battle-ből szerezhető”, „csak a Dynamax példány használható”,
     „a Community Day ritka, tarts meg fejletlen példányt / cukrot”, „tematikus kupákban előkerülhet”,
-    „a második Charged Attackot érdemes feloldani”;
+    „a második Charged Attackot érdemes feloldani”, „részben felhős időben több jön” (időjárás-boost);
   - amit a helyezés mutat („ma nincs a top 100-ban”, „a meta része”, „csak niche”, „a Shadow
     változat jobb”), és hogy a Shadow / Mega erősebb: ilyenkor a forma kapjon saját értékelést
     (`forms.shadow.raid`, `forms.mega.raid`);
@@ -142,16 +142,16 @@ az értékét.
 ## 6. Beírás
 
 - Ha a faj már szerepel, egészítsd ki vagy javítsd a meglévő bejegyzést, ne duplikáld.
-- Új fajt ábécérendben szúrj be (`localeCompare(..., 'hu')` szerint), a megfelelő `id`-vel.
-- Minta:
+- Új fajt az `id` szerinti ábécérendben szúrj be. Elég az azonosító: a név, a típus, a fejlődési ág
+  és minden értékelés a `data/pvpoke.js`-ből jön. `origin` csak akkor kell, ha a fajnak nincs
+  fejlődési ága, és nem nyilvánvaló, honnan szerezhető (pl. `'raidből (legendás)'`).
+- Minta: egy faj tanács nélkül, és egy tanáccsal:
 
 ```js
+{ id: 'glaceon' },
 {
-  id: 'decidueye',
-  name: 'Decidueye',
-  origin: 'Rowlet',
-  raid: { rating: 'trash', note: 'Vékony támadó; vannak jobb Grass támadók.' },
-  // nincs maxBattle: a lookup szerint nincs Dynamax formája
+  id: 'charjabug',
+  warning: 'NE fejleszd Vikavolttá!',
 },
 ```
 
