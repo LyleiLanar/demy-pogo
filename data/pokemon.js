@@ -175,6 +175,7 @@ const POKEMON = [
   { id: 'hatterene' },
   { id: 'hippowdon' },
   { id: 'inteleon' },
+  { id: 'ivysaur' },
   { id: 'jellicent' },
   { id: 'jumpluff' },
   { id: 'kilowattrel' },

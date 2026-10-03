@@ -2716,6 +2716,51 @@ const PVPOKE = {
       bestIv: { iv: '1/15/13', cp: 2499 },
     },
   },
+  ivysaur: {
+    name: 'Ivysaur',
+    dex: 2,
+    types: ['grass', 'poison'],
+    maxForms: ['Dynamax'],
+    evolution: [
+      [
+        { id: 'bulbasaur', name: 'Bulbasaur', rank: 1070, raidRank: 103 },
+      ],
+      [
+        { id: 'ivysaur', name: 'Ivysaur', rank: 793, raidRank: 58, current: true, candy: 25 },
+      ],
+      [
+        { id: 'venusaur', name: 'Venusaur', rank: 217, raidRank: 8, candy: 100 },
+      ],
+    ],
+    raid: {
+      type: 'grass',
+      rank: 87,
+      moveset: { fast: ['Vine Whip'], charged: ['Power Whip'] },
+    },
+    maxBattle: {
+      tankRank: 95,
+      healerRank: 95,
+      dynamax: { type: 'grass', rank: 10, strength: 0.51, move: 'Max Overgrowth', fast: 'Razor Leaf' },
+    },
+    buddyKm: 3,
+    greatLeague: {
+      rank: 793,
+      moveset: { fast: ['Vine Whip'], charged: ['Power Whip', 'Sludge Bomb'] },
+      bestIv: { iv: '0/13/14', cp: 1498 },
+    },
+    shadow: {
+      greatLeague: {
+        rank: 908,
+        moveset: { fast: ['Vine Whip'], charged: ['Power Whip', 'Sludge Bomb'] },
+        bestIv: { iv: '0/13/14', cp: 1498 },
+      },
+      raid: {
+        type: 'grass',
+        rank: 58,
+        moveset: { fast: ['Vine Whip'], charged: ['Power Whip'] },
+      },
+    },
+  },
   jellicent: {
     name: 'Jellicent',
     dex: 593,
