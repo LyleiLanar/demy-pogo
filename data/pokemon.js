@@ -198,6 +198,7 @@ const POKEMON = [
   { id: 'moltres_galarian', origin: 'legendás (Max Battle / raid)' },
   { id: 'ninetales' },
   { id: 'ninetales_alolan' },
+  { id: 'numel' },
   { id: 'perrserker' },
   {
     id: 'pyroar',

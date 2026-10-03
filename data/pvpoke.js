@@ -3787,6 +3787,32 @@ const PVPOKE = {
       },
     },
   },
+  numel: {
+    name: 'Numel',
+    dex: 322,
+    types: ['fire', 'ground'],
+    evolution: [
+      [
+        { id: 'numel', name: 'Numel', raidRank: 120, current: true },
+      ],
+      [
+        { id: 'camerupt', name: 'Camerupt', rank: 229, raidRank: 55, candy: 50 },
+      ],
+    ],
+    raid: {
+      type: 'fire',
+      rank: 136,
+      moveset: { fast: ['Ember'], charged: ['Heat Wave'] },
+    },
+    buddyKm: 3,
+    shadow: {
+      raid: {
+        type: 'fire',
+        rank: 120,
+        moveset: { fast: ['Ember'], charged: ['Heat Wave'] },
+      },
+    },
+  },
   perrserker: {
     name: 'Perrserker',
     dex: 863,
