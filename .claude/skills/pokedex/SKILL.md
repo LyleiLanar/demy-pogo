@@ -142,7 +142,7 @@ az értékét.
 ## 6. Beírás
 
 - Ha a faj már szerepel, egészítsd ki vagy javítsd a meglévő bejegyzést, ne duplikáld.
-- Új fajt az `id` szerinti ábécérendben szúrj be. Elég az azonosító: a név, a típus, a fejlődési ág
+- Új fajt az `id` szerinti ábécérendben szúrj be (tanács nélkül: `node tools/add-pokemon.mjs <id vagy név>`). Elég az azonosító: a név, a típus, a fejlődési ág
   és minden értékelés a `data/pvpoke.js`-ből jön. `origin` csak akkor kell, ha a fajnak nincs
   fejlődési ága, és nem nyilvánvaló, honnan szerezhető (pl. `'raidből (legendás)'`).
 - Minta: egy faj tanács nélkül, és egy tanáccsal:
