@@ -19,7 +19,7 @@
 // beats / losesTo: a legfontosabb nyert és vesztett párharcok ({ id, name, rank, legendary }, mint az ágban)
 // PVPOKE_MOVE_TYPES: az ajánlott mozdulatok típusa (a PvPoke-szettekből és a pokemon.js-ből)
 
-const PVPOKE_DATE = '2026. 10. 05.';
+const PVPOKE_DATE = '2026. 10. 12.';
 
 const PVPOKE = {
   aegislash_shield: {
@@ -28,33 +28,33 @@ const PVPOKE = {
     types: ['steel', 'ghost'],
     evolution: [
       [
-        { id: 'honedge', name: 'Honedge', rank: 871 },
+        { id: 'honedge', name: 'Honedge', rank: 899 },
       ],
       [
-        { id: 'doublade', name: 'Doublade', rank: 75, candy: 25 },
+        { id: 'doublade', name: 'Doublade', rank: 77, candy: 25 },
       ],
       [
-        { id: 'aegislash_shield', name: 'Aegislash (Shield)', rank: 80, current: true, candy: 100 },
+        { id: 'aegislash_shield', name: 'Aegislash (Shield)', rank: 74, current: true, candy: 100 },
       ],
     ],
     buddyKm: 5,
     greatLeague: {
-      rank: 80,
+      rank: 74,
       moveset: { fast: ['Psycho Cut'], charged: ['Shadow Ball', 'Gyro Ball'] },
       beats: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'electrode_hisuian', name: 'Hisuian Electrode', rank: 29, raidRank: 59 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/12/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 606,
+      rank: 620,
       moveset: { fast: ['Psycho Cut'], charged: ['Shadow Ball', 'Flash Cannon'] },
       bestIv: { iv: '15/15/15', cp: 1746 },
     },
@@ -80,13 +80,13 @@ const PVPOKE = {
         { id: 'abra', name: 'Abra', raidRank: 110 },
       ],
       [
-        { id: 'kadabra', name: 'Kadabra', rank: 1101, raidRank: 77, candy: 25 },
+        { id: 'kadabra', name: 'Kadabra', rank: 1098, raidRank: 77, candy: 25 },
       ],
       [
         {
           id: 'alakazam',
           name: 'Alakazam',
-          rank: 658,
+          rank: 660,
           raidRank: 15,
           current: true,
           candy: 100,
@@ -107,23 +107,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Counter', 'Dazzling Gleam', 'Psychic'],
     greatLeague: {
-      rank: 927,
+      rank: 938,
       moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
       bestIv: { iv: '1/15/15', cp: 1495 },
     },
     ultraLeague: {
-      rank: 682,
+      rank: 688,
       moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
       bestIv: { iv: '0/14/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
-        rank: 844,
+        rank: 842,
         moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
         bestIv: { iv: '1/15/15', cp: 1495 },
       },
       ultraLeague: {
-        rank: 658,
+        rank: 660,
         moveset: { fast: ['Psycho Cut'], charged: ['Fire Punch', 'Shadow Ball'] },
         bestIv: { iv: '0/14/15', cp: 2497 },
       },
@@ -169,39 +169,39 @@ const PVPOKE = {
       moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
       beats: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       bestIv: { iv: '0/14/15', cp: 1497 },
     },
     ultraLeague: {
-      rank: 270,
+      rank: 259,
       moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
       bestIv: { iv: '15/15/15', cp: 2266 },
     },
     shadow: {
       greatLeague: {
-        rank: 9,
+        rank: 7,
         moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
         beats: [
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-          { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
+          { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
         ],
         losesTo: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         ],
         bestIv: { iv: '0/14/15', cp: 1497 },
       },
       ultraLeague: {
-        rank: 309,
+        rank: 297,
         moveset: { fast: ['Dragon Breath'], charged: ['Moonblast', 'Flamethrower'] },
         bestIv: { iv: '15/15/15', cp: 2266 },
       },
@@ -232,7 +232,7 @@ const PVPOKE = {
         { id: 'mareep', name: 'Mareep', raidRank: 98 },
       ],
       [
-        { id: 'flaaffy', name: 'Flaaffy', rank: 902, raidRank: 79, candy: 25 },
+        { id: 'flaaffy', name: 'Flaaffy', rank: 891, raidRank: 79, candy: 25 },
       ],
       [
         { id: 'ampharos', name: 'Ampharos', rank: 51, raidRank: 24, current: true, candy: 100 },
@@ -246,7 +246,7 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Dragon Pulse'],
     greatLeague: {
-      rank: 220,
+      rank: 223,
       moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
       bestIv: { iv: '0/13/11', cp: 1499 },
     },
@@ -255,11 +255,11 @@ const PVPOKE = {
       moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
       beats: [
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
       ],
       losesTo: [
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
@@ -267,7 +267,7 @@ const PVPOKE = {
     },
     shadow: {
       greatLeague: {
-        rank: 221,
+        rank: 211,
         moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
         bestIv: { iv: '0/13/11', cp: 1499 },
       },
@@ -275,13 +275,13 @@ const PVPOKE = {
         rank: 55,
         moveset: { fast: ['Volt Switch'], charged: ['Brutal Swing', 'Trailblaze'] },
         beats: [
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
-          { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
+          { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
+          { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
           { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
         ],
         losesTo: [
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         ],
         bestIv: { iv: '0/13/15', cp: 2497 },
@@ -299,16 +299,16 @@ const PVPOKE = {
     types: ['fighting', 'ghost'],
     evolution: [
       [
-        { id: 'mankey', name: 'Mankey', rank: 794, raidRank: 116 },
+        { id: 'mankey', name: 'Mankey', rank: 796, raidRank: 116 },
       ],
       [
-        { id: 'primeape', name: 'Primeape', rank: 251, raidRank: 57, candy: 50 },
+        { id: 'primeape', name: 'Primeape', rank: 249, raidRank: 57, candy: 50 },
       ],
       [
         {
           id: 'annihilape',
           name: 'Annihilape',
-          rank: 32,
+          rank: 25,
           raidRank: 24,
           current: true,
           candy: 100,
@@ -324,63 +324,63 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Rage Fist'],
     greatLeague: {
-      rank: 32,
+      rank: 25,
       moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
       beats: [
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       bestIv: { iv: '2/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 61,
+      rank: 56,
       moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
       beats: [
-        { id: 'blastoise', name: 'Blastoise', rank: 29, raidRank: 45 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'blastoise', name: 'Blastoise', rank: 35, raidRank: 45 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
       ],
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
       bestIv: { iv: '0/15/15', cp: 2492 },
     },
     shadow: {
       greatLeague: {
-        rank: 38,
+        rank: 39,
         moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
         beats: [
-          { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+          { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
           { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         ],
         bestIv: { iv: '2/15/15', cp: 1499 },
       },
       ultraLeague: {
-        rank: 72,
+        rank: 74,
         moveset: { fast: ['Low Kick'], charged: ['Rage Fist', 'Ice Punch'] },
         beats: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-          { id: 'blastoise', name: 'Blastoise', rank: 29, raidRank: 45 },
+          { id: 'blastoise', name: 'Blastoise', rank: 35, raidRank: 45 },
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
+          { id: 'snorlax', name: 'Snorlax', rank: 3 },
         ],
         bestIv: { iv: '0/15/15', cp: 2492 },
       },
@@ -400,7 +400,7 @@ const PVPOKE = {
         { id: 'dewpider', name: 'Dewpider' },
       ],
       [
-        { id: 'araquanid', name: 'Araquanid', rank: 16, raidRank: 54, current: true, candy: 50 },
+        { id: 'araquanid', name: 'Araquanid', rank: 18, raidRank: 54, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -410,17 +410,17 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 16,
+      rank: 18,
       moveset: { fast: ['Infestation'], charged: ['Water Pulse', 'Mirror Coat'] },
       beats: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       bestIv: { iv: '0/10/15', cp: 1500 },
     },
@@ -431,12 +431,12 @@ const PVPOKE = {
     },
     shadow: {
       greatLeague: {
-        rank: 30,
+        rank: 34,
         moveset: { fast: ['Infestation'], charged: ['Water Pulse', 'Mirror Coat'] },
         beats: [
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
+          { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
         ],
         losesTo: [
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
@@ -469,7 +469,7 @@ const PVPOKE = {
         { id: 'marill', name: 'Marill', raidRank: 201, candy: 25 },
       ],
       [
-        { id: 'azumarill', name: 'Azumarill', rank: 33, raidRank: 138, current: true, candy: 25 },
+        { id: 'azumarill', name: 'Azumarill', rank: 28, raidRank: 138, current: true, candy: 25 },
       ],
     ],
     raid: {
@@ -479,15 +479,15 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 33,
+      rank: 28,
       moveset: { fast: ['Bubble'], charged: ['Ice Beam', 'Play Rough'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
@@ -508,7 +508,7 @@ const PVPOKE = {
         { id: 'shieldon', name: 'Shieldon', raidRank: 87 },
       ],
       [
-        { id: 'bastiodon', name: 'Bastiodon', rank: 168, raidRank: 64, current: true, candy: 50 },
+        { id: 'bastiodon', name: 'Bastiodon', rank: 151, raidRank: 64, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -518,12 +518,12 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 168,
+      rank: 151,
       moveset: { fast: ['Smack Down'], charged: ['Stone Edge', 'Flamethrower'] },
       bestIv: { iv: '0/15/14', cp: 1497 },
     },
     ultraLeague: {
-      rank: 838,
+      rank: 839,
       moveset: { fast: ['Smack Down'], charged: ['Stone Edge', 'Flamethrower'] },
       bestIv: { iv: '15/15/15', cp: 1741 },
     },
@@ -551,13 +551,13 @@ const PVPOKE = {
     types: ['dragon', 'ice'],
     evolution: [
       [
-        { id: 'frigibax', name: 'Frigibax', rank: 643, raidRank: 64 },
+        { id: 'frigibax', name: 'Frigibax', rank: 625, raidRank: 64 },
       ],
       [
-        { id: 'arctibax', name: 'Arctibax', rank: 301, raidRank: 49, candy: 25 },
+        { id: 'arctibax', name: 'Arctibax', rank: 282, raidRank: 49, candy: 25 },
       ],
       [
-        { id: 'baxcalibur', name: 'Baxcalibur', rank: 347, raidRank: 4, current: true, candy: 100 },
+        { id: 'baxcalibur', name: 'Baxcalibur', rank: 330, raidRank: 4, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -568,12 +568,12 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Glaive Rush'],
     greatLeague: {
-      rank: 499,
+      rank: 495,
       moveset: { fast: ['Dragon Breath'], charged: ['Glaive Rush', 'Avalanche'] },
       bestIv: { iv: '0/15/5', cp: 1500 },
     },
     ultraLeague: {
-      rank: 347,
+      rank: 330,
       moveset: { fast: ['Dragon Breath'], charged: ['Glaive Rush', 'Avalanche'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
@@ -598,10 +598,10 @@ const PVPOKE = {
         { id: 'torchic', name: 'Torchic', raidRank: 112 },
       ],
       [
-        { id: 'combusken', name: 'Combusken', rank: 619, raidRank: 82, candy: 25 },
+        { id: 'combusken', name: 'Combusken', rank: 602, raidRank: 82, candy: 25 },
       ],
       [
-        { id: 'blaziken', name: 'Blaziken', rank: 170, raidRank: 9, current: true, candy: 100 },
+        { id: 'blaziken', name: 'Blaziken', rank: 180, raidRank: 9, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -612,23 +612,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Blast Burn', 'Stone Edge'],
     greatLeague: {
-      rank: 285,
+      rank: 283,
       moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blast Burn'] },
       bestIv: { iv: '1/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 170,
+      rank: 195,
       moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blast Burn'] },
       bestIv: { iv: '1/15/15', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 239,
+        rank: 240,
         moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blaze Kick'] },
         bestIv: { iv: '1/15/15', cp: 1499 },
       },
       ultraLeague: {
-        rank: 174,
+        rank: 180,
         moveset: { fast: ['Ember'], charged: ['Aura Sphere', 'Blast Burn'] },
         bestIv: { iv: '1/15/15', cp: 2499 },
       },
@@ -649,10 +649,10 @@ const PVPOKE = {
         { id: 'happiny', name: 'Happiny', raidRank: 165 },
       ],
       [
-        { id: 'chansey', name: 'Chansey', rank: 608, raidRank: 155, candy: 25, buddyKm: 15, quest: true },
+        { id: 'chansey', name: 'Chansey', rank: 620, raidRank: 155, candy: 25, buddyKm: 15, quest: true },
       ],
       [
-        { id: 'blissey', name: 'Blissey', rank: 639, raidRank: 109, current: true, candy: 50 },
+        { id: 'blissey', name: 'Blissey', rank: 652, raidRank: 109, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -668,12 +668,12 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Wild Charge'],
     greatLeague: {
-      rank: 934,
+      rank: 924,
       moveset: { fast: ['Zen Headbutt'], charged: ['Wild Charge', 'Dazzling Gleam'] },
       bestIv: { iv: '0/15/3', cp: 1499 },
     },
     ultraLeague: {
-      rank: 639,
+      rank: 652,
       moveset: { fast: ['Zen Headbutt'], charged: ['Wild Charge', 'Dazzling Gleam'] },
       bestIv: { iv: '0/15/14', cp: 2499 },
     },
@@ -688,10 +688,10 @@ const PVPOKE = {
         { id: 'bulbasaur', name: 'Bulbasaur', rank: 1070, raidRank: 103, current: true },
       ],
       [
-        { id: 'ivysaur', name: 'Ivysaur', rank: 793, raidRank: 58, candy: 25 },
+        { id: 'ivysaur', name: 'Ivysaur', rank: 789, raidRank: 58, candy: 25 },
       ],
       [
-        { id: 'venusaur', name: 'Venusaur', rank: 217, raidRank: 8, candy: 100 },
+        { id: 'venusaur', name: 'Venusaur', rank: 218, raidRank: 8, candy: 100 },
       ],
     ],
     raid: {
@@ -712,7 +712,7 @@ const PVPOKE = {
     },
     shadow: {
       greatLeague: {
-        rank: 1123,
+        rank: 1121,
         moveset: { fast: ['Vine Whip'], charged: ['Power Whip', 'Sludge Bomb'] },
         bestIv: { iv: '15/15/15', cp: 1260 },
       },
@@ -734,8 +734,8 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 47,
-      moveset: { fast: ['Rock Throw'], charged: ['Rock Slide', 'Moonblast'] },
+      rank: 35,
+      moveset: { fast: ['Rock Throw'], charged: ['Moonblast', 'Rock Slide'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
@@ -744,12 +744,12 @@ const PVPOKE = {
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '5/15/15', cp: 1498 },
     },
     ultraLeague: {
-      rank: 819,
+      rank: 814,
       moveset: { fast: ['Rock Throw'], charged: ['Moonblast', 'Rock Slide'] },
       bestIv: { iv: '15/15/15', cp: 1658 },
     },
@@ -784,10 +784,10 @@ const PVPOKE = {
         { id: 'charmander', name: 'Charmander', raidRank: 116 },
       ],
       [
-        { id: 'charmeleon', name: 'Charmeleon', rank: 537, raidRank: 72, candy: 25 },
+        { id: 'charmeleon', name: 'Charmeleon', rank: 554, raidRank: 72, candy: 25 },
       ],
       [
-        { id: 'charizard', name: 'Charizard', rank: 101, raidRank: 20, current: true, candy: 100 },
+        { id: 'charizard', name: 'Charizard', rank: 97, raidRank: 20, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -804,23 +804,33 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Ember', 'Wing Attack', 'Blast Burn', 'Flamethrower', 'Dragon Breath'],
     greatLeague: {
-      rank: 259,
+      rank: 260,
       moveset: { fast: ['Ember'], charged: ['Blast Burn', 'Air Cutter'] },
       bestIv: { iv: '0/15/13', cp: 1500 },
     },
     ultraLeague: {
-      rank: 101,
+      rank: 97,
       moveset: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Air Cutter'] },
+      beats: [
+        { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
+        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
+      ],
+      losesTo: [
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
+      ],
       bestIv: { iv: '0/13/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 199,
+        rank: 184,
         moveset: { fast: ['Ember'], charged: ['Blast Burn', 'Air Cutter'] },
         bestIv: { iv: '0/15/13', cp: 1500 },
       },
       ultraLeague: {
-        rank: 124,
+        rank: 125,
         moveset: { fast: ['Dragon Breath'], charged: ['Blast Burn', 'Air Cutter'] },
         bestIv: { iv: '0/13/15', cp: 2500 },
       },
@@ -843,7 +853,7 @@ const PVPOKE = {
         { id: 'charjabug', name: 'Charjabug', rank: 42, raidRank: 58, current: true, candy: 25 },
       ],
       [
-        { id: 'vikavolt', name: 'Vikavolt', rank: 312, raidRank: 4, candy: 100, item: 'Magnetic Lure' },
+        { id: 'vikavolt', name: 'Vikavolt', rank: 322, raidRank: 4, candy: 100, item: 'Magnetic Lure' },
       ],
     ],
     raid: {
@@ -855,7 +865,7 @@ const PVPOKE = {
     specialMoves: ['Volt Switch'],
     greatLeague: {
       rank: 42,
-      moveset: { fast: ['Volt Switch'], charged: ['X-Scissor', 'Discharge'] },
+      moveset: { fast: ['Volt Switch'], charged: ['Discharge', 'X-Scissor'] },
       beats: [
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
@@ -863,15 +873,15 @@ const PVPOKE = {
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/13/15', cp: 1497 },
     },
     shadow: {
       greatLeague: {
-        rank: 48,
-        moveset: { fast: ['Volt Switch'], charged: ['X-Scissor', 'Discharge'] },
+        rank: 49,
+        moveset: { fast: ['Volt Switch'], charged: ['Discharge', 'X-Scissor'] },
         beats: [
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
@@ -879,8 +889,8 @@ const PVPOKE = {
         ],
         losesTo: [
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '0/13/15', cp: 1497 },
       },
@@ -903,7 +913,7 @@ const PVPOKE = {
         {
           id: 'cherrim_overcast',
           name: 'Cherrim (Overcast)',
-          rank: 836,
+          rank: 833,
           raidRank: 74,
           current: true,
           candy: 50,
@@ -917,12 +927,12 @@ const PVPOKE = {
     },
     buddyKm: 1,
     greatLeague: {
-      rank: 1118,
+      rank: 1110,
       moveset: { fast: ['Bullet Seed'], charged: ['Dazzling Gleam', 'Solar Beam'] },
       bestIv: { iv: '0/13/15', cp: 1496 },
     },
     ultraLeague: {
-      rank: 836,
+      rank: 833,
       moveset: { fast: ['Bullet Seed'], charged: ['Dazzling Gleam', 'Solar Beam'] },
       bestIv: { iv: '15/15/15', cp: 2315 },
     },
@@ -937,10 +947,10 @@ const PVPOKE = {
         { id: 'scorbunny', name: 'Scorbunny', raidRank: 109 },
       ],
       [
-        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 75, candy: 25 },
+        { id: 'raboot', name: 'Raboot', rank: 871, raidRank: 75, candy: 25 },
       ],
       [
-        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, current: true, candy: 100 },
+        { id: 'cinderace', name: 'Cinderace', rank: 404, raidRank: 33, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -957,12 +967,12 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
     greatLeague: {
-      rank: 618,
+      rank: 614,
       moveset: { fast: ['Fire Spin'], charged: ['Pyro Ball', 'Blast Burn'] },
       bestIv: { iv: '0/15/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 403,
+      rank: 404,
       moveset: { fast: ['Fire Spin'], charged: ['Pyro Ball', 'Blast Burn'] },
       bestIv: { iv: '1/15/14', cp: 2499 },
     },
@@ -976,7 +986,7 @@ const PVPOKE = {
         { id: 'wooper_paldean', name: 'Paldean Wooper', raidRank: 91 },
       ],
       [
-        { id: 'clodsire', name: 'Clodsire', rank: 17, raidRank: 54, current: true, candy: 50 },
+        { id: 'clodsire', name: 'Clodsire', rank: 15, raidRank: 54, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -987,7 +997,7 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Megahorn'],
     greatLeague: {
-      rank: 17,
+      rank: 15,
       moveset: { fast: ['Poison Sting'], charged: ['Earthquake', 'Stone Edge'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
@@ -995,8 +1005,8 @@ const PVPOKE = {
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
       ],
       losesTo: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
       ],
       bestIv: { iv: '0/14/13', cp: 1499 },
@@ -1016,7 +1026,7 @@ const PVPOKE = {
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87, current: true },
       ],
       [
-        { id: 'cursola', name: 'Cursola', rank: 680, raidRank: 47, candy: 50 },
+        { id: 'cursola', name: 'Cursola', rank: 675, raidRank: 47, candy: 50 },
       ],
     ],
     raid: {
@@ -1034,8 +1044,8 @@ const PVPOKE = {
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       bestIv: { iv: '0/15/15', cp: 1498 },
@@ -1051,7 +1061,7 @@ const PVPOKE = {
         { id: 'rookidee', name: 'Rookidee', raidRank: 113 },
       ],
       [
-        { id: 'corvisquire', name: 'Corvisquire', rank: 601, raidRank: 86, candy: 25 },
+        { id: 'corvisquire', name: 'Corvisquire', rank: 616, raidRank: 86, candy: 25 },
       ],
       [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35, current: true, candy: 100 },
@@ -1070,11 +1080,11 @@ const PVPOKE = {
     buddyKm: 1,
     specialMoves: ['Iron Head', 'Air Cutter'],
     greatLeague: {
-      rank: 7,
+      rank: 9,
       moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Iron Head'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
       ],
       losesTo: [
@@ -1089,28 +1099,28 @@ const PVPOKE = {
       moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Iron Head'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'snorlax', name: 'Snorlax', rank: 3 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
       ],
       losesTo: [
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-        { id: 'blastoise', name: 'Blastoise', rank: 29, raidRank: 45 },
-        { id: 'dusknoir', name: 'Shadow Dusknoir', rank: 25, raidRank: 30 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
+        { id: 'blastoise', name: 'Blastoise', rank: 35, raidRank: 45 },
+        { id: 'dusknoir', name: 'Shadow Dusknoir', rank: 24, raidRank: 30 },
       ],
       bestIv: { iv: '0/15/15', cp: 2498 },
     },
     shadow: {
       greatLeague: {
-        rank: 10,
+        rank: 12,
         moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Iron Head'] },
         beats: [
           { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'azumarill', name: 'Azumarill', rank: 28, raidRank: 138 },
         ],
         losesTo: [
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
         ],
         bestIv: { iv: '0/13/14', cp: 1500 },
@@ -1119,14 +1129,14 @@ const PVPOKE = {
         rank: 4,
         moveset: { fast: ['Sand Attack'], charged: ['Air Cutter', 'Payback'] },
         beats: [
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+          { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         ],
         losesTo: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
         ],
         bestIv: { iv: '0/15/15', cp: 2498 },
       },
@@ -1151,27 +1161,27 @@ const PVPOKE = {
       rank: 4,
       moveset: { fast: ['Peck'], charged: ['Dive', 'Fly'] },
       beats: [
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
         { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
       ],
       bestIv: { iv: '0/14/11', cp: 1500 },
     },
     ultraLeague: {
-      rank: 18,
+      rank: 19,
       moveset: { fast: ['Peck'], charged: ['Dive', 'Fly'] },
       beats: [
+        { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
       ],
       losesTo: [
-        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
+        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 16, raidRank: 8, legendary: true },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
       ],
@@ -1185,13 +1195,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'darumaka', name: 'Darumaka', rank: 712, raidRank: 91 },
+        { id: 'darumaka', name: 'Darumaka', rank: 727, raidRank: 91 },
       ],
       [
         {
           id: 'darmanitan_standard',
           name: 'Darmanitan (Standard)',
-          rank: 534,
+          rank: 540,
           raidRank: 12,
           current: true,
           candy: 50,
@@ -1210,23 +1220,23 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 823,
+      rank: 804,
       moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
       bestIv: { iv: '0/15/11', cp: 1498 },
     },
     ultraLeague: {
-      rank: 534,
+      rank: 540,
       moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
       bestIv: { iv: '0/13/15', cp: 2498 },
     },
     shadow: {
       greatLeague: {
-        rank: 807,
+        rank: 776,
         moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
         bestIv: { iv: '0/15/11', cp: 1498 },
       },
       ultraLeague: {
-        rank: 576,
+        rank: 574,
         moveset: { fast: ['Incinerate'], charged: ['Rock Slide', 'Overheat'] },
         bestIv: { iv: '0/13/15', cp: 2498 },
       },
@@ -1243,13 +1253,13 @@ const PVPOKE = {
     types: ['grass', 'ghost'],
     evolution: [
       [
-        { id: 'rowlet', name: 'Rowlet', rank: 1058, raidRank: 137 },
+        { id: 'rowlet', name: 'Rowlet', rank: 1054, raidRank: 137 },
       ],
       [
         { id: 'dartrix', name: 'Dartrix', rank: 186, raidRank: 80, candy: 25 },
       ],
       [
-        { id: 'decidueye', name: 'Decidueye', rank: 212, raidRank: 20, current: true, candy: 100 },
+        { id: 'decidueye', name: 'Decidueye', rank: 192, raidRank: 20, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -1260,12 +1270,12 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
-      rank: 565,
+      rank: 533,
       moveset: { fast: ['Leafage'], charged: ['Frenzy Plant', 'Spirit Shackle'] },
       bestIv: { iv: '0/14/11', cp: 1497 },
     },
     ultraLeague: {
-      rank: 212,
+      rank: 192,
       moveset: { fast: ['Astonish'], charged: ['Frenzy Plant', 'Spirit Shackle'] },
       bestIv: { iv: '0/14/13', cp: 2497 },
     },
@@ -1281,12 +1291,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 268,
+      rank: 252,
       moveset: { fast: ['Thunder Shock'], charged: ['Discharge', 'Play Rough'] },
       bestIv: { iv: '0/14/12', cp: 1500 },
     },
     ultraLeague: {
-      rank: 605,
+      rank: 597,
       moveset: { fast: ['Thunder Shock'], charged: ['Discharge', 'Parabolic Charge'] },
       bestIv: { iv: '15/15/15', cp: 2081 },
     },
@@ -1311,10 +1321,10 @@ const PVPOKE = {
         { id: 'fennekin', name: 'Fennekin', raidRank: 114 },
       ],
       [
-        { id: 'braixen', name: 'Braixen', rank: 510, raidRank: 76, candy: 25 },
+        { id: 'braixen', name: 'Braixen', rank: 516, raidRank: 76, candy: 25 },
       ],
       [
-        { id: 'delphox', name: 'Delphox', rank: 281, raidRank: 14, current: true, candy: 100 },
+        { id: 'delphox', name: 'Delphox', rank: 294, raidRank: 14, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -1325,23 +1335,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Blast Burn'],
     greatLeague: {
-      rank: 399,
+      rank: 414,
       moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
       bestIv: { iv: '0/11/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 281,
+      rank: 294,
       moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
       bestIv: { iv: '1/15/15', cp: 2493 },
     },
     shadow: {
       greatLeague: {
-        rank: 460,
+        rank: 456,
         moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
         bestIv: { iv: '0/11/14', cp: 1499 },
       },
       ultraLeague: {
-        rank: 285,
+        rank: 302,
         moveset: { fast: ['Scratch'], charged: ['Psyshock', 'Blast Burn'] },
         bestIv: { iv: '1/15/15', cp: 2493 },
       },
@@ -1364,7 +1374,7 @@ const PVPOKE = {
     },
     buddyKm: 20,
     greatLeague: {
-      rank: 34,
+      rank: 36,
       moveset: { fast: ['Low Kick'], charged: ['Psycho Boost', 'Thunderbolt'] },
       beats: [
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
@@ -1372,23 +1382,23 @@ const PVPOKE = {
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/15/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 42,
+      rank: 41,
       moveset: { fast: ['Low Kick'], charged: ['Psycho Boost', 'Thunderbolt'] },
       beats: [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       bestIv: { iv: '12/13/15', cp: 2500 },
@@ -1405,32 +1415,32 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 49,
+      rank: 47,
       moveset: { fast: ['Waterfall'], charged: ['Surf', 'Outrage'] },
       beats: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 26,
+      rank: 27,
       moveset: { fast: ['Waterfall'], charged: ['Surf', 'Outrage'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
       ],
       losesTo: [
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
       ],
       bestIv: { iv: '0/14/15', cp: 2498 },
     },
@@ -1441,43 +1451,43 @@ const PVPOKE = {
     types: ['steel', 'ghost'],
     evolution: [
       [
-        { id: 'honedge', name: 'Honedge', rank: 871 },
+        { id: 'honedge', name: 'Honedge', rank: 899 },
       ],
       [
-        { id: 'doublade', name: 'Doublade', rank: 75, current: true, candy: 25 },
+        { id: 'doublade', name: 'Doublade', rank: 77, current: true, candy: 25 },
       ],
       [
-        { id: 'aegislash_shield', name: 'Aegislash (Shield)', rank: 80, candy: 100 },
+        { id: 'aegislash_shield', name: 'Aegislash (Shield)', rank: 74, candy: 100 },
       ],
     ],
     buddyKm: 5,
     greatLeague: {
-      rank: 75,
+      rank: 77,
       moveset: { fast: ['Shadow Claw'], charged: ['Sacred Sword', 'Iron Head'] },
       beats: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
+        { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/11/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 96,
+      rank: 86,
       moveset: { fast: ['Shadow Claw'], charged: ['Sacred Sword', 'Iron Head'] },
       beats: [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
       ],
       losesTo: [
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
       ],
       bestIv: { iv: '0/14/14', cp: 2499 },
     },
@@ -1488,10 +1498,10 @@ const PVPOKE = {
     types: ['ghost', 'flying'],
     evolution: [
       [
-        { id: 'drifloon', name: 'Drifloon', rank: 637, raidRank: 66 },
+        { id: 'drifloon', name: 'Drifloon', rank: 652, raidRank: 66 },
       ],
       [
-        { id: 'drifblim', name: 'Drifblim', rank: 137, raidRank: 31, current: true, candy: 50 },
+        { id: 'drifblim', name: 'Drifblim', rank: 138, raidRank: 31, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -1501,23 +1511,23 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 363,
+      rank: 372,
       moveset: { fast: ['Hex'], charged: ['Shadow Ball', 'Icy Wind'] },
       bestIv: { iv: '0/15/12', cp: 1500 },
     },
     ultraLeague: {
-      rank: 137,
+      rank: 138,
       moveset: { fast: ['Hex'], charged: ['Shadow Ball', 'Icy Wind'] },
       bestIv: { iv: '1/15/15', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 289,
+        rank: 286,
         moveset: { fast: ['Astonish'], charged: ['Shadow Ball', 'Icy Wind'] },
         bestIv: { iv: '0/15/12', cp: 1500 },
       },
       ultraLeague: {
-        rank: 236,
+        rank: 234,
         moveset: { fast: ['Hex'], charged: ['Shadow Ball', 'Icy Wind'] },
         bestIv: { iv: '1/15/15', cp: 2499 },
       },
@@ -1538,7 +1548,7 @@ const PVPOKE = {
         { id: 'wooloo', name: 'Wooloo' },
       ],
       [
-        { id: 'dubwool', name: 'Dubwool', rank: 163, current: true, candy: 50 },
+        { id: 'dubwool', name: 'Dubwool', rank: 152, current: true, candy: 50 },
       ],
     ],
     maxBattle: {
@@ -1548,12 +1558,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 163,
+      rank: 152,
       moveset: { fast: ['Take Down'], charged: ['Wild Charge', 'Body Slam'] },
       bestIv: { iv: '1/15/15', cp: 1497 },
     },
     ultraLeague: {
-      rank: 375,
+      rank: 379,
       moveset: { fast: ['Double Kick'], charged: ['Wild Charge', 'Body Slam'] },
       bestIv: { iv: '15/15/15', cp: 2478 },
     },
@@ -1567,10 +1577,10 @@ const PVPOKE = {
         { id: 'duskull', name: 'Duskull', raidRank: 99 },
       ],
       [
-        { id: 'dusclops', name: 'Dusclops', rank: 71, raidRank: 61, current: true, candy: 25 },
+        { id: 'dusclops', name: 'Dusclops', rank: 66, raidRank: 61, current: true, candy: 25 },
       ],
       [
-        { id: 'dusknoir', name: 'Dusknoir', rank: 25, raidRank: 30, candy: 100, item: 'Sinnoh Stone' },
+        { id: 'dusknoir', name: 'Dusknoir', rank: 24, raidRank: 30, candy: 100, item: 'Sinnoh Stone' },
       ],
     ],
     raid: {
@@ -1580,33 +1590,33 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 77,
+      rank: 78,
       moveset: { fast: ['Hex'], charged: ['Shadow Punch', 'Ice Punch'] },
       beats: [
-        { id: 'clodsire', name: 'Clodsire', rank: 17, raidRank: 54 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'electrode_hisuian', name: 'Hisuian Electrode', rank: 29, raidRank: 59 },
         { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
+        { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
       ],
       bestIv: { iv: '0/11/15', cp: 1499 },
     },
     shadow: {
       greatLeague: {
-        rank: 71,
+        rank: 66,
         moveset: { fast: ['Hex'], charged: ['Shadow Punch', 'Ice Punch'] },
         beats: [
           { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         ],
         losesTo: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+          { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         ],
         bestIv: { iv: '0/11/15', cp: 1499 },
       },
@@ -1624,16 +1634,16 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'eevee', name: 'Eevee', rank: 1026, current: true },
+        { id: 'eevee', name: 'Eevee', rank: 1039, current: true },
       ],
       [
-        { id: 'vaporeon', name: 'Vaporeon', rank: 399, raidRank: 58, candy: 25 },
-        { id: 'jolteon', name: 'Jolteon', rank: 514, raidRank: 30, candy: 25 },
-        { id: 'flareon', name: 'Flareon', rank: 589, raidRank: 38, candy: 25 },
+        { id: 'vaporeon', name: 'Vaporeon', rank: 415, raidRank: 58, candy: 25 },
+        { id: 'jolteon', name: 'Jolteon', rank: 520, raidRank: 30, candy: 25 },
+        { id: 'flareon', name: 'Flareon', rank: 623, raidRank: 38, candy: 25 },
         {
           id: 'espeon',
           name: 'Espeon',
-          rank: 649,
+          rank: 643,
           raidRank: 28,
           candy: 25,
           buddyKm: 10,
@@ -1643,23 +1653,23 @@ const PVPOKE = {
         {
           id: 'umbreon',
           name: 'Umbreon',
-          rank: 29,
+          rank: 24,
           raidRank: 94,
           candy: 25,
           buddyKm: 10,
           time: 'night',
           quest: true,
         },
-        { id: 'leafeon', name: 'Leafeon', rank: 618, raidRank: 36, candy: 25, item: 'Mossy Lure' },
-        { id: 'glaceon', name: 'Glaceon', rank: 788, raidRank: 10, candy: 25, item: 'Glacial Lure' },
-        { id: 'sylveon', name: 'Sylveon', rank: 104, raidRank: 11, candy: 25, quest: true },
+        { id: 'leafeon', name: 'Leafeon', rank: 617, raidRank: 36, candy: 25, item: 'Mossy Lure' },
+        { id: 'glaceon', name: 'Glaceon', rank: 789, raidRank: 10, candy: 25, item: 'Glacial Lure' },
+        { id: 'sylveon', name: 'Sylveon', rank: 100, raidRank: 11, candy: 25, quest: true },
       ],
     ],
     maxBattle: { tankRank: 111, healerRank: 112 },
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Body Slam'],
     greatLeague: {
-      rank: 1026,
+      rank: 1039,
       moveset: { fast: ['Quick Attack'], charged: ['Swift', 'Dig'] },
       bestIv: { iv: '15/15/15', cp: 1210 },
     },
@@ -1673,7 +1683,7 @@ const PVPOKE = {
         { id: 'gossifleur', name: 'Gossifleur', raidRank: 154 },
       ],
       [
-        { id: 'eldegoss', name: 'Eldegoss', rank: 780, raidRank: 84, current: true, candy: 50 },
+        { id: 'eldegoss', name: 'Eldegoss', rank: 776, raidRank: 84, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -1683,12 +1693,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 814,
+      rank: 800,
       moveset: { fast: ['Bullet Seed'], charged: ['Energy Ball', 'Grass Knot'] },
       bestIv: { iv: '0/14/15', cp: 1498 },
     },
     ultraLeague: {
-      rank: 780,
+      rank: 776,
       moveset: { fast: ['Bullet Seed'], charged: ['Energy Ball', 'Grass Knot'] },
       bestIv: { iv: '15/15/15', cp: 2255 },
     },
@@ -1705,7 +1715,7 @@ const PVPOKE = {
         {
           id: 'electrode_hisuian',
           name: 'Hisuian Electrode',
-          rank: 35,
+          rank: 29,
           raidRank: 59,
           current: true,
           candy: 50,
@@ -1719,22 +1729,22 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 35,
+      rank: 29,
       moveset: { fast: ['Thunder Shock'], charged: ['Wild Charge', 'Energy Ball'] },
       beats: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       bestIv: { iv: '1/14/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 165,
+      rank: 163,
       moveset: { fast: ['Thunder Shock'], charged: ['Wild Charge', 'Energy Ball'] },
       bestIv: { iv: '15/15/15', cp: 2430 },
     },
@@ -1745,13 +1755,13 @@ const PVPOKE = {
     types: ['water', 'steel'],
     evolution: [
       [
-        { id: 'piplup', name: 'Piplup', rank: 1082, raidRank: 153 },
+        { id: 'piplup', name: 'Piplup', rank: 1084, raidRank: 153 },
       ],
       [
-        { id: 'prinplup', name: 'Prinplup', rank: 818, raidRank: 94, candy: 25 },
+        { id: 'prinplup', name: 'Prinplup', rank: 825, raidRank: 94, candy: 25 },
       ],
       [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12, current: true, candy: 100 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -1762,7 +1772,7 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
-      rank: 24,
+      rank: 30,
       moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
       beats: [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
@@ -1771,16 +1781,16 @@ const PVPOKE = {
       ],
       losesTo: [
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '0/13/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 7,
+      rank: 10,
       moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
       beats: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
@@ -1793,32 +1803,32 @@ const PVPOKE = {
     },
     shadow: {
       greatLeague: {
-        rank: 25,
+        rank: 31,
         moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
         beats: [
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
           { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
-          { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+          { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         ],
         losesTo: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-          { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '0/13/15', cp: 1500 },
       },
       ultraLeague: {
-        rank: 9,
+        rank: 11,
         moveset: { fast: ['Metal Sound'], charged: ['Hydro Cannon', 'Drill Peck'] },
         beats: [
-          { id: 'togekiss', name: 'Togekiss', rank: 58, raidRank: 5 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+          { id: 'togekiss', name: 'Togekiss', rank: 61, raidRank: 5 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
         ],
         losesTo: [
+          { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-          { id: 'snorlax', name: 'Snorlax', rank: 3 },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         ],
         bestIv: { iv: '1/15/14', cp: 2500 },
       },
@@ -1836,10 +1846,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'drilbur', name: 'Drilbur', rank: 407, raidRank: 73 },
+        { id: 'drilbur', name: 'Drilbur', rank: 395, raidRank: 73 },
       ],
       [
-        { id: 'excadrill', name: 'Excadrill', rank: 365, raidRank: 9, current: true, candy: 50 },
+        { id: 'excadrill', name: 'Excadrill', rank: 389, raidRank: 9, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -1854,23 +1864,23 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 538,
+      rank: 546,
       moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
       bestIv: { iv: '2/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 440,
+      rank: 466,
       moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
       bestIv: { iv: '0/15/15', cp: 2495 },
     },
     shadow: {
       greatLeague: {
-        rank: 461,
+        rank: 464,
         moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
         bestIv: { iv: '2/15/15', cp: 1499 },
       },
       ultraLeague: {
-        rank: 365,
+        rank: 389,
         moveset: { fast: ['Mud Shot'], charged: ['Drill Run', 'Rock Slide'] },
         bestIv: { iv: '0/15/15', cp: 2495 },
       },
@@ -1904,19 +1914,19 @@ const PVPOKE = {
       rank: 26,
       moveset: { fast: ['Peck'], charged: ['Drill Peck', 'Drill Run'] },
       beats: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
-        { id: 'rillaboom', name: 'Rillaboom', rank: 20, raidRank: 13 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
+        { id: 'rillaboom', name: 'Rillaboom', rank: 21, raidRank: 13 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/15/14', cp: 1498 },
     },
     ultraLeague: {
-      rank: 302,
+      rank: 310,
       moveset: { fast: ['Peck'], charged: ['Drill Peck', 'Drill Run'] },
       bestIv: { iv: '15/15/15', cp: 2257 },
     },
@@ -1927,10 +1937,10 @@ const PVPOKE = {
     types: ['water'],
     evolution: [
       [
-        { id: 'totodile', name: 'Totodile', rank: 848, raidRank: 149 },
+        { id: 'totodile', name: 'Totodile', rank: 869, raidRank: 149 },
       ],
       [
-        { id: 'croconaw', name: 'Croconaw', rank: 223, raidRank: 134, candy: 25 },
+        { id: 'croconaw', name: 'Croconaw', rank: 234, raidRank: 134, candy: 25 },
       ],
       [
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13, current: true, candy: 100 },
@@ -1944,7 +1954,7 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Water Gun', 'Hydro Cannon'],
     greatLeague: {
-      rank: 31,
+      rank: 37,
       moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
@@ -1954,7 +1964,7 @@ const PVPOKE = {
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       bestIv: { iv: '0/11/13', cp: 1499 },
     },
@@ -1963,13 +1973,13 @@ const PVPOKE = {
       moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
       ],
       losesTo: [
+        { id: 'ampharos', name: 'Ampharos', rank: 51, raidRank: 24 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
-        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
       ],
       bestIv: { iv: '1/15/14', cp: 2497 },
     },
@@ -1978,8 +1988,8 @@ const PVPOKE = {
         rank: 60,
         moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
         beats: [
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-          { id: 'annihilape', name: 'Annihilape', rank: 32, raidRank: 24 },
+          { id: 'deoxys_defense', name: 'Deoxys (Defense)', rank: 36, raidRank: 122, legendary: true },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
         ],
         losesTo: [
@@ -1993,14 +2003,14 @@ const PVPOKE = {
         rank: 14,
         moveset: { fast: ['Shadow Claw'], charged: ['Hydro Cannon', 'Ice Beam'] },
         beats: [
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         ],
         losesTo: [
           { id: 'snorlax', name: 'Snorlax', rank: 3 },
           { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '1/15/14', cp: 2497 },
       },
@@ -2018,10 +2028,10 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'eevee', name: 'Eevee', rank: 1026 },
+        { id: 'eevee', name: 'Eevee', rank: 1039 },
       ],
       [
-        { id: 'flareon', name: 'Flareon', rank: 589, raidRank: 38, current: true, candy: 25 },
+        { id: 'flareon', name: 'Flareon', rank: 623, raidRank: 38, current: true, candy: 25 },
       ],
     ],
     raid: {
@@ -2037,13 +2047,13 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Heat Wave', 'Superpower'],
     greatLeague: {
-      rank: 695,
+      rank: 710,
       moveset: { fast: ['Ember'], charged: ['Heat Wave', 'Superpower'] },
       bestIv: { iv: '0/15/13', cp: 1500 },
     },
     ultraLeague: {
-      rank: 589,
-      moveset: { fast: ['Ember'], charged: ['Superpower', 'Heat Wave'] },
+      rank: 623,
+      moveset: { fast: ['Ember'], charged: ['Heat Wave', 'Superpower'] },
       bestIv: { iv: '1/15/15', cp: 2498 },
     },
   },
@@ -2053,13 +2063,13 @@ const PVPOKE = {
     types: ['fairy'],
     evolution: [
       [
-        { id: 'flabebe', name: 'Flabebe', rank: 1124, raidRank: 142 },
+        { id: 'flabebe', name: 'Flabebe', rank: 1120, raidRank: 142 },
       ],
       [
-        { id: 'floette', name: 'Floette', rank: 786, raidRank: 130, candy: 25 },
+        { id: 'floette', name: 'Floette', rank: 769, raidRank: 130, candy: 25 },
       ],
       [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13, current: true, candy: 100, quest: true },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13, current: true, candy: 100, quest: true },
       ],
     ],
     raid: {
@@ -2070,32 +2080,32 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Chilling Water'],
     greatLeague: {
-      rank: 11,
+      rank: 10,
       moveset: { fast: ['Fairy Wind'], charged: ['Moonblast', 'Chilling Water'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
       ],
       bestIv: { iv: '0/14/13', cp: 1500 },
     },
     ultraLeague: {
-      rank: 12,
+      rank: 8,
       moveset: { fast: ['Fairy Wind'], charged: ['Disarming Voice', 'Chilling Water'] },
       beats: [
-        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 16, raidRank: 8, legendary: true },
+        { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 9, raidRank: 19, legendary: true },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
       ],
       losesTo: [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
       ],
       bestIv: { iv: '0/14/15', cp: 2498 },
     },
@@ -2106,46 +2116,46 @@ const PVPOKE = {
     types: ['bug', 'steel'],
     evolution: [
       [
-        { id: 'pineco', name: 'Pineco', rank: 985 },
+        { id: 'pineco', name: 'Pineco', rank: 997 },
       ],
       [
-        { id: 'forretress', name: 'Forretress', rank: 31, current: true, candy: 50 },
+        { id: 'forretress', name: 'Forretress', rank: 32, current: true, candy: 50 },
       ],
     ],
     buddyKm: 5,
     greatLeague: {
-      rank: 54,
+      rank: 67,
       moveset: { fast: ['Volt Switch'], charged: ['Rock Tomb', 'Sand Tomb'] },
       beats: [
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '0/9/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 31,
+      rank: 32,
       moveset: { fast: ['Volt Switch'], charged: ['Rock Tomb', 'Sand Tomb'] },
       beats: [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
       losesTo: [
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
       ],
       bestIv: { iv: '9/15/15', cp: 2492 },
     },
     shadow: {
       greatLeague: {
-        rank: 50,
+        rank: 54,
         moveset: { fast: ['Volt Switch'], charged: ['Rock Tomb', 'Sand Tomb'] },
         beats: [
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
@@ -2155,21 +2165,21 @@ const PVPOKE = {
         losesTo: [
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         ],
         bestIv: { iv: '0/9/15', cp: 1500 },
       },
       ultraLeague: {
-        rank: 39,
+        rank: 44,
         moveset: { fast: ['Volt Switch'], charged: ['Rock Tomb', 'Sand Tomb'] },
         beats: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         ],
         losesTo: [
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
           { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
         ],
         bestIv: { iv: '9/15/15', cp: 2492 },
@@ -2185,17 +2195,17 @@ const PVPOKE = {
         { id: 'sentret', name: 'Sentret' },
       ],
       [
-        { id: 'furret', name: 'Furret', rank: 44, current: true, candy: 25 },
+        { id: 'furret', name: 'Furret', rank: 50, current: true, candy: 25 },
       ],
     ],
     buddyKm: 1,
     greatLeague: {
-      rank: 44,
+      rank: 50,
       moveset: { fast: ['Sucker Punch'], charged: ['Swift', 'Trailblaze'] },
       beats: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
@@ -2205,7 +2215,7 @@ const PVPOKE = {
       bestIv: { iv: '1/15/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 741,
+      rank: 753,
       moveset: { fast: ['Sucker Punch'], charged: ['Swift', 'Brick Break'] },
       bestIv: { iv: '15/15/15', cp: 1987 },
     },
@@ -2234,7 +2244,7 @@ const PVPOKE = {
         { id: 'kirlia', name: 'Kirlia', raidRank: 128, candy: 25 },
       ],
       [
-        { id: 'gardevoir', name: 'Gardevoir', rank: 654, raidRank: 3, current: true, candy: 100 },
+        { id: 'gardevoir', name: 'Gardevoir', rank: 645, raidRank: 3, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -2250,23 +2260,23 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Synchronoise'],
     greatLeague: {
-      rank: 991,
+      rank: 987,
       moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
       bestIv: { iv: '0/15/15', cp: 1496 },
     },
     ultraLeague: {
-      rank: 654,
+      rank: 645,
       moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
       bestIv: { iv: '0/12/15', cp: 2496 },
     },
     shadow: {
       greatLeague: {
-        rank: 1012,
+        rank: 1007,
         moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
         bestIv: { iv: '0/15/15', cp: 1496 },
       },
       ultraLeague: {
-        rank: 664,
+        rank: 646,
         moveset: { fast: ['Confusion'], charged: ['Triple Axel', 'Shadow Ball'] },
         bestIv: { iv: '0/12/15', cp: 2496 },
       },
@@ -2284,16 +2294,16 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'roggenrola', name: 'Roggenrola', rank: 1094, raidRank: 67 },
+        { id: 'roggenrola', name: 'Roggenrola', rank: 1096, raidRank: 67 },
       ],
       [
-        { id: 'boldore', name: 'Boldore', rank: 810, raidRank: 48, candy: 50 },
+        { id: 'boldore', name: 'Boldore', rank: 813, raidRank: 48, candy: 50 },
       ],
       [
         {
           id: 'gigalith',
           name: 'Gigalith',
-          rank: 368,
+          rank: 373,
           raidRank: 7,
           current: true,
           candy: 200,
@@ -2314,23 +2324,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Meteor Beam'],
     greatLeague: {
-      rank: 598,
+      rank: 607,
       moveset: { fast: ['Lock On'], charged: ['Meteor Beam', 'Superpower'] },
       bestIv: { iv: '0/11/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 368,
+      rank: 373,
       moveset: { fast: ['Lock On'], charged: ['Meteor Beam', 'Superpower'] },
       bestIv: { iv: '0/13/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
-        rank: 651,
+        rank: 647,
         moveset: { fast: ['Lock On'], charged: ['Meteor Beam', 'Superpower'] },
         bestIv: { iv: '0/11/15', cp: 1499 },
       },
       ultraLeague: {
-        rank: 517,
+        rank: 533,
         moveset: { fast: ['Lock On'], charged: ['Meteor Beam', 'Superpower'] },
         bestIv: { iv: '0/13/15', cp: 2497 },
       },
@@ -2350,10 +2360,10 @@ const PVPOKE = {
         { id: 'gothita', name: 'Gothita', raidRank: 134 },
       ],
       [
-        { id: 'gothorita', name: 'Gothorita', rank: 887, raidRank: 96, candy: 25 },
+        { id: 'gothorita', name: 'Gothorita', rank: 855, raidRank: 96, candy: 25 },
       ],
       [
-        { id: 'gothitelle', name: 'Gothitelle', rank: 535, raidRank: 47, current: true, candy: 100 },
+        { id: 'gothitelle', name: 'Gothitelle', rank: 519, raidRank: 47, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -2363,23 +2373,23 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 840,
+      rank: 805,
       moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
       bestIv: { iv: '0/15/15', cp: 1497 },
     },
     ultraLeague: {
-      rank: 535,
+      rank: 519,
       moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
       bestIv: { iv: '0/14/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 940,
+        rank: 925,
         moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
         bestIv: { iv: '0/15/15', cp: 1497 },
       },
       ultraLeague: {
-        rank: 598,
+        rank: 583,
         moveset: { fast: ['Confusion'], charged: ['Rock Slide', 'Future Sight'] },
         bestIv: { iv: '0/14/15', cp: 2500 },
       },
@@ -2400,7 +2410,7 @@ const PVPOKE = {
         { id: 'skwovet', name: 'Skwovet', raidRank: 157 },
       ],
       [
-        { id: 'greedent', name: 'Greedent', rank: 150, raidRank: 112, current: true, candy: 50 },
+        { id: 'greedent', name: 'Greedent', rank: 158, raidRank: 112, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -2415,12 +2425,12 @@ const PVPOKE = {
     },
     buddyKm: 1,
     greatLeague: {
-      rank: 187,
+      rank: 200,
       moveset: { fast: ['Bite'], charged: ['Body Slam', 'Trailblaze'] },
       bestIv: { iv: '0/12/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 150,
+      rank: 158,
       moveset: { fast: ['Bite'], charged: ['Body Slam', 'Trailblaze'] },
       bestIv: { iv: '3/15/15', cp: 2495 },
     },
@@ -2437,32 +2447,32 @@ const PVPOKE = {
     },
     buddyKm: 20,
     greatLeague: {
-      rank: 45,
+      rank: 43,
       moveset: { fast: ['Dragon Tail'], charged: ['Brutal Swing', 'Sludge Bomb'] },
       beats: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       bestIv: { iv: '1/15/15', cp: 1497 },
     },
     ultraLeague: {
-      rank: 19,
+      rank: 18,
       moveset: { fast: ['Dragon Tail'], charged: ['Brutal Swing', 'Sludge Bomb'] },
       beats: [
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
       ],
       losesTo: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
+        { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
       ],
       bestIv: { iv: '0/15/14', cp: 2499 },
     },
@@ -2488,7 +2498,7 @@ const PVPOKE = {
         { id: 'magikarp', name: 'Magikarp' },
       ],
       [
-        { id: 'gyarados', name: 'Gyarados', rank: 67, raidRank: 10, current: true, candy: 400 },
+        { id: 'gyarados', name: 'Gyarados', rank: 70, raidRank: 10, current: true, candy: 400 },
       ],
     ],
     raid: {
@@ -2504,42 +2514,42 @@ const PVPOKE = {
     buddyKm: 1,
     specialMoves: ['Dragon Tail', 'Dragon Pulse', 'Aqua Tail'],
     greatLeague: {
-      rank: 271,
+      rank: 287,
       moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
       bestIv: { iv: '0/14/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 75,
+      rank: 77,
       moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
       beats: [
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
       bestIv: { iv: '0/15/14', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 261,
+        rank: 273,
         moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
         bestIv: { iv: '0/14/15', cp: 1499 },
       },
       ultraLeague: {
-        rank: 67,
+        rank: 70,
         moveset: { fast: ['Dragon Breath'], charged: ['Aqua Tail', 'Twister'] },
         beats: [
-          { id: 'blastoise', name: 'Blastoise', rank: 29, raidRank: 45 },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+          { id: 'blastoise', name: 'Blastoise', rank: 35, raidRank: 45 },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+          { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
+          { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
           { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
         ],
         bestIv: { iv: '0/15/14', cp: 2500 },
@@ -2560,7 +2570,7 @@ const PVPOKE = {
         { id: 'makuhita', name: 'Makuhita', raidRank: 134 },
       ],
       [
-        { id: 'hariyama', name: 'Hariyama', rank: 334, raidRank: 19, current: true, candy: 50 },
+        { id: 'hariyama', name: 'Hariyama', rank: 337, raidRank: 19, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -2570,23 +2580,23 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 486,
+      rank: 473,
       moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
       bestIv: { iv: '0/14/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 334,
+      rank: 337,
       moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 443,
+        rank: 421,
         moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
         bestIv: { iv: '0/14/14', cp: 1500 },
       },
       ultraLeague: {
-        rank: 349,
+        rank: 341,
         moveset: { fast: ['Force Palm'], charged: ['Upper Hand', 'Heavy Slam'] },
         bestIv: { iv: '1/15/15', cp: 2500 },
       },
@@ -2607,10 +2617,10 @@ const PVPOKE = {
         { id: 'hatenna', name: 'Hatenna', raidRank: 54 },
       ],
       [
-        { id: 'hattrem', name: 'Hattrem', rank: 700, raidRank: 40, candy: 25 },
+        { id: 'hattrem', name: 'Hattrem', rank: 703, raidRank: 40, candy: 25 },
       ],
       [
-        { id: 'hatterene', name: 'Hatterene', rank: 493, raidRank: 10, current: true, candy: 100 },
+        { id: 'hatterene', name: 'Hatterene', rank: 467, raidRank: 10, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -2625,12 +2635,12 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 724,
+      rank: 728,
       moveset: { fast: ['Psycho Cut'], charged: ['Psyshock', 'Power Whip'] },
       bestIv: { iv: '0/11/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 493,
+      rank: 467,
       moveset: { fast: ['Psycho Cut'], charged: ['Psyshock', 'Power Whip'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
@@ -2641,10 +2651,10 @@ const PVPOKE = {
     types: ['ground'],
     evolution: [
       [
-        { id: 'hippopotas', name: 'Hippopotas', rank: 306, raidRank: 99 },
+        { id: 'hippopotas', name: 'Hippopotas', rank: 325, raidRank: 99 },
       ],
       [
-        { id: 'hippowdon', name: 'Hippowdon', rank: 51, raidRank: 21, current: true, candy: 50 },
+        { id: 'hippowdon', name: 'Hippowdon', rank: 52, raidRank: 21, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -2654,38 +2664,28 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 51,
+      rank: 52,
       moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
+        { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-        { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '0/14/10', cp: 1499 },
     },
     ultraLeague: {
-      rank: 99,
+      rank: 101,
       moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
-      beats: [
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-        { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-        { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-      ],
-      losesTo: [
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'snorlax', name: 'Snorlax', rank: 3 },
-      ],
       bestIv: { iv: '0/14/15', cp: 2496 },
     },
     shadow: {
       greatLeague: {
-        rank: 61,
+        rank: 59,
         moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
         beats: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
@@ -2693,25 +2693,15 @@ const PVPOKE = {
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
           { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
         ],
         bestIv: { iv: '0/14/10', cp: 1499 },
       },
       ultraLeague: {
-        rank: 92,
+        rank: 108,
         moveset: { fast: ['Sand Attack'], charged: ['Weather Ball (Rock)', 'Earth Power'] },
-        beats: [
-          { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-          { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-        ],
-        losesTo: [
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        ],
         bestIv: { iv: '0/14/15', cp: 2496 },
       },
       raid: {
@@ -2731,10 +2721,10 @@ const PVPOKE = {
         { id: 'sobble', name: 'Sobble', raidRank: 155 },
       ],
       [
-        { id: 'drizzile', name: 'Drizzile', rank: 1071, raidRank: 106, candy: 25 },
+        { id: 'drizzile', name: 'Drizzile', rank: 1073, raidRank: 106, candy: 25 },
       ],
       [
-        { id: 'inteleon', name: 'Inteleon', rank: 716, raidRank: 17, current: true, candy: 100 },
+        { id: 'inteleon', name: 'Inteleon', rank: 719, raidRank: 17, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -2751,12 +2741,12 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
-      rank: 865,
+      rank: 880,
       moveset: { fast: ['Water Gun'], charged: ['Snipe Shot', 'Hydro Cannon'] },
       bestIv: { iv: '0/13/12', cp: 1500 },
     },
     ultraLeague: {
-      rank: 716,
+      rank: 719,
       moveset: { fast: ['Water Gun'], charged: ['Snipe Shot', 'Shadow Ball'] },
       bestIv: { iv: '1/15/13', cp: 2499 },
     },
@@ -2771,10 +2761,10 @@ const PVPOKE = {
         { id: 'bulbasaur', name: 'Bulbasaur', rank: 1070, raidRank: 103 },
       ],
       [
-        { id: 'ivysaur', name: 'Ivysaur', rank: 793, raidRank: 58, current: true, candy: 25 },
+        { id: 'ivysaur', name: 'Ivysaur', rank: 789, raidRank: 58, current: true, candy: 25 },
       ],
       [
-        { id: 'venusaur', name: 'Venusaur', rank: 217, raidRank: 8, candy: 100 },
+        { id: 'venusaur', name: 'Venusaur', rank: 218, raidRank: 8, candy: 100 },
       ],
     ],
     raid: {
@@ -2789,13 +2779,13 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 793,
+      rank: 789,
       moveset: { fast: ['Vine Whip'], charged: ['Power Whip', 'Sludge Bomb'] },
       bestIv: { iv: '0/13/14', cp: 1498 },
     },
     shadow: {
       greatLeague: {
-        rank: 908,
+        rank: 894,
         moveset: { fast: ['Vine Whip'], charged: ['Power Whip', 'Sludge Bomb'] },
         bestIv: { iv: '0/13/14', cp: 1498 },
       },
@@ -2812,10 +2802,10 @@ const PVPOKE = {
     types: ['water', 'ghost'],
     evolution: [
       [
-        { id: 'frillish', name: 'Frillish', rank: 427, raidRank: 88 },
+        { id: 'frillish', name: 'Frillish', rank: 436, raidRank: 88 },
       ],
       [
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48, current: true, candy: 50 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -2825,32 +2815,32 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 23,
+      rank: 19,
       moveset: { fast: ['Hex'], charged: ['Surf', 'Shadow Ball'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
       ],
       bestIv: { iv: '1/14/14', cp: 1498 },
     },
     ultraLeague: {
-      rank: 16,
+      rank: 17,
       moveset: { fast: ['Hex'], charged: ['Shadow Ball', 'Surf'] },
       beats: [
-        { id: 'blastoise', name: 'Blastoise', rank: 29, raidRank: 45 },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+        { id: 'blastoise', name: 'Blastoise', rank: 35, raidRank: 45 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
+        { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
       ],
       bestIv: { iv: '6/14/15', cp: 2500 },
     },
@@ -2867,7 +2857,7 @@ const PVPOKE = {
         { id: 'skiploom', name: 'Skiploom', raidRank: 132, candy: 25 },
       ],
       [
-        { id: 'jumpluff', name: 'Jumpluff', rank: 56, raidRank: 38, current: true, candy: 100 },
+        { id: 'jumpluff', name: 'Jumpluff', rank: 55, raidRank: 38, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -2878,12 +2868,12 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Acrobatics'],
     greatLeague: {
-      rank: 56,
+      rank: 55,
       moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
       beats: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
@@ -2893,18 +2883,18 @@ const PVPOKE = {
       bestIv: { iv: '0/14/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 700,
+      rank: 696,
       moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
       bestIv: { iv: '15/15/15', cp: 1850 },
     },
     shadow: {
       greatLeague: {
-        rank: 81,
+        rank: 85,
         moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
         beats: [
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         ],
         losesTo: [
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
@@ -2914,7 +2904,7 @@ const PVPOKE = {
         bestIv: { iv: '0/14/14', cp: 1499 },
       },
       ultraLeague: {
-        rank: 713,
+        rank: 709,
         moveset: { fast: ['Fairy Wind'], charged: ['Energy Ball', 'Acrobatics'] },
         bestIv: { iv: '15/15/15', cp: 1850 },
       },
@@ -2934,7 +2924,7 @@ const PVPOKE = {
         { id: 'wattrel', name: 'Wattrel', raidRank: 117 },
       ],
       [
-        { id: 'kilowattrel', name: 'Kilowattrel', rank: 343, raidRank: 43, current: true, candy: 50 },
+        { id: 'kilowattrel', name: 'Kilowattrel', rank: 342, raidRank: 43, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -2944,12 +2934,12 @@ const PVPOKE = {
     },
     buddyKm: 1,
     greatLeague: {
-      rank: 518,
+      rank: 512,
       moveset: { fast: ['Thunder Shock'], charged: ['Acrobatics', 'Aerial Ace'] },
       bestIv: { iv: '0/15/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 343,
+      rank: 342,
       moveset: { fast: ['Thunder Shock'], charged: ['Acrobatics', 'Aerial Ace'] },
       bestIv: { iv: '0/15/15', cp: 2495 },
     },
@@ -2960,10 +2950,10 @@ const PVPOKE = {
     types: ['water', 'electric'],
     evolution: [
       [
-        { id: 'chinchou', name: 'Chinchou', rank: 1030, raidRank: 109 },
+        { id: 'chinchou', name: 'Chinchou', rank: 1023, raidRank: 109 },
       ],
       [
-        { id: 'lanturn', name: 'Lanturn', rank: 279, raidRank: 77, current: true, candy: 50 },
+        { id: 'lanturn', name: 'Lanturn', rank: 284, raidRank: 77, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -2973,12 +2963,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 279,
+      rank: 284,
       moveset: { fast: ['Spark'], charged: ['Surf', 'Thunderbolt'] },
       bestIv: { iv: '0/13/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 414,
+      rank: 402,
       moveset: { fast: ['Spark'], charged: ['Surf', 'Thunderbolt'] },
       bestIv: { iv: '15/15/15', cp: 2357 },
     },
@@ -3002,26 +2992,26 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Ice Shard', 'Dragon Pulse', 'Ice Beam'],
     greatLeague: {
-      rank: 39,
+      rank: 38,
       moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
       ],
       bestIv: { iv: '0/10/14', cp: 1498 },
     },
     ultraLeague: {
-      rank: 22,
+      rank: 20,
       moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
       beats: [
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
       ],
       losesTo: [
@@ -3033,17 +3023,17 @@ const PVPOKE = {
     },
     shadow: {
       greatLeague: {
-        rank: 63,
+        rank: 61,
         moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
         beats: [
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
           { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         ],
         losesTo: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '0/10/14', cp: 1498 },
       },
@@ -3051,14 +3041,14 @@ const PVPOKE = {
         rank: 23,
         moveset: { fast: ['Psywave'], charged: ['Sparkling Aria', 'Ice Beam'] },
         beats: [
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         ],
         losesTo: [
-          { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 13, raidRank: 19, legendary: true },
+          { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 9, raidRank: 19, legendary: true },
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
-          { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
+          { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
         ],
         bestIv: { iv: '0/15/15', cp: 2498 },
       },
@@ -3075,16 +3065,16 @@ const PVPOKE = {
     types: ['normal'],
     evolution: [
       [
-        { id: 'lickitung', name: 'Lickitung', rank: 175, current: true },
+        { id: 'lickitung', name: 'Lickitung', rank: 236, current: true },
       ],
       [
-        { id: 'lickilicky', name: 'Lickilicky', rank: 102, raidRank: 55, candy: 100, item: 'Sinnoh Stone' },
+        { id: 'lickilicky', name: 'Lickilicky', rank: 109, raidRank: 55, candy: 100, item: 'Sinnoh Stone' },
       ],
     ],
     buddyKm: 3,
     specialMoves: ['Body Slam'],
     greatLeague: {
-      rank: 175,
+      rank: 236,
       moveset: { fast: ['Lick'], charged: ['Body Slam', 'Power Whip'] },
       bestIv: { iv: '8/14/15', cp: 1499 },
     },
@@ -3098,7 +3088,7 @@ const PVPOKE = {
         { id: 'nymble', name: 'Nymble', raidRank: 105 },
       ],
       [
-        { id: 'lokix', name: 'Lokix', rank: 266, raidRank: 45, current: true, candy: 50 },
+        { id: 'lokix', name: 'Lokix', rank: 265, raidRank: 45, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3108,12 +3098,12 @@ const PVPOKE = {
     },
     buddyKm: 1,
     greatLeague: {
-      rank: 350,
+      rank: 360,
       moveset: { fast: ['Sucker Punch'], charged: ['X-Scissor', 'Trailblaze'] },
       bestIv: { iv: '0/14/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 266,
+      rank: 265,
       moveset: { fast: ['Sucker Punch'], charged: ['X-Scissor', 'Trailblaze'] },
       bestIv: { iv: '5/15/15', cp: 2497 },
     },
@@ -3125,16 +3115,16 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { id: 'machop', name: 'Machop', rank: 495, raidRank: 115 },
+        { id: 'machop', name: 'Machop', rank: 497, raidRank: 115 },
       ],
       [
-        { id: 'machoke', name: 'Machoke', rank: 236, raidRank: 68, candy: 25 },
+        { id: 'machoke', name: 'Machoke', rank: 237, raidRank: 68, candy: 25 },
       ],
       [
         {
           id: 'machamp',
           name: 'Machamp',
-          rank: 175,
+          rank: 166,
           raidRank: 15,
           current: true,
           candy: 100,
@@ -3156,23 +3146,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Karate Chop', 'Stone Edge', 'Submission', 'Payback'],
     greatLeague: {
-      rank: 246,
+      rank: 249,
       moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
       bestIv: { iv: '0/14/11', cp: 1500 },
     },
     ultraLeague: {
-      rank: 249,
+      rank: 245,
       moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
       bestIv: { iv: '0/15/14', cp: 2497 },
     },
     shadow: {
       greatLeague: {
-        rank: 194,
+        rank: 191,
         moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
         bestIv: { iv: '0/14/11', cp: 1500 },
       },
       ultraLeague: {
-        rank: 175,
+        rank: 166,
         moveset: { fast: ['Karate Chop'], charged: ['Cross Chop', 'Rock Slide'] },
         bestIv: { iv: '0/15/14', cp: 2497 },
       },
@@ -3204,7 +3194,7 @@ const PVPOKE = {
         { id: 'inkay', name: 'Inkay', raidRank: 149 },
       ],
       [
-        { id: 'malamar', name: 'Malamar', rank: 43, raidRank: 90, current: true, candy: 50 },
+        { id: 'malamar', name: 'Malamar', rank: 44, raidRank: 90, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3219,63 +3209,63 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 43,
+      rank: 44,
       moveset: { fast: ['Psywave'], charged: ['Foul Play', 'Superpower'] },
       beats: [
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
+        { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
       ],
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/15/9', cp: 1500 },
     },
     ultraLeague: {
-      rank: 64,
+      rank: 62,
       moveset: { fast: ['Psywave'], charged: ['Foul Play', 'Superpower'] },
       beats: [
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       losesTo: [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
       ],
       bestIv: { iv: '3/15/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 46,
+        rank: 45,
         moveset: { fast: ['Psywave'], charged: ['Foul Play', 'Superpower'] },
         beats: [
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         ],
         losesTo: [
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '0/15/9', cp: 1500 },
       },
       ultraLeague: {
-        rank: 56,
+        rank: 53,
         moveset: { fast: ['Psywave'], charged: ['Foul Play', 'Superpower'] },
         beats: [
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
           { id: 'snorlax', name: 'Snorlax', rank: 3 },
           { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
         ],
         losesTo: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '3/15/15', cp: 2500 },
       },
@@ -3292,10 +3282,10 @@ const PVPOKE = {
     types: ['dark', 'flying'],
     evolution: [
       [
-        { id: 'vullaby', name: 'Vullaby', rank: 426, raidRank: 102 },
+        { id: 'vullaby', name: 'Vullaby', rank: 442, raidRank: 102 },
       ],
       [
-        { id: 'mandibuzz', name: 'Mandibuzz', rank: 52, raidRank: 93, current: true, candy: 50 },
+        { id: 'mandibuzz', name: 'Mandibuzz', rank: 51, raidRank: 93, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3305,22 +3295,22 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 52,
+      rank: 51,
       moveset: { fast: ['Snarl'], charged: ['Shadow Ball', 'Dark Pulse'] },
       beats: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       bestIv: { iv: '0/13/15', cp: 1498 },
     },
     ultraLeague: {
-      rank: 141,
+      rank: 123,
       moveset: { fast: ['Snarl'], charged: ['Shadow Ball', 'Dark Pulse'] },
       bestIv: { iv: '15/15/15', cp: 2417 },
     },
@@ -3331,10 +3321,10 @@ const PVPOKE = {
     types: ['water', 'flying'],
     evolution: [
       [
-        { id: 'mantyke', name: 'Mantyke', rank: 753, raidRank: 167 },
+        { id: 'mantyke', name: 'Mantyke', rank: 764, raidRank: 167 },
       ],
       [
-        { id: 'mantine', name: 'Mantine', rank: 27, raidRank: 92, current: true, candy: 50 },
+        { id: 'mantine', name: 'Mantine', rank: 32, raidRank: 92, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3344,22 +3334,22 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 27,
+      rank: 32,
       moveset: { fast: ['Wing Attack'], charged: ['Twister', 'Water Pulse'] },
       beats: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       bestIv: { iv: '0/15/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 133,
+      rank: 129,
       moveset: { fast: ['Wing Attack'], charged: ['Twister', 'Water Pulse'] },
       bestIv: { iv: '15/15/15', cp: 2383 },
     },
@@ -3370,10 +3360,10 @@ const PVPOKE = {
     types: ['ground'],
     evolution: [
       [
-        { id: 'cubone', name: 'Cubone', rank: 945, raidRank: 113 },
+        { id: 'cubone', name: 'Cubone', rank: 928, raidRank: 113 },
       ],
       [
-        { id: 'marowak', name: 'Marowak', rank: 20, raidRank: 53, current: true, candy: 50 },
+        { id: 'marowak', name: 'Marowak', rank: 23, raidRank: 53, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3383,7 +3373,7 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 20,
+      rank: 23,
       moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
@@ -3393,33 +3383,33 @@ const PVPOKE = {
       losesTo: [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '0/14/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 640,
+      rank: 649,
       moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
       bestIv: { iv: '15/15/15', cp: 2075 },
     },
     shadow: {
       greatLeague: {
-        rank: 82,
+        rank: 79,
         moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
         beats: [
-          { id: 'clodsire', name: 'Clodsire', rank: 17, raidRank: 54 },
+          { id: 'clodsire', name: 'Clodsire', rank: 15, raidRank: 54 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'morpeko_full_belly', name: 'Morpeko (Full Belly)', rank: 53 },
+          { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
         ],
         losesTo: [
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         ],
         bestIv: { iv: '0/14/14', cp: 1500 },
       },
       ultraLeague: {
-        rank: 668,
+        rank: 677,
         moveset: { fast: ['Mud Slap'], charged: ['Bone Club', 'Rock Slide'] },
         bestIv: { iv: '15/15/15', cp: 2075 },
       },
@@ -3450,7 +3440,7 @@ const PVPOKE = {
         { id: 'meditite', name: 'Meditite', raidRank: 137 },
       ],
       [
-        { id: 'medicham', name: 'Medicham', rank: 55, raidRank: 114, current: true, candy: 50 },
+        { id: 'medicham', name: 'Medicham', rank: 53, raidRank: 114, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3460,16 +3450,16 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 55,
+      rank: 53,
       moveset: { fast: ['Psycho Cut'], charged: ['Dynamic Punch', 'Ice Punch'] },
       beats: [
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
       ],
       bestIv: { iv: '5/15/15', cp: 1499 },
@@ -3482,7 +3472,7 @@ const PVPOKE = {
     legendary: true,
     evolution: [
       [
-        { id: 'meltan', name: 'Meltan', rank: 1136, raidRank: 118, legendary: true },
+        { id: 'meltan', name: 'Meltan', rank: 1139, raidRank: 118, legendary: true },
       ],
       [
         {
@@ -3507,28 +3497,28 @@ const PVPOKE = {
       rank: 1,
       moveset: { fast: ['Thunder Shock'], charged: ['Double Iron Bash', 'Dynamic Punch'] },
       beats: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       bestIv: { iv: '1/15/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 5,
+      rank: 12,
       moveset: { fast: ['Thunder Shock'], charged: ['Double Iron Bash', 'Dynamic Punch'] },
       beats: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       losesTo: [
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
       ],
       bestIv: { iv: '0/13/15', cp: 2495 },
@@ -3543,10 +3533,10 @@ const PVPOKE = {
         { id: 'sprigatito', name: 'Sprigatito', raidRank: 50 },
       ],
       [
-        { id: 'floragato', name: 'Floragato', rank: 839, raidRank: 39, candy: 25 },
+        { id: 'floragato', name: 'Floragato', rank: 827, raidRank: 39, candy: 25 },
       ],
       [
-        { id: 'meowscarada', name: 'Meowscarada', rank: 462, raidRank: 23, current: true, candy: 100 },
+        { id: 'meowscarada', name: 'Meowscarada', rank: 452, raidRank: 23, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -3557,12 +3547,12 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
-      rank: 483,
+      rank: 465,
       moveset: { fast: ['Leafage'], charged: ['Night Slash', 'Frenzy Plant'] },
       bestIv: { iv: '0/13/13', cp: 1499 },
     },
     ultraLeague: {
-      rank: 462,
+      rank: 452,
       moveset: { fast: ['Leafage'], charged: ['Night Slash', 'Frenzy Plant'] },
       bestIv: { iv: '0/15/14', cp: 2496 },
     },
@@ -3578,26 +3568,26 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 6,
+      rank: 5,
       moveset: { fast: ['Shadow Claw'], charged: ['Shadow Sneak', 'Play Rough'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       losesTo: [
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
-        { id: 'morpeko_full_belly', name: 'Morpeko (Full Belly)', rank: 53 },
+        { id: 'morpeko_full_belly', name: 'Morpeko (Full Belly)', rank: 48 },
       ],
       bestIv: { iv: '1/14/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 10,
+      rank: 7,
       moveset: { fast: ['Shadow Claw'], charged: ['Shadow Sneak', 'Play Rough'] },
       beats: [
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       losesTo: [
@@ -3627,23 +3617,23 @@ const PVPOKE = {
     buddyKm: 20,
     specialMoves: ['Sky Attack'],
     greatLeague: {
-      rank: 671,
+      rank: 669,
       moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
       bestIv: { iv: '1/15/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 468,
+      rank: 456,
       moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
       bestIv: { iv: '0/14/12', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 685,
+        rank: 648,
         moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
         bestIv: { iv: '1/15/15', cp: 1500 },
       },
       ultraLeague: {
-        rank: 495,
+        rank: 489,
         moveset: { fast: ['Wing Attack'], charged: ['Fly', 'Heat Wave'] },
         bestIv: { iv: '0/14/12', cp: 2499 },
       },
@@ -3666,12 +3656,12 @@ const PVPOKE = {
     },
     buddyKm: 20,
     greatLeague: {
-      rank: 72,
+      rank: 69,
       moveset: { fast: ['Sucker Punch'], charged: ['Brave Bird', 'Fly'] },
       beats: [
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
       ],
       losesTo: [
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
@@ -3681,16 +3671,16 @@ const PVPOKE = {
       bestIv: { iv: '0/13/12', cp: 1499 },
     },
     ultraLeague: {
-      rank: 13,
+      rank: 9,
       moveset: { fast: ['Sucker Punch'], charged: ['Brave Bird', 'Fly'] },
       beats: [
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
       ],
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       bestIv: { iv: '1/15/15', cp: 2497 },
@@ -3716,7 +3706,7 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Ember', 'Fire Blast', 'Flamethrower', 'Energy Ball'],
     greatLeague: {
-      rank: 13,
+      rank: 14,
       moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
       beats: [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
@@ -3731,17 +3721,17 @@ const PVPOKE = {
       bestIv: { iv: '0/15/15', cp: 1495 },
     },
     ultraLeague: {
-      rank: 34,
+      rank: 38,
       moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
       beats: [
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
+        { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       losesTo: [
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
-        { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
       ],
       bestIv: { iv: '9/15/15', cp: 2493 },
     },
@@ -3752,17 +3742,17 @@ const PVPOKE = {
         beats: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
         ],
         bestIv: { iv: '0/15/15', cp: 1495 },
       },
       ultraLeague: {
-        rank: 65,
+        rank: 73,
         moveset: { fast: ['Ember'], charged: ['Weather Ball (Fire)', 'Energy Ball'] },
         beats: [
           { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
@@ -3771,8 +3761,8 @@ const PVPOKE = {
         ],
         losesTo: [
           { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-          { id: 'snorlax', name: 'Snorlax', rank: 3 },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
         ],
         bestIv: { iv: '9/15/15', cp: 2493 },
       },
@@ -3795,7 +3785,7 @@ const PVPOKE = {
         {
           id: 'ninetales_alolan',
           name: 'Alolan Ninetales',
-          rank: 24,
+          rank: 25,
           raidRank: 15,
           current: true,
           candy: 50,
@@ -3814,7 +3804,7 @@ const PVPOKE = {
       moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
       beats: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
         { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
       ],
       losesTo: [
@@ -3825,27 +3815,27 @@ const PVPOKE = {
       bestIv: { iv: '0/14/12', cp: 1500 },
     },
     ultraLeague: {
-      rank: 24,
+      rank: 25,
       moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
       beats: [
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
+        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 16, raidRank: 8, legendary: true },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
       losesTo: [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+        { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
       ],
       bestIv: { iv: '7/15/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
-        rank: 73,
+        rank: 72,
         moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
         beats: [
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-          { id: 'fearow', name: 'Fearow', rank: 26, raidRank: 51 },
+          { id: 'electrode_hisuian', name: 'Hisuian Electrode', rank: 29, raidRank: 59 },
           { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
         ],
         losesTo: [
@@ -3856,17 +3846,17 @@ const PVPOKE = {
         bestIv: { iv: '0/14/12', cp: 1500 },
       },
       ultraLeague: {
-        rank: 30,
+        rank: 31,
         moveset: { fast: ['Powder Snow'], charged: ['Weather Ball (Ice)', 'Chilling Water'] },
         beats: [
-          { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 13, raidRank: 19, legendary: true },
-          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-          { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
+          { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 9, raidRank: 19, legendary: true },
+          { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
+          { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 16, raidRank: 8, legendary: true },
         ],
         losesTo: [
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+          { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         ],
         bestIv: { iv: '7/15/15', cp: 2497 },
       },
@@ -3886,7 +3876,7 @@ const PVPOKE = {
         { id: 'numel', name: 'Numel', raidRank: 121, current: true },
       ],
       [
-        { id: 'camerupt', name: 'Camerupt', rank: 229, raidRank: 56, candy: 50 },
+        { id: 'camerupt', name: 'Camerupt', rank: 253, raidRank: 56, candy: 50 },
       ],
     ],
     raid: {
@@ -3912,7 +3902,7 @@ const PVPOKE = {
         { id: 'meowth_galarian', name: 'Galarian Meowth', raidRank: 86 },
       ],
       [
-        { id: 'perrserker', name: 'Perrserker', rank: 214, raidRank: 55, current: true, candy: 50 },
+        { id: 'perrserker', name: 'Perrserker', rank: 255, raidRank: 55, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3922,12 +3912,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 506,
+      rank: 540,
       moveset: { fast: ['Shadow Claw'], charged: ['Close Combat', 'Trailblaze'] },
       bestIv: { iv: '1/15/15', cp: 1495 },
     },
     ultraLeague: {
-      rank: 214,
+      rank: 255,
       moveset: { fast: ['Shadow Claw'], charged: ['Close Combat', 'Foul Play'] },
       bestIv: { iv: '0/14/15', cp: 2497 },
     },
@@ -3938,10 +3928,10 @@ const PVPOKE = {
     types: ['fire', 'normal'],
     evolution: [
       [
-        { id: 'litleo', name: 'Litleo', rank: 487, raidRank: 100 },
+        { id: 'litleo', name: 'Litleo', rank: 501, raidRank: 100 },
       ],
       [
-        { id: 'pyroar', name: 'Pyroar', rank: 476, raidRank: 45, current: true, candy: 50, gender: 'male' },
+        { id: 'pyroar', name: 'Pyroar', rank: 496, raidRank: 45, current: true, candy: 50, gender: 'male' },
       ],
     ],
     raid: {
@@ -3951,12 +3941,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 678,
+      rank: 688,
       moveset: { fast: ['Incinerate'], charged: ['Dark Pulse', 'Flame Charge'] },
       bestIv: { iv: '0/15/10', cp: 1500 },
     },
     ultraLeague: {
-      rank: 476,
+      rank: 496,
       moveset: { fast: ['Incinerate'], charged: ['Dark Pulse', 'Flame Charge'] },
       bestIv: { iv: '0/15/12', cp: 2500 },
     },
@@ -3970,7 +3960,7 @@ const PVPOKE = {
         { id: 'wooper', name: 'Wooper', raidRank: 123 },
       ],
       [
-        { id: 'quagsire', name: 'Quagsire', rank: 12, raidRank: 47, current: true, candy: 50 },
+        { id: 'quagsire', name: 'Quagsire', rank: 11, raidRank: 47, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -3981,28 +3971,28 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Aqua Tail'],
     greatLeague: {
-      rank: 14,
+      rank: 13,
       moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
       beats: [
+        { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
       ],
       losesTo: [
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/15/14', cp: 1499 },
     },
     ultraLeague: {
-      rank: 453,
+      rank: 468,
       moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
       bestIv: { iv: '15/15/15', cp: 2252 },
     },
     shadow: {
       greatLeague: {
-        rank: 12,
+        rank: 11,
         moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
         beats: [
           { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
@@ -4010,14 +4000,14 @@ const PVPOKE = {
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         ],
         bestIv: { iv: '0/15/14', cp: 1499 },
       },
       ultraLeague: {
-        rank: 424,
+        rank: 447,
         moveset: { fast: ['Mud Shot'], charged: ['Aqua Tail', 'Stone Edge'] },
         bestIv: { iv: '15/15/15', cp: 2252 },
       },
@@ -4037,10 +4027,10 @@ const PVPOKE = {
         { id: 'quaxly', name: 'Quaxly', raidRank: 126 },
       ],
       [
-        { id: 'quaxwell', name: 'Quaxwell', rank: 501, raidRank: 105, candy: 25 },
+        { id: 'quaxwell', name: 'Quaxwell', rank: 515, raidRank: 105, candy: 25 },
       ],
       [
-        { id: 'quaquaval', name: 'Quaquaval', rank: 199, raidRank: 16, current: true, candy: 100 },
+        { id: 'quaquaval', name: 'Quaquaval', rank: 208, raidRank: 16, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -4051,12 +4041,12 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
-      rank: 288,
+      rank: 274,
       moveset: { fast: ['Low Kick'], charged: ['Close Combat', 'Hydro Cannon'] },
       bestIv: { iv: '0/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 199,
+      rank: 208,
       moveset: { fast: ['Low Kick'], charged: ['Close Combat', 'Hydro Cannon'] },
       bestIv: { iv: '1/15/14', cp: 2497 },
     },
@@ -4071,10 +4061,10 @@ const PVPOKE = {
         { id: 'scorbunny', name: 'Scorbunny', raidRank: 109 },
       ],
       [
-        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 75, current: true, candy: 25 },
+        { id: 'raboot', name: 'Raboot', rank: 871, raidRank: 75, current: true, candy: 25 },
       ],
       [
-        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, candy: 100 },
+        { id: 'cinderace', name: 'Cinderace', rank: 404, raidRank: 33, candy: 100 },
       ],
     ],
     raid: {
@@ -4089,7 +4079,7 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 874,
+      rank: 871,
       moveset: { fast: ['Fire Spin'], charged: ['Flame Charge', 'Flamethrower'] },
       bestIv: { iv: '0/12/14', cp: 1499 },
     },
@@ -4101,16 +4091,16 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'rhyhorn', name: 'Rhyhorn', rank: 906, raidRank: 77 },
+        { id: 'rhyhorn', name: 'Rhyhorn', rank: 911, raidRank: 77 },
       ],
       [
-        { id: 'rhydon', name: 'Rhydon', rank: 813, raidRank: 12, candy: 25 },
+        { id: 'rhydon', name: 'Rhydon', rank: 812, raidRank: 12, candy: 25 },
       ],
       [
         {
           id: 'rhyperior',
           name: 'Rhyperior',
-          rank: 485,
+          rank: 498,
           raidRank: 3,
           current: true,
           candy: 100,
@@ -4131,23 +4121,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Rock Wrecker'],
     greatLeague: {
-      rank: 688,
+      rank: 677,
       moveset: { fast: ['Mud Slap'], charged: ['Rock Wrecker', 'Drill Run'] },
       bestIv: { iv: '0/14/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 485,
+      rank: 508,
       moveset: { fast: ['Mud Slap'], charged: ['Drill Run', 'Rock Wrecker'] },
       bestIv: { iv: '0/14/14', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 633,
+        rank: 601,
         moveset: { fast: ['Mud Slap'], charged: ['Rock Wrecker', 'Drill Run'] },
         bestIv: { iv: '0/14/14', cp: 1500 },
       },
       ultraLeague: {
-        rank: 497,
+        rank: 498,
         moveset: { fast: ['Mud Slap'], charged: ['Drill Run', 'Rock Wrecker'] },
         bestIv: { iv: '0/14/14', cp: 2499 },
       },
@@ -4168,10 +4158,10 @@ const PVPOKE = {
         { id: 'grookey', name: 'Grookey', raidRank: 127 },
       ],
       [
-        { id: 'thwackey', name: 'Thwackey', rank: 789, raidRank: 82, candy: 25 },
+        { id: 'thwackey', name: 'Thwackey', rank: 793, raidRank: 82, candy: 25 },
       ],
       [
-        { id: 'rillaboom', name: 'Rillaboom', rank: 20, raidRank: 13, current: true, candy: 100 },
+        { id: 'rillaboom', name: 'Rillaboom', rank: 21, raidRank: 13, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -4188,31 +4178,31 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
-      rank: 36,
+      rank: 33,
       moveset: { fast: ['Scratch'], charged: ['Drum Beating', 'Earth Power'] },
       beats: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
-        { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
+        { id: 'electrode_hisuian', name: 'Hisuian Electrode', rank: 29, raidRank: 59 },
       ],
       losesTo: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       bestIv: { iv: '0/12/13', cp: 1500 },
     },
     ultraLeague: {
-      rank: 20,
+      rank: 21,
       moveset: { fast: ['Scratch'], charged: ['Drum Beating', 'Earth Power'] },
       beats: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
       ],
       losesTo: [
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
-        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
+        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 16, raidRank: 8, legendary: true },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       bestIv: { iv: '0/14/15', cp: 2495 },
@@ -4246,7 +4236,7 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 37,
+      rank: 40,
       moveset: { fast: ['Shadow Claw'], charged: ['Foul Play', 'Power Gem'] },
       beats: [
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
@@ -4256,17 +4246,17 @@ const PVPOKE = {
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '0/15/15', cp: 1499 },
     },
     shadow: {
       greatLeague: {
-        rank: 19,
+        rank: 20,
         moveset: { fast: ['Shadow Claw'], charged: ['Foul Play', 'Drain Punch'] },
         beats: [
           { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
         ],
         losesTo: [
@@ -4293,10 +4283,10 @@ const PVPOKE = {
         { id: 'scorbunny', name: 'Scorbunny', raidRank: 109, current: true },
       ],
       [
-        { id: 'raboot', name: 'Raboot', rank: 874, raidRank: 75, candy: 25 },
+        { id: 'raboot', name: 'Raboot', rank: 871, raidRank: 75, candy: 25 },
       ],
       [
-        { id: 'cinderace', name: 'Cinderace', rank: 403, raidRank: 33, candy: 100 },
+        { id: 'cinderace', name: 'Cinderace', rank: 404, raidRank: 33, candy: 100 },
       ],
     ],
     raid: {
@@ -4318,7 +4308,7 @@ const PVPOKE = {
     maxForms: ['Dynamax', 'Gigantamax'],
     evolution: [
       [
-        { id: 'munchlax', name: 'Munchlax', rank: 290 },
+        { id: 'munchlax', name: 'Munchlax', rank: 316 },
       ],
       [
         { id: 'snorlax', name: 'Snorlax', rank: 3, current: true, candy: 50 },
@@ -4332,38 +4322,38 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Yawn'],
     greatLeague: {
-      rank: 28,
+      rank: 27,
       moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Earthquake'] },
       beats: [
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
+        { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
       ],
       bestIv: { iv: '1/15/14', cp: 1500 },
     },
     ultraLeague: {
-      rank: 11,
+      rank: 13,
       moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Earthquake'] },
       beats: [
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-        { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
       ],
       losesTo: [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 8, raidRank: 47, legendary: true },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
       ],
       bestIv: { iv: '0/12/15', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 40,
+        rank: 46,
         moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Superpower'] },
         beats: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
@@ -4371,7 +4361,7 @@ const PVPOKE = {
           { id: 'vigoroth', name: 'Vigoroth', rank: 22, raidRank: 111 },
         ],
         losesTo: [
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
           { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
         ],
@@ -4381,14 +4371,14 @@ const PVPOKE = {
         rank: 3,
         moveset: { fast: ['Psywave'], charged: ['Body Slam', 'Earthquake'] },
         beats: [
+          { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
-          { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+          { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         ],
         losesTo: [
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-          { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 13, raidRank: 19, legendary: true },
+          { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 9, raidRank: 19, legendary: true },
         ],
         bestIv: { iv: '0/12/15', cp: 2499 },
       },
@@ -4414,10 +4404,10 @@ const PVPOKE = {
         { id: 'starly', name: 'Starly' },
       ],
       [
-        { id: 'staravia', name: 'Staravia', rank: 644, raidRank: 81, candy: 25 },
+        { id: 'staravia', name: 'Staravia', rank: 634, raidRank: 81, candy: 25 },
       ],
       [
-        { id: 'staraptor', name: 'Staraptor', rank: 464, raidRank: 9, current: true, candy: 100 },
+        { id: 'staraptor', name: 'Staraptor', rank: 457, raidRank: 9, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -4428,23 +4418,23 @@ const PVPOKE = {
     buddyKm: 1,
     specialMoves: ['Gust'],
     greatLeague: {
-      rank: 713,
+      rank: 714,
       moveset: { fast: ['Wing Attack'], charged: ['Close Combat', 'Fly'] },
       bestIv: { iv: '0/13/13', cp: 1500 },
     },
     ultraLeague: {
-      rank: 505,
+      rank: 523,
       moveset: { fast: ['Wing Attack'], charged: ['Close Combat', 'Fly'] },
       bestIv: { iv: '2/15/14', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 757,
+        rank: 747,
         moveset: { fast: ['Wing Attack'], charged: ['Close Combat', 'Fly'] },
         bestIv: { iv: '0/13/13', cp: 1500 },
       },
       ultraLeague: {
-        rank: 464,
+        rank: 457,
         moveset: { fast: ['Wing Attack'], charged: ['Close Combat', 'Fly'] },
         bestIv: { iv: '2/15/14', cp: 2500 },
       },
@@ -4474,14 +4464,14 @@ const PVPOKE = {
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
       ],
       losesTo: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
       ],
       bestIv: { iv: '0/12/15', cp: 1498 },
     },
     ultraLeague: {
-      rank: 136,
+      rank: 133,
       moveset: { fast: ['Thunder Shock'], charged: ['Discharge', 'Mud Bomb'] },
       bestIv: { iv: '15/15/15', cp: 2445 },
     },
@@ -4497,7 +4487,7 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 90,
+      rank: 98,
       moveset: { fast: ['Mud Shot'], charged: ['Rock Slide', 'Earthquake'] },
       beats: [
         { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
@@ -4505,14 +4495,14 @@ const PVPOKE = {
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       losesTo: [
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       bestIv: { iv: '0/12/15', cp: 1498 },
     },
     ultraLeague: {
-      rank: 131,
+      rank: 149,
       moveset: { fast: ['Mud Shot'], charged: ['Rock Slide', 'Earthquake'] },
       bestIv: { iv: '15/15/15', cp: 2445 },
     },
@@ -4537,10 +4527,10 @@ const PVPOKE = {
         { id: 'mudkip', name: 'Mudkip' },
       ],
       [
-        { id: 'marshtomp', name: 'Marshtomp', rank: 411, raidRank: 63, candy: 25 },
+        { id: 'marshtomp', name: 'Marshtomp', rank: 407, raidRank: 63, candy: 25 },
       ],
       [
-        { id: 'swampert', name: 'Swampert', rank: 54, raidRank: 11, current: true, candy: 100 },
+        { id: 'swampert', name: 'Swampert', rank: 63, raidRank: 11, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -4551,63 +4541,63 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Hydro Cannon'],
     greatLeague: {
-      rank: 78,
+      rank: 75,
       moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
       beats: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-        { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
+        { id: 'stunfisk', name: 'Stunfisk', rank: 21, raidRank: 76 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       losesTo: [
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
       ],
       bestIv: { iv: '0/14/14', cp: 1498 },
     },
     ultraLeague: {
-      rank: 54,
+      rank: 63,
       moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
       beats: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'empoleon', name: 'Empoleon', rank: 7, raidRank: 12 },
+        { id: 'empoleon', name: 'Empoleon', rank: 10, raidRank: 12 },
         { id: 'snorlax', name: 'Snorlax', rank: 3 },
       ],
       losesTo: [
         { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'jellicent', name: 'Jellicent', rank: 16, raidRank: 48 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'jellicent', name: 'Jellicent', rank: 17, raidRank: 48 },
       ],
       bestIv: { iv: '0/14/13', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 79,
+        rank: 76,
         moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
         beats: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
           { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
         ],
         losesTo: [
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
-          { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         ],
         bestIv: { iv: '0/14/14', cp: 1498 },
       },
       ultraLeague: {
-        rank: 89,
+        rank: 94,
         moveset: { fast: ['Mud Shot'], charged: ['Hydro Cannon', 'Earthquake'] },
         beats: [
-          { id: 'skeledirge', name: 'Skeledirge', rank: 21, raidRank: 26 },
+          { id: 'skeledirge', name: 'Skeledirge', rank: 22, raidRank: 26 },
           { id: 'melmetal', name: 'Melmetal', rank: 1, raidRank: 39, legendary: true },
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
         ],
         losesTo: [
-          { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+          { id: 'virizion', name: 'Virizion', rank: 6, raidRank: 33, legendary: true },
           { id: 'snorlax', name: 'Snorlax', rank: 3 },
-          { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
+          { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
         ],
         bestIv: { iv: '0/14/13', cp: 2499 },
       },
@@ -4627,7 +4617,7 @@ const PVPOKE = {
         { id: 'nickit', name: 'Nickit', raidRank: 185 },
       ],
       [
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105, current: true, candy: 50 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -4638,7 +4628,7 @@ const PVPOKE = {
     buddyKm: 1,
     specialMoves: ['Icy Wind'],
     greatLeague: {
-      rank: 15,
+      rank: 17,
       moveset: { fast: ['Sucker Punch'], charged: ['Night Slash', 'Icy Wind'] },
       beats: [
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
@@ -4647,13 +4637,13 @@ const PVPOKE = {
       ],
       losesTo: [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
       ],
       bestIv: { iv: '0/15/11', cp: 1499 },
     },
     ultraLeague: {
-      rank: 172,
+      rank: 170,
       moveset: { fast: ['Sucker Punch'], charged: ['Night Slash', 'Icy Wind'] },
       bestIv: { iv: '15/15/15', cp: 2415 },
     },
@@ -4667,7 +4657,7 @@ const PVPOKE = {
         { id: 'tinkatink', name: 'Tinkatink', raidRank: 49 },
       ],
       [
-        { id: 'tinkatuff', name: 'Tinkatuff', rank: 309, raidRank: 44, candy: 25 },
+        { id: 'tinkatuff', name: 'Tinkatuff', rank: 310, raidRank: 44, candy: 25 },
       ],
       [
         { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27, current: true, candy: 100 },
@@ -4681,32 +4671,32 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Gigaton Hammer'],
     greatLeague: {
-      rank: 5,
+      rank: 6,
       moveset: { fast: ['Fairy Wind'], charged: ['Gigaton Hammer', 'Bulldoze'] },
       beats: [
-        { id: 'thievul', name: 'Thievul', rank: 15, raidRank: 105 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'thievul', name: 'Thievul', rank: 17, raidRank: 105 },
+        { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
       ],
       losesTo: [
-        { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '1/14/14', cp: 1497 },
     },
     ultraLeague: {
       rank: 1,
-      moveset: { fast: ['Fairy Wind'], charged: ['Gigaton Hammer', 'Bulldoze'] },
+      moveset: { fast: ['Fairy Wind'], charged: ['Bulldoze', 'Gigaton Hammer'] },
       beats: [
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 17, raidRank: 8, legendary: true },
-        { id: 'dusknoir', name: 'Shadow Dusknoir', rank: 25, raidRank: 30 },
+        { id: 'florges', name: 'Florges', rank: 8, raidRank: 13 },
+        { id: 'moltres_galarian', name: 'Galarian Moltres', rank: 9, raidRank: 19, legendary: true },
+        { id: 'giratina_altered', name: 'Giratina (Altered)', rank: 16, raidRank: 8, legendary: true },
       ],
       losesTo: [
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
         { id: 'feraligatr', name: 'Feraligatr', rank: 14, raidRank: 13 },
+        { id: 'zygarde_complete', name: 'Zygarde (Complete Forme)', rank: 5, raidRank: 47, legendary: true },
       ],
       bestIv: { iv: '13/15/15', cp: 2499 },
     },
@@ -4717,13 +4707,13 @@ const PVPOKE = {
     types: ['grass', 'ground'],
     evolution: [
       [
-        { id: 'turtwig', name: 'Turtwig', rank: 1122, raidRank: 118 },
+        { id: 'turtwig', name: 'Turtwig', rank: 1125, raidRank: 118 },
       ],
       [
-        { id: 'grotle', name: 'Grotle', rank: 710, raidRank: 60, candy: 25 },
+        { id: 'grotle', name: 'Grotle', rank: 720, raidRank: 60, candy: 25 },
       ],
       [
-        { id: 'torterra', name: 'Torterra', rank: 277, raidRank: 15, current: true, candy: 100 },
+        { id: 'torterra', name: 'Torterra', rank: 279, raidRank: 15, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -4734,23 +4724,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
-      rank: 558,
+      rank: 542,
       moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
       bestIv: { iv: '0/11/13', cp: 1500 },
     },
     ultraLeague: {
-      rank: 277,
+      rank: 279,
       moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
       bestIv: { iv: '0/15/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
-        rank: 708,
+        rank: 696,
         moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
         bestIv: { iv: '0/11/13', cp: 1500 },
       },
       ultraLeague: {
-        rank: 338,
+        rank: 329,
         moveset: { fast: ['Mud Slap'], charged: ['Frenzy Plant', 'Sand Tomb'] },
         bestIv: { iv: '0/15/15', cp: 2497 },
       },
@@ -4770,7 +4760,7 @@ const PVPOKE = {
         { id: 'mareanie', name: 'Mareanie', raidRank: 82 },
       ],
       [
-        { id: 'toxapex', name: 'Toxapex', rank: 115, raidRank: 57, current: true, candy: 50 },
+        { id: 'toxapex', name: 'Toxapex', rank: 123, raidRank: 57, current: true, candy: 50 },
       ],
     ],
     raid: {
@@ -4780,12 +4770,12 @@ const PVPOKE = {
     },
     buddyKm: 3,
     greatLeague: {
-      rank: 115,
+      rank: 123,
       moveset: { fast: ['Bite'], charged: ['Brine', 'Sludge Wave'] },
       bestIv: { iv: '0/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 770,
+      rank: 764,
       moveset: { fast: ['Poison Jab'], charged: ['Brine', 'Sludge Wave'] },
       bestIv: { iv: '15/15/15', cp: 1905 },
     },
@@ -4802,7 +4792,7 @@ const PVPOKE = {
         {
           id: 'trevenant',
           name: 'Trevenant',
-          rank: 147,
+          rank: 141,
           raidRank: 17,
           current: true,
           candy: 200,
@@ -4817,23 +4807,23 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 359,
+      rank: 352,
       moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Seed Bomb'] },
       bestIv: { iv: '0/15/15', cp: 1497 },
     },
     ultraLeague: {
-      rank: 154,
+      rank: 156,
       moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Seed Bomb'] },
       bestIv: { iv: '1/15/15', cp: 2500 },
     },
     shadow: {
       greatLeague: {
-        rank: 295,
+        rank: 298,
         moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Foul Play'] },
         bestIv: { iv: '0/15/15', cp: 1497 },
       },
       ultraLeague: {
-        rank: 147,
+        rank: 141,
         moveset: { fast: ['Shadow Claw'], charged: ['Shadow Ball', 'Seed Bomb'] },
         bestIv: { iv: '1/15/15', cp: 2500 },
       },
@@ -4857,7 +4847,7 @@ const PVPOKE = {
         { id: 'steenee', name: 'Steenee', raidRank: 55, candy: 25 },
       ],
       [
-        { id: 'tsareena', name: 'Tsareena', rank: 627, raidRank: 24, current: true, candy: 100 },
+        { id: 'tsareena', name: 'Tsareena', rank: 634, raidRank: 24, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -4878,7 +4868,7 @@ const PVPOKE = {
       bestIv: { iv: '0/15/13', cp: 1499 },
     },
     ultraLeague: {
-      rank: 627,
+      rank: 634,
       moveset: { fast: ['Magical Leaf'], charged: ['Triple Axel', 'High Jump Kick'] },
       bestIv: { iv: '0/15/15', cp: 2499 },
     },
@@ -4889,13 +4879,13 @@ const PVPOKE = {
     types: ['rock', 'dragon'],
     evolution: [
       [
-        { id: 'tyrunt', name: 'Tyrunt', rank: 714, raidRank: 81 },
+        { id: 'tyrunt', name: 'Tyrunt', rank: 707, raidRank: 81 },
       ],
       [
         {
           id: 'tyrantrum',
           name: 'Tyrantrum',
-          rank: 574,
+          rank: 563,
           raidRank: 4,
           current: true,
           candy: 50,
@@ -4910,23 +4900,23 @@ const PVPOKE = {
     },
     buddyKm: 5,
     greatLeague: {
-      rank: 739,
+      rank: 731,
       moveset: { fast: ['Dragon Tail'], charged: ['Rock Tomb', 'Crunch'] },
       bestIv: { iv: '0/15/12', cp: 1498 },
     },
     ultraLeague: {
-      rank: 574,
+      rank: 563,
       moveset: { fast: ['Dragon Tail'], charged: ['Rock Tomb', 'Crunch'] },
       bestIv: { iv: '0/12/15', cp: 2497 },
     },
     shadow: {
       greatLeague: {
-        rank: 762,
+        rank: 744,
         moveset: { fast: ['Dragon Tail'], charged: ['Rock Tomb', 'Crunch'] },
         bestIv: { iv: '0/15/12', cp: 1498 },
       },
       ultraLeague: {
-        rank: 699,
+        rank: 690,
         moveset: { fast: ['Dragon Tail'], charged: ['Meteor Beam', 'Rock Tomb'] },
         bestIv: { iv: '0/12/15', cp: 2497 },
       },
@@ -4944,13 +4934,13 @@ const PVPOKE = {
     maxForms: ['Dynamax'],
     evolution: [
       [
-        { id: 'eevee', name: 'Eevee', rank: 1026 },
+        { id: 'eevee', name: 'Eevee', rank: 1039 },
       ],
       [
         {
           id: 'umbreon',
           name: 'Umbreon',
-          rank: 29,
+          rank: 24,
           raidRank: 94,
           current: true,
           candy: 25,
@@ -4973,11 +4963,11 @@ const PVPOKE = {
     buddyKm: 5,
     specialMoves: ['Last Resort', 'Psychic'],
     greatLeague: {
-      rank: 29,
+      rank: 24,
       moveset: { fast: ['Snarl'], charged: ['Dark Pulse', 'Last Resort'] },
       beats: [
         { id: 'corsola_galarian', name: 'Galarian Corsola', rank: 8, raidRank: 87 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
       ],
       losesTo: [
@@ -4988,7 +4978,7 @@ const PVPOKE = {
       bestIv: { iv: '0/15/15', cp: 1500 },
     },
     ultraLeague: {
-      rank: 123,
+      rank: 116,
       moveset: { fast: ['Snarl'], charged: ['Dark Pulse', 'Last Resort'] },
       bestIv: { iv: '15/15/15', cp: 2416 },
     },
@@ -5014,10 +5004,10 @@ const PVPOKE = {
         { id: 'bulbasaur', name: 'Bulbasaur', rank: 1070, raidRank: 103 },
       ],
       [
-        { id: 'ivysaur', name: 'Ivysaur', rank: 793, raidRank: 58, candy: 25 },
+        { id: 'ivysaur', name: 'Ivysaur', rank: 789, raidRank: 58, candy: 25 },
       ],
       [
-        { id: 'venusaur', name: 'Venusaur', rank: 217, raidRank: 8, current: true, candy: 100 },
+        { id: 'venusaur', name: 'Venusaur', rank: 218, raidRank: 8, current: true, candy: 100 },
       ],
     ],
     raid: {
@@ -5034,23 +5024,23 @@ const PVPOKE = {
     buddyKm: 3,
     specialMoves: ['Frenzy Plant'],
     greatLeague: {
-      rank: 422,
+      rank: 417,
       moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
       bestIv: { iv: '0/14/11', cp: 1498 },
     },
     ultraLeague: {
-      rank: 217,
+      rank: 218,
       moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
       bestIv: { iv: '1/15/14', cp: 2499 },
     },
     shadow: {
       greatLeague: {
-        rank: 445,
+        rank: 427,
         moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
         bestIv: { iv: '0/14/11', cp: 1498 },
       },
       ultraLeague: {
-        rank: 253,
+        rank: 257,
         moveset: { fast: ['Vine Whip'], charged: ['Frenzy Plant', 'Sludge'] },
         bestIv: { iv: '1/15/14', cp: 2499 },
       },
@@ -5087,18 +5077,18 @@ const PVPOKE = {
       moveset: { fast: ['Scratch'], charged: ['Body Slam', 'Bulldoze'] },
       beats: [
         { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
-        { id: 'florges', name: 'Florges', rank: 11, raidRank: 13 },
-        { id: 'mimikyu', name: 'Mimikyu', rank: 6, raidRank: 57 },
+        { id: 'mimikyu', name: 'Mimikyu', rank: 5, raidRank: 57 },
+        { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
       ],
       losesTo: [
         { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
         { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
-        { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+        { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
       ],
       bestIv: { iv: '1/15/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 554,
+      rank: 551,
       moveset: { fast: ['Scratch'], charged: ['Body Slam', 'Rock Slide'] },
       bestIv: { iv: '15/15/15', cp: 2225 },
     },
@@ -5108,18 +5098,18 @@ const PVPOKE = {
         moveset: { fast: ['Scratch'], charged: ['Rock Slide', 'Brick Break'] },
         beats: [
           { id: 'altaria', name: 'Altaria', rank: 2, raidRank: 64 },
-          { id: 'quagsire', name: 'Shadow Quagsire', rank: 12, raidRank: 47 },
-          { id: 'corviknight', name: 'Corviknight', rank: 2, raidRank: 35 },
+          { id: 'quagsire', name: 'Shadow Quagsire', rank: 11, raidRank: 47 },
+          { id: 'ninetales', name: 'Shadow Ninetales', rank: 3, raidRank: 57 },
         ],
         losesTo: [
           { id: 'tinkaton', name: 'Tinkaton', rank: 1, raidRank: 27 },
           { id: 'cramorant', name: 'Cramorant', rank: 4, raidRank: 57 },
-          { id: 'sableye', name: 'Shadow Sableye', rank: 19, raidRank: 76 },
+          { id: 'sableye', name: 'Shadow Sableye', rank: 20, raidRank: 76 },
         ],
         bestIv: { iv: '1/15/15', cp: 1499 },
       },
       ultraLeague: {
-        rank: 555,
+        rank: 560,
         moveset: { fast: ['Scratch'], charged: ['Body Slam', 'Rock Slide'] },
         bestIv: { iv: '15/15/15', cp: 2225 },
       },
@@ -5143,7 +5133,7 @@ const PVPOKE = {
         {
           id: 'whimsicott',
           name: 'Whimsicott',
-          rank: 379,
+          rank: 343,
           raidRank: 33,
           current: true,
           candy: 50,
@@ -5163,12 +5153,12 @@ const PVPOKE = {
     },
     buddyKm: 1,
     greatLeague: {
-      rank: 379,
+      rank: 343,
       moveset: { fast: ['Fairy Wind'], charged: ['Moonblast', 'Seed Bomb'] },
       bestIv: { iv: '0/14/15', cp: 1499 },
     },
     ultraLeague: {
-      rank: 482,
+      rank: 461,
       moveset: { fast: ['Fairy Wind'], charged: ['Moonblast', 'Seed Bomb'] },
       bestIv: { iv: '15/15/15', cp: 2277 },
     },
